@@ -2,4 +2,4 @@
 .project
 password.txt
 user.txt
-/bin/
+.idea/
