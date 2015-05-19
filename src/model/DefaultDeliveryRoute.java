@@ -9,6 +9,89 @@ public class DefaultDeliveryRoute {
 	private Time timeOfDeparture;
 	private TrailerType trailerType;
 	private ArrayList<DefaultDeliveryStop> stops;
+	private GeoLoc geoLoc;
+	
+	public DefaultDeliveryRoute(long id, Time timeOfDeparture,
+			TrailerType trailerType, ArrayList<DefaultDeliveryStop> stops,
+			GeoLoc geoLoc) {
+		super();
+		this.id = id;
+		this.timeOfDeparture = timeOfDeparture;
+		this.trailerType = trailerType;
+		this.stops = stops;
+		this.geoLoc = geoLoc;
+	}
+
+	
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the timeOfDeparture
+	 */
+	public Time getTimeOfDeparture() {
+		return timeOfDeparture;
+	}
+
+	/**
+	 * @param timeOfDeparture the timeOfDeparture to set
+	 */
+	public void setTimeOfDeparture(Time timeOfDeparture) {
+		this.timeOfDeparture = timeOfDeparture;
+	}
+
+	/**
+	 * @return the trailerType
+	 */
+	public TrailerType getTrailerType() {
+		return trailerType;
+	}
+
+	/**
+	 * @param trailerType the trailerType to set
+	 */
+	public void setTrailerType(TrailerType trailerType) {
+		this.trailerType = trailerType;
+	}
+
+	/**
+	 * @return the stops
+	 */
+	public ArrayList<DefaultDeliveryStop> getStops() {
+		return stops;
+	}
+
+	/**
+	 * @param stops the stops to set
+	 */
+	public void setStops(ArrayList<DefaultDeliveryStop> stops) {
+		this.stops = stops;
+	}
+
+	/**
+	 * @return the geoLoc
+	 */
+	public GeoLoc getGeoLoc() {
+		return geoLoc;
+	}
+
+	/**
+	 * @param geoLoc the geoLoc to set
+	 */
+	public void setGeoLoc(GeoLoc geoLoc) {
+		this.geoLoc = geoLoc;
+	}
 	
 
 }

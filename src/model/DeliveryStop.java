@@ -8,5 +8,55 @@ public class DeliveryStop {
 	private DefaultDeliveryStop defaultStop;
 	private ArrayList<TransportUnit> transportUnits;
 	
+	public DeliveryStop(long id, DefaultDeliveryStop defaultStop,
+			ArrayList<TransportUnit> transportUnits) {
+		super();
+		this.id = id;
+		this.defaultStop = defaultStop;
+		this.transportUnits = transportUnits;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the defaultStop
+	 */
+	public DefaultDeliveryStop getDefaultStop() {
+		return defaultStop;
+	}
+
+	/**
+	 * @param defaultStop the defaultStop to set
+	 */
+	public void setDefaultStop(DefaultDeliveryStop defaultStop) {
+		this.defaultStop = defaultStop;
+	}
+
+	/**
+	 * @return the transportUnits
+	 */
+	public ArrayList<TransportUnit> getTransportUnits() {
+		return transportUnits;
+	}
+
+	/**
+	 * @param transportUnits the transportUnits to set
+	 */
+	public void setTransportUnits(ArrayList<TransportUnit> transportUnits) {
+		this.transportUnits = transportUnits;
+	}
+	
 
 }
