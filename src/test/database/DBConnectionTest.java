@@ -1,10 +1,12 @@
-package database;
+package test.database;
 
 import org.junit.BeforeClass;
 import org.junit.AfterClass;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
+
+import database.DBConnection;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
