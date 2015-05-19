@@ -54,17 +54,11 @@ public class RouteController {
 			Route route = new Route(defaultRoute);
 			
 			//Creates Delivery Stops
-			deliveryStopController.addDeliveryStop(route, listDefaultDeliveryStops);
-			
-			
-			
-			
+			deliveryStopController.addDeliveryStops(route, listDefaultDeliveryStops);
 			
 			//Increments counter for next loop.
 			i++;
 		}
-		
-		
 		
 		
 		

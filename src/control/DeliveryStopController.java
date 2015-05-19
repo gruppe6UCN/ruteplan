@@ -45,16 +45,18 @@ public class DeliveryStopController {
 			DefaultDeliveryStop defaultDeliveryStop = stops.get(i);
 			DeliveryStop deliveryStop = new DeliveryStop(defaultDeliveryStop);
 			
-			//Gets the transportUnits for the deliveryStop.
-			transportUnitController.getTransportUnits(deliveryStop, customerID);
-			
-			
+			//Gets each transportUnits for the deliveryStop.
+			int size2 = defaultDeliveryStop.getCustomers().size();
+			int ii = 0;
+			while(ii >= size2) 
+			{
+				long customerID = defaultDeliveryStop.getCustomers().get(ii).getId();
+				transportUnitController.addTransportUnit(deliveryStop, customerID);
+				ii++;
+			}
 			
 			//Adds deliveryStop to route.
-			
-			
-			
-			
+			route.addDeliveryStop(deliveryStop);
 			
 			//Increments counter for next loop.
 			i++;
