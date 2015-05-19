@@ -3,7 +3,7 @@ package model;
 import java.sql.Time;
 import java.util.ArrayList;
 
-public class DefaultDeliveryRoute {
+public class DefaultRoute {
 	
 	private long id;
 	private Time timeOfDeparture;
@@ -11,7 +11,7 @@ public class DefaultDeliveryRoute {
 	private ArrayList<DefaultDeliveryStop> stops;
 	private GeoLoc geoLoc;
 	
-	public DefaultDeliveryRoute(long id, Time timeOfDeparture,
+	public DefaultRoute(long id, Time timeOfDeparture,
 			TrailerType trailerType, ArrayList<DefaultDeliveryStop> stops,
 			GeoLoc geoLoc) {
 		super();
@@ -21,7 +21,6 @@ public class DefaultDeliveryRoute {
 		this.stops = stops;
 		this.geoLoc = geoLoc;
 	}
-
 	
 	/**
 	 * @return the id

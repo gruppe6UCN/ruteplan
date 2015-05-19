@@ -8,14 +8,22 @@ public class DeliveryStop {
 	private DefaultDeliveryStop defaultStop;
 	private ArrayList<TransportUnit> transportUnits;
 	
-	public DeliveryStop(long id, DefaultDeliveryStop defaultStop,
-			ArrayList<TransportUnit> transportUnits) {
-		super();
-		this.id = id;
+	public DeliveryStop(DefaultDeliveryStop defaultStop) {
+		
 		this.defaultStop = defaultStop;
-		this.transportUnits = transportUnits;
+		
+		//Automatize some variables such as id later m8.
 	}
 
+	/**
+	 * @param transportUnit transportUnit to add to ArrayList.
+	 */
+	public void addTransportUnit(TransportUnit transportUnit) {
+		transportUnits.add(transportUnit);		
+	}
+	
+	
+	
 	/**
 	 * @return the id
 	 */

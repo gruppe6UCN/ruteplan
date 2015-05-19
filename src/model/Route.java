@@ -7,26 +7,24 @@ import java.util.ArrayList;
 public class Route {
 	
 	private long id;
-	private DefaultDeliveryRoute defaultRoute;
+	private DefaultRoute defaultRoute;
 	private ArrayList<DeliveryStop> stops;
 	private TrailerType trailerType;
 	private Time auctualTimeOfDeparture;
 	private Date date;
 	
-	public Route(long id, DefaultDeliveryRoute defaultRoute,
-			ArrayList<DeliveryStop> stops, TrailerType trailerType,
-			Time auctualTimeOfDeparture, Date date) {
-		super();
-		this.id = id;
+	public Route(DefaultRoute defaultRoute) {
 		this.defaultRoute = defaultRoute;
-		this.stops = stops;
-		this.trailerType = trailerType;
-		this.auctualTimeOfDeparture = auctualTimeOfDeparture;
-		this.date = date;
+		
+		//Automatize dem other variables here later...
 	}
 
-	
-	
+	/**
+	 * @param stop deliveryStop to add to ArrayList.
+	 */
+	public void addDeliveryStop(DeliveryStop stop) {
+		stops.add(stop);		
+	}
 	
 	/**
 	 * @return the id
@@ -45,14 +43,14 @@ public class Route {
 	/**
 	 * @return the defaultRoute
 	 */
-	public DefaultDeliveryRoute getDefaultRoute() {
+	public DefaultRoute getDefaultRoute() {
 		return defaultRoute;
 	}
 
 	/**
 	 * @param defaultRoute the defaultRoute to set
 	 */
-	public void setDefaultRoute(DefaultDeliveryRoute defaultRoute) {
+	public void setDefaultRoute(DefaultRoute defaultRoute) {
 		this.defaultRoute = defaultRoute;
 	}
 
