@@ -37,7 +37,7 @@ public class DBDeliveryStop {
 		if (instance == null) {
 			instance = new DBDeliveryStop();			
 		}
-		
+
 		return instance;
 	}
 
