@@ -43,6 +43,10 @@ public class DBDefaultRoute {
 		return instance;
 	}
 
+    /**
+     *
+     * @return list of all default routes
+     */
     public ArrayList<DefaultRoute> getDefaultRoutes() {
         ArrayList<DefaultRoute> list;
         String sql = "select * from DefaultRoute";
@@ -50,6 +54,11 @@ public class DBDefaultRoute {
         return list;
     }
 
+    /**
+     *
+     * @param rs takes the ResultSet from database
+     * @return list of all default routes
+     */
     public ArrayList<DefaultRoute> _formatDefaultRoute(ResultSet rs) {
         ArrayList<DefaultRoute> tableList = new ArrayList<DefaultRoute>();
         try {
