@@ -8,19 +8,15 @@ public class DefaultRoute {
 	private long id;
 	private Time timeOfDeparture;
 	private TrailerType trailerType;
-	private ArrayList<DefaultDeliveryStop> stops;
-	private GeoLoc geoLoc;
+//	private ArrayList<DefaultDeliveryStop> stops;
 	private boolean extraRoute;
 	
 	public DefaultRoute(long id, Time timeOfDeparture,
-			TrailerType trailerType, ArrayList<DefaultDeliveryStop> stops,
-			GeoLoc geoLoc, boolean extraRoute) {
+			TrailerType trailerType, boolean extraRoute) {
 		super();
 		this.id = id;
 		this.timeOfDeparture = timeOfDeparture;
 		this.trailerType = trailerType;
-		this.stops = stops;
-		this.geoLoc = geoLoc;
 		this.extraRoute = extraRoute;
 	}
 	
@@ -69,30 +65,16 @@ public class DefaultRoute {
 	/**
 	 * @return the stops
 	 */
-	public ArrayList<DefaultDeliveryStop> getStops() {
-		return stops;
-	}
+//	public ArrayList<DefaultDeliveryStop> getStops() {
+//		return stops;
+//	}
 
 	/**
 	 * @param stops the stops to set
 	 */
-	public void setStops(ArrayList<DefaultDeliveryStop> stops) {
-		this.stops = stops;
-	}
-
-	/**
-	 * @return the geoLoc
-	 */
-	public GeoLoc getGeoLoc() {
-		return geoLoc;
-	}
-
-	/**
-	 * @param geoLoc the geoLoc to set
-	 */
-	public void setGeoLoc(GeoLoc geoLoc) {
-		this.geoLoc = geoLoc;
-	}
+//	public void setStops(ArrayList<DefaultDeliveryStop> stops) {
+//		this.stops = stops;
+//	}
 
 	/**
 	 * @return the extraRoute

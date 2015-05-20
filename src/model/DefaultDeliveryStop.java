@@ -5,14 +5,14 @@ import java.util.ArrayList;
 
 public class DefaultDeliveryStop {
 	
+	private long id;
 	private Time timeOfDelivery;
 	private ArrayList<Customer> customers;
 	
-	public DefaultDeliveryStop(Time timeOfDelivery,
-			ArrayList<Customer> customers) {
-		super();
+	public DefaultDeliveryStop(long id,
+                               Time timeOfDelivery) {
+        this.id = id;
 		this.timeOfDelivery = timeOfDelivery;
-		this.customers = customers;
 	}
 
 	/**
@@ -42,6 +42,6 @@ public class DefaultDeliveryStop {
 	public void setCustomers(ArrayList<Customer> customers) {
 		this.customers = customers;
 	}
-	
+
 
 }
