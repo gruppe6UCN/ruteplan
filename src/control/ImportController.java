@@ -1,5 +1,14 @@
 package control;
 
+/**
+ * ImportController
+ * Handles all functionality for the use-case import.
+ *
+ * @author Dani Sander
+ * @version 1.0
+ * @since 19-05-15
+ */
+
 public class ImportController {
 	
 	private RouteController routeController;

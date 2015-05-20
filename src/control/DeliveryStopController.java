@@ -4,6 +4,15 @@ import java.util.ArrayList;
 
 import model.*;
 
+/**
+ * DeliveryStopController
+ * Handles all functionality related to delivery stops.
+ *
+ * @author Dani Sander
+ * @version 1.0
+ * @since 19-05-15
+ */
+
 public class DeliveryStopController {
 	
 	private TransportUnitController transportUnitController;

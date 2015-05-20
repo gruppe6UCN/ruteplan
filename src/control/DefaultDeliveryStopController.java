@@ -6,6 +6,15 @@ import model.DefaultDeliveryStop;
 import model.DefaultRoute;
 import database.*;
 
+/**
+ * DefaultDeliveryStopController
+ * Handles all functionality related to default delivery stops.
+ *
+ * @author Dani Sander
+ * @version 1.0
+ * @since 19-05-15
+ */
+
 public class DefaultDeliveryStopController {
 	
 	private DBDefaultDeliveryStop dbDefaultDeliveryStop;

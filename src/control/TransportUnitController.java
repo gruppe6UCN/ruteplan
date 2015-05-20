@@ -5,6 +5,15 @@ import java.util.ArrayList;
 import database.*;
 import model.*;
 
+/**
+ * TransportUnitController
+ * Handles all functionality related to transport units.
+ *
+ * @author Dani Sander
+ * @version 1.0
+ * @since 19-05-15
+ */
+
 public class TransportUnitController {
 	
 	private DBTransportUnit dbTransportUnit;

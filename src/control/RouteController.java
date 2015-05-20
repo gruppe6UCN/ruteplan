@@ -5,6 +5,15 @@ import java.util.ArrayList;
 import database.DBDefaultDeliveryStop;
 import model.*;
 
+/**
+ * RouteController
+ * Handles all functionality related to routes.
+ *
+ * @author Dani Sander
+ * @version 1.0
+ * @since 19-05-15
+ */
+
 public class RouteController {
 	
 	private DeliveryStopController deliveryStopController;
@@ -59,9 +68,10 @@ public class RouteController {
 			//Increments counter for next loop.
 			i++;
 		}
-		
-		
-		
 	}
+	
+	
+	
+	
 	
 }

@@ -5,6 +5,15 @@ import java.util.ArrayList;
 import database.*;
 import model.*;
 
+/**
+ * DefaultRouteController
+ * Handles all functionality related to default routes.
+ *
+ * @author Dani Sander
+ * @version 1.0
+ * @since 19-05-15
+ */
+
 public class DefaultRouteController {
 	
 	private DBDefaultRoute dbDefaultRoute;
