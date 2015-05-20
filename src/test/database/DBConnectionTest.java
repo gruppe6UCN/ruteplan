@@ -44,7 +44,7 @@ public class DBConnectionTest {
     @AfterClass
     public static void tearDownAfterClass() throws Exception {
         try {
-            instance.sendUpdateSQL("delete from Customer;");
+//            instance.sendUpdateSQL("delete from Customer;");
         } catch (NullPointerException e) {
         }
         instance.disconnect();
