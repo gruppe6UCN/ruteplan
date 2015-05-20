@@ -1,6 +1,8 @@
 package database;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import model.*;
 
@@ -14,31 +16,55 @@ import model.*;
  */
 
 public class DBDefaultRoute {
-	
+
 	private DBConnection dbConnection;
 	private static DBDefaultRoute instance;
-	
+
 	/**
 	 * Private constructor for singleton.
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
 	 */
 	private DBDefaultRoute() throws ClassNotFoundException, SQLException {
-		dbConnection = DBConnection.getInstance();		
+		dbConnection = DBConnection.getInstance();
 	}
-	
+
 	/**
 	 * Singleton method for class.
 	 * @return instance of class.
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
 	 */
 	public static DBDefaultRoute getInstance() throws ClassNotFoundException, SQLException {
 		if (instance == null) {
-			instance = new DBDefaultRoute();			
+			instance = new DBDefaultRoute();
 		}
-		
+
 		return instance;
 	}
+
+    public ArrayList<DefaultRoute> getDefaultRoutes() {
+        ArrayList<DefaultRoute> list;
+        String sql = "select * from DefaultRoute";
+        list = (ArrayList<DefaultRoute>) dbConnection.sendSQL(this , sql, "_formatDefaultRoute");
+        return list;
+    }
+
+    public ArrayList<DefaultRoute> _formatDefaultRoute(ResultSet rs) {
+        ArrayList<DefaultRoute> tableList = new ArrayList<DefaultRoute>();
+        try {
+            while (rs.next()) {
+                tableList.add(new DefaultRoute(
+                        rs.getLong("id"),
+                        rs.getTime("time_of_departure"),
+                        TrailerType.valueOf(rs.getString("trailer_type")),
+                        rs.getBoolean("extra_route")));
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return tableList;
+    }
 
 }
