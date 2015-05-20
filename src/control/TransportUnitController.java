@@ -1,5 +1,6 @@
 package control;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import database.*;
@@ -11,7 +12,7 @@ import model.*;
  *
  * @author Dani Sander
  * @version 1.0
- * @since 19-05-15
+ * @since 20-05-15
  */
 
 public class TransportUnitController {
@@ -23,7 +24,12 @@ public class TransportUnitController {
 	 * Private constructor for singleton.
 	 */
 	private TransportUnitController() {
-		dbTransportUnit = DBTransportUnit.getInstance();
+		try {
+			dbTransportUnit = DBTransportUnit.getInstance();
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -46,7 +52,7 @@ public class TransportUnitController {
 	public void addTransportUnit(DeliveryStop deliveryStop, long customerID) {
 		
 		//Gets a list of all transportUnits for the customer.
-		ArrayList<TransportUnit> list = dbTransportUnits.getTransportUnits(customerID);
+		ArrayList<TransportUnit> list = dbTransportUnit.getTransportUnits(customerID);
 		
 		//Adds each transport unit to the deliveryStop.
 		int size = list.size();

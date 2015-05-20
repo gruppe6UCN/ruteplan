@@ -1,5 +1,6 @@
 package control;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.*;
@@ -25,7 +26,12 @@ public class DeliveryStopController {
 	 */
 	private DeliveryStopController() {
 		transportUnitController = TransportUnitController.getInstance();
-		dbDeliveryStop = DBDeliveryStop.getInstance();
+		try {
+			dbDeliveryStop = DBDeliveryStop.getInstance();
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/**

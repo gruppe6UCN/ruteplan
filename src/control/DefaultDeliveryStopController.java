@@ -1,5 +1,6 @@
 package control;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.DefaultDeliveryStop;
@@ -12,7 +13,7 @@ import database.*;
  *
  * @author Dani Sander
  * @version 1.0
- * @since 19-05-15
+ * @since 20-05-15
  */
 
 public class DefaultDeliveryStopController {
@@ -22,9 +23,16 @@ public class DefaultDeliveryStopController {
 	
 	/**
 	 * Private constructor for singleton.
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
 	 */
 	private DefaultDeliveryStopController() {
-		dbDefaultDeliveryStop = DBDefaultDeliveryStop.getInstance();
+		try {
+			dbDefaultDeliveryStop = DBDefaultDeliveryStop.getInstance();
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/**

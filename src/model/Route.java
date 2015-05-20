@@ -9,7 +9,6 @@ public class Route {
 	private long id;
 	private DefaultRoute defaultRoute;
 	private ArrayList<DeliveryStop> stops;
-	private TrailerType trailerType;
 	private Time auctualTimeOfDeparture;
 	private Date date;
 	
@@ -66,20 +65,6 @@ public class Route {
 	 */
 	public void setStops(ArrayList<DeliveryStop> stops) {
 		this.stops = stops;
-	}
-
-	/**
-	 * @return the trailerType
-	 */
-	public TrailerType getTrailerType() {
-		return trailerType;
-	}
-
-	/**
-	 * @param trailerType the trailerType to set
-	 */
-	public void setTrailerType(TrailerType trailerType) {
-		this.trailerType = trailerType;
 	}
 
 	/**

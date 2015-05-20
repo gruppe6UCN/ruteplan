@@ -1,5 +1,6 @@
 package control;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import database.*;
@@ -30,7 +31,12 @@ public class RouteController {
 		deliveryStopController = DeliveryStopController.getInstance();
 		defaultRouteController = DefaultRouteController.getInstance();
 		defaultDeliveryStopController = DefaultDeliveryStopController.getInstance();
-		dbRoute = DBRoute.getInstance();
+		try {
+			dbRoute = DBRoute.getInstance();
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -81,8 +87,6 @@ public class RouteController {
 		
 		dbRoute.storeRoutes(routes);
 		deliveryStopController.storeDeliveryStops(routes);
-		
-		
 		
 	}
 	

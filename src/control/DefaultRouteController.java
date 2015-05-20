@@ -1,5 +1,6 @@
 package control;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import database.*;
@@ -11,7 +12,7 @@ import model.*;
  *
  * @author Dani Sander
  * @version 1.0
- * @since 19-05-15
+ * @since 20-05-15
  */
 
 public class DefaultRouteController {
@@ -21,9 +22,16 @@ public class DefaultRouteController {
 	
 	/**
 	 * Private constructor for singleton.
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
 	 */
 	private DefaultRouteController() {
-		dbDefaultRoute = DBDefaultRoute.getInstance();
+		try {
+			dbDefaultRoute = DBDefaultRoute.getInstance();
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/**
