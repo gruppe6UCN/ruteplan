@@ -3,6 +3,7 @@ package control;
 import java.util.ArrayList;
 
 import model.*;
+import database.*;
 
 /**
  * DeliveryStopController
@@ -10,12 +11,13 @@ import model.*;
  *
  * @author Dani Sander
  * @version 1.0
- * @since 19-05-15
+ * @since 20-05-15
  */
 
 public class DeliveryStopController {
 	
 	private TransportUnitController transportUnitController;
+	private DBDeliveryStop dbDeliveryStop;
 	private static DeliveryStopController instance;
 	
 	/**
@@ -23,6 +25,7 @@ public class DeliveryStopController {
 	 */
 	private DeliveryStopController() {
 		transportUnitController = TransportUnitController.getInstance();
+		dbDeliveryStop = DBDeliveryStop.getInstance();
 	}
 	
 	/**
@@ -72,6 +75,22 @@ public class DeliveryStopController {
 		}
 	}
 	
+	/**
+	 * Stores all the delivery stops for each route in the list.
+	 * @param routes ArrayList containing all routes to get stops from.
+	 */
+	public void storeDeliveryStops(ArrayList<Route> routes) {
+		
+		//Enters a while loop for each route.
+		int size = routes.size();
+		int i = 0;		
+		while(i >= size)
+		{
+			Route route = routes.get(i);
+			ArrayList<DeliveryStop> DeliveryStops = route.getStops();
+			dbDeliveryStop.storeDeliveryStops(DeliveryStops);
+		}	
+	}
 	
 	
 	

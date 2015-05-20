@@ -2,7 +2,7 @@ package control;
 
 import java.util.ArrayList;
 
-import database.DBDefaultDeliveryStop;
+import database.*;
 import model.*;
 
 /**
@@ -11,7 +11,7 @@ import model.*;
  *
  * @author Dani Sander
  * @version 1.0
- * @since 19-05-15
+ * @since 20-05-15
  */
 
 public class RouteController {
@@ -19,7 +19,9 @@ public class RouteController {
 	private DeliveryStopController deliveryStopController;
 	private DefaultRouteController defaultRouteController;
 	private DefaultDeliveryStopController defaultDeliveryStopController;
+	private DBRoute dbRoute;
 	private static RouteController instance;
+	private ArrayList<Route> routes;
 	
 	/**
 	 * Private constructor for singleton.
@@ -28,6 +30,7 @@ public class RouteController {
 		deliveryStopController = DeliveryStopController.getInstance();
 		defaultRouteController = DefaultRouteController.getInstance();
 		defaultDeliveryStopController = DefaultDeliveryStopController.getInstance();
+		dbRoute = DBRoute.getInstance();
 	}
 	
 	/**
@@ -61,6 +64,7 @@ public class RouteController {
 			
 			//Creates new routes for each defaultRoute.
 			Route route = new Route(defaultRoute);
+			routes.add(route);
 			
 			//Creates Delivery Stops
 			deliveryStopController.addDeliveryStops(route, listDefaultDeliveryStops);
@@ -70,6 +74,17 @@ public class RouteController {
 		}
 	}
 	
+	/**
+	 * Exports all data to database.
+	 */
+	public void exportData() {
+		
+		dbRoute.storeRoutes(routes);
+		deliveryStopController.storeDeliveryStops(routes);
+		
+		
+		
+	}
 	
 	
 	
