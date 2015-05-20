@@ -3,25 +3,26 @@ package model;
 import java.sql.Time;
 import java.util.ArrayList;
 
-public class DefaultDeliveryRoute {
+public class DefaultRoute {
 	
 	private long id;
 	private Time timeOfDeparture;
 	private TrailerType trailerType;
 	private ArrayList<DefaultDeliveryStop> stops;
 	private GeoLoc geoLoc;
+	private boolean extraRoute;
 	
-	public DefaultDeliveryRoute(long id, Time timeOfDeparture,
+	public DefaultRoute(long id, Time timeOfDeparture,
 			TrailerType trailerType, ArrayList<DefaultDeliveryStop> stops,
-			GeoLoc geoLoc) {
+			GeoLoc geoLoc, boolean extraRoute) {
 		super();
 		this.id = id;
 		this.timeOfDeparture = timeOfDeparture;
 		this.trailerType = trailerType;
 		this.stops = stops;
 		this.geoLoc = geoLoc;
+		this.extraRoute = extraRoute;
 	}
-
 	
 	/**
 	 * @return the id
@@ -91,6 +92,20 @@ public class DefaultDeliveryRoute {
 	 */
 	public void setGeoLoc(GeoLoc geoLoc) {
 		this.geoLoc = geoLoc;
+	}
+
+	/**
+	 * @return the extraRoute
+	 */
+	public boolean isExtraRoute() {
+		return extraRoute;
+	}
+
+	/**
+	 * @param extraRoute the extraRoute to set
+	 */
+	public void setExtraRoute(boolean extraRoute) {
+		this.extraRoute = extraRoute;
 	}
 	
 

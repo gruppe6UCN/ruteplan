@@ -1,23 +1,23 @@
 package control;
 
 /**
- * ImportController
- * Handles all functionality for the use-case import.
+ * ExportController
+ * Handles all functionality for the use-case export.
  *
  * @author Dani Sander
  * @version 1.0
  * @since 20-05-15
  */
 
-public class ImportController {
+public class ExportController {
 	
 	private RouteController routeController;
-	private static ImportController instance;
+	private static ExportController instance;
 	
 	/**
 	 * Private constructor for singleton.
 	 */
-	private ImportController() {
+	private ExportController() {
 		routeController = RouteController.getInstance();
 	}
 	
@@ -25,19 +25,19 @@ public class ImportController {
 	 * Singleton method for class.
 	 * @return instance of class.
 	 */
-	public static ImportController getInstance() {
+	public static ExportController getInstance() {
 		if (instance == null) {
-			instance = new ImportController();			
+			instance = new ExportController();			
 		}
 		
 		return instance;
 	}
 	
 	/**
-	 * Imports all routes from database.
+	 * Exports all routes to database.
 	 */
-	public void importRoutes() {
-		routeController.importRoutes();
+	public void exportDatas() {
+		routeController.exportData();
 	}
 	
 }
