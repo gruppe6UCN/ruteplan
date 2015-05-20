@@ -1,6 +1,8 @@
 package database;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import model.*;
 
@@ -40,7 +42,26 @@ public class DBDefaultDeliveryStop {
 		
 		return instance;
 	}
-	
-	
 
+	public ArrayList<DefaultDeliveryStop> getDefaultRoutes(long defaultRouteID) {
+		ArrayList<DefaultDeliveryStop> list;
+		String sql = String.format("select * from Customer where id = '%s';", defaultRouteID);
+		list = (ArrayList<DefaultDeliveryStop>) dbConnection.sendSQL(this , sql, "_formatDefaultDeliveryStop");
+		return list;
+	}
+
+	public ArrayList<DefaultDeliveryStop> _formatDefaultDeliveryStop(ResultSet rs) {
+		ArrayList<DefaultDeliveryStop> tableList = new ArrayList<DefaultDeliveryStop>();
+		try {
+			while (rs.next()) {
+				tableList.add(new DefaultDeliveryStop(
+						rs.getLong("id"),
+						rs.getTime("time_of_delivery")));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return tableList;
+	}
 }
