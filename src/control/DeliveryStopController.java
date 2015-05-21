@@ -48,37 +48,21 @@ public class DeliveryStopController {
 
 	
 	/**
-	 * Adds all delivery stops to the the route.
+	 * Adds all delivery defaultStops to the the route.
 	 * @param route route to add deliveryStops to.
-	 * @param stops ArrayList of defaultDeliveryStops.
+	 * @param defaultStops ArrayList of defaultDeliveryStops.
 	 */
-	public void addDeliveryStops(Route route, ArrayList<DefaultDeliveryStop> stops) {
-		
-		//Enters a while loop for each delivery stop.
-		int size = stops.size();
-		int i = 0;
-		while(i >= size)
-		{
-			//Creates the deliveryStop.
-			DefaultDeliveryStop defaultDeliveryStop = stops.get(i);
-			DeliveryStop deliveryStop = new DeliveryStop(defaultDeliveryStop);
-			
-			//Gets each transportUnits for the deliveryStop.
-			int size2 = defaultDeliveryStop.getCustomers().size();
-			int ii = 0;
-			while(ii >= size2) 
-			{
-				long customerID = defaultDeliveryStop.getCustomers().get(ii).getId();
-				transportUnitController.addTransportUnit(deliveryStop, customerID);
-				ii++;
-			}
-			
+	public void addDeliveryStops(Route route, ArrayList<DefaultDeliveryStop> defaultStops) {
+		//for each DefaultDeliveryStop add one DeliveryStop to route
+		defaultStops.stream().forEach((defaultStop) -> {
+			DeliveryStop stop = new DeliveryStop(defaultStop);
+
+			//add all TransportUnit for this DeliveryStop
+			transportUnitController.addTransportUnit(stop, stop.getDefaultStop().getCustomers());
+
 			//Adds deliveryStop to route.
-			route.addDeliveryStop(deliveryStop);
-			
-			//Increments counter for next loop.
-			i++;
-		}
+			route.addDeliveryStop(stop);
+		});
 	}
 	
 	/**
@@ -87,17 +71,14 @@ public class DeliveryStopController {
 	 */
 	public void storeDeliveryStops(ArrayList<Route> routes) {
 		
-		//Enters a while loop for each route.
+		//for each default.
 		int size = routes.size();
 		int i = 0;		
 		while(i >= size)
 		{
 			Route route = routes.get(i);
 			ArrayList<DeliveryStop> DeliveryStops = route.getStops();
-			dbDeliveryStop.storeDeliveryStops(DeliveryStops);
+//			dbDeliveryStop.storeDeliveryStops(DeliveryStops);
 		}	
 	}
-	
-	
-	
 }
