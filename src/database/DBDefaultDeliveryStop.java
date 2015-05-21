@@ -48,11 +48,11 @@ public class DBDefaultDeliveryStop {
 
     /**
      * @param defaultRouteID
-     * @return list of all default delivery stops for the given default route id
+     * @return list of all DefaultDeliveryStop for the given defaultRouteID
      */
-    public ArrayList<DefaultDeliveryStop> getDefaultRoutes(long defaultRouteID) {
+    public ArrayList<DefaultDeliveryStop> getDefaultDeliveryStops(long defaultRouteID) {
         ArrayList<DefaultDeliveryStop> list;
-        String sql = String.format("select * from Customer where id = '%s';", defaultRouteID);
+        String sql = String.format("select * from DefaultDeliveryStop where default_route_id = '%s';", defaultRouteID);
         list = (ArrayList<DefaultDeliveryStop>) dbConnection.sendSQL(this, sql, "_formatDefaultDeliveryStop");
         return list;
     }
@@ -60,7 +60,7 @@ public class DBDefaultDeliveryStop {
 
     /**
      * @param rs takes the ResultSet from database
-     * @return list of default delivery stops
+     * @return list of DefaultDeliveryStop
      */
     public ArrayList<DefaultDeliveryStop> _formatDefaultDeliveryStop(ResultSet rs) {
         ArrayList<DefaultDeliveryStop> tableList = new ArrayList<DefaultDeliveryStop>();
@@ -69,7 +69,8 @@ public class DBDefaultDeliveryStop {
                 tableList.add(
                         new DefaultDeliveryStop(
                                 rs.getLong("id"),
-                                rs.getTime("time_of_delivery")));
+                                rs.getTime("time_of_delivery")
+                        ));
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
