@@ -1,5 +1,6 @@
 package control;
 
+import java.util.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -55,7 +56,7 @@ public class RouteController {
     /**
      * Imports all routes from database.
      */
-    public void importRoutes() {
+    public void importRoutes(Date date) {
 
         //Gets a list of all defaultRoutes.
         ArrayList<DefaultRoute> listDefaultRoutes = defaultRouteController.getDefaultRoutes();
@@ -63,7 +64,7 @@ public class RouteController {
         //create a route for each defaultRoute
         listDefaultRoutes.stream().forEach((defaultRoute -> {
             //Creates new routes for each defaultRoute.
-            Route route = new Route(defaultRoute);
+            Route route = new Route(defaultRoute, date);
 
             //Creates Delivery Stops
             deliveryStopController.addDeliveryStops(
@@ -72,7 +73,7 @@ public class RouteController {
                     defaultDeliveryStopController.getDefaultDeliveryStops(defaultRoute)
             );
 
-            routes.add(route);
+
         }));
     }
 
@@ -81,10 +82,8 @@ public class RouteController {
      */
     public void exportData() {
 
-        dbRoute.storeRoutes(routes);
+//        dbRoute.storeRoutes(routes);
         deliveryStopController.storeDeliveryStops(routes);
 
     }
-
-
 }
