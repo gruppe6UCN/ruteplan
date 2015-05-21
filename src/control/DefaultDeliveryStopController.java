@@ -61,5 +61,5 @@ public class DefaultDeliveryStopController {
 		return stops;
 	}
 
-	
+
 }
