@@ -17,45 +17,45 @@ import model.*;
 
 public class DBDefaultRoute {
 
-	private DBConnection dbConnection;
-	private static DBDefaultRoute instance;
-
-	/**
-	 * Private constructor for singleton.
-	 * @throws SQLException
-	 * @throws ClassNotFoundException
-	 */
-	private DBDefaultRoute() throws ClassNotFoundException, SQLException {
-		dbConnection = DBConnection.getInstance();
-	}
-
-	/**
-	 * Singleton method for class.
-	 * @return instance of class.
-	 * @throws SQLException
-	 * @throws ClassNotFoundException
-	 */
-	public static DBDefaultRoute getInstance() throws ClassNotFoundException, SQLException {
-		if (instance == null) {
-			instance = new DBDefaultRoute();
-		}
-
-		return instance;
-	}
+    private DBConnection dbConnection;
+    private static DBDefaultRoute instance;
 
     /**
+     * Private constructor for singleton.
      *
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    private DBDefaultRoute() throws ClassNotFoundException, SQLException {
+        dbConnection = DBConnection.getInstance();
+    }
+
+    /**
+     * Singleton method for class.
+     *
+     * @return instance of class.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    public static DBDefaultRoute getInstance() throws ClassNotFoundException, SQLException {
+        if (instance == null) {
+            instance = new DBDefaultRoute();
+        }
+
+        return instance;
+    }
+
+    /**
      * @return list of all default routes
      */
     public ArrayList<DefaultRoute> getDefaultRoutes() {
         ArrayList<DefaultRoute> list;
         String sql = "select * from DefaultRoute";
-        list = (ArrayList<DefaultRoute>) dbConnection.sendSQL(this , sql, "_formatDefaultRoute");
+        list = (ArrayList<DefaultRoute>) dbConnection.sendSQL(this, sql, "_formatDefaultRoute");
         return list;
     }
 
     /**
-     *
      * @param rs takes the ResultSet from database
      * @return list of all default routes
      */
@@ -67,7 +67,8 @@ public class DBDefaultRoute {
                         rs.getLong("id"),
                         rs.getTime("time_of_departure"),
                         TrailerType.valueOf(rs.getString("trailer_type")),
-                        rs.getBoolean("extra_route")));
+                        rs.getBoolean("extra_route")
+                ));
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
