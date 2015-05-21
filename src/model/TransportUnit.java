@@ -6,8 +6,7 @@ public class TransportUnit {
 	private Type type;
 	private long customerId;
 	
-	public TransportUnit(long id, Type type, long customerId) {
-		super();
+	public TransportUnit(long id, long customerId, Type type) {
 		this.id = id;
 		this.type = type;
 		this.customerId = customerId;
