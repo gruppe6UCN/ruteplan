@@ -19,11 +19,9 @@ public class DeliveryStop {
 	 * @param transportUnit transportUnit to add to ArrayList.
 	 */
 	public void addTransportUnit(TransportUnit transportUnit) {
-		transportUnits.add(transportUnit);		
+		transportUnits.add(transportUnit);
 	}
-	
-	
-	
+
 	/**
 	 * @return the id
 	 */
@@ -43,13 +41,6 @@ public class DeliveryStop {
 	 */
 	public DefaultDeliveryStop getDefaultStop() {
 		return defaultStop;
-	}
-
-	/**
-	 * @param defaultStop the defaultStop to set
-	 */
-	public void setDefaultStop(DefaultDeliveryStop defaultStop) {
-		this.defaultStop = defaultStop;
 	}
 
 	/**
