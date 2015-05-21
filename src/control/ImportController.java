@@ -1,5 +1,6 @@
 package control;
 
+
 /**
  * ImportController
  * Handles all functionality for the use-case import.
@@ -37,7 +38,7 @@ public class ImportController {
 	 * Imports all routes from database.
 	 */
 	public void importRoutes() {
-		routeController.importRoutes();
+		routeController.importRoutes(new java.util.Date());
 	}
 	
 }
