@@ -18,13 +18,26 @@ import java.util.ArrayList;
  */
 
 public class DBCustomer {
+    private DBConnection dbConnection;
     private static DBCustomer instance;
-    private static DBConnection dbConnection;
 
+    /**
+     * Private constructor for singleton
+     *
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     private DBCustomer() throws SQLException, ClassNotFoundException {
         dbConnection = DBConnection.getInstance();
     }
 
+    /**
+     * Singleton method for class
+     *
+     * @return the instance of DBCustomer
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public static DBCustomer getInstance() throws SQLException, ClassNotFoundException {
         if (instance == null) {
             instance = new DBCustomer();
@@ -34,12 +47,12 @@ public class DBCustomer {
     }
 
     /**
-     * @param defaultDeliveryStopID
-     * @return list of all Customer for the given defaultDeliveryStopID
+     * @param id from a DefaultDeliveryStop
+     * @return list of all Customer for the given id
      */
-    public AbstractList<Customer> getCustomers(long defaultDeliveryStopID) {
+    public AbstractList<Customer> getCustomers(long id) {
         ArrayList<Customer> list;
-        String sql = String.format("select * from Customer where default_delivery_stop_id = '%s';", defaultDeliveryStopID);
+        String sql = String.format("select * from Customer where default_delivery_stop_id = '%s';", id);
         list = (ArrayList<Customer>) dbConnection.sendSQL(this, sql, "_formatDefaultDeliveryStop");
         return list;
     }
@@ -49,7 +62,7 @@ public class DBCustomer {
      * @return list of Customer
      */
     public ArrayList<Customer> _formatDefaultDeliveryStop(ResultSet rs) {
-        ArrayList<Customer> tableList = new ArrayList<Customer>();
+        ArrayList<Customer> tableList = new ArrayList<>();
         try {
             while (rs.next()) {
                 tableList.add(
