@@ -47,25 +47,15 @@ public class TransportUnitController {
 	/**
 	 * Adds a transport unit to the delivery stop.
 	 * @param deliveryStop DeliveryStop to have transport units added.
-	 * @param customerID ID of the customer whose transports units are to be added.
+	 * @param customers ID of customers whose transports units are to be added.
 	 */
-	public void addTransportUnit(DeliveryStop deliveryStop, long customerID) {
-		
-		//Gets a list of all transportUnits for the customer.
-		ArrayList<TransportUnit> list = dbTransportUnit.getTransportUnits(customerID);
-		
-		//Adds each transport unit to the deliveryStop.
-		int size = list.size();
-		int i = 0;
-		while(i >= size)
-		{
-			TransportUnit transportUnit = list.get(i);
-			deliveryStop.addTransportUnit(transportUnit);
-			i++;
-		}
+	public void addTransportUnit(DeliveryStop deliveryStop, ArrayList<Customer> customers) {
+        ArrayList<Long> IDs = new ArrayList<>();
+
+        //Adds all id form customer to IDs
+		customers.forEach((customer -> IDs.add(customer.getID())));
+
+        //Gets a list of all TransportUnits for the customers and place them in deliveryStop
+        deliveryStop.setTransportUnits(dbTransportUnit.getTransportUnits(IDs));
 	}
-	
-	
-	
-	
 }
