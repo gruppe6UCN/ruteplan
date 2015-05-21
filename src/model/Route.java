@@ -1,6 +1,6 @@
 package model;
 
-import java.sql.Date;
+import java.util.Date;
 import java.sql.Time;
 import java.util.ArrayList;
 
@@ -12,8 +12,9 @@ public class Route {
 	private Time auctualTimeOfDeparture;
 	private Date date;
 	
-	public Route(DefaultRoute defaultRoute) {
+	public Route(DefaultRoute defaultRoute, Date date) {
 		this.defaultRoute = defaultRoute;
+		this.date = date;
 		
 		//Automatize dem other variables here later...
 	}
@@ -44,13 +45,6 @@ public class Route {
 	 */
 	public DefaultRoute getDefaultRoute() {
 		return defaultRoute;
-	}
-
-	/**
-	 * @param defaultRoute the defaultRoute to set
-	 */
-	public void setDefaultRoute(DefaultRoute defaultRoute) {
-		this.defaultRoute = defaultRoute;
 	}
 
 	/**
@@ -87,12 +81,4 @@ public class Route {
 	public Date getDate() {
 		return date;
 	}
-
-	/**
-	 * @param date the date to set
-	 */
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
 }
