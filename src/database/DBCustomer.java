@@ -50,7 +50,7 @@ public class DBCustomer {
      * @param id from a DefaultDeliveryStop
      * @return list of all Customer for the given id
      */
-    public AbstractList<Customer> getCustomers(long id) {
+    public ArrayList<Customer> getCustomers(long id) {
         ArrayList<Customer> list;
         String sql = String.format("select * from Customer where default_delivery_stop_id = '%s';", id);
         list = (ArrayList<Customer>) dbConnection.sendSQL(this, sql, "_formatDefaultDeliveryStop");

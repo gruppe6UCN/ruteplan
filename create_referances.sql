@@ -5,19 +5,12 @@ IF OBJECT_ID('Link1', 'U') IS NOT NULL DROP TABLE Link1;
 IF OBJECT_ID('DeliveryStop', 'U') IS NOT NULL DROP TABLE DeliveryStop;
 IF OBJECT_ID('Route', 'U') IS NOT NULL DROP TABLE Route;
 IF OBJECT_ID('DefaultLink1', 'U') IS NOT NULL DROP TABLE DefaultLink1;
+IF OBJECT_ID('Customer', 'U') IS NOT NULL DROP TABLE Customer;
 IF OBJECT_ID('DefaultDeliveryStop', 'U') IS NOT NULL DROP TABLE DefaultDeliveryStop;
 IF OBJECT_ID('DefaultRoute', 'U') IS NOT NULL DROP TABLE DefaultRoute;
-IF OBJECT_ID('Customer', 'U') IS NOT NULL DROP TABLE Customer;
 
 
-create table Customer(
-    id bigint IDENTITY(1,1),
-    street_name varchar(50) not null,
-    street_no varchar(50) not null,
-    zip_code int not null,
-    city varchar(50) not null,
-    primary key(id)
-);
+
 create table DefaultRoute(
     id bigint IDENTITY(1,1),
     trailer_type int not null,
@@ -34,11 +27,14 @@ create table DefaultDeliveryStop(
     foreign key(default_route_id) references DefaultRoute(id)
 );
 
-create table DefaultLink1(
-    customer_id bigint not null,
+create table Customer(
+    id bigint IDENTITY(1,1),
     default_delivery_stop_id bigint not null,
-    primary key(customer_id, default_delivery_stop_id),
-    foreign key(customer_id) references Customer(id),
+    street_name varchar(50) not null,
+    street_no varchar(50) not null,
+    zip_code int not null,
+    city varchar(50) not null,
+    primary key(id)
     foreign key(default_delivery_stop_id) references DefaultDeliveryStop(id)
 );
 

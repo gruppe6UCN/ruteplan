@@ -19,6 +19,7 @@ import database.*;
 public class DefaultDeliveryStopController {
 	
 	private DBDefaultDeliveryStop dbDefaultDeliveryStop;
+	private CustomerController customerController;
 	private static DefaultDeliveryStopController instance;
 	
 	/**
@@ -29,6 +30,7 @@ public class DefaultDeliveryStopController {
 	private DefaultDeliveryStopController() {
 		try {
 			dbDefaultDeliveryStop = DBDefaultDeliveryStop.getInstance();
+			customerController = CustomerController.getInstance();
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -56,8 +58,12 @@ public class DefaultDeliveryStopController {
 	 */
 	public ArrayList<DefaultDeliveryStop> getDefaultDeliveryStops(DefaultRoute defaultRoute) {
 		
-		long defaultRouteID = defaultRoute.getId();
+		long defaultRouteID = defaultRoute.getID();
 		ArrayList<DefaultDeliveryStop> stops = dbDefaultDeliveryStop.getDefaultDeliveryStops(defaultRouteID);
+
+		// foreach DefaultDeliveryStop the customers are added
+		stops.parallelStream().forEach((stop) -> customerController.addCustomers(stop));
+
 		return stops;
 	}
 

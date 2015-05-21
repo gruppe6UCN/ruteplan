@@ -15,9 +15,13 @@ public class DefaultDeliveryStop {
 		this.timeOfDelivery = timeOfDelivery;
 	}
 
-	/**
-	 * @return the timeOfDelivery
-	 */
+    /**
+     * @return the id
+     */
+    public long getID() {
+        return id;
+    }
+
 	public Time getTimeOfDelivery() {
 		return timeOfDelivery;
 	}

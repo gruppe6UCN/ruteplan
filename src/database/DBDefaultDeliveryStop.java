@@ -69,8 +69,7 @@ public class DBDefaultDeliveryStop {
                 tableList.add(
                         new DefaultDeliveryStop(
                                 rs.getLong("id"),
-                                rs.getTime("time_of_delivery")
-                        ));
+                                rs.getTime("time_of_delivery")));
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block

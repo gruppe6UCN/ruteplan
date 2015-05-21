@@ -23,7 +23,7 @@ public class DefaultRoute {
 	/**
 	 * @return the id
 	 */
-	public long getId() {
+	public long getID() {
 		return id;
 	}
 
