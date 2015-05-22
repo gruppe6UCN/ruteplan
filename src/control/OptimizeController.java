@@ -16,13 +16,6 @@ public class OptimizeController {
 	private RouteController routeController;
 	private MapController mapController;
 	private static OptimizeController instance;
-	
-	/**
-	 * Private constructor for singleton.
-	 */
-	private OptimizeController() {
-    
-    private static OptimizeController instance;
     
     /**
      * Private constructor for singleton.
