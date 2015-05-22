@@ -6,3 +6,4 @@ username.txt
 out/
 /bin/
 .settings/
+.settings/org.eclipse.jdt.core.prefs
