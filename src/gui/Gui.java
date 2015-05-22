@@ -59,15 +59,17 @@ public class Gui extends JFrame {
 		JButton optimere = new JButton("Optimere");
 		optimere.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				//control.OptimizeController.getInstance().??;
 			}
 		});
 		optimere.setBounds(168, 228, 89, 23);
 		contentPane.add(optimere);
 		
-		//Saves and export the new route
+		//Export the new route
 		JButton gem = new JButton("Gem");
 		gem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				//control.ExportController.getInstance().exportDatas();
 			}
 		});
 		gem.setBounds(335, 228, 89, 23);
