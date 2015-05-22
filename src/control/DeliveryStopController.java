@@ -35,10 +35,6 @@ public class DeliveryStopController {
             e.printStackTrace();
         }
     }
-			//Adds deliveryStop to route.
-			route.addDeliveryStop(stop);
-		});
-	}
 	
 	/**
 	 * Stores all the delivery stops for each route in the list.
