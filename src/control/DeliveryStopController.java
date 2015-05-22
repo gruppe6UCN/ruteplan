@@ -69,7 +69,7 @@ public class DeliveryStopController {
      */
     public void addDeliveryStops(Route route, ArrayList<DefaultDeliveryStop> defaultStops) {
         //for each DefaultDeliveryStop add one DeliveryStop to route
-        defaultStops.stream().forEach((defaultStop) -> {
+        defaultStops.parallelStream().forEach((defaultStop) -> {
 
             DeliveryStop stop = new DeliveryStop(defaultStop);
 
