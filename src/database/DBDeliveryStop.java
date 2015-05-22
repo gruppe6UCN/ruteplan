@@ -1,6 +1,7 @@
 package database;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import model.*;
 
@@ -40,5 +41,10 @@ public class DBDeliveryStop {
 
         return instance;
     }
+
+	public void storeDeliveryStops(ArrayList<DeliveryStop> deliveryStops) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
