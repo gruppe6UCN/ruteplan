@@ -133,7 +133,48 @@ public class RouteController {
         });
 		
 		//Return list with all overloaded routes.
-		return overloadedRoutes;
+		return overloadedRoutes;	
+	}
+	
+	/**
+	 * Finds and returns all under loaded routes.
+	 * @return ArrayList containing all under loaded routes.
+	 */
+	public ArrayList<Route> findUnderloadedRoutes() {
 		
+		//Creates an ArrayList for each overloaded route.
+		ArrayList<Route> underloadedRoutes = new ArrayList<>();
+		
+		//Enters a loop for each route.
+        routes.stream().forEach((route) -> {
+        	
+        	//Variable to increment for each load check.
+        	load = 0;
+        	
+        	//Finds maximum load.
+        	double capacity = route.getDefaultRoute().getTrailerType().getCapacity();       	
+        	
+        	//Enters a loop for each delivery stop.
+        	ArrayList<DeliveryStop> stops = route.getStops();       	
+        	stops.stream().forEach((stop) -> {
+        		
+        		//Enters a loop for each transportUnit
+        		ArrayList<TransportUnit> transportUnits = stop.getTransportUnits();
+        		for(TransportUnit transportUnit:transportUnits) {
+        			
+        			//Increments load with the transportUnits size.
+        			load += transportUnit.getType().getSize();
+        		}
+        	});
+        	
+        	//Checks to see if route is under loaded.
+        	if (load < capacity * 0.8) {
+        		//Adds under loaded route to ArrayList.
+        		underloadedRoutes.add(route);
+        	}
+        });
+		
+		//Return list with all overloaded routes.
+		return underloadedRoutes;	
 	}
 }
