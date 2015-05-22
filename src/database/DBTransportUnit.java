@@ -53,7 +53,7 @@ public class DBTransportUnit {
 
 		IDs.stream().forEach((ID) -> {
 			ArrayList<TransportUnit> tmp_list;
-			String sql = String.format("select * from Customer where default_delivery_stop_id = '%s';", ID);
+			String sql = String.format("select * from Customer where customer_id = '%s';", ID);
 			tmp_list = (ArrayList<TransportUnit>) dbConnection.sendSQL(this, sql, "_formatTransportUnit");
 
 			tmp_list.forEach((tmp) -> list.add(tmp));
