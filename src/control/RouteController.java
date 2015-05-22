@@ -3,6 +3,8 @@ package control;
 import database.DBRoute;
 import model.DefaultRoute;
 import model.Route;
+import model.DeliveryStop;
+import model.TransportUnit;
 
 import java.sql.SQLException;
 import java.util.*;
@@ -24,6 +26,7 @@ public class RouteController {
     private DBRoute dbRoute;
     private static RouteController instance;
     private ArrayList<Route> routes;
+    private double load;
 
     /**
      * Private constructor for singleton.
@@ -97,36 +100,81 @@ public class RouteController {
 	 */
 	public ArrayList<Route> findOverloadedRoutes() {
 		
+		//Creates an ArrayList for each overloaded route.
+		ArrayList<Route> overloadedRoutes = new ArrayList<>();
+		
 		//Enters a loop for each route.
         routes.stream().forEach((route) -> {
         	
+        	//Variable to increment for each load check.
+        	load = 0;
+        	
         	//Finds maximum load.
-        	double capacity = route.getDefaultRoute().getTrailerType().getCapacity();
+        	double capacity = route.getDefaultRoute().getTrailerType().getCapacity();       	
         	
+        	//Enters a loop for each delivery stop.
+        	ArrayList<DeliveryStop> stops = route.getStops();       	
+        	stops.stream().forEach((stop) -> {
+        		
+        		//Enters a loop for each transportUnit
+        		ArrayList<TransportUnit> transportUnits = stop.getTransportUnits();
+        		for(TransportUnit transportUnit:transportUnits) {
+        			
+        			//Increments load with the transportUnits size.
+        			load += transportUnit.getType().getSize();
+        		}
+        	});
         	
-        	
-        	
-        	
+        	//Checks to see if route is overloaded.
+        	if (load > capacity) {
+        		//Adds overloaded route to ArrayList.
+        		overloadedRoutes.add(route);
+        	}
         });
 		
+		//Return list with all overloaded routes.
+		return overloadedRoutes;	
+	}
+	
+	/**
+	 * Finds and returns all under loaded routes.
+	 * @return ArrayList containing all under loaded routes.
+	 */
+	public ArrayList<Route> findUnderloadedRoutes() {
 		
+		//Creates an ArrayList for each overloaded route.
+		ArrayList<Route> underloadedRoutes = new ArrayList<>();
 		
-		//Finds the trailer type size.
+		//Enters a loop for each route.
+        routes.stream().forEach((route) -> {
+        	
+        	//Variable to increment for each load check.
+        	load = 0;
+        	
+        	//Finds maximum load.
+        	double capacity = route.getDefaultRoute().getTrailerType().getCapacity();       	
+        	
+        	//Enters a loop for each delivery stop.
+        	ArrayList<DeliveryStop> stops = route.getStops();       	
+        	stops.stream().forEach((stop) -> {
+        		
+        		//Enters a loop for each transportUnit
+        		ArrayList<TransportUnit> transportUnits = stop.getTransportUnits();
+        		for(TransportUnit transportUnit:transportUnits) {
+        			
+        			//Increments load with the transportUnits size.
+        			load += transportUnit.getType().getSize();
+        		}
+        	});
+        	
+        	//Checks to see if route is under loaded.
+        	if (load < capacity * 0.8) {
+        		//Adds under loaded route to ArrayList.
+        		underloadedRoutes.add(route);
+        	}
+        });
 		
-		//Enters a loop for each delivery stop.
-		
-		//Enters a loop for each transportUnit.
-		
-		//Finds the transport unit type/size
-		
-		//Checks to see if overloaded
-		
-		//Add route to ArrayList if is overloaded.
-		
-		//Repeat steps until done.
-		
-		//Return list with all overloaded stuffs
-		return routes; //PH
-		
+		//Return list with all overloaded routes.
+		return underloadedRoutes;	
 	}
 }
