@@ -1,11 +1,11 @@
 package control;
 
-import java.util.Date;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import database.DBRoute;
+import model.DefaultRoute;
+import model.Route;
 
-import database.*;
-import model.*;
+import java.sql.SQLException;
+import java.util.*;
 
 /**
  * RouteController
@@ -58,22 +58,25 @@ public class RouteController {
      */
     public void importRoutes(Date date) {
 
-        //Gets a list of all defaultRoutes.
-        ArrayList<DefaultRoute> listDefaultRoutes = defaultRouteController.getDefaultRoutes();
+        // Sync List
+        List<DefaultRoute> listDefaultRoutes = Collections.synchronizedList(
+                //Gets a list of all defaultRoutes.
+                defaultRouteController.getDefaultRoutes());
 
         //create a route for each defaultRoute
         listDefaultRoutes.stream().forEach((defaultRoute -> {
             //Creates new routes for each defaultRoute.
             Route route = new Route(defaultRoute, date);
 
-            //Creates Delivery Stops
-            deliveryStopController.addDeliveryStops(
-                    route,
-                    //Gets a list of all stops for the defaultRoute.
-                    defaultDeliveryStopController.getDefaultDeliveryStops(defaultRoute)
-            );
-
-
+            //Sync then adding
+            synchronized (listDefaultRoutes) {
+                //Creates Delivery Stops
+                deliveryStopController.addDeliveryStops(
+                        route,
+                        //Gets a list of all stops for the defaultRoute.
+                        defaultDeliveryStopController.getDefaultDeliveryStops(defaultRoute)
+                );
+            }
         }));
     }
 
