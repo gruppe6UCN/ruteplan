@@ -5,3 +5,5 @@ username.txt
 .idea/
 out/
 /bin/
+.settings/
+.settings/org.eclipse.jdt.core.prefs

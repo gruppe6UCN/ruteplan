@@ -35,7 +35,20 @@ public class DeliveryStopController {
             e.printStackTrace();
         }
     }
-
+	
+	/**
+	 * Stores all the delivery stops for each route in the list.
+	 * @param routes ArrayList containing all routes to get stops from.
+	 */
+	public void storeDeliveryStops(ArrayList<Route> routes) {
+		
+		routes.stream().forEach((route) -> {
+			
+			ArrayList<DeliveryStop> deliveryStops = route.getStops();
+			dbDeliveryStop.storeDeliveryStops(deliveryStops);
+		});
+	}
+	
     /**
      * Singleton method for class.
      * @return instance of class.
@@ -67,21 +80,5 @@ public class DeliveryStopController {
             route.addDeliveryStop(stop);
         });
     }
-
-    /**
-     * Stores all the delivery stops for each route in the list.
-     * @param routes ArrayList containing all routes to get stops from.
-     */
-    public void storeDeliveryStops(ArrayList<Route> routes) {
-
-        //for each default.
-        int size = routes.size();
-        int i = 0;
-        while(i >= size)
-        {
-            Route route = routes.get(i);
-            ArrayList<DeliveryStop> DeliveryStops = route.getStops();
-//            dbDeliveryStop.storeDeliveryStops(DeliveryStops);
-        }
-    }
 }
+

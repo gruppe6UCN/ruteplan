@@ -85,8 +85,48 @@ public class RouteController {
      */
     public void exportData() {
 
-//        dbRoute.storeRoutes(routes);
+        dbRoute.storeRoutes(routes);
         deliveryStopController.storeDeliveryStops(routes);
 
     }
+
+    
+	/**
+	 * Finds and returns all overloaded routes.
+	 * @return ArrayList containing all overloaded routes.
+	 */
+	public ArrayList<Route> findOverloadedRoutes() {
+		
+		//Enters a loop for each route.
+        routes.stream().forEach((route) -> {
+        	
+        	//Finds maximum load.
+        	double capacity = route.getDefaultRoute().getTrailerType().getCapacity();
+        	
+        	
+        	
+        	
+        	
+        });
+		
+		
+		
+		//Finds the trailer type size.
+		
+		//Enters a loop for each delivery stop.
+		
+		//Enters a loop for each transportUnit.
+		
+		//Finds the transport unit type/size
+		
+		//Checks to see if overloaded
+		
+		//Add route to ArrayList if is overloaded.
+		
+		//Repeat steps until done.
+		
+		//Return list with all overloaded stuffs
+		return routes; //PH
+		
+	}
 }

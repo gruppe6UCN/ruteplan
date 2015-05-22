@@ -1,6 +1,7 @@
 package database;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import model.*;
 
@@ -40,5 +41,25 @@ public class DBRoute {
         
         return instance;
     }
+
+	
+	/**
+	 * Stores all routes in the database.
+	 * @param routes list of all routes to store.
+	 */
+	public void storeRoutes(ArrayList<Route> routes) {
+		
+		
+		
+		
+        ArrayList<DefaultRoute> list;
+        String sql = "select * from DefaultRoute";
+        list = (ArrayList<DefaultRoute>) dbConnection.sendSQL(this, sql, "_formatDefaultRoute");
+		
+		
+		
+		
+		
+	}
 
 }
