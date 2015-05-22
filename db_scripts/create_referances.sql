@@ -13,7 +13,7 @@ IF OBJECT_ID('DefaultRoute', 'U') IS NOT NULL DROP TABLE DefaultRoute;
 
 create table DefaultRoute(
     id bigint IDENTITY(1,1),
-    trailer_type int not null,
+    trailer_type varchar(20) not null,
     time_of_departure time not null,
     extra_route tinyint not null,
     primary key(id)
@@ -65,7 +65,7 @@ create table TransportUnit(
     id bigint IDENTITY(1,1),
     customer_id bigint not null,
     delivery_stop_id bigint not null,
-    type int not null,
+    type varchar(20) not null,
     primary key(id),
     foreign key(customer_id) references Customer(id),
     foreign key(delivery_stop_id) references DeliveryStop(id)
