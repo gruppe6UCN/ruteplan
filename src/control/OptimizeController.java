@@ -1,5 +1,7 @@
 package control;
 
+import model.*;
+
 /**
  * OptimizeController
  * Handles all functionality for the use-case optimize.
@@ -11,13 +13,17 @@ package control;
 
 public class OptimizeController {
 	
+	private RouteController routeController;
+	private MapController mapController;
 	private static OptimizeController instance;
 	
 	/**
 	 * Private constructor for singleton.
 	 */
 	private OptimizeController() {
-
+		
+		routeController = RouteController.getInstance();
+		mapController = MapController.getInstance();
 	}
 	
 	/**
@@ -30,5 +36,40 @@ public class OptimizeController {
 		}
 		
 		return instance;
+	}
+	
+	
+	/**
+	 * Optimizes all loaded routes.
+	 */
+	public void optimize() {
+		
+		routeController.findOverloadedRoutes();
+		
+		
+		//Find and return overloaded routes.
+		
+		
+		//Find and return underloaded routes.
+		
+		
+		//Load Maps
+		
+		
+		//Do dat math yo
+		
+		
+		//Create new routes n delivery stops
+		
+		//Add extra routes.
+		
+		
+		
+		
+		
+		
+		
+		//Update routes
+		
 	}
 }

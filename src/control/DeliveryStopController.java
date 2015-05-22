@@ -71,14 +71,10 @@ public class DeliveryStopController {
 	 */
 	public void storeDeliveryStops(ArrayList<Route> routes) {
 		
-		//for each default.
-		int size = routes.size();
-		int i = 0;		
-		while(i >= size)
-		{
-			Route route = routes.get(i);
-			ArrayList<DeliveryStop> DeliveryStops = route.getStops();
-//			dbDeliveryStop.storeDeliveryStops(DeliveryStops);
-		}	
+		routes.stream().forEach((route) -> {
+			
+			ArrayList<DeliveryStop> deliveryStop = route.getStops();
+			dbDeliveryStop.storeDeliveryStops(deliveryStop);
+		});
 	}
 }
