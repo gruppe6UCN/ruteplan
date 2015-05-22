@@ -17,55 +17,55 @@ import database.*;
  */
 
 public class DefaultDeliveryStopController {
-	
-	private DBDefaultDeliveryStop dbDefaultDeliveryStop;
-	private CustomerController customerController;
-	private static DefaultDeliveryStopController instance;
-	
-	/**
-	 * Private constructor for singleton.
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
-	 */
-	private DefaultDeliveryStopController() {
-		try {
-			dbDefaultDeliveryStop = DBDefaultDeliveryStop.getInstance();
-			customerController = CustomerController.getInstance();
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	/**
-	 * Singleton method for class.
-	 * @return instance of class.
-	 */
-	public static DefaultDeliveryStopController getInstance() {
-		if (instance == null) {
-			instance = new DefaultDeliveryStopController();			
-		}
-		
-		return instance;
-	}
-	
-	
-	/**
-	 * Gets an ArrayList of all default delivery stops for the current route.
-	 * @return List of all defaultDeliveryStops.
-	 * @param defaultRoute The defaultRoute to find all defaultDeliveryStops for.
-	 * 
-	 */
-	public ArrayList<DefaultDeliveryStop> getDefaultDeliveryStops(DefaultRoute defaultRoute) {
-		
-		long defaultRouteID = defaultRoute.getID();
-		ArrayList<DefaultDeliveryStop> stops = dbDefaultDeliveryStop.getDefaultDeliveryStops(defaultRouteID);
+    
+    private DBDefaultDeliveryStop dbDefaultDeliveryStop;
+    private CustomerController customerController;
+    private static DefaultDeliveryStopController instance;
+    
+    /**
+     * Private constructor for singleton.
+     * @throws SQLException 
+     * @throws ClassNotFoundException 
+     */
+    private DefaultDeliveryStopController() {
+        try {
+            dbDefaultDeliveryStop = DBDefaultDeliveryStop.getInstance();
+            customerController = CustomerController.getInstance();
+        } catch (ClassNotFoundException | SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+     * Singleton method for class.
+     * @return instance of class.
+     */
+    public static DefaultDeliveryStopController getInstance() {
+        if (instance == null) {
+            instance = new DefaultDeliveryStopController();            
+        }
+        
+        return instance;
+    }
+    
+    
+    /**
+     * Gets an ArrayList of all default delivery stops for the current route.
+     * @return List of all defaultDeliveryStops.
+     * @param defaultRoute The defaultRoute to find all defaultDeliveryStops for.
+     * 
+     */
+    public ArrayList<DefaultDeliveryStop> getDefaultDeliveryStops(DefaultRoute defaultRoute) {
+        
+        long defaultRouteID = defaultRoute.getID();
+        ArrayList<DefaultDeliveryStop> stops = dbDefaultDeliveryStop.getDefaultDeliveryStops(defaultRouteID);
 
-		// foreach DefaultDeliveryStop the customers are added
-		stops.parallelStream().forEach((stop) -> customerController.addCustomers(stop));
+        // foreach DefaultDeliveryStop the customers are added
+        stops.parallelStream().forEach((stop) -> customerController.addCustomers(stop));
 
-		return stops;
-	}
+        return stops;
+    }
 
 
 }

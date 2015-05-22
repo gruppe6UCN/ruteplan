@@ -27,14 +27,14 @@ public class DBConnection {
     private static Connection conn = null;
 
     private DBConnection() throws ClassNotFoundException, SQLException {
-//		try {
+//        try {
         // Register JDBC driver
         Class.forName(JDBC_DRIVER);
-//		} catch (ClassNotFoundException e) {
-//			e.printStackTrace();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public static DBConnection getInstance() throws ClassNotFoundException, SQLException {

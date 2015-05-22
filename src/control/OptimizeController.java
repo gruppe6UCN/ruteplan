@@ -10,25 +10,25 @@ package control;
  */
 
 public class OptimizeController {
-	
-	private static OptimizeController instance;
-	
-	/**
-	 * Private constructor for singleton.
-	 */
-	private OptimizeController() {
+    
+    private static OptimizeController instance;
+    
+    /**
+     * Private constructor for singleton.
+     */
+    private OptimizeController() {
 
-	}
-	
-	/**
-	 * Singleton method for class.
-	 * @return instance of class.
-	 */
-	public static OptimizeController getInstance() {
-		if (instance == null) {
-			instance = new OptimizeController();			
-		}
-		
-		return instance;
-	}
+    }
+    
+    /**
+     * Singleton method for class.
+     * @return instance of class.
+     */
+    public static OptimizeController getInstance() {
+        if (instance == null) {
+            instance = new OptimizeController();            
+        }
+        
+        return instance;
+    }
 }
