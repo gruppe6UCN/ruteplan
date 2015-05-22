@@ -16,71 +16,71 @@ import model.*;
  */
 
 public class DBTransportUnit {
-	
-	private DBConnection dbConnection;
-	private static DBTransportUnit instance;
-	
-	/**
-	 * Private constructor for singleton.
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
-	 */
-	private DBTransportUnit() throws ClassNotFoundException, SQLException {
-		dbConnection = DBConnection.getInstance();		
-	}
-	
-	/**
-	 * Singleton method for class.
-	 * @return instance of class.
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
-	 */
-	public static DBTransportUnit getInstance() throws ClassNotFoundException, SQLException {
-		if (instance == null) {
-			instance = new DBTransportUnit();			
-		}
-		
-		return instance;
-	}
+    
+    private DBConnection dbConnection;
+    private static DBTransportUnit instance;
+    
+    /**
+     * Private constructor for singleton.
+     * @throws SQLException 
+     * @throws ClassNotFoundException 
+     */
+    private DBTransportUnit() throws ClassNotFoundException, SQLException {
+        dbConnection = DBConnection.getInstance();        
+    }
+    
+    /**
+     * Singleton method for class.
+     * @return instance of class.
+     * @throws SQLException 
+     * @throws ClassNotFoundException 
+     */
+    public static DBTransportUnit getInstance() throws ClassNotFoundException, SQLException {
+        if (instance == null) {
+            instance = new DBTransportUnit();            
+        }
+        
+        return instance;
+    }
 
     /**
      *
      * @param IDs
      * @return
      */
-	public ArrayList<TransportUnit> getTransportUnits(ArrayList<Long> IDs) {
-		ArrayList<TransportUnit> list = new ArrayList<>();
+    public ArrayList<TransportUnit> getTransportUnits(ArrayList<Long> IDs) {
+        ArrayList<TransportUnit> list = new ArrayList<>();
 
-		IDs.stream().forEach((ID) -> {
-			ArrayList<TransportUnit> tmp_list;
-			String sql = String.format("select * from Customer where default_delivery_stop_id = '%s';", ID);
-			tmp_list = (ArrayList<TransportUnit>) dbConnection.sendSQL(this, sql, "_formatTransportUnit");
+        IDs.stream().forEach((ID) -> {
+            ArrayList<TransportUnit> tmp_list;
+            String sql = String.format("select * from Customer where customer_id = '%s';", ID);
+            tmp_list = (ArrayList<TransportUnit>) dbConnection.sendSQL(this, sql, "_formatTransportUnit");
 
-			tmp_list.forEach((tmp) -> list.add(tmp));
-		});
+            tmp_list.forEach((tmp) -> list.add(tmp));
+        });
 
-		return list;
-	}
+        return list;
+    }
 
-	/**
-	 * @param rs takes the ResultSet from database
-	 * @return list of TransportUnit
-	 */
-	public ArrayList<TransportUnit> _formatTransportUnit(ResultSet rs) {
-		ArrayList<TransportUnit> tableList = new ArrayList<>();
-		try {
-			while (rs.next()) {
-				tableList.add(
-						new TransportUnit(
-								rs.getLong("id"),
+    /**
+     * @param rs takes the ResultSet from database
+     * @return list of TransportUnit
+     */
+    public ArrayList<TransportUnit> _formatTransportUnit(ResultSet rs) {
+        ArrayList<TransportUnit> tableList = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                tableList.add(
+                        new TransportUnit(
+                                rs.getLong("id"),
                                 rs.getLong("customer_id"),
-								Type.valueOf(rs.getString("type"))
-						));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return tableList;
-	}
+                                Type.valueOf(rs.getString("type"))
+                        ));
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return tableList;
+    }
 }

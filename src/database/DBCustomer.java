@@ -53,7 +53,7 @@ public class DBCustomer {
     public ArrayList<Customer> getCustomers(long id) {
         ArrayList<Customer> list;
         String sql = String.format("select * from Customer where default_delivery_stop_id = '%s';", id);
-        list = (ArrayList<Customer>) dbConnection.sendSQL(this, sql, "_formatDefaultDeliveryStop");
+        list = (ArrayList<Customer>) dbConnection.sendSQL(this, sql, "_formatCustomer");
         return list;
     }
 
@@ -61,7 +61,7 @@ public class DBCustomer {
      * @param rs takes the ResultSet from database
      * @return list of Customer
      */
-    public ArrayList<Customer> _formatDefaultDeliveryStop(ResultSet rs) {
+    public ArrayList<Customer> _formatCustomer(ResultSet rs) {
         ArrayList<Customer> tableList = new ArrayList<>();
         try {
             while (rs.next()) {

@@ -21,6 +21,13 @@ public class OptimizeController {
 	 * Private constructor for singleton.
 	 */
 	private OptimizeController() {
+    
+    private static OptimizeController instance;
+    
+    /**
+     * Private constructor for singleton.
+     */
+    private OptimizeController() {
 		
 		routeController = RouteController.getInstance();
 		mapController = MapController.getInstance();

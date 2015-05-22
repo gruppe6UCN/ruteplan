@@ -15,4 +15,5 @@ public enum TrailerType {
 	public double getCapacity() {
 		return capacity;
 	}	
+
 }
