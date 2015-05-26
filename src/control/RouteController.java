@@ -177,4 +177,11 @@ public class RouteController {
 		//Return list with all overloaded routes.
 		return underloadedRoutes;	
 	}
+
+	/**
+	 * @return the routes
+	 */
+	public ArrayList<Route> getRoutes() {
+		return routes;
+	}
 }
