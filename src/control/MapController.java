@@ -20,6 +20,8 @@ public class MapController {
 	private static MapController instance;
 	private DBGeoLoc dbGeoLoc;
 	private DBRoad dbRoad;
+	private ArrayList<GeoLoc> geoLocs;
+	private ArrayList<Road> roads;
 	
 	/**
 	 * Private constructor for singleton.
@@ -78,7 +80,7 @@ public class MapController {
         //Loads all geoLocs from the database.
 		dbGeoLoc.getGeoLocFor(defaultStops);
 	
-		
+		//Add load road stuff with random libary here later.
 		
 		
 		
