@@ -1,9 +1,8 @@
 package database;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
+import model.DeliveryStop;
 
-import model.*;
+import java.sql.SQLException;
 
 /**
  * DBDeliveryStop
@@ -42,9 +41,17 @@ public class DBDeliveryStop {
         return instance;
     }
 
-	public void storeDeliveryStops(ArrayList<DeliveryStop> deliveryStops) {
-		// TODO Auto-generated method stub
-		
+    /**
+     *
+     * @param routeID from Route
+     * @param deliveryStop
+     * @return the id for deliveryStop
+     */
+	public long storeDeliveryStops(long routeID, DeliveryStop deliveryStop) {
+        String sql = String.format("INSERT into Route values(%d, %d);",
+                routeID,
+                deliveryStop.getID());
+        return dbConnection.sendInsertSQL(sql);
 	}
 
 }

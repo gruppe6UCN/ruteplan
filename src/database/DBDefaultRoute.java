@@ -1,10 +1,11 @@
 package database;
 
+import model.DefaultRoute;
+import model.TrailerType;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import model.*;
 
 /**
  * DBDefaultRoute
@@ -78,4 +79,13 @@ public class DBDefaultRoute {
         return tableList;
     }
 
+    public void storeDefaultRoute(DefaultRoute defaultRoute) {
+        String sql = String.format("INSERT into Route values('%s', '%s', %d);",
+                defaultRoute.getTrailerType().toString(),
+                defaultRoute.getTimeOfDeparture().toString(),
+                // inline if statement: if true return 1 else return 0
+                defaultRoute.isExtraRoute() ? 1 : 0);
+        long defaultRouteID = dbConnection.sendInsertSQL(sql);
+        defaultRoute.setId(defaultRouteID);
+    }
 }

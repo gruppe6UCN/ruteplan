@@ -1,9 +1,8 @@
 package database;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
+import model.Route;
 
-import model.*;
+import java.sql.SQLException;
 
 /**
  * DBRoute
@@ -45,21 +44,15 @@ public class DBRoute {
 	
 	/**
 	 * Stores all routes in the database.
-	 * @param routes list of all routes to store.
-	 */
-	public void storeRoutes(ArrayList<Route> routes) {
-		
-		
-		
-		
-        ArrayList<DefaultRoute> list;
-        String sql = "select * from DefaultRoute";
-        list = (ArrayList<DefaultRoute>) dbConnection.sendSQL(this, sql, "_formatDefaultRoute");
-		
-		
-		
-		
-		
+     * @param route list of all routes to store.
+     */
+	public void storeRoute(Route route) {
+        String sql = String.format("INSERT into Route values(%d, '%s', '%s');",
+                route.getDefaultRoute().getID(),
+                route.getAuctualTimeOfDeparture().toString(),
+                route.getDate().toString());
+        long routeID = dbConnection.sendInsertSQL(sql);
+        route.setID(routeID);
 	}
 
 }

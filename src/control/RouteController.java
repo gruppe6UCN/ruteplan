@@ -87,10 +87,13 @@ public class RouteController {
      * Exports all data to database.
      */
     public void exportData() {
-
-        dbRoute.storeRoutes(routes);
-        deliveryStopController.storeDeliveryStops(routes);
-
+        routes.parallelStream().forEach(route -> {
+            if (route.getDefaultRoute().isExtraRoute()) {
+                defaultRouteController.storeDefaultRoute(route.getDefaultRoute());
+            }
+            dbRoute.storeRoute(route);
+            deliveryStopController.storeDeliveryStops(route);
+        });
     }
 
     
@@ -176,5 +179,12 @@ public class RouteController {
 		
 		//Return list with all overloaded routes.
 		return underloadedRoutes;	
+	}
+
+	/**
+	 * @return the routes
+	 */
+	public ArrayList<Route> getRoutes() {
+		return routes;
 	}
 }
