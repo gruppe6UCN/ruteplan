@@ -1,6 +1,8 @@
 package database;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import model.*;
 
 /**
  * DBGeoLoc
@@ -38,4 +40,9 @@ public class DBGeoLoc {
 
         return instance;
     }
+
+	public void getGeoLocFor(ArrayList<DefaultDeliveryStop> defaultStops) {
+		// TODO Auto-generated method stub
+		
+	}
 }
