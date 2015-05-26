@@ -2,11 +2,11 @@ delete from Customer
 delete from DefaultDeliveryStop
 delete from DefaultRoute
 
-DECLARE @dr_id bigint;
+--DECLARE @dr_id bigint;
 DECLARE @dds_id bigint;
 
 INSERT into DefaultRoute values('Stor', '1:00:00', 0);
-SET @dr_id = SCOPE_IDENTITY();
+DECLARE @dr_id bigint = SCOPE_IDENTITY();
 INSERT into DefaultDeliveryStop values(@dr_id, '1:30:00');
 SET @dds_id = SCOPE_IDENTITY();
 INSERT into Customer values(@dds_id, 'Adelgade', 39, 9500, 'Hobro');
