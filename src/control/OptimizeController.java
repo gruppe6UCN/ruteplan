@@ -91,9 +91,11 @@ public class OptimizeController {
 				if (underloadedRoutes.size() >= 1) {
 					
 					//Enter a loop for each stop removed.
-					removedStops.stream().forEach((route) -> {
+					removedStops.stream().forEach((removedStop) -> {
 						
-						//Check to see if one of those routes are near stop.
+						
+						
+						//Check to see if one of the underloadedRoutes are near stop.
 						if (1 + 1 == 2) {
 							
 							
