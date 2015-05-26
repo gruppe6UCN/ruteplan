@@ -52,7 +52,7 @@ public class DBRoute {
                 route.getAuctualTimeOfDeparture().toString(),
                 route.getDate().toString());
         long routeID = dbConnection.sendInsertSQL(sql);
-        route.setId(routeID);
+        route.setID(routeID);
 	}
 
 }

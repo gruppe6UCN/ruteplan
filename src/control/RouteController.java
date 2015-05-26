@@ -92,7 +92,7 @@ public class RouteController {
                 defaultRouteController.storeDefaultRoute(route.getDefaultRoute());
             }
             dbRoute.storeRoute(route);
-            deliveryStopController.storeDeliveryStops(route.getStops());
+            deliveryStopController.storeDeliveryStops(route);
         });
     }
 
