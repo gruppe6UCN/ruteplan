@@ -87,10 +87,13 @@ public class RouteController {
      * Exports all data to database.
      */
     public void exportData() {
-
-        dbRoute.storeRoutes(routes);
-        deliveryStopController.storeDeliveryStops(routes);
-
+        routes.parallelStream().forEach(route -> {
+            if (route.getDefaultRoute().isExtraRoute()) {
+                defaultRouteController.storeDefaultRoute(route.getDefaultRoute());
+            }
+            dbRoute.storeRoute(route);
+            deliveryStopController.storeDeliveryStops(route.getStops());
+        });
     }
 
     
