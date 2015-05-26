@@ -1,5 +1,7 @@
 package control;
 
+import java.util.ArrayList;
+
 import model.*;
 
 /**
@@ -8,7 +10,7 @@ import model.*;
  *
  * @author Dani Sander
  * @version 1.0
- * @since 20-05-15
+ * @since 26-05-15
  */
 
 public class OptimizeController {
@@ -44,7 +46,12 @@ public class OptimizeController {
 	 */
 	public void optimize() {
 		
-		routeController.findOverloadedRoutes();
+		//Finds over/under loaded routes.
+		ArrayList<Route> overloadedRoutes = routeController.findOverloadedRoutes();
+		ArrayList<Route> underloadedRoutes = routeController.findUnderloadedRoutes();
+		
+		//Loads maps.
+		
 		
 		
 		//Find and return overloaded routes.
