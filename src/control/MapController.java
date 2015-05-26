@@ -1,8 +1,10 @@
 package control;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import database.*;
+import model.*;
 
 /**
  * DefaultRouteController
@@ -51,13 +53,31 @@ public class MapController {
 		return instance;
 	}	
 	
-	
-	
-	
 	/**
 	 * Loads all map data from the database.
 	 */
-	private void loadMaps() {
+	public void loadMaps(ArrayList<Route> routes) {
+		
+		//Creates an ArrayList for default stops.
+		ArrayList<DefaultDeliveryStop> defaultStops = new ArrayList<>();		
+		
+		//Enters a loop for each route.
+        routes.stream().forEach((route) -> {      	
+        	
+        	//Enters a loop for each delivery stop.
+        	ArrayList<DeliveryStop> stops = route.getStops();       	
+        	stops.stream().forEach((stop) -> {
+        		
+        		//Finds the default stop and adds it to ArrayList.
+        		DefaultDeliveryStop defaultStop = stop.getDefaultStop();
+        		defaultStops.add(defaultStop);
+        		
+        	});
+        });
+
+        //Loads all geoLocs from the database.
+		dbGeoLoc.getGeoLocFor(defaultStops);
+	
 		
 		
 		
