@@ -75,16 +75,16 @@ public class OptimizeController {
 	        	while (overload > 0) {
 	        		
 	        		//Finds the most overloaded stop.
-	        		DeliveryStop most = findMostOverloaded(overloadedRoute);
+	        		DeliveryStop best = findBestOverloadedStop(overloadedRoute, overload);
 	        		
 	        		//Removes stop from route.
-	        		overloadedRoute.getStops().remove(most);
+	        		overloadedRoute.getStops().remove(best);
 	        		
 	        		//Adds stop to ArrayList.
-	        		removedStops.add(most);
+	        		removedStops.add(best);
 	        		
 	        		//Decrements overload.
-	        		overload -= findLoad(most);
+	        		overload -= findLoad(best);
 	        	}
 	        	
 	        	//Checks to see if there is underloadedRoutes.
@@ -152,15 +152,26 @@ public class OptimizeController {
 	/**
 	 * Makes a new route with the given delivery stops.
 	 * @param deliveryStops
-	 * @return
+	 * @return returns the route made.
 	 */
-	//private Route newRoute(ArrayList<DeliveryStop> deliveryStops) {
+	private Route newRoute(ArrayList<DeliveryStop> deliveryStops) {
 		
-		//return 
+		Route route = new Route(null, null);
 		
 		
 		
-	//}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		return route;
+	}
 	
 	
 	
@@ -198,32 +209,70 @@ public class OptimizeController {
 	
 	
 	/**
-	 * Finds the most overloaded delivery stop in the given route.
-	 * @param route whose stops are to be checked.
-	 * @return the deliveryStop most overloaded.
+	 * Finds the most overloaded delivery stop in the given route, as long as it doesn't exceed the overload cap.
+	 * If no such stop can be found, finds the least overloaded route instead.
+	 * @param route the route whose stops are to be checked.
+	 * @param overload the overload cap to exclude stops whose load are not optimal.
+	 * @return the best suited deliveryStop whose load most closely fits the cap.
 	 */
-	private DeliveryStop findMostOverloaded(Route route) {
+	private DeliveryStop findBestOverloadedStop(Route route, double overload) {
 		
-		//Finds an initial stop for comparison.
-		DeliveryStop current = route.getStops().get(0);
+		//Finds an initial stops for comparison.
+		DeliveryStop biggest = route.getStops().get(0);
+		DeliveryStop best = biggest;
 		
-		//Enters a loop for each stop.
+		//Boolean to check if cap is exceeded.
+		boolean exceedCap = false;
+		
+		//Enters a loop for each stop, to find the most overloaded stop.
 		ArrayList<DeliveryStop> stops = route.getStops();
 		for(DeliveryStop deliveryStop:stops) {
 			
-			//Compares the load of the deliveryStop with the load of the current,
-			//to find which is biggest. Sets the biggest of the two to current.
-			double currentload = findLoad(current);
+			//Compares the load of the deliveryStop with the load of the biggest, to find which is biggest.
+			double biggestload = findLoad(biggest);
 			double compareload = findLoad(deliveryStop);
-			
-			if (compareload > currentload) {
-				current = deliveryStop;
+			if (compareload > biggestload) {
+				
+				//Sets the biggest to the current.
+				biggest = deliveryStop;
+				best = biggest;
+				
+				//Checks to see if the biggest exceeds the cap.
+				if (biggestload > overload) {
+					exceedCap = true;
+				}
+				else{
+					exceedCap = false;
+				}
 			}
 		}
 		
-		//Returns the most overloaded stop.
-		return current;
+		//Checks to see if the biggest exceeds the limit.
+		if (exceedCap) {
+			
+			//Initial stop for comparison.
+			DeliveryStop smallest = route.getStops().get(0);
+			
+			//Enters a loop for each stop, to find the least overloaded stop.
+			for(DeliveryStop deliveryStop:stops) {
+				
+				//Compares the load of the deliveryStop with the load of the smallest, to find which is smallest.
+				double smallestload = findLoad(smallest);
+				double compareload = findLoad(deliveryStop);
+				if (compareload < smallestload) {
+					
+					//Sets the smallest to current.
+					smallest = deliveryStop;
+					best = smallest;
+				}
+			}	
+		}
+		
+		//Returns the best load.
+		return best;
 	}
+	
+	
 	
 	/**
 	 * Finds the load of the given delivery stop.
