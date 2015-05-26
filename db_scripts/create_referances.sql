@@ -51,7 +51,6 @@ create table DeliveryStop(
     id bigint IDENTITY(1,1),
     route_id bigint not null,
     default_delivery_stop_id bigint not null,
-    time_of_delivery time not null,
     primary key(id),
     foreign key(route_id) references Route(id),
     foreign key(default_delivery_stop_id) references DefaultDeliveryStop(id)

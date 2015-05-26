@@ -38,15 +38,13 @@ public class DeliveryStopController {
 	
 	/**
 	 * Stores all the delivery stops for each route in the list.
-	 * @param routes ArrayList containing all routes to get stops from.
-	 */
-	public void storeDeliveryStops(ArrayList<Route> routes) {
-		
-		routes.stream().forEach((route) -> {
-			
-			ArrayList<DeliveryStop> deliveryStops = route.getStops();
-			dbDeliveryStop.storeDeliveryStops(deliveryStops);
-		});
+     * @param route ArrayList containing all stop from a route stops from.
+     */
+	public void storeDeliveryStops(Route route) {
+		route.getStops().forEach((stop) -> {
+            long routeID = dbDeliveryStop.storeDeliveryStops(route.getID(), stop);
+            route.setID(routeID);
+        });
 	}
 	
     /**

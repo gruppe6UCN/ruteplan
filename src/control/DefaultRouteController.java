@@ -1,10 +1,10 @@
 package control;
 
+import database.DBDefaultRoute;
+import model.DefaultRoute;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import database.*;
-import model.*;
 
 /**
  * DefaultRouteController
@@ -58,7 +58,9 @@ public class DefaultRouteController {
         //Returns the list.
         return list;
     }
-    
-    
-    
+
+
+    public void storeDefaultRoute(DefaultRoute defaultRoute) {
+        dbDefaultRoute.storeDefaultRoute(defaultRoute);
+    }
 }
