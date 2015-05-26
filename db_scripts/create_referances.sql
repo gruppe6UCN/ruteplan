@@ -40,17 +40,21 @@ create table Customer(
 
 create table Route(
     id bigint IDENTITY(1,1),
+    default_route_id bigint not null,
     actual_of_departure time not null,
     date date not null,
-    primary key(id)
+    primary key(id),
+    foreign key(default_route_id) references DefaultRoute(id)
 );
 
 create table DeliveryStop(
     id bigint IDENTITY(1,1),
     route_id bigint not null,
+    default_delivery_stop_id bigint not null,
     time_of_delivery time not null,
     primary key(id),
     foreign key(route_id) references Route(id),
+    foreign key(default_delivery_stop_id) references DefaultDeliveryStop(id)
 );
 
 create table Link1(
@@ -73,11 +77,11 @@ create table TransportUnit(
 
 create table GeoLoc(
     id bigint IDENTITY(1,1),
-    delivery_stop_id bigint not null,
+    default_delivery_stop_id bigint not null,
     x decimal not null,
     y decimal not null,
     primary key(id),
-    foreign key(delivery_stop_id) references DeliveryStop(id)
+    foreign key(default_delivery_stop_id) references DefaultDeliveryStop(id)
 );
 
 create table Road (
