@@ -56,29 +56,81 @@ public class OptimizeController {
 		
 		
 		
-		//Find and return overloaded routes.
+		//Optimizes the routes.
+		doMath();
 		
 		
-		//Find and return underloaded routes.
+		//Checks to see if there is overloadedRoutes.
+		if (overloadedRoutes.size() >= 1) {
+			
+			//Checks to see if there is underloadedRoutes.
+			if (underloadedRoutes.size() >= 1) {
+				
+				//Removes customers from route, until it's not overloaded.
+				
+				
+				
+				
+				//Enter a loop for each customer removed.
+				
+				
+				
+				
+				
+				
+				//Check to see if one of those routes are near customer.
+				if (1 + 1 == 2) {
+					
+					//Checks to see if more then one are near customer.
+					if (1+1==2) {
+						
+						//Find the best route.
+						
+						//Move customer to that route.
+						
+					}
+					else {
+						
+						//Move customer to this route.
+						
+					}
+					
+					
+					
+				}
+				else {
+					
+					//Make a new route.
+					
+					
+				}
+				
+					
+			}
+			else {
+				
+				//Make a new route.
+				
+				
+			}
+			
+			
+		}
+	}
+	
+	
+	
+	
+	
+	
+	/**
+	 * Optimizes the routes to be awesome.
+	 */
+	private void doMath() {
 		
-		
-		//Load Maps
-		
-		
-		//Do dat math yo
-		
-		
-		//Create new routes n delivery stops
-		
-		//Add extra routes.
-		
-		
-		
-		
-		
-		
-		
-		//Update routes
 		
 	}
+	
+	
+	
 }
