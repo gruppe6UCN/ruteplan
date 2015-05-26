@@ -18,6 +18,7 @@ public class OptimizeController {
 	private RouteController routeController;
 	private MapController mapController;
 	private static OptimizeController instance;
+	private double load;
     
     /**
      * Private constructor for singleton.
@@ -42,7 +43,7 @@ public class OptimizeController {
 	
 	
 	/**
-	 * Optimizes all loaded routes.
+	 * Optimizes all imported routes.
 	 */
 	public void optimize() {
 		
@@ -57,41 +58,74 @@ public class OptimizeController {
 		
 		
 		//Optimizes the routes.
-		doMath();
+		//doMath();
 		
 		
 		//Checks to see if there is overloadedRoutes.
 		if (overloadedRoutes.size() >= 1) {
 			
+			//Enters a loop for each overloaded route.
+	        overloadedRoutes.stream().forEach((overloadedRoute) -> {
+	        	
+	        	//Finds overloaded amount.
+	        	double overload = findOverloadAmount(overloadedRoute);
+	        	
+	        	//ArrayList containing all stops removed.
+	        	ArrayList<DeliveryStop> removedStops = new ArrayList<>();
+	        	
+	        	//Removes deliveryStops from route, until it's not overloaded.
+	        	while (overload > 0) {
+	        		
+	        		//Finds the most overloaded stop.
+	        		DeliveryStop most = findMostOverloaded(overloadedRoute);
+	        		
+	        		//Removes stop from route.
+	        		overloadedRoute.getStops().remove(most);
+	        		
+	        		//Adds stop to ArrayList.
+	        		removedStops.add(most);
+	        		
+	        		//Decrements overload.
+	        		overload -= findLoad(most);
+	        	}
+	        });
+			
+			
+			
+			
+			
 			//Checks to see if there is underloadedRoutes.
 			if (underloadedRoutes.size() >= 1) {
 				
-				//Removes customers from route, until it's not overloaded.
+				//Enter a loop for each stop removed.
 				
+
 				
-				
-				
-				//Enter a loop for each customer removed.
-				
-				
-				
-				
-				
-				
-				//Check to see if one of those routes are near customer.
+				//Check to see if one of those routes are near stop.
 				if (1 + 1 == 2) {
 					
-					//Checks to see if more then one are near customer.
+					
+					
+					
+					//Checks to see if more then one are near stop.
 					if (1+1==2) {
+						
 						
 						//Find the best route.
 						
-						//Move customer to that route.
+						
+						
+						//Move stop to that route.
+						
+						
+						
 						
 					}
 					else {
 						
-						//Move customer to this route.
+						//Move stop to this route.
+						
+						
 						
 					}
 					
@@ -113,24 +147,107 @@ public class OptimizeController {
 				
 				
 			}
-			
-			
 		}
 	}
 	
 	
+
 	
+	/**
+	 * Makes a new route with the given delivery stops.
+	 * @param deliveryStops
+	 * @return
+	 */
+	//private Route newRoute(ArrayList<DeliveryStop> deliveryStops) {
+		
+		//return 
+		
+		
+		
+	//}
 	
 	
 	
 	/**
-	 * Optimizes the routes to be awesome.
+	 * Finds the amount overloaded for the route.
+	 * @param route route to find overload amount for.
+	 * @return the amount overloaded in double.
 	 */
-	private void doMath() {
+	private double findOverloadAmount(Route route) {
 		
-		
+		//Variable to increment for each load check.
+    	load = 0;
+    	
+    	//Finds maximum load.
+    	double capacity = route.getDefaultRoute().getTrailerType().getCapacity();       	
+    	
+    	//Enters a loop for each delivery stop.
+    	ArrayList<DeliveryStop> stops = route.getStops();       	
+    	stops.stream().forEach((stop) -> {
+    		
+    		//Enters a loop for each transportUnit
+    		ArrayList<TransportUnit> transportUnits = stop.getTransportUnits();
+    		for(TransportUnit transportUnit:transportUnits) {
+    			
+    			//Increments load with the transportUnits size.
+    			load += transportUnit.getType().getSize();
+    		}
+    	});
+    	
+    	//Finds amount overloaded, and returns that.
+    	double overload = load - capacity;
+		return overload;
 	}
 	
 	
 	
+	/**
+	 * Finds the most overloaded delivery stop in the given route.
+	 * @param route whose stops are to be checked.
+	 * @return the deliveryStop most overloaded.
+	 */
+	private DeliveryStop findMostOverloaded(Route route) {
+		
+		//Finds an initial stop for comparison.
+		DeliveryStop current = route.getStops().get(0);
+		
+		//Enters a loop for each stop.
+		ArrayList<DeliveryStop> stops = route.getStops();
+		for(DeliveryStop deliveryStop:stops) {
+			
+			//Compares the load of the deliveryStop with the load of the current,
+			//to find which is biggest. Sets the biggest of the two to current.
+			double currentload = findLoad(current);
+			double compareload = findLoad(deliveryStop);
+			
+			if (compareload > currentload) {
+				current = deliveryStop;
+			}
+		}
+		
+		//Returns the most overloaded stop.
+		return current;
+	}
+	
+	/**
+	 * Finds the load of the given delivery stop.
+	 * @param stop stop to find load of.
+	 * @return the load in double.
+	 */
+	private double findLoad(DeliveryStop stop) {
+		
+		//Creates variable.
+		double load = 0;
+		
+		//Enters a loop for each transportUnit
+		ArrayList<TransportUnit> transportUnits = stop.getTransportUnits();
+		for(TransportUnit transportUnit:transportUnits) {
+			
+			//Increments load with the transportUnits size.
+			load += transportUnit.getType().getSize();
+		}
+		
+		//Returns the load.
+		return load;
+	}
 }
