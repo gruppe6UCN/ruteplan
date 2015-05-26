@@ -19,6 +19,7 @@ public class OptimizeController {
 	private MapController mapController;
 	private static OptimizeController instance;
 	private double load;
+	private ArrayList<DeliveryStop> removedStops;
     
     /**
      * Private constructor for singleton.
@@ -70,10 +71,7 @@ public class OptimizeController {
 	        	//Finds overloaded amount.
 	        	double overload = findOverloadAmount(overloadedRoute);
 	        	
-	        	//ArrayList containing all stops removed.
-	        	ArrayList<DeliveryStop> removedStops = new ArrayList<>();
-	        	
-	        	//Removes deliveryStops from route, until it's not overloaded.
+	        	//Removes deliveryStops from route, until it's not overloaded, using a greedy algorithm.
 	        	while (overload > 0) {
 	        		
 	        		//Finds the most overloaded stop.
@@ -88,48 +86,52 @@ public class OptimizeController {
 	        		//Decrements overload.
 	        		overload -= findLoad(most);
 	        	}
-	        });
-			
-			
-			
-			
-			
-			//Checks to see if there is underloadedRoutes.
-			if (underloadedRoutes.size() >= 1) {
-				
-				//Enter a loop for each stop removed.
-				
-
-				
-				//Check to see if one of those routes are near stop.
-				if (1 + 1 == 2) {
+	        	
+	        	//Checks to see if there is underloadedRoutes.
+				if (underloadedRoutes.size() >= 1) {
 					
-					
-					
-					
-					//Checks to see if more then one are near stop.
-					if (1+1==2) {
+					//Enter a loop for each stop removed.
+					removedStops.stream().forEach((route) -> {
 						
-						
-						//Find the best route.
-						
-						
-						
-						//Move stop to that route.
-						
-						
-						
-						
-					}
-					else {
-						
-						//Move stop to this route.
-						
-						
-						
-					}
-					
-					
+						//Check to see if one of those routes are near stop.
+						if (1 + 1 == 2) {
+							
+							
+							
+							
+							//Checks to see if more than one are near stop.
+							if (1+1==2) {
+								
+								
+								//Find the best route.
+								
+								
+								
+								//Move stop to that route.
+								
+								
+								
+								
+							}
+							else {
+								
+								//Move stop to this route.
+								
+								
+								
+							}
+							
+							
+							
+						}
+						else {
+							
+							//Make a new route.
+							
+							
+						}
+			        	
+			        });
 					
 				}
 				else {
@@ -138,17 +140,9 @@ public class OptimizeController {
 					
 					
 				}
-				
-					
-			}
-			else {
-				
-				//Make a new route.
-				
-				
-			}
-		}
+			});   
 	}
+}
 	
 	
 
