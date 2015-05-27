@@ -89,7 +89,23 @@ public class OptimizeController {
 					//Enter a loop for each stop removed.
 					removedStops.stream().forEach((removedStop) -> {
 						
-						//Check to see if one of the underloadedRoutes are near stop.
+						//Enters a loop for each underloadedRoute, to check if one of them is near stop.
+						underloadedRoutes.stream().forEach((underloadedRoute) -> {
+							
+							//Enters a loop for each stop.
+							ArrayList<DeliveryStop> stops = underloadedRoute.getStops();
+							for(DeliveryStop deliveryStop:stops) {
+								
+								//Gets the geoLoc, and checks to see if one of those are near the removed stop.
+								GeoLoc geoLoc = deliveryStop.getDefaultStop().getGeoLoc();
+								
+								//
+								
+									
+							}
+							
+						});
+						
 						
 						
 						if (1 + 1 == 2) {
