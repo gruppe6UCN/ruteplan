@@ -2,9 +2,12 @@ package control;
 
 import database.DBGeoLoc;
 import database.DBRoad;
+import model.DefaultDeliveryStop;
+import model.DeliveryStop;
 import model.GeoLoc;
 import model.Road;
 import model.Route;
+
 import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.DirectedWeightedMultigraph;
 
@@ -119,13 +122,31 @@ public class MapController {
     
     
     /**
-     * Finds the geoLoc for the given delviery stop.
+     * Finds the geoLoc for the given deliveryStop.
      * @param stop Delivery stop to find geoLoc for.
      * @return GeoLocation at the given delivery stop.
      */
     public GeoLoc findGeoLoc(DeliveryStop stop) {
     	
+    	//Variables to check.
+    	double check_id = stop.getID();
+    	GeoLoc returnloc = null;
     	
+    	//Enters a loop for each geoLoc.
+    	for(GeoLoc geoLoc:geoLocs) {
+			
+    		//Checks to see if id of the geoLoc matches the id of the stop.
+    		double geoLoc_id = geoLoc.getDeliveryStopID();
+    		if (check_id == geoLoc_id) {
+    			
+    			//Sets the geoLoc to found. Ends the loop.
+    			returnloc = geoLoc;   			
+    			break;
+    		}
+		}
+    	
+    	//Returns the geoLoc.
+    	return returnloc;
     }
     
 }
