@@ -72,7 +72,7 @@ public class DeliveryStopController {
             DeliveryStop stop = new DeliveryStop(defaultStop);
 
             //add all TransportUnit for this DeliveryStop
-            // transportUnitController.addTransportUnit(stop, stop.getDefaultStop().getCustomers());
+            transportUnitController.addTransportUnit(stop, stop.getDefaultStop().getCustomers());
 
             //Adds deliveryStop to route.
             route.addDeliveryStop(stop);

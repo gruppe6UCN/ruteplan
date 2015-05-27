@@ -22,6 +22,7 @@ public class OptimizeController {
 	private static OptimizeController instance;
 	private double load;
 	private ArrayList<DeliveryStop> removedStops;
+	private boolean isnear;
     
     /**
      * Private constructor for singleton.
@@ -87,29 +88,51 @@ public class OptimizeController {
 	        	//Checks to see if there is underloadedRoutes.
 				if (underloadedRoutes.size() >= 1) {
 					
+					//ArrayList containing all nearRoutes.
+					ArrayList<Route> nearRoute = new ArrayList<>();
+					
 					//Enter a loop for each stop removed.
 					removedStops.stream().forEach((removedStop) -> {
 						
+						//Finds the geoLoc for current removedStop.
+						GeoLoc geoLocRemovedStop = mapController.findGeoLoc(removedStop);
+						
 						//Enters a loop for each underloadedRoute, to check if one of them is near stop.
 						underloadedRoutes.stream().forEach((underloadedRoute) -> {
+							
+							//Misc Variables for the loop.
+							boolean isnear_route = false;
+							double bestdistance = 9999;
 							
 							//Enters a loop for each stop.
 							ArrayList<DeliveryStop> stops = underloadedRoute.getStops();
 							for(DeliveryStop deliveryStop:stops) {
 								
 								//Gets the geoLoc, and checks to see if one of those are near the removed stop.
-								GeoLoc geoLoc = deliveryStop.getDefaultStop().getGeoLoc();
+								GeoLoc geoLoc = mapController.findGeoLoc(deliveryStop);
+								double distance = mapController.pointDistance(geoLoc, geoLocRemovedStop);
 								
-								//
-								
+								//Checks to see if within a certain distance.
+								if (distance < 25) {
 									
+									//Checks to see if shorter then best distance.
+									if (distance < bestdistance) {
+										
+										//Sets to the new bestdistance.
+										bestdistance = distance;
+										isnear_route = true;
+										isnear = true;
+									}
+								}
 							}
-							
+						
+							//Adds the underloaded route to ArrayList of nearRoutes.
+							if (isnear_route) {
+								nearRoute.add(underloadedRoute);
+							}
 						});
 						
-						
-						
-						if (1 + 1 == 2) {
+						if (isnear) {
 							
 							
 							
