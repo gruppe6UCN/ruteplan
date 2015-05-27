@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author Dani Sander
  * @version 1.0
- * @since 26-05-15
+ * @since 27-05-15
  */
 
 public class OptimizeController {
@@ -30,6 +30,7 @@ public class OptimizeController {
 		
 		routeController = RouteController.getInstance();
 		mapController = MapController.getInstance();
+		removedStops = new ArrayList<>();
 	}
 	
 	/**
