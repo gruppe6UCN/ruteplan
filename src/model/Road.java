@@ -4,29 +4,24 @@ import java.sql.Time;
 
 public class Road {
     
-    private GeoLoc geoLoc;
+    private long from;
+    private long to;
     private double distance;
     private Time time;
     
-    public Road(GeoLoc geoLoc, double distance, Time time) {
-        super();
-        this.geoLoc = geoLoc;
+    public Road(long from_ID, long to_ID, double distance, Time time) {
+        this.from = from_ID;
+        this.to = to_ID;
         this.distance = distance;
         this.time = time;
     }
 
-    /**
-     * @return the geoLoc
-     */
-    public GeoLoc getGeoLoc() {
-        return geoLoc;
+    public long getFrom() {
+        return from;
     }
 
-    /**
-     * @param geoLoc the geoLoc to set
-     */
-    public void setGeoLoc(GeoLoc geoLoc) {
-        this.geoLoc = geoLoc;
+    public long getTo() {
+        return to;
     }
 
     /**

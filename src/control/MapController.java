@@ -1,10 +1,15 @@
 package control;
 
+import database.DBGeoLoc;
+import database.DBRoad;
+import model.GeoLoc;
+import model.Road;
+import model.Route;
+import org.jgrapht.graph.DefaultWeightedEdge;
+import org.jgrapht.graph.DirectedWeightedMultigraph;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import database.*;
-import model.*;
 
 /**
  * DefaultRouteController
@@ -20,8 +25,11 @@ public class MapController {
 	private static MapController instance;
 	private DBGeoLoc dbGeoLoc;
 	private DBRoad dbRoad;
-	private ArrayList<GeoLoc> geoLocs;
-	private ArrayList<Road> roads;
+
+    private ArrayList<GeoLoc> geoLocs = new ArrayList<>();
+    private ArrayList<DefaultWeightedEdge> edges = new ArrayList<>();
+    private DirectedWeightedMultigraph<GeoLoc, DefaultWeightedEdge> map
+            = new DirectedWeightedMultigraph<GeoLoc, DefaultWeightedEdge>(DefaultWeightedEdge.class);
 	
 	/**
 	 * Private constructor for singleton.
@@ -59,33 +67,48 @@ public class MapController {
 	 * Loads all map data from the database.
 	 */
 	public void loadMaps(ArrayList<Route> routes) {
-		
-		//Creates an ArrayList for default stops.
-		ArrayList<DefaultDeliveryStop> defaultStops = new ArrayList<>();		
-		
-		//Enters a loop for each route.
-        routes.stream().forEach((route) -> {      	
-        	
-        	//Enters a loop for each delivery stop.
-        	ArrayList<DeliveryStop> stops = route.getStops();       	
-        	stops.stream().forEach((stop) -> {
-        		
-        		//Finds the default stop and adds it to ArrayList.
-        		DefaultDeliveryStop defaultStop = stop.getDefaultStop();
-        		defaultStops.add(defaultStop);
-        		
-        	});
-        });
+		loadMaps();
+//		//Creates an ArrayList for default stops.
+//		ArrayList<DefaultDeliveryStop> defaultStops = new ArrayList<>();
+//		ArrayList<GeoLoc> geoLocs = new ArrayList<>();
+//
+//		//Enters a loop for each route.
+//        routes.stream().forEach((route) -> {
+//
+//        	//Enters a loop for each delivery stop.
+//        	ArrayList<DeliveryStop> stops = route.getStops();
+//        	stops.stream().forEach((stop) -> {
+//
+//        		//Find the default stop and get its id.
+//        		long id = stop.getDefaultStop().getID();
+//
+//                //Load a GeoLoc from the database.
+//                geoLocs.add(dbGeoLoc.getFrom(id));
+//
+//        	});
+//        });
 
-        //Loads all geoLocs from the database.
-		dbGeoLoc.getGeoLocFor(defaultStops);
-	
 		//Add load road stuff with random libary here later.
-		
-		
-		
 	}
-	
-	
-	
+
+    private void loadMaps() {
+        ArrayList<Road> roads = dbRoad.getRoads();
+
+        roads.forEach(road -> {
+            GeoLoc geoLocFrom = dbGeoLoc.getGeoLoc(road.getFrom());
+            GeoLoc geoLocTo = dbGeoLoc.getGeoLoc(road.getTo());
+            if (!geoLocs.contains(geoLocFrom)) {
+                geoLocs.add(geoLocFrom);
+                map.addVertex(geoLocFrom);
+            }
+            if (!geoLocs.contains(geoLocTo)) {
+                geoLocs.add(geoLocTo);
+                map.addVertex(geoLocTo);
+            }
+
+            DefaultWeightedEdge edge = map.addEdge(geoLocFrom, geoLocTo);
+            map.setEdgeWeight(edge, road.getDistance());
+            edges.add(edge);
+        });
+    }
 }

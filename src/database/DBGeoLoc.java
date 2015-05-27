@@ -1,8 +1,9 @@
 package database;
 
+import model.GeoLoc;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
-import model.*;
 
 /**
  * DBGeoLoc
@@ -14,35 +15,40 @@ import model.*;
  */
 
 public class DBGeoLoc {
-    
+
     private DBConnection dbConnection;
     private static DBGeoLoc instance;
-    
+
     /**
      * Private constructor for singleton.
-     * @throws SQLException 
-     * @throws ClassNotFoundException 
+     *
+     * @throws SQLException
+     * @throws ClassNotFoundException
      */
     private DBGeoLoc() throws ClassNotFoundException, SQLException {
-        dbConnection = DBConnection.getInstance();        
+        dbConnection = DBConnection.getInstance();
     }
-    
+
     /**
      * Singleton method for class.
+     *
      * @return instance of class.
-     * @throws SQLException 
-     * @throws ClassNotFoundException 
+     * @throws SQLException
+     * @throws ClassNotFoundException
      */
     public static DBGeoLoc getInstance() throws ClassNotFoundException, SQLException {
         if (instance == null) {
-            instance = new DBGeoLoc();            
+            instance = new DBGeoLoc();
         }
 
         return instance;
     }
 
-	public void getGeoLocFor(ArrayList<DefaultDeliveryStop> defaultStops) {
-		// TODO Auto-generated method stub
-		
-	}
+    public GeoLoc getGeoLoc(long defaultDeliveryStopID) {
+        ArrayList<GeoLoc> list;
+        String sql = String.format("select * from GeoLoc where default_delivery_stop_id = %d",
+                defaultDeliveryStopID);
+        list = (ArrayList<GeoLoc>) dbConnection.sendSQL(this, sql, "_formatDefaultRoute");
+        return list.get(0);
+    }
 }

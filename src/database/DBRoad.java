@@ -1,6 +1,10 @@
 package database;
 
+import model.Road;
+
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * DBRoad
@@ -39,8 +43,28 @@ public class DBRoad {
         return instance;
     }
 
-	public void getRoadFor() {
-		// TODO Auto-generated method stub
-		
+	public ArrayList<Road> getRoads() {
+        ArrayList<Road> list;
+        String sql = "select * from Road";
+        list = (ArrayList<Road>) dbConnection.sendSQL(this, sql, "_formatRoad");
+        return list;
 	}
+
+    public ArrayList<Road> _formatDefaultRoute(ResultSet rs) {
+        ArrayList<Road> tableList = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                tableList.add(new Road(
+                        rs.getLong("from"),
+                        rs.getLong("to"),
+                        rs.getDouble("distance"),
+                        rs.getTime("time")
+                ));
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return tableList;
+    }
 }
