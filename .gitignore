@@ -8,3 +8,4 @@ out/
 .settings/
 .settings/org.eclipse.jdt.core.prefs
 ruteplan.iml
+customer.csv

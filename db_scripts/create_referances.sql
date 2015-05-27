@@ -88,7 +88,7 @@ create table Road (
     from_ bigint not null,
     to_ bigint not null,
     distance decimal not null,
-    time time not null,
+    time decimal not null,
     primary key(id),
     foreign key(from_) references GeoLoc(id),
     foreign key(to_) references GeoLoc(id)

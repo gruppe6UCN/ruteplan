@@ -53,8 +53,8 @@ public class DBDefaultRoute {
 	public ArrayList<DefaultRoute> getDefaultRoutes() {
         ArrayList<DefaultRoute> list;
         String sql = "select * from DefaultRoute";
-//        list = (ArrayList<DefaultRoute>) dbConnection.sendSQL(this, sql, "_formatDefaultRoute");
-        return null;
+        list = (ArrayList<DefaultRoute>) dbConnection.sendSQL(this, sql, "_formatDefaultRoute");
+        return list;
     }
 
     /**
