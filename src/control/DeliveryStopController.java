@@ -35,18 +35,18 @@ public class DeliveryStopController {
             e.printStackTrace();
         }
     }
-	
-	/**
-	 * Stores all the delivery stops for each route in the list.
+    
+    /**
+     * Stores all the delivery stops for each route in the list.
      * @param route ArrayList containing all stop from a route stops from.
      */
-	public void storeDeliveryStops(Route route) {
-		route.getStops().forEach((stop) -> {
+    public void storeDeliveryStops(Route route) {
+        route.getStops().forEach((stop) -> {
             long routeID = dbDeliveryStop.storeDeliveryStops(route.getID(), stop);
             route.setID(routeID);
         });
-	}
-	
+    }
+    
     /**
      * Singleton method for class.
      * @return instance of class.

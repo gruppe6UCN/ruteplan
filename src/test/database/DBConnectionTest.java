@@ -1,18 +1,14 @@
 package test.database;
 
-import org.junit.BeforeClass;
-import org.junit.AfterClass;
-import org.junit.Test;
-import org.junit.Before;
-import org.junit.After;
-
 import database.DBConnection;
+import org.junit.*;
 
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
 import java.sql.SQLException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 /**
  * DBConnection Tester.
@@ -60,11 +56,11 @@ public class DBConnectionTest {
             assertNotNull(instance);
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block
-//			e.printStackTrace();
+//            e.printStackTrace();
             fail("Lib: '" + e.getMessage() + "' is missing");
         } catch (SQLException e) {
             // TODO Auto-generated catch block
-//			e.printStackTrace();
+//            e.printStackTrace();
             fail("kunne ikke forbinde til databasen" + e.getMessage());
         }
     }

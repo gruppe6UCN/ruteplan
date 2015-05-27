@@ -20,10 +20,10 @@ public class GeoLoc {
         return location.getY();
     }
 
-	/**
-	 * @return the deliveryStopID
-	 */
-	public long getDeliveryStopID() {
-		return deliveryStopID;
-	}
+    /**
+     * @return the deliveryStopID
+     */
+    public long getDeliveryStopID() {
+        return deliveryStopID;
+    }
 }
