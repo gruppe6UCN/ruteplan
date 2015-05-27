@@ -80,6 +80,7 @@ create table GeoLoc(
     x decimal not null,
     y decimal not null,
     primary key(id),
+    UNIQUE(default_delivery_stop_id),
     foreign key(default_delivery_stop_id) references DefaultDeliveryStop(id)
 );
 
