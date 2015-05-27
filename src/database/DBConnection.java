@@ -30,6 +30,12 @@ public class DBConnection {
 //        try {
         // Register JDBC driver
         Class.forName(JDBC_DRIVER);
+        try {
+			connect();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 //        } catch (ClassNotFoundException e) {
 //            e.printStackTrace();
 //        } catch (SQLException e) {
