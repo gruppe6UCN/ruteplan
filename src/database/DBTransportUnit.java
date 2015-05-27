@@ -74,7 +74,7 @@ public class DBTransportUnit {
                         new TransportUnit(
                                 rs.getLong("id"),
                                 rs.getLong("customer_id"),
-                                Type.valueOf(rs.getString("type"))
+                                UnitType.valueOf(rs.getString("type"))
                         ));
             }
         } catch (SQLException e) {

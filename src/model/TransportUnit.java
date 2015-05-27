@@ -3,12 +3,12 @@ package model;
 public class TransportUnit {
     
     private long id;
-    private Type type;
+    private UnitType unitType;
     private long customerId;
     
-    public TransportUnit(long id, long customerId, Type type) {
+    public TransportUnit(long id, long customerId, UnitType unitType) {
         this.id = id;
-        this.type = type;
+        this.unitType = unitType;
         this.customerId = customerId;
     }
 
@@ -27,17 +27,17 @@ public class TransportUnit {
     }
 
     /**
-     * @return the type
+     * @return the unitType
      */
-    public Type getType() {
-        return type;
+    public UnitType getUnitType() {
+        return unitType;
     }
 
     /**
-     * @param type the type to set
+     * @param unitType the unitType to set
      */
-    public void setType(Type type) {
-        this.type = type;
+    public void setUnitType(UnitType unitType) {
+        this.unitType = unitType;
     }
 
     /**

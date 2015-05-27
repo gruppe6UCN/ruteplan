@@ -1,10 +1,10 @@
 package control;
 
+import model.*;
+
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
-
-import model.*;
 
 /**
  * OptimizeController
@@ -219,7 +219,7 @@ public class OptimizeController {
     		for(TransportUnit transportUnit:transportUnits) {
     			
     			//Increments load with the transportUnits size.
-    			load += transportUnit.getType().getSize();
+    			load += transportUnit.getUnitType().getSize();
     		}
     	});
     	
@@ -310,7 +310,7 @@ public class OptimizeController {
 		for(TransportUnit transportUnit:transportUnits) {
 			
 			//Increments load with the transportUnits size.
-			load += transportUnit.getType().getSize();
+			load += transportUnit.getUnitType().getSize();
 		}
 		
 		//Returns the load.
