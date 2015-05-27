@@ -5,7 +5,7 @@ delete from DefaultRoute
 --DECLARE @dr_id bigint;
 DECLARE @dds_id bigint;
 
-INSERT into DefaultRoute values('Stor', '1:00:00', 0);
+INSERT into DefaultRoute values('STOR', '1:00:00', 0);
 DECLARE @dr_id bigint = SCOPE_IDENTITY();
 INSERT into DefaultDeliveryStop values(@dr_id, '1:30:00');
 SET @dds_id = SCOPE_IDENTITY();
@@ -25,7 +25,7 @@ INSERT into Customer values(@dds_id, 'Søndergade', 19, 7800, 'Skive');
 
 
 
-INSERT into DefaultRoute values('Stor', '2:00:00', 0);
+INSERT into DefaultRoute values('STOR', '2:00:00', 0);
 SET @dr_id = SCOPE_IDENTITY();
 INSERT into DefaultDeliveryStop values(@dr_id, '2:30:00');
 SET @dds_id = SCOPE_IDENTITY();
@@ -45,7 +45,7 @@ INSERT into Customer values(@dds_id, 'Vennelystvej', 35, 8960, 'Randers SØ');
 
 
 
-INSERT into DefaultRoute values('Stor', '3:00:00', 0);
+INSERT into DefaultRoute values('STOR', '3:00:00', 0);
 SET @dr_id = SCOPE_IDENTITY();
 INSERT into DefaultDeliveryStop values(@dr_id, '3:30:00');
 SET @dds_id = SCOPE_IDENTITY();
@@ -65,7 +65,7 @@ INSERT into Customer values(@dds_id, 'Hobrovej', 53, 9530, 'Støvring');
 
 
 
-INSERT into DefaultRoute values('Stor', '4:00:00', 0);
+INSERT into DefaultRoute values('STOR', '4:00:00', 0);
 SET @dr_id = SCOPE_IDENTITY();
 INSERT into DefaultDeliveryStop values(@dr_id, '4:30:00');
 SET @dds_id = SCOPE_IDENTITY();
@@ -85,7 +85,7 @@ INSERT into Customer values(@dds_id, 'Søndergade', 1, 7800, 'Skive');
 
 
 
-INSERT into DefaultRoute values('Stor', '5:00:00', 0);
+INSERT into DefaultRoute values('STOR', '5:00:00', 0);
 SET @dr_id = SCOPE_IDENTITY();
 INSERT into DefaultDeliveryStop values(@dr_id, '5:30:00');
 SET @dds_id = SCOPE_IDENTITY();
