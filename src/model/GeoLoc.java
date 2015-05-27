@@ -19,4 +19,11 @@ public class GeoLoc {
     public double getLongitude() {
         return location.getY();
     }
+
+	/**
+	 * @return the deliveryStopID
+	 */
+	public long getDeliveryStopID() {
+		return deliveryStopID;
+	}
 }
