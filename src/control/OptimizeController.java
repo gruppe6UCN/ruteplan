@@ -23,6 +23,8 @@ public class OptimizeController {
 	private double load;
 	private ArrayList<DeliveryStop> removedStops;
 	private boolean isnear;
+	private double bestdistance;
+	private Route bestRoute;
     
     /**
      * Private constructor for singleton.
@@ -89,7 +91,7 @@ public class OptimizeController {
 				if (underloadedRoutes.size() >= 1) {
 					
 					//ArrayList containing all nearRoutes.
-					ArrayList<Route> nearRoute = new ArrayList<>();
+					ArrayList<Route> nearRoutes = new ArrayList<>();
 					
 					//Enter a loop for each stop removed.
 					removedStops.stream().forEach((removedStop) -> {
@@ -118,7 +120,7 @@ public class OptimizeController {
 									//Checks to see if shorter then best distance.
 									if (distance < bestdistance) {
 										
-										//Sets to the new bestdistance.
+										//Sets to the new best distance.
 										bestdistance = distance;
 										isnear_route = true;
 										isnear = true;
@@ -126,37 +128,50 @@ public class OptimizeController {
 								}
 							}
 						
-							//Adds the underloaded route to ArrayList of nearRoutes.
+							//Adds the underloadedRoute to ArrayList of nearRoutes.
 							if (isnear_route) {
-								nearRoute.add(underloadedRoute);
+								nearRoutes.add(underloadedRoute);
 							}
 						});
 						
 						if (isnear) {
 							
-							
-							
-							
-							//Checks to see if more than one are near stop.
-							if (1+1==2) {
+							//Checks to see if more than one are near the stop.
+							int nearRouteQuantity = nearRoutes.size();
+							if (nearRouteQuantity > 1) {
 								
+								//Best distance variable.
+								bestdistance = 9999;
+								bestRoute = nearRoutes.get(0);
 								
-								//Find the best route.
-								
-								
-								
-								//Move stop to that route.
-								
-								
-								
-								
+								//Enters a loop for each route to find the best.
+								nearRoutes.stream().forEach((nearRoute) -> {
+									
+									//Enters a loop for each stop.								
+									ArrayList<DeliveryStop> stops = nearRoute.getStops();
+									for(DeliveryStop deliveryStop:stops) {
+										
+										//Gets the geoLoc and distance of the current stop.
+										GeoLoc geoLoc = mapController.findGeoLoc(deliveryStop);
+										double distance = mapController.pointDistance(geoLoc, geoLocRemovedStop);
+										
+										//Checks to see if better then best distance.
+										if (distance < bestdistance) {
+											bestdistance = distance;
+											bestRoute = nearRoute;
+										}
+									}
+								});
+
+								//Move stop to this route.
+								Route underloadedRoute = nearRoutes.get(0);
+								underloadedRoute.addDeliveryStop(removedStop);
 							}
 							else {
 								
 								//Move stop to this route.
-								
-								
-								
+								Route underloadedRoute = nearRoutes.get(0);
+								underloadedRoute.addDeliveryStop(removedStop);
 							}
 						}
 						else {
