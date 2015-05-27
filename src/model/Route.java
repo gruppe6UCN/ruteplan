@@ -15,6 +15,7 @@ public class Route {
     public Route(DefaultRoute defaultRoute, Date date) {
         this.defaultRoute = defaultRoute;
         this.date = date;
+        this.stops = new ArrayList<>();
         
         //Automatize dem other variables here later...
     }

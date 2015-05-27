@@ -67,12 +67,12 @@ public class DeliveryStopController {
      */
     public void addDeliveryStops(Route route, ArrayList<DefaultDeliveryStop> defaultStops) {
         //for each DefaultDeliveryStop add one DeliveryStop to route
-        defaultStops.parallelStream().forEach((defaultStop) -> {
+        defaultStops.stream().forEach((defaultStop) -> {
 
             DeliveryStop stop = new DeliveryStop(defaultStop);
 
             //add all TransportUnit for this DeliveryStop
-            transportUnitController.addTransportUnit(stop, stop.getDefaultStop().getCustomers());
+            // transportUnitController.addTransportUnit(stop, stop.getDefaultStop().getCustomers());
 
             //Adds deliveryStop to route.
             route.addDeliveryStop(stop);
