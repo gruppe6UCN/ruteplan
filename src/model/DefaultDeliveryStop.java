@@ -48,19 +48,19 @@ public class DefaultDeliveryStop {
         this.customers = customers;
     }
 
-	/**
-	 * @return the geoLoc
-	 */
-	public GeoLoc getGeoLoc() {
-		return geoLoc;
-	}
+    /**
+     * @return the geoLoc
+     */
+    public GeoLoc getGeoLoc() {
+        return geoLoc;
+    }
 
-	/**
-	 * @param geoLoc the geoLoc to set
-	 */
-	public void setGeoLoc(GeoLoc geoLoc) {
-		this.geoLoc = geoLoc;
-	}
+    /**
+     * @param geoLoc the geoLoc to set
+     */
+    public void setGeoLoc(GeoLoc geoLoc) {
+        this.geoLoc = geoLoc;
+    }
 
 
 }

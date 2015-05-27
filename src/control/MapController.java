@@ -21,79 +21,79 @@ import java.util.ArrayList;
  */
 
 public class MapController {
-	
-	private static MapController instance;
-	private DBGeoLoc dbGeoLoc;
-	private DBRoad dbRoad;
+    
+    private static MapController instance;
+    private DBGeoLoc dbGeoLoc;
+    private DBRoad dbRoad;
 
     private ArrayList<GeoLoc> geoLocs = new ArrayList<>();
     private ArrayList<DefaultWeightedEdge> edges = new ArrayList<>();
     private DirectedWeightedMultigraph<GeoLoc, DefaultWeightedEdge> map
             = new DirectedWeightedMultigraph<GeoLoc, DefaultWeightedEdge>(DefaultWeightedEdge.class);
-	
-	/**
-	 * Private constructor for singleton.
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
-	 */
-	private MapController() {
-		try {
-			dbGeoLoc = DBGeoLoc.getInstance();
-		} catch (ClassNotFoundException | SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		try {
-			dbRoad = DBRoad.getInstance();
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	/**
-	 * Singleton method for class.
-	 * @return instance of class.
-	 */
-	public static MapController getInstance() {
-		if (instance == null) {
-			instance = new MapController();			
-		}
-		
-		return instance;
-	}	
-	
-	/**
-	 * Loads all map data from the database.
-	 */
-	public void loadMaps(ArrayList<Route> routes) {
-		loadMaps();
-//		//Creates an ArrayList for default stops.
-//		ArrayList<DefaultDeliveryStop> defaultStops = new ArrayList<>();
-//		ArrayList<GeoLoc> geoLocs = new ArrayList<>();
+    
+    /**
+     * Private constructor for singleton.
+     * @throws SQLException 
+     * @throws ClassNotFoundException 
+     */
+    private MapController() {
+        try {
+            dbGeoLoc = DBGeoLoc.getInstance();
+        } catch (ClassNotFoundException | SQLException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+        try {
+            dbRoad = DBRoad.getInstance();
+        } catch (ClassNotFoundException | SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+     * Singleton method for class.
+     * @return instance of class.
+     */
+    public static MapController getInstance() {
+        if (instance == null) {
+            instance = new MapController();            
+        }
+        
+        return instance;
+    }    
+    
+    /**
+     * Loads all map data from the database.
+     */
+    public void loadMaps(ArrayList<Route> routes) {
+        loadMaps();
+//        //Creates an ArrayList for default stops.
+//        ArrayList<DefaultDeliveryStop> defaultStops = new ArrayList<>();
+//        ArrayList<GeoLoc> geoLocs = new ArrayList<>();
 //
-//		//Enters a loop for each route.
+//        //Enters a loop for each route.
 //        routes.stream().forEach((route) -> {
 //
-//        	//Enters a loop for each delivery stop.
-//        	ArrayList<DeliveryStop> stops = route.getStops();
-//        	stops.stream().forEach((stop) -> {
+//            //Enters a loop for each delivery stop.
+//            ArrayList<DeliveryStop> stops = route.getStops();
+//            stops.stream().forEach((stop) -> {
 //
-//        		//Find the default stop and get its id.
-//        		long id = stop.getDefaultStop().getID();
+//                //Find the default stop and get its id.
+//                long id = stop.getDefaultStop().getID();
 //
 //                //Load a GeoLoc from the database.
 //                geoLocs.add(dbGeoLoc.getFrom(id));
 //
-//        	});
+//            });
 //        });
 
-		//Add load road stuff with random libary here later.
-	}
+        //Add load road stuff with random libary here later.
+    }
 
-	/**
-	 * Loads all maps from database, and adds them to map for extended functionality.
-	 */
+    /**
+     * Loads all maps from database, and adds them to map for extended functionality.
+     */
     private void loadMaps() {
         ArrayList<Road> roads = dbRoad.getRoads();
 

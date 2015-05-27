@@ -102,101 +102,101 @@ public class RouteController {
     }
 
     
-	/**
-	 * Finds and returns all overloaded routes.
-	 * @return ArrayList containing all overloaded routes.
-	 */
-	public ArrayList<Route> findOverloadedRoutes() {
-		
-		//Creates an ArrayList for each overloaded route.
-		ArrayList<Route> overloadedRoutes = new ArrayList<>();
-		
-		//Enters a loop for each route.
+    /**
+     * Finds and returns all overloaded routes.
+     * @return ArrayList containing all overloaded routes.
+     */
+    public ArrayList<Route> findOverloadedRoutes() {
+        
+        //Creates an ArrayList for each overloaded route.
+        ArrayList<Route> overloadedRoutes = new ArrayList<>();
+        
+        //Enters a loop for each route.
         routes.stream().forEach((route) -> {
-        	
-        	//Variable to increment for each load check.
-        	load = 0;
-        	
-        	//Finds maximum load.
-        	double capacity = route.getDefaultRoute().getTrailerType().getCapacity();       	
-        	
-        	//Enters a loop for each delivery stop.
-        	ArrayList<DeliveryStop> stops = route.getStops();       	
-        	stops.stream().forEach((stop) -> {
-        		
-        		//Enters a loop for each transportUnit
-        		ArrayList<TransportUnit> transportUnits = stop.getTransportUnits();
-        		for(TransportUnit transportUnit:transportUnits) {
-        			
-        			//Increments load with the transportUnits size.
-        			load += transportUnit.getUnitType().getSize();
-        		}
-        	});
-        	
-        	//Checks to see if route is overloaded.
-        	if (load > capacity) {
-        		//Adds overloaded route to ArrayList.
-        		overloadedRoutes.add(route);
-        	}
+            
+            //Variable to increment for each load check.
+            load = 0;
+            
+            //Finds maximum load.
+            double capacity = route.getDefaultRoute().getTrailerType().getCapacity();           
+            
+            //Enters a loop for each delivery stop.
+            ArrayList<DeliveryStop> stops = route.getStops();           
+            stops.stream().forEach((stop) -> {
+                
+                //Enters a loop for each transportUnit
+                ArrayList<TransportUnit> transportUnits = stop.getTransportUnits();
+                for(TransportUnit transportUnit:transportUnits) {
+                    
+                    //Increments load with the transportUnits size.
+                    load += transportUnit.getUnitType().getSize();
+                }
+            });
+            
+            //Checks to see if route is overloaded.
+            if (load > capacity) {
+                //Adds overloaded route to ArrayList.
+                overloadedRoutes.add(route);
+            }
         });
-		
-		//Return list with all overloaded routes.
-		return overloadedRoutes;	
-	}
-	
-	/**
-	 * Finds and returns all under loaded routes.
-	 * @return ArrayList containing all under loaded routes.
-	 */
-	public ArrayList<Route> findUnderloadedRoutes() {
-		
-		//Creates an ArrayList for each overloaded route.
-		ArrayList<Route> underloadedRoutes = new ArrayList<>();
-		
-		//Enters a loop for each route.
+        
+        //Return list with all overloaded routes.
+        return overloadedRoutes;    
+    }
+    
+    /**
+     * Finds and returns all under loaded routes.
+     * @return ArrayList containing all under loaded routes.
+     */
+    public ArrayList<Route> findUnderloadedRoutes() {
+        
+        //Creates an ArrayList for each overloaded route.
+        ArrayList<Route> underloadedRoutes = new ArrayList<>();
+        
+        //Enters a loop for each route.
         routes.stream().forEach((route) -> {
-        	
-        	//Variable to increment for each load check.
-        	load = 0;
-        	
-        	//Finds maximum load.
-        	double capacity = route.getDefaultRoute().getTrailerType().getCapacity();       	
-        	
-        	//Enters a loop for each delivery stop.
-        	ArrayList<DeliveryStop> stops = route.getStops();       	
-        	stops.stream().forEach((stop) -> {
-        		
-        		//Enters a loop for each transportUnit
-        		ArrayList<TransportUnit> transportUnits = stop.getTransportUnits();
-        		for(TransportUnit transportUnit:transportUnits) {
-        			
-        			//Increments load with the transportUnits size.
-        			load += transportUnit.getUnitType().getSize();
-        		}
-        	});
-        	
-        	//Checks to see if route is under loaded.
-        	if (load < capacity * 0.8) {
-        		//Adds under loaded route to ArrayList.
-        		underloadedRoutes.add(route);
-        	}
+            
+            //Variable to increment for each load check.
+            load = 0;
+            
+            //Finds maximum load.
+            double capacity = route.getDefaultRoute().getTrailerType().getCapacity();           
+            
+            //Enters a loop for each delivery stop.
+            ArrayList<DeliveryStop> stops = route.getStops();           
+            stops.stream().forEach((stop) -> {
+                
+                //Enters a loop for each transportUnit
+                ArrayList<TransportUnit> transportUnits = stop.getTransportUnits();
+                for(TransportUnit transportUnit:transportUnits) {
+                    
+                    //Increments load with the transportUnits size.
+                    load += transportUnit.getUnitType().getSize();
+                }
+            });
+            
+            //Checks to see if route is under loaded.
+            if (load < capacity * 0.8) {
+                //Adds under loaded route to ArrayList.
+                underloadedRoutes.add(route);
+            }
         });
-		
-		//Return list with all overloaded routes.
-		return underloadedRoutes;	
-	}
+        
+        //Return list with all overloaded routes.
+        return underloadedRoutes;    
+    }
 
-	/**
-	 * @return the routes
-	 */
-	public ArrayList<Route> getRoutes() {
-		return routes;
-	}
+    /**
+     * @return the routes
+     */
+    public ArrayList<Route> getRoutes() {
+        return routes;
+    }
 
-	/**
-	 * @param routes the routes to set
-	 */
-	public void setRoutes(ArrayList<Route> routes) {
-		this.routes = routes;
-	}
+    /**
+     * @param routes the routes to set
+     */
+    public void setRoutes(ArrayList<Route> routes) {
+        this.routes = routes;
+    }
 }

@@ -47,11 +47,11 @@ public class DBDeliveryStop {
      * @param deliveryStop
      * @return the id for deliveryStop
      */
-	public long storeDeliveryStops(long routeID, DeliveryStop deliveryStop) {
+    public long storeDeliveryStops(long routeID, DeliveryStop deliveryStop) {
         String sql = String.format("INSERT into Route values(%d, %d);",
                 routeID,
                 deliveryStop.getID());
         return dbConnection.sendInsertSQL(sql);
-	}
+    }
 
 }

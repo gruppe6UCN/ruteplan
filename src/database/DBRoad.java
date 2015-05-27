@@ -43,12 +43,12 @@ public class DBRoad {
         return instance;
     }
 
-	public ArrayList<Road> getRoads() {
+    public ArrayList<Road> getRoads() {
         ArrayList<Road> list;
         String sql = "select * from Road";
         list = (ArrayList<Road>) dbConnection.sendSQL(this, sql, "_formatRoad");
         return list;
-	}
+    }
 
     public ArrayList<Road> _formatDefaultRoute(ResultSet rs) {
         ArrayList<Road> tableList = new ArrayList<>();

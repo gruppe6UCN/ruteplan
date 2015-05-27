@@ -41,18 +41,18 @@ public class DBRoute {
         return instance;
     }
 
-	
-	/**
-	 * Stores all routes in the database.
+    
+    /**
+     * Stores all routes in the database.
      * @param route list of all routes to store.
      */
-	public void storeRoute(Route route) {
+    public void storeRoute(Route route) {
         String sql = String.format("INSERT into Route values(%d, '%s', '%s');",
                 route.getDefaultRoute().getID(),
                 route.getAuctualTimeOfDeparture().toString(),
                 route.getDate().toString());
         long routeID = dbConnection.sendInsertSQL(sql);
         route.setID(routeID);
-	}
+    }
 
 }

@@ -7,11 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class DBConnection {
 
@@ -31,11 +27,11 @@ public class DBConnection {
         // Register JDBC driver
         Class.forName(JDBC_DRIVER);
         try {
-			connect();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+            connect();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 //        } catch (ClassNotFoundException e) {
 //            e.printStackTrace();
 //        } catch (SQLException e) {
