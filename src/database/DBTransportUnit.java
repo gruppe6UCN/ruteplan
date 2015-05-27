@@ -1,10 +1,11 @@
 package database;
 
+import model.TransportUnit;
+import model.UnitType;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import model.*;
 
 /**
  * DBTransportUnit
@@ -53,7 +54,7 @@ public class DBTransportUnit {
 
         IDs.stream().forEach((ID) -> {
             ArrayList<TransportUnit> tmp_list;
-            String sql = String.format("select * from Customer where customer_id = '%s';", ID);
+            String sql = String.format("select * from TransportUnit where customer_id = '%s';", ID);
             tmp_list = (ArrayList<TransportUnit>) dbConnection.sendSQL(this, sql, "_formatTransportUnit");
 
             tmp_list.forEach((tmp) -> list.add(tmp));

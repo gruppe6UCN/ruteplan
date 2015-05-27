@@ -43,6 +43,8 @@ public class ImportController {
     public ResultSet importRoutes() {
         routeController.importRoutes(new java.util.Date());
 
+        ResultSet resultSet;
+
         return null;
     }
     
