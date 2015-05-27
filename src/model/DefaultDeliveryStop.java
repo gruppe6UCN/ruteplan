@@ -8,6 +8,7 @@ public class DefaultDeliveryStop {
     private long id;
     private Time timeOfDelivery;
     private ArrayList<Customer> customers;
+    private GeoLoc geoLoc;
     
     public DefaultDeliveryStop(long id,
                                Time timeOfDelivery) {
@@ -46,6 +47,20 @@ public class DefaultDeliveryStop {
     public void setCustomers(ArrayList<Customer> customers) {
         this.customers = customers;
     }
+
+	/**
+	 * @return the geoLoc
+	 */
+	public GeoLoc getGeoLoc() {
+		return geoLoc;
+	}
+
+	/**
+	 * @param geoLoc the geoLoc to set
+	 */
+	public void setGeoLoc(GeoLoc geoLoc) {
+		this.geoLoc = geoLoc;
+	}
 
 
 }
