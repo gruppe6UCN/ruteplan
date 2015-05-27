@@ -12,8 +12,6 @@ import org.jgrapht.alg.DijkstraShortestPath;
 import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.DirectedWeightedMultigraph;
 
-import model.*;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 

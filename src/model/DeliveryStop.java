@@ -16,13 +16,6 @@ public class DeliveryStop {
     }
 
     /**
-     * @param transportUnit transportUnit to add to ArrayList.
-     */
-    public void addTransportUnit(TransportUnit transportUnit) {
-        transportUnits.add(transportUnit);
-    }
-
-    /**
      * @return the id
      */
     public long getID() {

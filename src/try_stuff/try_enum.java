@@ -7,7 +7,7 @@ import model.UnitType;
  */
 public class try_enum {
     public static void main(String[] args) {
-        System.out.println(UnitType.Standard.toString());
-        System.out.println(UnitType.Standard.name());
+        System.out.println(UnitType.EU_PAL.toString());
+        System.out.println(UnitType.EU_PAL.name());
     }
 }

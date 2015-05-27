@@ -2,12 +2,15 @@ package control;
 
 import database.DBRoute;
 import model.DefaultRoute;
-import model.Route;
 import model.DeliveryStop;
+import model.Route;
 import model.TransportUnit;
 
 import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
 /**
  * RouteController
@@ -25,7 +28,7 @@ public class RouteController {
     private DefaultDeliveryStopController defaultDeliveryStopController;
     private DBRoute dbRoute;
     private static RouteController instance;
-    private ArrayList<Route> routes;
+    private ArrayList<Route> routes = new ArrayList<>() ;
     private double load;
 
     /**
@@ -80,6 +83,8 @@ public class RouteController {
                         defaultDeliveryStopController.getDefaultDeliveryStops(defaultRoute)
                 );
             }
+
+            routes.add(route);
         }));
     }
 
