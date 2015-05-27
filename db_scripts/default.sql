@@ -7,7 +7,7 @@ DECLARE @dds_id bigint;
 DECLARE @c_id bigint;
 
 INSERT into DefaultRoute values('STOR', '1:00:00', 0);
-set @dr_id bigint = SCOPE_IDENTITY();
+set @dr_id = SCOPE_IDENTITY();
 INSERT into DefaultDeliveryStop values(@dr_id, '1:30:00');
 SET @dds_id = SCOPE_IDENTITY();
 INSERT into Customer values(@dds_id, 'Adelgade', 39, 9500, 'Hobro');
