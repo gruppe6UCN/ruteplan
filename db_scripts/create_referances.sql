@@ -70,7 +70,7 @@ create table TransportUnit(
     customer_id bigint not null,
     type varchar(20) not null,
     primary key(id),
-    foreign key(customer_id) references Customer(id),
+    --foreign key(customer_id) references Customer(id),
     foreign key(delivery_stop_id) references DeliveryStop(id)
 );
 
