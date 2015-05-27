@@ -8,16 +8,21 @@ public class DefaultRoute {
     private long id;
     private Time timeOfDeparture;
     private TrailerType trailerType;
-//    private ArrayList<DefaultDeliveryStop> stops;
+    private ArrayList<DefaultDeliveryStop> stops;
     private boolean extraRoute;
     
-    public DefaultRoute(long id, Time timeOfDeparture,
+    public DefaultRoute(Time timeOfDeparture,
             TrailerType trailerType, boolean extraRoute) {
-        super();
-        this.id = id;
         this.timeOfDeparture = timeOfDeparture;
         this.trailerType = trailerType;
         this.extraRoute = extraRoute;
+    }
+    
+    /**
+     * @param stop DefaultDeliveryStop to add to ArrayList.
+     */
+    public void addDefaultDeliveryStop(DefaultDeliveryStop stop) {
+        stops.add(stop);        
     }
     
     /**
@@ -65,16 +70,16 @@ public class DefaultRoute {
     /**
      * @return the stops
      */
-//    public ArrayList<DefaultDeliveryStop> getStops() {
-//        return stops;
-//    }
+    public ArrayList<DefaultDeliveryStop> getStops() {
+        return stops;
+    }
 
     /**
      * @param stops the stops to set
      */
-//    public void setStops(ArrayList<DefaultDeliveryStop> stops) {
-//        this.stops = stops;
-//    }
+    public void setStops(ArrayList<DefaultDeliveryStop> stops) {
+        this.stops = stops;
+    }
 
     /**
      * @return the extraRoute

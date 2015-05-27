@@ -1,5 +1,7 @@
 package control;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 
 import model.*;
@@ -55,13 +57,7 @@ public class OptimizeController {
 		
 		//Loads maps.
 		mapController.loadMaps(allRoutes);
-		
-		
-		
-		//Optimizes the routes.
-		//doMath();
-		
-		
+			
 		//Checks to see if there is overloadedRoutes.
 		if (overloadedRoutes.size() >= 1) {
 			
@@ -74,7 +70,7 @@ public class OptimizeController {
 	        	//Removes deliveryStops from route, until it's not overloaded, using a greedy algorithm.
 	        	while (overload > 0) {
 	        		
-	        		//Finds the most overloaded stop.
+	        		//Finds the most/best overloaded stop.
 	        		DeliveryStop best = findBestOverloadedStop(overloadedRoute, overload);
 	        		
 	        		//Removes stop from route.
@@ -93,9 +89,9 @@ public class OptimizeController {
 					//Enter a loop for each stop removed.
 					removedStops.stream().forEach((removedStop) -> {
 						
-						
-						
 						//Check to see if one of the underloadedRoutes are near stop.
+						
+						
 						if (1 + 1 == 2) {
 							
 							
@@ -122,32 +118,33 @@ public class OptimizeController {
 								
 								
 							}
-							
-							
-							
 						}
 						else {
 							
 							//Make a new route.
-							
-							
+							Route newRoute = newRoute(removedStops);
+							underloadedRoutes.add(newRoute);
+							allRoutes.add(newRoute);
 						}
-			        	
 			        });
-					
 				}
 				else {
 					
 					//Make a new route.
-					
-					
+					Route newRoute = newRoute(removedStops);
+					underloadedRoutes.add(newRoute);
+					allRoutes.add(newRoute);
 				}
-			});   
+			});  
+	        
+	        //Updates all routes again.
+	        routeController.setRoutes(allRoutes);
+	        
+	        //Clears ArrayList
+	        removedStops.clear();
 	}
 }
 	
-	
-
 	
 	/**
 	 * Makes a new route with the given delivery stops.
@@ -156,20 +153,29 @@ public class OptimizeController {
 	 */
 	private Route newRoute(ArrayList<DeliveryStop> deliveryStops) {
 		
-		Route route = new Route(null, null);
+		//Create default route.
+		Time timeOfDeparture = new Time(3, 0, 0);
+		TrailerType trailerType = TrailerType.STOR;
+		boolean extraRoute = true;
 		
+		DefaultRoute defaultRoute = new DefaultRoute(timeOfDeparture, trailerType, extraRoute);
 		
+		//Add default stops.
+		for(DeliveryStop deliveryStop:deliveryStops) {
+			
+			//Gets the default stop from normal stop and adds it to defaultRoute.
+			DefaultDeliveryStop defaultStop = deliveryStop.getDefaultStop();
+			defaultRoute.addDefaultDeliveryStop(defaultStop);	
+		}
 		
+		//Create route.
+		Date date = new Date(0, 0, 0);
+		Route route = new Route(defaultRoute, date);
 		
+		//Add stops.
+		route.setStops(deliveryStops);
 		
-		
-		
-		
-		
-		
-		
-		
-		
+		//Return route.
 		return route;
 	}
 	
@@ -271,7 +277,6 @@ public class OptimizeController {
 		//Returns the best load.
 		return best;
 	}
-	
 	
 	
 	/**
