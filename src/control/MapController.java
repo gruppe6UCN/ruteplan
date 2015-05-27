@@ -8,6 +8,7 @@ import model.GeoLoc;
 import model.Road;
 import model.Route;
 
+import org.jgrapht.alg.DijkstraShortestPath;
 import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.DirectedWeightedMultigraph;
 
@@ -149,4 +150,20 @@ public class MapController {
     	return returnloc;
     }
     
+    
+    /**
+     * Finds the distance between two points. 
+     * @param point1 starting point to search from.
+     * @param point2 end point to go to.
+     * @return the distance between the two points in double.
+     */
+    public double pointDistance(GeoLoc point1, GeoLoc point2) {
+    	
+    	//Uses DijkstraShortestPath algorithm to find the shortest route between the two points.
+    	DijkstraShortestPath<GeoLoc, DefaultWeightedEdge> path = new DijkstraShortestPath(map, point1, point2);
+    	double length = path.getPathLength();
+    	
+    	//Returns the distance found.
+    	return length;
+    }
 }
