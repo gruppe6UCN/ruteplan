@@ -10,9 +10,17 @@ public class DefaultRoute {
     private TrailerType trailerType;
     private ArrayList<DefaultDeliveryStop> stops;
     private boolean extraRoute;
-    
+
+    public DefaultRoute(long id, Time timeOfDeparture,
+                        TrailerType trailerType, boolean extraRoute) {
+        this.id = id;
+        this.timeOfDeparture = timeOfDeparture;
+        this.trailerType = trailerType;
+        this.extraRoute = extraRoute;
+    }
+
     public DefaultRoute(Time timeOfDeparture,
-            TrailerType trailerType, boolean extraRoute) {
+                        TrailerType trailerType, boolean extraRoute) {
         this.timeOfDeparture = timeOfDeparture;
         this.trailerType = trailerType;
         this.extraRoute = extraRoute;
