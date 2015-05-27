@@ -187,4 +187,11 @@ public class RouteController {
 	public ArrayList<Route> getRoutes() {
 		return routes;
 	}
+
+	/**
+	 * @param routes the routes to set
+	 */
+	public void setRoutes(ArrayList<Route> routes) {
+		this.routes = routes;
+	}
 }
