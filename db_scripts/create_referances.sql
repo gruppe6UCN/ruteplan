@@ -66,8 +66,8 @@ create table Link1(
 
 create table TransportUnit(
     id bigint IDENTITY(1,1),
-    customer_id bigint not null,
     delivery_stop_id bigint not null,
+    customer_id bigint not null,
     type varchar(20) not null,
     primary key(id),
     foreign key(customer_id) references Customer(id),
