@@ -87,7 +87,7 @@ public class RouteController {
      * Exports all data to database.
      */
     public void exportData() {
-        routes.parallelStream().forEach(route -> {
+        routes.stream().forEach(route -> {
             if (route.getDefaultRoute().isExtraRoute()) {
                 defaultRouteController.storeDefaultRoute(route.getDefaultRoute());
             }
