@@ -1,5 +1,7 @@
 package control;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 
 import model.*;
@@ -129,6 +131,7 @@ public class OptimizeController {
 						else {
 							
 							//Make a new route.
+							newRoute(removedStops);
 							
 							
 						}
@@ -139,6 +142,8 @@ public class OptimizeController {
 				else {
 					
 					//Make a new route.
+					newRoute(removedStops);
+					
 					
 					
 				}
@@ -156,20 +161,29 @@ public class OptimizeController {
 	 */
 	private Route newRoute(ArrayList<DeliveryStop> deliveryStops) {
 		
-		Route route = new Route(null, null);
+		//Create default route.
+		Time timeOfDeparture = new Time(20, 0, 0);
+		TrailerType trailerType = 
+		boolean extraRoute = true;
 		
+		DefaultRoute defaultRoute = new DefaultRoute(timeOfDeparture, trailerType, extraRoute);
 		
+		//Add default stops.
+		for(DeliveryStop deliveryStop:deliveryStops) {
+			
+			//Gets the default stop from normal stop and adds it to defaultRoute.
+			DefaultDeliveryStop defaultStop = deliveryStop.getDefaultStop();
+			defaultRoute.addDefaultDeliveryStop(defaultStop);	
+		}
 		
+		//Create route.
+		Date date = new Date(0, 0, 0);
+		Route route = new Route(defaultRoute, date);
 		
+		//Add stops.
+		route.setStops(deliveryStops);
 		
-		
-		
-		
-		
-		
-		
-		
-		
+		//Return route.
 		return route;
 	}
 	
