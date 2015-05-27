@@ -8,8 +8,6 @@ import model.Route;
 import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.DirectedWeightedMultigraph;
 
-import model.*;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -116,16 +114,4 @@ public class MapController {
             edges.add(edge);
         });
     }
-    
-    
-    /**
-     * Finds the geoLoc for the given delviery stop.
-     * @param stop Delivery stop to find geoLoc for.
-     * @return GeoLocation at the given delivery stop.
-     */
-    public GeoLoc findGeoLoc(DeliveryStop stop) {
-    	
-    	
-    }
-    
 }
