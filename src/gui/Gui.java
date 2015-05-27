@@ -1,17 +1,19 @@
 package gui;
 
-import control.*;
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.ScrollPane;
-import java.awt.Color;
+
 import javax.swing.JTable;
+import javax.swing.JScrollPane;
+
+import database.DBConnection;
 
 
 public class Gui extends JFrame {
@@ -40,7 +42,7 @@ public class Gui extends JFrame {
 	 */
 	public Gui() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 564, 312);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -51,6 +53,7 @@ public class Gui extends JFrame {
 		load.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				control.ImportController.getInstance().importRoutes();
+	
 			}
 		});
 		load.setBounds(10, 228, 89, 23);
@@ -63,7 +66,7 @@ public class Gui extends JFrame {
 				control.OptimizeController.getInstance().optimize();
 			}
 		});
-		optimere.setBounds(168, 228, 89, 23);
+		optimere.setBounds(221, 228, 89, 23);
 		contentPane.add(optimere);
 		
 		//Export the new route
@@ -73,18 +76,16 @@ public class Gui extends JFrame {
 				control.ExportController.getInstance().exportDatas();
 			}
 		});
-		gem.setBounds(335, 228, 89, 23);
+		gem.setBounds(449, 228, 89, 23);
 		contentPane.add(gem);
 		
-		ScrollPane scrollPane = new ScrollPane();
-		scrollPane.setBackground(Color.WHITE);
-		scrollPane.setBounds(10, 10, 414, 210);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 11, 528, 206);
 		contentPane.add(scrollPane);
-			
+				
 		table = new JTable();
-		table.setForeground(Color.WHITE);
-		table.setBounds(10, 11, 414, 209);
-		contentPane.add(table);
+		scrollPane.setViewportView(table);
+		
 	}
 }
 
