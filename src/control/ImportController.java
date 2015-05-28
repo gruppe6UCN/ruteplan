@@ -1,7 +1,10 @@
 package control;
 
 
-import java.sql.ResultSet;
+import model.Route;
+
+import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  * ImportController
@@ -39,13 +42,20 @@ public class ImportController {
     
     /**
      * Imports all routes from database.
+     * @param rowData
      */
-    public ResultSet importRoutes() {
+    public void importRoutes(Vector<Vector> rowData) {
         routeController.importRoutes(new java.util.Date());
 
-        ResultSet resultSet;
+        ArrayList<Route> routes = routeController.getRoutes();
 
-        return null;
+        routes.forEach(route -> {
+            Vector row = new Vector();
+            row.addElement(Long.valueOf(route.getID()).toString());
+            row.addElement(Long.valueOf(route.getDefaultRoute().getID()).toString());
+            row.addElement(Integer.valueOf(route.getStops().size()));
+            rowData.add(row);
+        });
     }
     
 }
