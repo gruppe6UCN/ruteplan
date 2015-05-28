@@ -127,14 +127,14 @@ public class MapController {
     public GeoLoc findGeoLoc(DeliveryStop stop) {
         
         //Variables to check.
-        double check_id = stop.getID();
+        long check_id = stop.getDefaultStop().getID();
         GeoLoc returnloc = null;
         
         //Enters a loop for each geoLoc.
         for(GeoLoc geoLoc:geoLocs) {
             
             //Checks to see if id of the geoLoc matches the id of the stop.
-            double geoLoc_id = geoLoc.getDeliveryStopID();
+            long geoLoc_id = geoLoc.getDeliveryStopID();
             if (check_id == geoLoc_id) {
                 
                 //Sets the geoLoc to found. Ends the loop.

@@ -47,9 +47,9 @@ public class DBRoute {
      * @param route list of all routes to store.
      */
     public void storeRoute(Route route) {
-        String sql = String.format("INSERT into Route values(%d, '%s', '%s');",
+        String sql = String.format("INSERT into Route values(%d, '%s');",
                 route.getDefaultRoute().getID(),
-                route.getAuctualTimeOfDeparture().toString(),
+                //route.getAuctualTimeOfDeparture().toString(),
                 route.getDate().toString());
         long routeID = dbConnection.sendInsertSQL(sql);
         route.setID(routeID);

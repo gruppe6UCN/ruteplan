@@ -58,7 +58,6 @@ public class Gui extends JFrame {
             public void actionPerformed(ActionEvent arg0) {
                 Vector rows = model.getDataVector();
                 rows.removeAllElements();
-
                 ImportController.getInstance().importRoutes(rows);
                 model.fireTableDataChanged();
             }
