@@ -56,7 +56,7 @@ public class OptimizeController {
         //Finds all needed routes.
         ArrayList<Route> overloadedRoutes = routeController.findOverloadedRoutes();
         ArrayList<Route> underloadedRoutes = routeController.findUnderloadedRoutes();
-        ArrayList<Route> allRoutes = routeController.getRoutes();
+        ArrayList<Route> allRoutes = (ArrayList<Route>) routeController.getRoutes();
         
         //Loads maps.
         mapController.loadMaps(allRoutes);

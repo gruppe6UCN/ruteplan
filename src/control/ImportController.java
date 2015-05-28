@@ -3,7 +3,7 @@ package control;
 
 import model.Route;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 /**
@@ -47,7 +47,7 @@ public class ImportController {
     public void importRoutes(Vector<Vector> rowData) {
         routeController.importRoutes(new java.util.Date());
 
-        ArrayList<Route> routes = routeController.getRoutes();
+        List<Route> routes = routeController.getRoutes();
 
         routes.forEach(route -> {
             Vector row = new Vector();

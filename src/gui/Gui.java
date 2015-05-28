@@ -13,10 +13,6 @@ import java.util.Vector;
 public class Gui extends JFrame {
 
     private JPanel contentPane;
-    private Vector<String> header = new Vector<>();
-//    private Vector<Vector> rows = new Vector<>();
-
-
 
     /**
      * Launch the application.
@@ -45,13 +41,12 @@ public class Gui extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        header.addElement("Rute ID");
-        header.addElement("Default Rute ID");
-        header.addElement("Antal Stop");
 
 
         DefaultTableModel model  = new DefaultTableModel();
-        model.addColumn(header);
+        model.addColumn("Rute ID");
+        model.addColumn("Default Rute ID");
+        model.addColumn("Antal Stop");
 
         JTable table = new JTable(model);
         table.setBounds(10, 11, 414, 209);
@@ -62,6 +57,8 @@ public class Gui extends JFrame {
         load.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 Vector rows = model.getDataVector();
+                rows.removeAllElements();
+
                 ImportController.getInstance().importRoutes(rows);
                 model.fireTableDataChanged();
             }
@@ -73,14 +70,7 @@ public class Gui extends JFrame {
         JButton optimere = new JButton("Optimere");
         optimere.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                //control.OptimizeController.getInstance().optimize();
-                Vector rows = model.getDataVector();
-                rows.clear();
-                rows.removeAllElements();
-                for (int i = model.getRowCount() - 1; i > -1; i--) {
-                    model.removeRow(i);
-                }
-                model.fireTableDataChanged();
+                control.OptimizeController.getInstance().optimize();
 
             }
         });

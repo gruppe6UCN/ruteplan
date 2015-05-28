@@ -28,7 +28,7 @@ public class RouteController {
     private DefaultDeliveryStopController defaultDeliveryStopController;
     private DBRoute dbRoute;
     private static RouteController instance;
-    private ArrayList<Route> routes = new ArrayList<>() ;
+    private List<Route> routes = Collections.synchronizedList(new ArrayList<>()) ;
     private double load;
 
     /**
@@ -63,6 +63,8 @@ public class RouteController {
      * Imports all routes from database.
      */
     public void importRoutes(Date date) {
+        // Remove old data
+        routes.clear();
 
         // Sync List
         List<DefaultRoute> listDefaultRoutes = Collections.synchronizedList(
@@ -70,7 +72,7 @@ public class RouteController {
                 defaultRouteController.getDefaultRoutes());
 
         //create a route for each defaultRoute
-        listDefaultRoutes.stream().forEach((defaultRoute -> {
+        listDefaultRoutes.parallelStream().forEach((defaultRoute -> {
             //Creates new routes for each defaultRoute.
             Route route = new Route(defaultRoute, date);
 
@@ -189,7 +191,7 @@ public class RouteController {
     /**
      * @return the routes
      */
-    public ArrayList<Route> getRoutes() {
+    public List<Route> getRoutes() {
         return routes;
     }
 
