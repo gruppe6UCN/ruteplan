@@ -55,13 +55,6 @@ public class DefaultRoute {
     }
 
     /**
-     * @param timeOfDeparture the timeOfDeparture to set
-     */
-    public void setTimeOfDeparture(Time timeOfDeparture) {
-        this.timeOfDeparture = timeOfDeparture;
-    }
-
-    /**
      * @return the trailerType
      */
     public TrailerType getTrailerType() {
@@ -69,38 +62,10 @@ public class DefaultRoute {
     }
 
     /**
-     * @param trailerType the trailerType to set
-     */
-    public void setTrailerType(TrailerType trailerType) {
-        this.trailerType = trailerType;
-    }
-
-    /**
-     * @return the stops
-     */
-    public ArrayList<DefaultDeliveryStop> getStops() {
-        return stops;
-    }
-
-    /**
-     * @param stops the stops to set
-     */
-    public void setStops(ArrayList<DefaultDeliveryStop> stops) {
-        this.stops = stops;
-    }
-
-    /**
      * @return the extraRoute
      */
     public boolean isExtraRoute() {
         return extraRoute;
-    }
-
-    /**
-     * @param extraRoute the extraRoute to set
-     */
-    public void setExtraRoute(boolean extraRoute) {
-        this.extraRoute = extraRoute;
     }
     
 
