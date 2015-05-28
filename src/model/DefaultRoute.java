@@ -24,6 +24,7 @@ public class DefaultRoute {
         this.timeOfDeparture = timeOfDeparture;
         this.trailerType = trailerType;
         this.extraRoute = extraRoute;
+        this.stops = new ArrayList<>();
     }
     
     /**
