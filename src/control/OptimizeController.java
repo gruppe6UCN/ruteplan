@@ -16,13 +16,6 @@ import java.util.ArrayList;
  */
 
 public class OptimizeController {
-	
-	private RouteController routeController;
-	private MapController mapController;
-	private static OptimizeController instance;
-	private double load;
-	private ArrayList<DeliveryStop> removedStops;
-    
     private RouteController routeController;
     private MapController mapController;
     private static OptimizeController instance;
