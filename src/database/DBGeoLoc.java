@@ -2,6 +2,7 @@ package database;
 
 import model.GeoLoc;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -48,7 +49,24 @@ public class DBGeoLoc {
         ArrayList<GeoLoc> list;
         String sql = String.format("select * from GeoLoc where default_delivery_stop_id = %d",
                 defaultDeliveryStopID);
-        list = (ArrayList<GeoLoc>) dbConnection.sendSQL(this, sql, "_formatDefaultRoute");
+        list = (ArrayList<GeoLoc>) dbConnection.sendSQL(this, sql, "_formatGeoLoc");
         return list.get(0);
+    }
+
+    public ArrayList<GeoLoc> _formatGeoLoc(ResultSet rs) {
+        ArrayList<GeoLoc> tableList = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                tableList.add(new GeoLoc(
+                        rs.getLong("default_delivery_stop_id"),
+                        rs.getDouble("x"),
+                        rs.getDouble("y")
+                ));
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return tableList;
     }
 }

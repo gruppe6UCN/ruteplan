@@ -50,13 +50,13 @@ public class DBRoad {
         return list;
     }
 
-    public ArrayList<Road> _formatDefaultRoute(ResultSet rs) {
+    public ArrayList<Road> _formatRoad(ResultSet rs) {
         ArrayList<Road> tableList = new ArrayList<>();
         try {
             while (rs.next()) {
                 tableList.add(new Road(
-                        rs.getLong("from"),
-                        rs.getLong("to"),
+                        rs.getLong("from_"),
+                        rs.getLong("to_"),
                         rs.getDouble("distance"),
                         rs.getTime("time")
                 ));
