@@ -12,6 +12,7 @@ import org.jgrapht.graph.DirectedWeightedMultigraph;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * DefaultRouteController
@@ -68,7 +69,7 @@ public class MapController {
     /**
      * Loads all map data from the database.
      */
-    public void loadMaps(ArrayList<Route> routes) {
+    public void loadMaps(List<Route> routes) {
         loadMaps();
 //        //Creates an ArrayList for default stops.
 //        ArrayList<DefaultDeliveryStop> defaultStops = new ArrayList<>();

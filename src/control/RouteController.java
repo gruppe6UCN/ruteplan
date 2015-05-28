@@ -198,7 +198,7 @@ public class RouteController {
     /**
      * @param routes the routes to set
      */
-    public void setRoutes(ArrayList<Route> routes) {
+    public void setRoutes(List<Route> routes) {
         this.routes = routes;
     }
 }
