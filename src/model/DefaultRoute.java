@@ -27,13 +27,6 @@ public class DefaultRoute {
     }
     
     /**
-     * @param stop DefaultDeliveryStop to add to ArrayList.
-     */
-//    public void addDefaultDeliveryStop(DefaultDeliveryStop stop) {
-//        stops.add(stop);
-//    }
-    
-    /**
      * @return the id
      */
     public long getID() {
