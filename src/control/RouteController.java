@@ -131,7 +131,7 @@ public class RouteController {
                 for(TransportUnit transportUnit:transportUnits) {
                     
                     //Increments load with the transportUnits size.
-                    load += transportUnit.getUnitType().getSize();
+                    load += transportUnit.getUnitType();
                 }
             });
             
@@ -173,7 +173,7 @@ public class RouteController {
                 for(TransportUnit transportUnit:transportUnits) {
                     
                     //Increments load with the transportUnits size.
-                    load += transportUnit.getUnitType().getSize();
+                    load += transportUnit.getUnitType();
                 }
             });
             

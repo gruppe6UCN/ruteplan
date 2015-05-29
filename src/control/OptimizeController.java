@@ -214,14 +214,14 @@ public class OptimizeController {
 		boolean extraRoute = true;
 		
 		DefaultRoute defaultRoute = new DefaultRoute(timeOfDeparture, trailerType, extraRoute);
-		
+
 		//Add default stops.
-		for(DeliveryStop deliveryStop:deliveryStops) {
-			
-			//Gets the default stop from normal stop and adds it to defaultRoute.
-			DefaultDeliveryStop defaultStop = deliveryStop.getDefaultStop();
-			defaultRoute.addDefaultDeliveryStop(defaultStop);	
-		}
+//		for(DeliveryStop deliveryStop:deliveryStops) {
+//
+//			//Gets the default stop from normal stop and adds it to defaultRoute.
+//			DefaultDeliveryStop defaultStop = deliveryStop.getDefaultStop();
+//			defaultRoute.addDefaultDeliveryStop(defaultStop);
+//		}
 		
 		//Create route.
 		Date date = new Date(0, 0, 0);
@@ -258,7 +258,7 @@ public class OptimizeController {
     		for(TransportUnit transportUnit:transportUnits) {
     			
     			//Increments load with the transportUnits size.
-    			load += transportUnit.getUnitType().getSize();
+    			load += transportUnit.getUnitType();
     		}
     	});
     	
@@ -349,7 +349,7 @@ public class OptimizeController {
 		for(TransportUnit transportUnit:transportUnits) {
 			
 			//Increments load with the transportUnits size.
-			load += transportUnit.getUnitType().getSize();
+			load += transportUnit.getUnitType();
 		}
 		
 		//Returns the load.
