@@ -114,6 +114,11 @@ public class MapController {
 
             DefaultWeightedEdge edge = map.addEdge(geoLocFrom, geoLocTo);
             map.setEdgeWeight(edge, road.getDistance());
+
+//            DijkstraShortestPath<GeoLoc, DefaultWeightedEdge> path = new DijkstraShortestPath<GeoLoc, DefaultWeightedEdge>(map, geoLocFrom, geoLocTo);
+//            double lenght = path.getPathLength();
+//            System.out.println(lenght);
+
             edges.add(edge);
         });
     }
@@ -157,9 +162,9 @@ public class MapController {
     public double pointDistance(GeoLoc point1, GeoLoc point2) {
         
         //Uses DijkstraShortestPath algorithm to find the shortest route between the two points.
-        DijkstraShortestPath<GeoLoc, DefaultWeightedEdge> path = new DijkstraShortestPath(map, point1, point2);
+        DijkstraShortestPath<GeoLoc, DefaultWeightedEdge> path = new DijkstraShortestPath<GeoLoc, DefaultWeightedEdge>(map, point1, point2);
         double length = path.getPathLength();
-        
+
         //Returns the distance found.
         return length;
     }

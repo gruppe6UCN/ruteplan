@@ -29,7 +29,7 @@ create table DefaultDeliveryStop(
 
 create table Customer(
     id bigint not null,
-    default_delivery_stop_id bigint not null,
+    default_delivery_stop_id bigint,
     street_name varchar(50) not null,
     street_no varchar(50) not null,
     zip_code int not null,
@@ -68,7 +68,7 @@ create table TransportUnit(
 
 create table GeoLoc(
     id bigint not null,
-    default_delivery_stop_id bigint not null,
+    default_delivery_stop_id bigint,
     x decimal not null,
     y decimal not null,
     primary key(id),
