@@ -3,10 +3,10 @@ package model;
 public class TransportUnit {
     
     private long id;
-    private UnitType unitType;
+    private double unitType;
     private long customerId;
     
-    public TransportUnit(long id, long customerId, UnitType unitType) {
+    public TransportUnit(long id, long customerId, double unitType) {
         this.id = id;
         this.unitType = unitType;
         this.customerId = customerId;
@@ -29,29 +29,8 @@ public class TransportUnit {
     /**
      * @return the unitType
      */
-    public UnitType getUnitType() {
+    public double getUnitType() {
         return unitType;
-    }
-
-    /**
-     * @param unitType the unitType to set
-     */
-    public void setUnitType(UnitType unitType) {
-        this.unitType = unitType;
-    }
-
-    /**
-     * @return the customerId
-     */
-    public long getCustomerId() {
-        return customerId;
-    }
-
-    /**
-     * @param customerId the customerId to set
-     */
-    public void setCustomerId(long customerId) {
-        this.customerId = customerId;
     }
     
 
