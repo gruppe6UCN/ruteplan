@@ -1,7 +1,6 @@
 package database;
 
 import model.TransportUnit;
-import model.UnitType;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -75,7 +74,7 @@ public class DBTransportUnit {
                         new TransportUnit(
                                 rs.getLong("id"),
                                 rs.getLong("customer_id"),
-                                UnitType.valueOf(rs.getString("type"))
+                                rs.getDouble("type")
                         ));
             }
         } catch (SQLException e) {
