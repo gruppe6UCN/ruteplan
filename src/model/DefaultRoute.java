@@ -1,14 +1,13 @@
 package model;
 
 import java.sql.Time;
-import java.util.ArrayList;
 
 public class DefaultRoute {
     
     private long id;
     private Time timeOfDeparture;
     private TrailerType trailerType;
-    private ArrayList<DefaultDeliveryStop> stops;
+    //private ArrayList<DefaultDeliveryStop> stops;
     private boolean extraRoute;
 
     public DefaultRoute(long id, Time timeOfDeparture,
@@ -24,15 +23,15 @@ public class DefaultRoute {
         this.timeOfDeparture = timeOfDeparture;
         this.trailerType = trailerType;
         this.extraRoute = extraRoute;
-        this.stops = new ArrayList<>();
+        //this.stops = new ArrayList<>();
     }
     
     /**
      * @param stop DefaultDeliveryStop to add to ArrayList.
      */
-    public void addDefaultDeliveryStop(DefaultDeliveryStop stop) {
-        stops.add(stop);        
-    }
+//    public void addDefaultDeliveryStop(DefaultDeliveryStop stop) {
+//        stops.add(stop);
+//    }
     
     /**
      * @return the id
