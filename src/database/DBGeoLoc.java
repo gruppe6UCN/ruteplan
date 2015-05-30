@@ -47,7 +47,7 @@ public class DBGeoLoc {
 
     public GeoLoc getGeoLoc(long defaultDeliveryStopID) {
         ArrayList<GeoLoc> list;
-        String sql = String.format("select * from GeoLoc where default_delivery_stop_id = %d",
+        String sql = String.format("select * from GeoLoc where id = %d",
                 defaultDeliveryStopID);
         list = (ArrayList<GeoLoc>) dbConnection.sendSQL(this, sql, "_formatGeoLoc");
         return list.get(0);
@@ -57,6 +57,7 @@ public class DBGeoLoc {
         ArrayList<GeoLoc> tableList = new ArrayList<>();
         try {
             while (rs.next()) {
+                long tmp = rs.getLong("id");
                 tableList.add(new GeoLoc(
                         rs.getLong("id"),
                         rs.getLong("default_delivery_stop_id"),
