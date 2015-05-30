@@ -18,7 +18,7 @@ create table GeoLoc(
     x decimal not null,
     y decimal not null,
     primary key(id),
-    UNIQUE(default_delivery_stop_id),
+    UNIQUE(x,y)
 );
 
 create table DefaultRoute(
@@ -33,7 +33,7 @@ create table DefaultDeliveryStop(
     default_route_id bigint not null,
     geo_loc_id bigint not null,
     primary key(id),
-    foreign key(default_route_id) references DefaultRoute(id)
+    foreign key(default_route_id) references DefaultRoute(id),
     foreign key(geo_loc_id) references GeoLoc(id)
 );
 
@@ -76,7 +76,7 @@ create table CustomerForDeliveryStop(
 );
 
 create table TransportUnit(
-    id bigint not null
+    id bigint not null,
     customer_id bigint not null,
     type decimal not null,
     primary key(id),
