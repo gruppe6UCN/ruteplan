@@ -16,11 +16,7 @@ public class GeoLoc implements Serializable {
         return id;
     }
 
-    public double getLatitude(){
-        return this.location.x;
-    }
-
-    public double getLongitude(){
-        return this.location.y;
+    public Point2D getLocation(){
+        return this.location;
     }
 }

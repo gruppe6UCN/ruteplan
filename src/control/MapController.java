@@ -72,10 +72,7 @@ public class MapController {
      * Loads all map data from the database.
      */
     public void loadMap(List<Route> routes) {
-        loadMap();
-    }
-
-    private void loadMap() {
+        // TODO: Remove this code
         String file = "map.obj";
         if (new File(file).exists()) {
             ArrayList<Object> backup = null;
@@ -97,32 +94,15 @@ public class MapController {
             map = (ListenableDirectedWeightedGraph<GeoLoc, Edge>) backup.get(1);
             edges = (ArrayList<Edge>) backup.get(2);
         } else {
-            ArrayList<Road> roads = dbRoad.getRoads();
 
-            roads.forEach(road -> {
-                GeoLoc geoLocFrom = dbGeoLoc.getGeoLoc(road.getFrom());
-                GeoLoc geoLocTo = dbGeoLoc.getGeoLoc(road.getTo());
-                if (!geoLocs.containsKey(geoLocFrom.getID())) {
-                    geoLocs.put(geoLocFrom.getID(), geoLocFrom);
-                    map.addVertex(geoLocFrom);
-                }
-                if (!geoLocs.containsKey(geoLocTo.getID())) {
-                    geoLocs.put(geoLocTo.getID(), geoLocTo);
-                    map.addVertex(geoLocTo);
-                }
 
-                Edge edge = map.addEdge(
-                        geoLocs.get(geoLocFrom.getID()),
-                        geoLocs.get(geoLocTo.getID()));
-                map.setEdgeWeight(edge, road.getDistance());
 
-                //            DijkstraShortestPath<GeoLoc, DefaultWeightedEdge> path = new DijkstraShortestPath<GeoLoc, DefaultWeightedEdge>(map, geoLocFrom, geoLocTo);
-                //            double lenght = path.getPathLength();
-                //            System.out.println(lenght);
 
-                edges.add(edge);
-            });
+            loadMap();
 
+
+
+            // TODO: Remove this code
             ArrayList<Object> backup = new ArrayList<Object>();
             backup.add(geoLocs);
             backup.add(map);
@@ -137,18 +117,34 @@ public class MapController {
                 e.printStackTrace();
             }
         }
+    }
 
-        GeoLoc source = geoLocs.get(0L);
-        for (GeoLoc target : geoLocs.values()) {
-            if (target.getID() != source.getID()) {
-                double length = new DijkstraShortestPath<GeoLoc, Edge>(map, source, target).getPathLength();
-                if (!Double.valueOf(length).isInfinite()) {
-                    System.out.println(String.format("%8d --> %8d   |%8.4f|", source.getID(), target.getID(), length));
-                }
+    private void loadMap() {
+        ArrayList<Road> roads = dbRoad.getRoads();
+
+        roads.forEach(road -> {
+            GeoLoc geoLocFrom = dbGeoLoc.getGeoLoc(road.getFrom());
+            GeoLoc geoLocTo = dbGeoLoc.getGeoLoc(road.getTo());
+            if (!geoLocs.containsKey(geoLocFrom.getID())) {
+                geoLocs.put(geoLocFrom.getID(), geoLocFrom);
+                map.addVertex(geoLocFrom);
             }
-        }
+            if (!geoLocs.containsKey(geoLocTo.getID())) {
+                geoLocs.put(geoLocTo.getID(), geoLocTo);
+                map.addVertex(geoLocTo);
+            }
 
-        System.out.println("");
+            Edge edge = map.addEdge(
+                    geoLocs.get(geoLocFrom.getID()),
+                    geoLocs.get(geoLocTo.getID()));
+            map.setEdgeWeight(edge, road.getDistance());
+
+            //            DijkstraShortestPath<GeoLoc, DefaultWeightedEdge> path = new DijkstraShortestPath<GeoLoc, DefaultWeightedEdge>(map, geoLocFrom, geoLocTo);
+            //            double lenght = path.getPathLength();
+            //            System.out.println(lenght);
+
+            edges.add(edge);
+        });
     }
 
 

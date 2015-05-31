@@ -11,7 +11,7 @@ public class no_gui {
         RouteController routeController = RouteController.getInstance();
         OptimizeController optimizeController = OptimizeController.getInstance();
 
-//        routeController.importRoutes(new java.util.Date());
+        routeController.importRoutes(new java.util.Date());
         optimizeController.optimize();
     }
 }
