@@ -1,11 +1,11 @@
 package control;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-
+import database.DBDefaultDeliveryStop;
 import model.DefaultDeliveryStop;
 import model.DefaultRoute;
-import database.*;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * DefaultDeliveryStopController
@@ -62,7 +62,7 @@ public class DefaultDeliveryStopController {
         ArrayList<DefaultDeliveryStop> stops = dbDefaultDeliveryStop.getDefaultDeliveryStops(defaultRouteID);
 
         // foreach DefaultDeliveryStop the customers are added
-        stops.parallelStream().forEach((stop) -> customerController.addCustomers(stop));
+        stops.stream().forEach((stop) -> customerController.addCustomers(stop));  // TODO: make parallelStream
 
         return stops;
     }

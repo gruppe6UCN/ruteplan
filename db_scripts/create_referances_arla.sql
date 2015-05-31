@@ -1,8 +1,7 @@
 IF OBJECT_ID('Road', 'U') IS NOT NULL DROP TABLE Road;
-IF OBJECT_ID('GeoLoc', 'U') IS NOT NULL DROP TABLE GeoLoc;
 IF OBJECT_ID('TransportUnit', 'U') IS NOT NULL DROP TABLE TransportUnit;
 IF OBJECT_ID('Link1', 'U') IS NOT NULL DROP TABLE Link1;
-IF OBJECT_ID('CustomerForDeliveryStop', 'U') IS NOT NULL DROP TABLE Link1;
+IF OBJECT_ID('CustomerForDeliveryStop', 'U') IS NOT NULL DROP TABLE CustomerForDeliveryStop;
 IF OBJECT_ID('DeliveryStop', 'U') IS NOT NULL DROP TABLE DeliveryStop;
 IF OBJECT_ID('Route', 'U') IS NOT NULL DROP TABLE Route;
 IF OBJECT_ID('DefaultLink1', 'U') IS NOT NULL DROP TABLE DefaultLink1;
@@ -13,19 +12,19 @@ IF OBJECT_ID('DefaultRoute', 'U') IS NOT NULL DROP TABLE DefaultRoute;
 
 
 
-create table GeoLoc(
-    id bigint not null,
-    x decimal not null,
-    y decimal not null,
-    primary key(id),
-    UNIQUE(x,y)
-);
-
 create table DefaultRoute(
     id bigint not null,
     trailer_type varchar(20) not null,
     extra_route tinyint not null,
     primary key(id)
+);
+
+create table GeoLoc(
+    id bigint not null,
+    x decimal(14,10) not null,
+    y decimal(14,10) not null,
+    primary key(id),
+    UNIQUE(x,y)
 );
 
 create table DefaultDeliveryStop(
@@ -34,19 +33,20 @@ create table DefaultDeliveryStop(
     geo_loc_id bigint not null,
     primary key(id),
     foreign key(default_route_id) references DefaultRoute(id),
-    foreign key(geo_loc_id) references GeoLoc(id)
+    foreign key(geo_loc_id) references GeoLoc(id),
+    --foreign key(customer_id) references Customer(id)
 );
 
 create table Customer(
     id bigint not null,
-    default_delivery_stop_id bigint,
+    default_delivery_stop_id bigint not null,
     street_name varchar(50) not null,
     street_no varchar(50) not null,
     zip_code int not null,
     city varchar(50) not null,
-    time_of_departure time not null,
+    time_of_delivery time not null,
     primary key(id),
-    foreign key(default_delivery_stop_id) references DefaultDeliveryStop(id)
+    foreign key(default_delivery_stop_id) references DefaultDeliveryStop(id),
 );
 
 create table Route(
@@ -62,23 +62,16 @@ create table DeliveryStop(
     id bigint IDENTITY(1,1),
     route_id bigint not null,
     default_delivery_stop_id bigint not null,
+    customer_id bigint not null,
     primary key(id),
     foreign key(route_id) references Route(id),
     foreign key(default_delivery_stop_id) references DefaultDeliveryStop(id)
 );
 
-create table CustomerForDeliveryStop(
-    customer_id bigint not null,
-    delivery_stop_id bigint not null,
-    primary key(customer_id, delivery_stop_id),
-    foreign key(customer_id) references Customer(id),
-    foreign key(delivery_stop_id) references DeliveryStop(id)
-);
-
 create table TransportUnit(
     id bigint not null,
     customer_id bigint not null,
-    type decimal not null,
+    type decimal(14,10) not null,
     primary key(id),
     foreign key(customer_id) references Customer(id),
     --foreign key(delivery_stop_id) references DeliveryStop(id)
@@ -88,9 +81,18 @@ create table Road (
     id bigint IDENTITY(1,1),
     from_ bigint not null,
     to_ bigint not null,
-    distance decimal not null,
+    distance decimal(14,10) not null,
     time time not null,
     primary key(id),
     foreign key(from_) references GeoLoc(id),
     foreign key(to_) references GeoLoc(id)
 );
+
+create table CustomerForDeliveryStop (
+    customer_id bigint not null,
+    delivery_stop_id bigint not null,
+    primary key(customer_id,delivery_stop_id),
+    foreign key(customer_id) references Customer(id),
+    foreign key(delivery_stop_id) references DeliveryStop(id)
+)
+

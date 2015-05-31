@@ -1,10 +1,10 @@
 package database;
 
+import model.DefaultDeliveryStop;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import model.*;
 
 /**
  * DBDefaultDeliveryStop
@@ -69,7 +69,8 @@ public class DBDefaultDeliveryStop {
                 tableList.add(
                         new DefaultDeliveryStop(
                                 rs.getLong("id"),
-                                rs.getTime("time_of_delivery")));
+                                rs.getLong("geo_loc_id")
+                        ));
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block

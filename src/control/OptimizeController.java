@@ -60,7 +60,7 @@ public class OptimizeController {
         List<Route> allRoutes = routeController.getRoutes();
         
         //Loads maps.
-        mapController.loadMaps(allRoutes);
+        mapController.loadMap(allRoutes);
             
         //Checks to see if there is overloadedRoutes.
         if (overloadedRoutes.size() >= 1) {
@@ -213,7 +213,7 @@ public class OptimizeController {
 		TrailerType trailerType = TrailerType.STOR;
 		boolean extraRoute = true;
 		
-		DefaultRoute defaultRoute = new DefaultRoute(timeOfDeparture, trailerType, extraRoute);
+		DefaultRoute defaultRoute = new DefaultRoute(trailerType, extraRoute);
 
 		//Add default stops.
 //		for(DeliveryStop deliveryStop:deliveryStops) {

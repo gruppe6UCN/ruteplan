@@ -1,11 +1,9 @@
 package database;
 
 import model.Customer;
-import model.DefaultDeliveryStop;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.AbstractList;
 import java.util.ArrayList;
 
 /**
@@ -71,7 +69,8 @@ public class DBCustomer {
                                 rs.getString("street_name"),
                                 rs.getString("street_no"),
                                 rs.getInt("zip_code"),
-                                rs.getString("city")
+                                rs.getString("city"),
+                                rs.getTime("time_of_delivery")
                         ));
             }
         } catch (SQLException e) {

@@ -16,7 +16,8 @@ public class DBConnection {
 
     // JDBC driver name and database URL
     private static String JDBC_DRIVER = "java.sql.Driver";
-    private String DB_URL = "jdbc:sqlserver://kraka.ucn.dk;databaseName="
+    private String DB_URL = "jdbc:sqlserver://192.168.1.34;databaseName="
+//    private String DB_URL = "jdbc:sqlserver://kraka.ucn.dk;databaseName="
             + DATABASE_NAME;
 
     private static DBConnection instance = null;

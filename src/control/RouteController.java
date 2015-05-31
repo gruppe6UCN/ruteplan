@@ -72,7 +72,7 @@ public class RouteController {
                 defaultRouteController.getDefaultRoutes());
 
         //create a route for each defaultRoute
-        listDefaultRoutes.parallelStream().forEach((defaultRoute -> {
+        listDefaultRoutes.stream().forEach((defaultRoute -> { // TODO: make parallelStream
             //Creates new routes for each defaultRoute.
             Route route = new Route(defaultRoute, date);
 

@@ -1,5 +1,7 @@
 package try_stuff;
 
+import model.GeoLoc;
+import org.jgrapht.alg.DijkstraShortestPath;
 import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.DirectedWeightedMultigraph;
 
@@ -8,9 +10,10 @@ public class try_jgrapht {
         DirectedWeightedMultigraph<GeoLoc, DefaultWeightedEdge> map
                 = new DirectedWeightedMultigraph<GeoLoc, DefaultWeightedEdge>(DefaultWeightedEdge.class);
 
-        GeoLoc A = new GeoLoc(4,0);
-        GeoLoc B = new GeoLoc(0,3);
-        GeoLoc C = new GeoLoc(0,0);
+
+        GeoLoc A = new GeoLoc(0,4,0);
+        GeoLoc B = new GeoLoc(1,0,3);
+        GeoLoc C = new GeoLoc(2,0,0);
 
         /**
          * C---B
@@ -24,14 +27,14 @@ public class try_jgrapht {
         map.addVertex(B);
         map.addVertex(C);
 
-        map.setEdgeWeight(map.addEdge(A, B), 5);
+        map.setEdgeWeight(map.addEdge(A, B), 8);
+        map.setEdgeWeight(map.addEdge(B, A), 8);
         map.setEdgeWeight(map.addEdge(B, C), 3);
+        map.setEdgeWeight(map.addEdge(C, B), 3);
         map.setEdgeWeight(map.addEdge(C, A), 4);
+        map.setEdgeWeight(map.addEdge(A, C), 4);
 
-        DefaultWeightedEdge[] t = (DefaultWeightedEdge[])map.getAllEdges(A, B).toArray();
-        for (int i = 0; i < t.length; i++) {
-            System.out.println();
-
-        }
+        DijkstraShortestPath<GeoLoc, DefaultWeightedEdge> path = new DijkstraShortestPath<GeoLoc, DefaultWeightedEdge>(map, A, B);
+        System.out.println(path.getPathLength());
     }
 }

@@ -67,7 +67,6 @@ public class DBDefaultRoute {
             while (rs.next()) {
                 tableList.add(new DefaultRoute(
                         rs.getLong("id"),
-                        rs.getTime("time_of_departure"),
                         TrailerType.valueOf(rs.getString("trailer_type")),
                         rs.getBoolean("extra_route")
                 ));
@@ -80,9 +79,8 @@ public class DBDefaultRoute {
     }
 
     public void storeDefaultRoute(DefaultRoute defaultRoute) {
-        String sql = String.format("INSERT into Route values('%s', '%s', %d);",
+        String sql = String.format("INSERT into Route values('%s', %d);",
                 defaultRoute.getTrailerType().toString(),
-                defaultRoute.getTimeOfDeparture().toString(),
                 // inline if statement: if true return 1 else return 0
                 defaultRoute.isExtraRoute() ? 1 : 0);
         long defaultRouteID = dbConnection.sendInsertSQL(sql);

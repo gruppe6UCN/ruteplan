@@ -1,16 +1,14 @@
 package model;
 
 import java.awt.geom.Point2D;
+import java.io.Serializable;
 
-public class GeoLoc {
+public class GeoLoc implements Serializable {
     private long id;
-    private long deliveryStopID;
     private Point2D.Double location;
 
-    public GeoLoc(long id, long deliveryStopID, double latitude, double longitude) {
+    public GeoLoc(long id, double latitude, double longitude) {
         this.id = id;
-        this.deliveryStopID = deliveryStopID;
-        this.location = new Point2D.Double(latitude, longitude);
         this.location = new Point2D.Double(latitude, longitude);
     }
 
@@ -18,18 +16,11 @@ public class GeoLoc {
         return id;
     }
 
-    public double getLatitude() {
-        return location.getX();
+    public double getLatitude(){
+        return this.location.x;
     }
 
-    public double getLongitude() {
-        return location.getY();
-    }
-
-    /**
-     * @return the deliveryStopID
-     */
-    public long getDeliveryStopID() {
-        return deliveryStopID;
+    public double getLongitude(){
+        return this.location.y;
     }
 }

@@ -1,29 +1,20 @@
 package model;
 
-import java.sql.Time;
-
 public class DefaultRoute {
     
     private long id;
-    private Time timeOfDeparture;
     private TrailerType trailerType;
-    //private ArrayList<DefaultDeliveryStop> stops;
     private boolean extraRoute;
 
-    public DefaultRoute(long id, Time timeOfDeparture,
-                        TrailerType trailerType, boolean extraRoute) {
+    public DefaultRoute(long id, TrailerType trailerType, boolean extraRoute) {
         this.id = id;
-        this.timeOfDeparture = timeOfDeparture;
         this.trailerType = trailerType;
         this.extraRoute = extraRoute;
     }
 
-    public DefaultRoute(Time timeOfDeparture,
-                        TrailerType trailerType, boolean extraRoute) {
-        this.timeOfDeparture = timeOfDeparture;
+    public DefaultRoute(TrailerType trailerType, boolean extraRoute) {
         this.trailerType = trailerType;
         this.extraRoute = extraRoute;
-        //this.stops = new ArrayList<>();
     }
     
     /**
@@ -38,13 +29,6 @@ public class DefaultRoute {
      */
     public void setId(long id) {
         this.id = id;
-    }
-
-    /**
-     * @return the timeOfDeparture
-     */
-    public Time getTimeOfDeparture() {
-        return timeOfDeparture;
     }
 
     /**

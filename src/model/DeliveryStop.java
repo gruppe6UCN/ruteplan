@@ -9,9 +9,7 @@ public class DeliveryStop {
     private ArrayList<TransportUnit> transportUnits;
     
     public DeliveryStop(DefaultDeliveryStop defaultStop) {
-        
         this.defaultStop = defaultStop;
-        
         //Automatize some variables such as id later m8.
     }
 

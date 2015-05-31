@@ -60,7 +60,6 @@ public class DBGeoLoc {
                 long tmp = rs.getLong("id");
                 tableList.add(new GeoLoc(
                         rs.getLong("id"),
-                        rs.getLong("default_delivery_stop_id"),
                         rs.getDouble("x"),
                         rs.getDouble("y")
                 ));

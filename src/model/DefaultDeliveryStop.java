@@ -1,19 +1,16 @@
 package model;
 
-import java.sql.Time;
 import java.util.ArrayList;
 
 public class DefaultDeliveryStop {
     
     private long id;
-    private Time timeOfDelivery;
     private ArrayList<Customer> customers;
-    private GeoLoc geoLoc;
+    private long geoLocID;
     
-    public DefaultDeliveryStop(long id,
-                               Time timeOfDelivery) {
+    public DefaultDeliveryStop(long id, long geoLocID) {
         this.id = id;
-        this.timeOfDelivery = timeOfDelivery;
+        this.geoLocID = geoLocID;
     }
 
     /**
@@ -21,17 +18,6 @@ public class DefaultDeliveryStop {
      */
     public long getID() {
         return id;
-    }
-
-    public Time getTimeOfDelivery() {
-        return timeOfDelivery;
-    }
-
-    /**
-     * @param timeOfDelivery the timeOfDelivery to set
-     */
-    public void setTimeOfDelivery(Time timeOfDelivery) {
-        this.timeOfDelivery = timeOfDelivery;
     }
 
     /**
@@ -51,16 +37,7 @@ public class DefaultDeliveryStop {
     /**
      * @return the geoLoc
      */
-    public GeoLoc getGeoLoc() {
-        return geoLoc;
+    public long getGeoLocID() {
+        return this.geoLocID;
     }
-
-    /**
-     * @param geoLoc the geoLoc to set
-     */
-    public void setGeoLoc(GeoLoc geoLoc) {
-        this.geoLoc = geoLoc;
-    }
-
-
 }

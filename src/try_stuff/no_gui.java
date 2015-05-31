@@ -1,5 +1,6 @@
 package try_stuff;
 
+import control.OptimizeController;
 import control.RouteController;
 
 /**
@@ -8,8 +9,9 @@ import control.RouteController;
 public class no_gui {
     public static void main(String[] args) {
         RouteController routeController = RouteController.getInstance();
-        routeController.importRoutes(new java.util.Date());
+        OptimizeController optimizeController = OptimizeController.getInstance();
 
-        
+//        routeController.importRoutes(new java.util.Date());
+        optimizeController.optimize();
     }
 }
