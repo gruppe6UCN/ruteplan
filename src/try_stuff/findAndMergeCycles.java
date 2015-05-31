@@ -10,15 +10,13 @@ import org.jgrapht.alg.CycleDetector;
 import org.jgrapht.graph.ListenableDirectedWeightedGraph;
 
 import java.awt.geom.Point2D;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
-public class setup_database_3 {
+public class findAndMergeCycles {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException, IOException {
         DBConnection dbConnection = DBConnection.getInstance();
@@ -53,10 +51,6 @@ public class setup_database_3 {
                     geoLocs.get(geoLocTo.getID()));
             map.setEdgeWeight(edge, road.getDistance());
 
-            //            DijkstraShortestPath<GeoLoc, DefaultWeightedEdge> path = new DijkstraShortestPath<GeoLoc, DefaultWeightedEdge>(map, geoLocFrom, geoLocTo);
-            //            double lenght = path.getPathLength();
-            //            System.out.println(lenght);
-
             edges.add(edge);
         });
 
@@ -69,7 +63,7 @@ public class setup_database_3 {
             }
         });
 
-        System.out.println(String.format("There is %d cycles", cycleOfVertex.size()));
+        System.out.println(String.format("There is %d cycle(s)", cycleOfVertex.size()));
 
         if (cycleOfVertex.size() > 1) {
             HashMap<Double, Road> _roads = new HashMap<>();
@@ -91,18 +85,26 @@ public class setup_database_3 {
 
             Object[] distances = _roads.keySet().stream().sorted().toArray();
             for (int i = 0; i < 3; i++) {
-                String sql = "INSERT into Road values(%d, %d, %.3f, '%02d:%02d:%02d')";
+                String sql = "INSERT into Road values(%d, %d, %.3f, '%02d:%02d:%02d');";
                 Road road = _roads.get((Double) distances[i]);
 
                 long time_in_sec = Math.round(road.getDistance() / (80.0 / 2.0) * 3600.0);
                 long hours = time_in_sec / 3600;
                 long minutes = (time_in_sec - hours * 3600) / 60;
                 long secunds = (time_in_sec - hours * 3600 - minutes * 60);
-                dbConnection.sendInsertSQL(
-                        String.format(sql, road.getFrom(), road.getTo(), road.getDistance(), hours, minutes, secunds));
-                dbConnection.sendInsertSQL(
-                        String.format(sql, road.getTo(), road.getFrom(), road.getDistance(), hours, minutes, secunds));
 
+                String F = String.format(sql, road.getFrom(), road.getTo(), road.getDistance(), hours, minutes, secunds);
+                String T = String.format(sql, road.getTo(), road.getFrom(), road.getDistance(), hours, minutes, secunds);
+
+                dbConnection.sendInsertSQL(F);
+                dbConnection.sendInsertSQL(T);
+
+                try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("db_scripts/create_arlas_db.sql", true)))) {
+                    out.println(F);
+                    out.println(T);
+                } catch (IOException e) {
+                    System.out.println(e);
+                }
             }
         }
 
