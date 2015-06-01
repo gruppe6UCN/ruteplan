@@ -62,7 +62,7 @@ public class DefaultDeliveryStopController {
         ArrayList<DefaultDeliveryStop> stops = dbDefaultDeliveryStop.getDefaultDeliveryStops(defaultRouteID);
 
         // foreach DefaultDeliveryStop the customers are added
-        stops.stream().forEach((stop) -> customerController.addCustomers(stop));  // TODO: make parallelStream
+        stops.parallelStream().forEach((stop) -> customerController.addCustomers(stop));  // TODO: make parallelStream
 
         return stops;
     }

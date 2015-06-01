@@ -51,16 +51,16 @@ public class DefaultRouteController {
      * @return List of all defaultRoutes.
      */
     public ArrayList<DefaultRoute> getDefaultRoutes() {
-        
+
         //Gets a list of all defaultRoutes.
         ArrayList<DefaultRoute> list = dbDefaultRoute.getDefaultRoutes();
-        
+
         //Returns the list.
         return list;
     }
 
 
-    public void storeDefaultRoute(DefaultRoute defaultRoute) {
-        dbDefaultRoute.storeDefaultRoute(defaultRoute);
+    public void store(DefaultRoute defaultRoute) {
+        dbDefaultRoute.store(defaultRoute);
     }
 }

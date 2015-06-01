@@ -15,19 +15,22 @@ import java.sql.SQLException;
 import java.util.*;
 
 public class findAndMergeCycles {
+    public static void writeToDB (String file) throws SQLException, ClassNotFoundException, IOException {
+        DBConnection dbConnection = DBConnection.getInstance();
+
+        ScriptRunner runner = new ScriptRunner(dbConnection.getConn(), false, true);
+        runner.runScript(new BufferedReader(new FileReader(file)));
+    }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException, IOException {
         while (true) {
             DBConnection dbConnection = DBConnection.getInstance();
             DBRoad dbRoad = DBRoad.getInstance();
             DBGeoLoc dbGeoLoc = DBGeoLoc.getInstance();
-
             ListenableDirectedWeightedGraph<GeoLoc, Edge> map
                     = new ListenableDirectedWeightedGraph<>(Edge.class);
 
-            ScriptRunner runner = new ScriptRunner(dbConnection.getConn(), false, true);
-            runner.runScript(new BufferedReader(new FileReader("db_scripts/create_arlas_db.sql")));
-
+            writeToDB("db_scripts/create_arlas_db.sql");
 
             Map<Long, GeoLoc> geoLocs = Collections.synchronizedMap(new HashMap<>());
             List<Edge> edges = Collections.synchronizedList(new ArrayList<>());

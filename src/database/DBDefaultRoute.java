@@ -52,7 +52,7 @@ public class DBDefaultRoute {
 
     public ArrayList<DefaultRoute> getDefaultRoutes() {
         ArrayList<DefaultRoute> list;
-        String sql = "select * from DefaultRoute";
+        String sql = "select * from DefaultRoute where extra_route=0";
         list = (ArrayList<DefaultRoute>) dbConnection.sendSQL(this, sql, "_formatDefaultRoute");
         return list;
     }
@@ -78,8 +78,8 @@ public class DBDefaultRoute {
         return tableList;
     }
 
-    public void storeDefaultRoute(DefaultRoute defaultRoute) {
-        String sql = String.format("INSERT into Route values('%s', %d);",
+    public void store(DefaultRoute defaultRoute) {
+        String sql = String.format("INSERT into DefaultRoute values('%s', %d);",
                 defaultRoute.getTrailerType().toString(),
                 // inline if statement: if true return 1 else return 0
                 defaultRoute.isExtraRoute() ? 1 : 0);

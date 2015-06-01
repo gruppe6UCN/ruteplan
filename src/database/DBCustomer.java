@@ -70,7 +70,7 @@ public class DBCustomer {
                                 rs.getString("street_no"),
                                 rs.getInt("zip_code"),
                                 rs.getString("city"),
-                                rs.getTime("time_of_delivery")
+                                rs.getTime("time_of_delivery").toLocalTime()
                         ));
             }
         } catch (SQLException e) {

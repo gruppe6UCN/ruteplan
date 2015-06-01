@@ -3,6 +3,7 @@ package control;
 
 import model.Route;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Vector;
 
@@ -45,7 +46,7 @@ public class ImportController {
      * @param rowData
      */
     public void importRoutes(Vector<Vector> rowData) {
-        routeController.importRoutes(new java.util.Date());
+        routeController.importRoutes(LocalDate.now());
 
         List<Route> routes = routeController.getRoutes();
 

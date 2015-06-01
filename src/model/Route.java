@@ -1,32 +1,53 @@
 package model;
 
-import java.util.Date;
-import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Route {
-    
+
     private long id;
     private DefaultRoute defaultRoute;
     private ArrayList<DeliveryStop> stops;
-    private Time auctualTimeOfDeparture;
-    private Date date;
-    
-    public Route(DefaultRoute defaultRoute, Date date) {
+    private LocalTime timeForDeparture;
+    private LocalDate dateForDeparture;
+
+    public Route(DefaultRoute defaultRoute, LocalDate date) {
         this.defaultRoute = defaultRoute;
-        this.date = date;
+        this.dateForDeparture = date;
         this.stops = new ArrayList<>();
-        
+
         //Automatize dem other variables here later...
+    }
+
+    /**
+     * @return the load of transport units in the trailer
+     */
+    public double getLoadForTrailer() {
+        double load = 0.0;
+
+        //Enters a loop for each delivery stop.
+        for (DeliveryStop stop : stops) {
+            load += stop.getSizeOfTransportUnits();
+        }
+
+        return load;
+    }
+
+    /**
+     * @return the capacity found under default route
+     */
+    public double getCapacity() {
+        return getDefaultRoute().getTrailerType().getCapacity();
     }
 
     /**
      * @param stop deliveryStop to add to ArrayList.
      */
     public void addDeliveryStop(DeliveryStop stop) {
-        stops.add(stop);        
+        stops.add(stop);
     }
-    
+
     /**
      * @return the id
      */
@@ -63,23 +84,31 @@ public class Route {
     }
 
     /**
-     * @return the auctualTimeOfDeparture
+     * @return the timeForDeparture
      */
-    public Time getAuctualTimeOfDeparture() {
-        return auctualTimeOfDeparture;
+    public LocalTime getTimeForDeparture() {
+        return timeForDeparture;
     }
 
     /**
-     * @param auctualTimeOfDeparture the auctualTimeOfDeparture to set
+     * @param timeForDeparture the timeForDeparture to set
      */
-    public void setAuctualTimeOfDeparture(Time auctualTimeOfDeparture) {
-        this.auctualTimeOfDeparture = auctualTimeOfDeparture;
+    public void setTimeForDeparture(LocalTime timeForDeparture) {
+        this.timeForDeparture = timeForDeparture;
     }
 
     /**
-     * @return the date
+     * @return the dateForDeparture
      */
-    public Date getDate() {
-        return date;
+    public LocalDate getDateForDeparture() {
+        return dateForDeparture;
+    }
+
+    /**
+     * Checks to see if route is under loaded.
+     * @return True if it is and false vice versa
+     */
+    public boolean isUnderloaded() {
+        return this.getLoadForTrailer() < this.getCapacity() * 0.8;
     }
 }

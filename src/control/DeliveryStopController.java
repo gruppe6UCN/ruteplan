@@ -41,9 +41,9 @@ public class DeliveryStopController {
      * @param route ArrayList containing all stop from a route stops from.
      */
     public void storeDeliveryStops(Route route) {
-        route.getStops().forEach((stop) -> {
-            long routeID = dbDeliveryStop.storeDeliveryStops(route.getID(), stop);
-            route.setID(routeID);
+        route.getStops().parallelStream().forEach((stop) -> { // TODO: make parallelStream
+            long deliveryStopID = dbDeliveryStop.store(route.getID(), stop);
+            stop.setID(deliveryStopID);
         });
     }
     

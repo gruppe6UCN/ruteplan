@@ -1,6 +1,6 @@
 package model;
 
-import java.sql.Time;
+import java.time.LocalTime;
 
 /**
  * Customer class used for customer information.
@@ -13,9 +13,9 @@ public class Customer {
     private String streetNo;
     private int zipcode;
     private String city;
-    private Time timeOfDelivery;
+    private LocalTime timeOfDelivery;
 
-    public Customer(long id, String streetName, String streetNo, int zipcode, String city, Time timeOfDelivery) {
+    public Customer(long id, String streetName, String streetNo, int zipcode, String city, LocalTime timeOfDelivery) {
         this.id = id;
         this.streetName = streetName;
         this.streetNo = streetNo;
@@ -29,14 +29,14 @@ public class Customer {
     }
 
 
-    public Time getTimeOfDelivery() {
+    public LocalTime getTimeOfDelivery() {
         return timeOfDelivery;
     }
 
     /**
      * @param timeOfDelivery the timeOfDelivery to set
      */
-    public void setTimeOfDelivery(Time timeOfDelivery) {
+    public void setTimeOfDelivery(LocalTime timeOfDelivery) {
         this.timeOfDelivery = timeOfDelivery;
     }
 }

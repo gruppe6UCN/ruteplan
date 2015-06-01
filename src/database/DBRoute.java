@@ -3,6 +3,8 @@ package database;
 import model.Route;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * DBRoute
@@ -47,10 +49,12 @@ public class DBRoute {
      * @param route list of all routes to store.
      */
     public void storeRoute(Route route) {
-        String sql = String.format("INSERT into Route values(%d, '%s');",
+        LocalTime time = route.getTimeForDeparture();
+        LocalDate date = route.getDateForDeparture();
+        String sql = String.format("INSERT into Route values(%d, '%s', '%s');",
                 route.getDefaultRoute().getID(),
-                //route.getAuctualTimeOfDeparture().toString(),
-                route.getDate().toString());
+                String.format("%02d:%02d:%02d", time.getHour(), time.getMinute(), time.getSecond()),
+                String.format("%04d-%02d-%02d", date.getYear(), date.getMonthValue(), date.getDayOfMonth()));
         long routeID = dbConnection.sendInsertSQL(sql);
         route.setID(routeID);
     }

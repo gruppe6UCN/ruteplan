@@ -2,14 +2,13 @@ package control;
 
 import database.DBRoute;
 import model.DefaultRoute;
-import model.DeliveryStop;
 import model.Route;
-import model.TransportUnit;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,7 +28,6 @@ public class RouteController {
     private DBRoute dbRoute;
     private static RouteController instance;
     private List<Route> routes = Collections.synchronizedList(new ArrayList<>()) ;
-    private double load;
 
     /**
      * Private constructor for singleton.
@@ -62,7 +60,7 @@ public class RouteController {
     /**
      * Imports all routes from database.
      */
-    public void importRoutes(Date date) {
+    public void importRoutes(LocalDate date) {
         // Remove old data
         routes.clear();
 
@@ -72,7 +70,7 @@ public class RouteController {
                 defaultRouteController.getDefaultRoutes());
 
         //create a route for each defaultRoute
-        listDefaultRoutes.stream().forEach((defaultRoute -> { // TODO: make parallelStream
+        listDefaultRoutes.parallelStream().forEach((defaultRoute -> { // TODO: make parallelStream
             //Creates new routes for each defaultRoute.
             Route route = new Route(defaultRoute, date);
 
@@ -94,9 +92,11 @@ public class RouteController {
      * Exports all data to database.
      */
     public void exportData() {
-        routes.stream().forEach(route -> {
+
+        routes.forEach(route -> {
             if (route.getDefaultRoute().isExtraRoute()) {
-                defaultRouteController.storeDefaultRoute(route.getDefaultRoute());
+                defaultRouteController.store(route.getDefaultRoute());
+
             }
             dbRoute.storeRoute(route);
             deliveryStopController.storeDeliveryStops(route);
@@ -108,33 +108,21 @@ public class RouteController {
      * Finds and returns all overloaded routes.
      * @return ArrayList containing all overloaded routes.
      */
-    public ArrayList<Route> findOverloadedRoutes() {
-        
-        //Creates an ArrayList for each overloaded route.
-        ArrayList<Route> overloadedRoutes = new ArrayList<>();
+    public List<Route> findOverloadedRoutes() {
+        // Sync List
+        List<Route> overloadedRoutes = Collections.synchronizedList(
+                //Creates an ArrayList for each overloaded route.
+                new ArrayList<>());
         
         //Enters a loop for each route.
-        routes.stream().forEach((route) -> {
-            
+        routes.parallelStream().forEach((route) -> { // TODO: make parallelStream
+
             //Variable to increment for each load check.
-            load = 0;
-            
+            double load = route.getLoadForTrailer();
+
             //Finds maximum load.
-            double capacity = route.getDefaultRoute().getTrailerType().getCapacity();           
-            
-            //Enters a loop for each delivery stop.
-            ArrayList<DeliveryStop> stops = route.getStops();           
-            stops.stream().forEach((stop) -> {
-                
-                //Enters a loop for each transportUnit
-                ArrayList<TransportUnit> transportUnits = stop.getTransportUnits();
-                for(TransportUnit transportUnit:transportUnits) {
-                    
-                    //Increments load with the transportUnits size.
-                    load += transportUnit.getUnitType();
-                }
-            });
-            
+            double capacity = route.getCapacity();
+
             //Checks to see if route is overloaded.
             if (load > capacity) {
                 //Adds overloaded route to ArrayList.
@@ -143,42 +131,23 @@ public class RouteController {
         });
         
         //Return list with all overloaded routes.
-        return overloadedRoutes;    
+        return overloadedRoutes;
     }
     
     /**
      * Finds and returns all under loaded routes.
      * @return ArrayList containing all under loaded routes.
      */
-    public ArrayList<Route> findUnderloadedRoutes() {
-        
-        //Creates an ArrayList for each overloaded route.
-        ArrayList<Route> underloadedRoutes = new ArrayList<>();
-        
+    public List<Route> findUnderloadedRoutes() {
+        // Sync List
+        List<Route> underloadedRoutes = Collections.synchronizedList(
+                //Creates an ArrayList for each overloaded route.
+                new ArrayList<>());
+
         //Enters a loop for each route.
-        routes.stream().forEach((route) -> {
-            
-            //Variable to increment for each load check.
-            load = 0;
-            
-            //Finds maximum load.
-            double capacity = route.getDefaultRoute().getTrailerType().getCapacity();           
-            
-            //Enters a loop for each delivery stop.
-            ArrayList<DeliveryStop> stops = route.getStops();           
-            stops.stream().forEach((stop) -> {
-                
-                //Enters a loop for each transportUnit
-                ArrayList<TransportUnit> transportUnits = stop.getTransportUnits();
-                for(TransportUnit transportUnit:transportUnits) {
-                    
-                    //Increments load with the transportUnits size.
-                    load += transportUnit.getUnitType();
-                }
-            });
-            
-            //Checks to see if route is under loaded.
-            if (load < capacity * 0.8) {
+        routes.parallelStream().forEach((route) -> { // TODO: make parallelStream
+            //Checks to see if route is underloaded.
+            if (route.isUnderloaded()) {
                 //Adds under loaded route to ArrayList.
                 underloadedRoutes.add(route);
             }
@@ -196,9 +165,15 @@ public class RouteController {
     }
 
     /**
-     * @param routes the routes to set
+     * @param route is added to the overall list of routes
      */
-    public void setRoutes(List<Route> routes) {
-        this.routes = routes;
+    public void addRoute(Route route) {
+        this.routes.add(route);
+    }
+
+    public void calcTimeForDeparture() {
+        routes.parallelStream().forEach(route -> { // TODO: make parallelStream
+            route.setTimeForDeparture(LocalTime.of(0,0,0));
+        });
     }
 }

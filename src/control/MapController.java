@@ -2,7 +2,10 @@ package control;
 
 import database.DBGeoLoc;
 import database.DBRoad;
-import model.*;
+import model.DeliveryStop;
+import model.Edge;
+import model.GeoLoc;
+import model.Road;
 import org.jgrapht.alg.DijkstraShortestPath;
 import org.jgrapht.graph.ListenableDirectedWeightedGraph;
 
@@ -12,7 +15,6 @@ import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * DefaultRouteController
@@ -31,8 +33,7 @@ public class MapController {
 
     private HashMap<Long, GeoLoc> geoLocs = new HashMap<>();
     private ArrayList<Edge> edges = new ArrayList<>();
-    private ListenableDirectedWeightedGraph<GeoLoc, Edge> map
-            = new ListenableDirectedWeightedGraph<>(Edge.class);
+    private ListenableDirectedWeightedGraph<GeoLoc, Edge> map;
 
     /**
      * Private constructor for singleton.
@@ -69,9 +70,11 @@ public class MapController {
     }
 
     /**
-     * Loads all map data from the database.
+     * Loads map pre generated map if it exist.
+     * If not existing created it.
+     * This is much faster.
      */
-    public void loadMap(List<Route> routes) {
+    public void loadPreGeneratedMap() {
         // TODO: Remove this code
         String file = "map.obj";
         if (new File(file).exists()) {
@@ -98,7 +101,7 @@ public class MapController {
 
 
 
-            loadMap();
+            generateMap();
 
 
 
@@ -119,7 +122,17 @@ public class MapController {
         }
     }
 
-    private void loadMap() {
+
+    /**
+     * Generate map from the database.
+     * This takes time.
+     */
+    public void generateMap() {
+        // remove old data, if there was any
+        edges.clear();
+        geoLocs.clear();
+        map = new ListenableDirectedWeightedGraph<>(Edge.class);
+
         ArrayList<Road> roads = dbRoad.getRoads();
 
         roads.forEach(road -> {
@@ -152,25 +165,15 @@ public class MapController {
      * Finds the geoLoc for the given deliveryStop.
      *
      * @param stop Delivery stop to find geoLoc for.
-     * @return GeoLocation at the given delivery stop.
+     * @return GeoLocation for the given delivery stop.
      */
     public GeoLoc findGeoLoc(DeliveryStop stop) {
 
         //Variables to check.
         long geoLocID = stop.getDefaultStop().getGeoLocID();
 
-        //Enters a loop for each geoLoc.
-        for (GeoLoc geoLoc : geoLocs.values()) {
-
-            //Checks to see if id of the geoLoc matches the id of the stop.
-            if (geoLocID == geoLoc.getID()) {
-
-                //Sets the geoLoc to found. Ends the loop.
-                return geoLoc;
-            }
-        }
-
-        return null;
+        //Get GeoLoc form HashMap with id for GeoLoc.
+        return geoLocs.get(geoLocID);
     }
 
 
@@ -181,7 +184,7 @@ public class MapController {
      * @param point2 end point to go to.
      * @return the distance between the two points in double.
      */
-    public double pointDistance(GeoLoc point1, GeoLoc point2) {
+    public double getShortestDistance(GeoLoc point1, GeoLoc point2) {
 
         //Uses DijkstraShortestPath algorithm to find the shortest route between the two points.
         DijkstraShortestPath<GeoLoc, Edge> path = new DijkstraShortestPath<GeoLoc, Edge>(map, point1, point2);
@@ -189,9 +192,5 @@ public class MapController {
 
         //Returns the distance found.
         return length;
-    }
-
-    public ListenableDirectedWeightedGraph<GeoLoc, Edge> getMap() {
-        return map;
     }
 }

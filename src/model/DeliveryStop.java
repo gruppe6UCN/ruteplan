@@ -14,6 +14,25 @@ public class DeliveryStop {
     }
 
     /**
+     *
+     * @return the sum of transport units for this stop
+     */
+    public double getSizeOfTransportUnits() {
+        //Creates variable.
+        double load = 0.0;
+
+        //Enters a loop for each transportUnit
+        for (TransportUnit transportUnit:transportUnits) {
+
+            //Increments load with the transportUnits size.
+            load += transportUnit.getUnitType();
+        }
+
+        //Returns the load.
+        return load;
+    }
+
+    /**
      * @return the id
      */
     public long getID() {
@@ -47,6 +66,4 @@ public class DeliveryStop {
     public void setTransportUnits(ArrayList<TransportUnit> transportUnits) {
         this.transportUnits = transportUnits;
     }
-    
-
 }

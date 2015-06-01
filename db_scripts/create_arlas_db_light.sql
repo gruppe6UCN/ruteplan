@@ -42,8 +42,8 @@ create table Customer(
 create table Route(
     id bigint IDENTITY(1,1),
     default_route_id bigint not null,
-    actual_of_departure time not null,
-    date date not null,
+    time_for_departure time not null,
+    date_for_departure date not null,
     primary key(id),
     foreign key(default_route_id) references DefaultRoute(id)
 );
@@ -52,7 +52,6 @@ create table DeliveryStop(
     id bigint IDENTITY(1,1),
     route_id bigint not null,
     default_delivery_stop_id bigint not null,
-    customer_id bigint not null,
     primary key(id),
     foreign key(route_id) references Route(id),
     foreign key(default_delivery_stop_id) references DefaultDeliveryStop(id)
