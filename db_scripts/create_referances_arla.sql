@@ -13,7 +13,7 @@ IF OBJECT_ID('DefaultRoute', 'U') IS NOT NULL DROP TABLE DefaultRoute;
 
 
 create table DefaultRoute(
-    id bigint not null,
+    id bigint IDENTITY(1001,1),
     trailer_type varchar(20) not null,
     extra_route tinyint not null,
     primary key(id)
@@ -28,7 +28,7 @@ create table GeoLoc(
 );
 
 create table DefaultDeliveryStop(
-    id bigint not null,
+    id bigint IDENTITY(1001,1),
     default_route_id bigint not null,
     geo_loc_id bigint not null,
     primary key(id),
