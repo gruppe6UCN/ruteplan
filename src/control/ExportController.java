@@ -1,5 +1,10 @@
 package control;
 
+import model.Route;
+
+import java.util.List;
+import java.util.Vector;
+
 /**
  * ExportController
  * Handles all functionality for the use-case export.
@@ -36,8 +41,21 @@ public class ExportController {
     /**
      * Exports all routes to database.
      */
-    public void exportDatas() {
+    public void exportDatas(Vector rowData) {
         routeController.exportData();
+
+        List<Route> routes = routeController.getRoutes();
+
+        routes.forEach(route -> {
+            Vector row = new Vector();
+            row.addElement(String.format("%03d", route.getID()));
+            row.addElement(route.getDefaultRoute().isExtraRoute() ? "NONE" : String.format("%03d", route.getDefaultRoute().getID()));
+            row.addElement(route.getStops().size());
+            row.addElement(String.format("%.1f / %.1f", route.getLoadForTrailer(), route.getCapacity()));
+            row.addElement(String.format("%02d:%02d", route.getTimeForDeparture().getHour(), route.getTimeForDeparture().getMinute()));
+            row.addElement(route.getDefaultRoute().isExtraRoute() ? "Yes" : "No");
+            rowData.add(row);
+        });
     }
     
 }

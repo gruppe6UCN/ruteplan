@@ -25,6 +25,7 @@ public class RouteController {
     private DeliveryStopController deliveryStopController;
     private DefaultRouteController defaultRouteController;
     private DefaultDeliveryStopController defaultDeliveryStopController;
+    private LogController log;
     private DBRoute dbRoute;
     private static RouteController instance;
     private List<Route> routes = Collections.synchronizedList(new ArrayList<>()) ;
@@ -36,11 +37,14 @@ public class RouteController {
         deliveryStopController = DeliveryStopController.getInstance();
         defaultRouteController = DefaultRouteController.getInstance();
         defaultDeliveryStopController = DefaultDeliveryStopController.getInstance();
+        log = LogController.getInstance();
         try {
             dbRoute = DBRoute.getInstance();
-        } catch (ClassNotFoundException | SQLException e) {
-            // TODO Auto-generated catch block
+        } catch (ClassNotFoundException e) {
+            log.StatusLog("Your are missing the database client module");
             e.printStackTrace();
+        } catch (SQLException e) {
+            log.StatusLog("Sql failed");
         }
     }
 
@@ -68,11 +72,13 @@ public class RouteController {
         List<DefaultRoute> listDefaultRoutes = Collections.synchronizedList(
                 //Gets a list of all defaultRoutes.
                 defaultRouteController.getDefaultRoutes());
+        log.StatusLog("Loaded defualt routes");
 
         //create a route for each defaultRoute
         listDefaultRoutes.parallelStream().forEach((defaultRoute -> { // TODO: make parallelStream
             //Creates new routes for each defaultRoute.
             Route route = new Route(defaultRoute, date);
+            log.StatusLog("Creates new route, base on default route " + defaultRoute.getID());
 
             //Sync then adding
             synchronized (listDefaultRoutes) {
@@ -83,6 +89,7 @@ public class RouteController {
                         defaultDeliveryStopController.getDefaultDeliveryStops(defaultRoute)
                 );
             }
+            log.StatusLog("Created new route from default route " + defaultRoute.getID());
 
             routes.add(route);
         }));
@@ -100,6 +107,10 @@ public class RouteController {
             }
             dbRoute.storeRoute(route);
             deliveryStopController.storeDeliveryStops(route);
+
+            log.StatusLog(String.format("Exported %sroute %d to database",
+                    route.getDefaultRoute().isExtraRoute() ? "Extra " : "",
+                    route.getID()));
         });
     }
 
@@ -173,6 +184,8 @@ public class RouteController {
 
     public void calcTimeForDeparture() {
         routes.parallelStream().forEach(route -> { // TODO: make parallelStream
+
+
             route.setTimeForDeparture(LocalTime.of(0,0,0));
         });
     }

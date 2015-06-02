@@ -7,6 +7,7 @@ import control.RouteController;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Vector;
 
 /**
  * Created by alt_mulig on 5/30/15.
@@ -20,8 +21,8 @@ public class no_gui {
         ExportController exportController = ExportController.getInstance();
 
         routeController.importRoutes(LocalDate.now());
-        optimizeController.optimize();
-        exportController.exportDatas();
+        optimizeController.optimize(new Vector());
+//        exportController.exportDatas();
 
 
         System.out.println("Jobs Down");

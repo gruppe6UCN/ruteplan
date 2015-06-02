@@ -17,6 +17,7 @@ import java.util.*;
 public class OptimizeController {
     private RouteController routeController;
     private MapController mapController;
+    private LogController log;
     private static OptimizeController instance;
     private List<DeliveryStop> removedStops;
 
@@ -27,9 +28,9 @@ public class OptimizeController {
      * Private constructor for singleton.
      */
     private OptimizeController() {
-
         routeController = RouteController.getInstance();
         mapController = MapController.getInstance();
+        log = LogController.getInstance();
         // Sync List
         removedStops = Collections.synchronizedList(new ArrayList<>());
     }
@@ -49,8 +50,30 @@ public class OptimizeController {
 
     /**
      * Optimizes all imported routes.
+     * @param rowData
+     */
+    public void optimize(Vector rowData) {
+        optimize();
+
+        List<Route> routes = routeController.getRoutes();
+
+        routes.forEach(route -> {
+            Vector row = new Vector();
+            row.addElement(route.getDefaultRoute().isExtraRoute() ? "NONE" : String.format("%03d", route.getDefaultRoute().getID()));
+            row.addElement(route.getStops().size());
+            row.addElement(String.format("%.1f / %.1f", route.getLoadForTrailer(), route.getCapacity()));
+            row.addElement(String.format("%02d:%02d", route.getTimeForDeparture().getHour(), route.getTimeForDeparture().getMinute()));
+            row.addElement(route.getDefaultRoute().isExtraRoute() ? "Yes" : "No");
+            rowData.add(row);
+        });
+    }
+
+    /**
+     * Optimizes all imported routes.
      */
     public void optimize() {
+        log.StatusLog("searching for over- and underloaded");
+
         // Declaring an anonymous class which implements the interface Runnable
         Thread preloadRoutes = new Thread(new Runnable() {
             public void run() {
@@ -61,9 +84,10 @@ public class OptimizeController {
         preloadRoutes.start();
 
 
+        log.StatusLog("Loading map module...");
         Thread prelaodMap = new Thread(new Runnable() {
             public void run() {
-                mapController.loadPreGeneratedMap();
+                mapController.generateMap();
             }
         });
         prelaodMap.start();
@@ -74,6 +98,7 @@ public class OptimizeController {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        log.StatusLog("Found all over- and underloaded routes");
 
         //Checks to see if there is overloadedRoutes.
         if (overloadedRoutes.size() >= 1) {
@@ -100,6 +125,7 @@ public class OptimizeController {
                     overloadAmount -= best.getSizeOfTransportUnits();
                 }
             });
+            log.StatusLog(String.format("There is %d delivery stop there need to be moved to another routes", overloadedRoutes.size()));
 
             //Waiting for the thread which finds routes if it isn't done
             try {
@@ -107,6 +133,7 @@ public class OptimizeController {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            log.StatusLog("Map module Loaded");
 
             //Enter a loop for each stop removed.
             removedStops.stream().forEach((removedStop) -> {
@@ -118,6 +145,7 @@ public class OptimizeController {
                 //Finds the geoLoc for current removedStop.
                 GeoLoc geoLocRemovedStop = mapController.findGeoLoc(removedStop);
 
+                log.StatusLog("Searching for routes at a close enough distance, og with enough free space to add the stop");
                 //Enters a loop for each underloadedRoute, to check if one of them is near stop.
                 underloadedRoutes.parallelStream().forEach((underloadedRoute) -> {  // TODO: make parallelStream
                     //Checks if there is space to removedStop on this Route
@@ -156,6 +184,8 @@ public class OptimizeController {
                     if (!underloadedRoute.isUnderloaded()) {
                         underloadedRoutes.remove(underloadedRoute);
                     }
+
+                    log.StatusLog("Added delivery stop to route");
                 } else {
 
                     //Make a new route.
@@ -164,6 +194,8 @@ public class OptimizeController {
                     if (newRoute.isUnderloaded()) {
                         underloadedRoutes.add(newRoute);
                     }
+
+                    log.StatusLog("Created a new route for delivery stop");
                 }
             });
 

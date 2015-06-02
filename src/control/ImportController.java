@@ -52,9 +52,9 @@ public class ImportController {
 
         routes.forEach(route -> {
             Vector row = new Vector();
-            row.addElement(Long.valueOf(route.getID()).toString());
-            row.addElement(Long.valueOf(route.getDefaultRoute().getID()).toString());
-            row.addElement(Integer.valueOf(route.getStops().size()));
+            row.addElement(String.format("%03d", route.getDefaultRoute().getID()));
+            row.addElement(route.getStops().size());
+            row.addElement(String.format("%.1f / %.1f", route.getLoadForTrailer(), route.getCapacity()));
             rowData.add(row);
         });
     }

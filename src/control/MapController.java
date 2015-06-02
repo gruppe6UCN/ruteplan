@@ -28,6 +28,7 @@ import java.util.HashMap;
 public class MapController {
 
     private static MapController instance;
+    private static LogController log = LogController.getInstance();
     private DBGeoLoc dbGeoLoc;
     private DBRoad dbRoad;
 
@@ -50,8 +51,9 @@ public class MapController {
         }
         try {
             dbRoad = DBRoad.getInstance();
-        } catch (ClassNotFoundException | SQLException e) {
-            // TODO Auto-generated catch block
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -151,10 +153,6 @@ public class MapController {
                     geoLocs.get(geoLocFrom.getID()),
                     geoLocs.get(geoLocTo.getID()));
             map.setEdgeWeight(edge, road.getDistance());
-
-            //            DijkstraShortestPath<GeoLoc, DefaultWeightedEdge> path = new DijkstraShortestPath<GeoLoc, DefaultWeightedEdge>(map, geoLocFrom, geoLocTo);
-            //            double lenght = path.getPathLength();
-            //            System.out.println(lenght);
 
             edges.add(edge);
         });

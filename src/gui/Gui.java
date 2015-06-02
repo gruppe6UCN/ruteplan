@@ -1,13 +1,10 @@
 package gui;
 
-import control.ImportController;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Vector;
 
 
 public class Gui extends JFrame {
@@ -56,10 +53,6 @@ public class Gui extends JFrame {
         JButton load = new JButton("Load");
         load.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                Vector rows = model.getDataVector();
-                rows.removeAllElements();
-                ImportController.getInstance().importRoutes(rows);
-                model.fireTableDataChanged();
             }
         });
         load.setBounds(10, 228, 89, 23);
@@ -80,7 +73,7 @@ public class Gui extends JFrame {
         JButton gem = new JButton("Gem");
         gem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                control.ExportController.getInstance().exportDatas();
+//                control.ExportController.getInstance().exportDatas();
                 table.updateUI();
             }
         });
