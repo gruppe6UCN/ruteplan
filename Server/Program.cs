@@ -10,6 +10,7 @@ namespace Server
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Hallo World!");
         }
     }
 }
