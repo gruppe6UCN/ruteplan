@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DateTime; 
 
 namespace Model
 {
-    class Customer
+    public class Customer
     {
         public long ID { get; private set; }
         public String StreetName { get; private set; }
