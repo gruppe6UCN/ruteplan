@@ -1,12 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using NUnit.Framework;
+using Model;
+
 
 namespace TestModel
 {
-    class TestDefaultRoute
+    [TestFixture()]
+
+    public class TestDefaultRoute
     {
+        DefaultRoute dr;
+
+        [SetUp()]
+        public void SetUp()
+        {
+            dr = new DefaultRoute();
+        }
+
+        //Test for ID
+        [Test()]
+        public void TestID()
+        {
+            Assert.AreEqual(dr.id, );
+        }
+        //Test for TrailerType
+        public void TestTrailerType()
+        {
+            Assert.AreEqual(dr.trailerType, );
+        }
+        //Test for ExtraRoute
+        public void TestExtraRoute()
+        {
+            Assert.AreEqual(dr.extraRoute, );
+        }
+
     }
 }
