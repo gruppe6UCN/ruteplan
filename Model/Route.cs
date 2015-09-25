@@ -11,14 +11,14 @@ namespace Model
 
         public long ID { get; private set; }
         public DefaultRoute DefaultRoute { get; private set; }
-        public ArrayList<DeliveryStop> Stops { get; private set; }
+        public List<DeliveryStop> Stops { get; private set; }
         public DateTime TimeForDeparture { get; private set; }
         public DateTime DateForDeparture { get; private set; }
 
         public Route(DefaultRoute DefaultRoute, DateTime Date) {
         this.DefaultRoute = DefaultRoute;
         this.DateForDeparture = Date;
-        this.Stops = new ArrayList<>();
+        this.Stops = new List<DeliveryStop>();
 
         //Automatize dem other variables here later...
         }
