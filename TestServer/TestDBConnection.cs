@@ -30,9 +30,6 @@ namespace TestServer
             instance.DB = "TestArla";
             instance.User = user;
             instance.Pass = pass;
-
-            if (!instance.IsConnected)
-                instance.Connect();
         }
 
         [Test()]
@@ -45,7 +42,6 @@ namespace TestServer
             }
             catch (System.IO.DirectoryNotFoundException e)
             {
-                Console.WriteLine(e);
                 Assert.Fail(e.Message);
             }
         }
@@ -106,6 +102,16 @@ namespace TestServer
         {
             instance.Disconnect();
             Assert.IsFalse(instance.IsConnected);
+
+            if (!instance.IsConnected)
+                instance.Connect();
+        }
+
+        [Test()]
+        public void TestSendInsertSQL()
+        {
+            ulong id = instance.SendInsertSQL("INSERT into DefaultRoute (trailer_type, extra_route) values('STOR', 0)");
+            Assert.Greater(id, 0);
         }
     }
 }

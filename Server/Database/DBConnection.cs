@@ -8,6 +8,7 @@ namespace Server
     {
         private static DBConnection instance;
         private MySqlConnection connection;
+        private MySqlTransaction transaction;
 
         public String Host { get; set; }
         public String DB { get; set; }
@@ -20,7 +21,8 @@ namespace Server
         public static DBConnection Instance { 
             get { 
                 if (instance == null)
-                    instance = new DBConnection(); return instance;
+                    instance = new DBConnection();
+                return instance;
             }
         }
 
@@ -48,6 +50,27 @@ namespace Server
         public void Disconnect()
         {
             connection.Close();
+        }
+
+        public ulong SendInsertSQL(String sql) {
+            transaction = connection.BeginTransaction();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            cmd.Transaction = transaction;
+            ulong r = 0;
+
+            cmd.CommandText = sql;
+            cmd.ExecuteNonQuery();
+            cmd.CommandText = "SELECT LAST_INSERT_ID() FROM DefaultRoute";
+            Object obj = cmd.ExecuteScalar();
+
+            if (obj is ulong)
+                r = (ulong) obj;
+
+            // Returns the ID for the new Row
+
+            transaction.Commit();
+            return r;
         }
     }
 }
