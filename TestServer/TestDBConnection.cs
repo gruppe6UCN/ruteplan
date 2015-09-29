@@ -11,6 +11,7 @@ namespace TestServer
         DBConnection instance;
         String user;
         String pass;
+        ulong id;
 
         [TestFixtureSetUp()]
         public void ClassSetUp()
@@ -33,7 +34,7 @@ namespace TestServer
         }
 
         [Test()]
-        public void TestForUsernameAndPasswordFiles()
+        public void Test_01_ForUsernameAndPasswordFiles()
         {
             try
             {
@@ -47,14 +48,14 @@ namespace TestServer
         }
 
         [Test()]
-        public void TestGetInstance()
+        public void Test_02_GetInstance()
         {
             Assert.AreEqual(instance, DBConnection.Instance);
             Assert.NotNull(instance);
         }
 
         [Test()]
-        public void TestConnect()
+        public void Test_03_Connect()
         {
             if (!instance.IsConnected)
                 instance.Connect();
@@ -62,43 +63,7 @@ namespace TestServer
         }
 
         [Test()]
-        [ExpectedException(typeof(NullReferenceException), ExpectedMessage="You need to initialize the accessor 'Host'")]
-        public void TestConnect_ExceptionForHost()
-        {
-            instance.Host = null;
-
-            instance.Connect();
-        }
-
-        [Test()]
-        [ExpectedException(typeof(NullReferenceException), ExpectedMessage="You need to initialize the accessor 'DB'")]
-        public void TestConnect_ExceptionForDB()
-        {
-            instance.DB = null;
-
-            instance.Connect();
-        }
-
-        [Test()]
-        [ExpectedException(typeof(NullReferenceException), ExpectedMessage="You need to initialize the accessor 'User'")]
-        public void TestConnect_ExceptionForUser()
-        {
-            instance.User = null;
-
-            instance.Connect();
-        }
-
-        [Test()]
-        [ExpectedException(typeof(NullReferenceException), ExpectedMessage="You need to initialize the accessor 'Pass'")]
-        public void TestConnect_ExceptionForP()
-        {
-            instance.Pass = null;
-
-            instance.Connect();
-        }
-
-        [Test()]
-        public void TestDisconnect()
+        public void Test_04_Disconnect()
         {
             instance.Disconnect();
             Assert.IsFalse(instance.IsConnected);
@@ -108,10 +73,54 @@ namespace TestServer
         }
 
         [Test()]
-        public void TestSendInsertSQL()
+        [ExpectedException(typeof(NullReferenceException), ExpectedMessage="You need to initialize the accessor 'Host'")]
+        public void Test_05_Connect_ExceptionForHost()
         {
-            ulong id = instance.SendInsertSQL("INSERT into DefaultRoute (trailer_type, extra_route) values('STOR', 0)");
+            instance.Host = null;
+
+            instance.Connect();
+        }
+
+        [Test()]
+        [ExpectedException(typeof(NullReferenceException), ExpectedMessage="You need to initialize the accessor 'DB'")]
+        public void Test_06_Connect_ExceptionForDB()
+        {
+            instance.DB = null;
+
+            instance.Connect();
+        }
+
+        [Test()]
+        [ExpectedException(typeof(NullReferenceException), ExpectedMessage="You need to initialize the accessor 'User'")]
+        public void Test_07_Connect_ExceptionForUser()
+        {
+            instance.User = null;
+
+            instance.Connect();
+        }
+
+        [Test()]
+        [ExpectedException(typeof(NullReferenceException), ExpectedMessage="You need to initialize the accessor 'Pass'")]
+        public void Test_08_Connect_ExceptionForP()
+        {
+            instance.Pass = null;
+
+            instance.Connect();
+        }
+
+        [Test()]
+        public void Test_09_SendInsertSQL()
+        {
+            id = instance.SendInsertSQL("INSERT into DefaultRoute (trailer_type, extra_route) values('STOR', 0)");
             Assert.Greater(id, 0);
+        }
+
+        [Test()]
+        public void Test_10_SendUpdateSQL()
+        {
+            int r = instance.SendUpdateSQL(String.
+                Format("UPDATE DefaultRoute SET extra_route=1 WHERE id={0}", id));
+            Assert.Greater(r, 0);
         }
     }
 }

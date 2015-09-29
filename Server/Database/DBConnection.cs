@@ -45,6 +45,7 @@ namespace Server
 
             connection.ConnectionString = String.Format(connectionString, Host, DB, User, Pass);
             connection.Open();
+            transaction = connection.BeginTransaction();
         }
 
         public void Disconnect()
@@ -53,7 +54,6 @@ namespace Server
         }
 
         public ulong SendInsertSQL(String sql) {
-            transaction = connection.BeginTransaction();
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = connection;
             cmd.Transaction = transaction;
@@ -67,10 +67,20 @@ namespace Server
             if (obj is ulong)
                 r = (ulong) obj;
 
-            // Returns the ID for the new Row
-
             transaction.Commit();
-            return r;
+            return r; // Returns the ID for the new Row
+        }
+
+        public int SendUpdateSQL(String sql) {
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            cmd.Transaction = transaction;
+            int r = 0;
+
+            cmd.CommandText = sql;
+            r = cmd.ExecuteNonQuery();
+
+            return r; // Returns a number equal to the amount of rows that changed
         }
     }
 }
