@@ -12,20 +12,20 @@ namespace TestModel
         [SetUp()]
         public void SetUp()
         {
-            dds = new DefaultDeliveryStop();
+            dds = new DefaultDeliveryStop(42, 50);
         }
 
         [Test()]
         public void TestID()
         {
-            Assert.AreEqual(dds.ID, );
+            Assert.AreEqual(dds.ID, 42);
         }
       
 
         [Test()]
-        public void TestGeoLocID(dds.GeoLocID, )
+        public void TestGeoLocID()
         {
-            Assert.AreEqual();
+            Assert.AreEqual(dds.GeoLocID, 50);
         }
     }
 
