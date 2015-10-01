@@ -32,6 +32,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Customer.cs" />
+    <Compile Include="DefaultDeliveryStop.cs" />
     <Compile Include="DefaultRoute.cs" />
     <Compile Include="DeliveryStop.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -39,6 +40,7 @@
     <Compile Include="Route.cs" />
     <Compile Include="TrailerType.cs" />
     <Compile Include="TransportUnit.cs" />
+    <Compile Include="UnitType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,12 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using NUnit.Framework;
+using Model;
 
 namespace TestModel
 {
-    class TestDeliveryStop
+    [TestFixture()]
+
+    public class TestDeliveryStop
     {
+        DeliveryStop  ds;
+
+        [SetUp()]
+        public void SetUp()
+        {
+            ds = new DeliveryStop();
+        }
+
+        //Test for DefaultStop 
+        [Test()]
+        public void TestDefaultDeliveryStop()
+        {
+            Assert.AreEqual(ds.defaultStop, );
+        }
     }
 }

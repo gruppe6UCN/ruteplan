@@ -35,6 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TestCustomer.cs" />
+    <Compile Include="TestDefaultDeliveryStop.cs" />
     <Compile Include="TestDefaultRoute.cs" />
     <Compile Include="TestDeliveryStop.cs" />
     <Compile Include="TestRoad.cs" />
