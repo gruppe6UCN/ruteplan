@@ -1,6 +1,7 @@
 ﻿using System;
 using MySql.Data.MySqlClient;
-using System.IO;
+using System.Collections.Generic;
+using System.Data;
 
 namespace Server
 {
@@ -81,6 +82,21 @@ namespace Server
             r = cmd.ExecuteNonQuery();
 
             return r; // Returns a number equal to the amount of rows that changed
+        }
+
+        public delegate List<object> ConvertMethod(IDataReader data);
+        public object SendSQL(String sql, ConvertMethod convertMethod) {
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            cmd.Transaction = transaction;
+            IDataReader r;
+
+            cmd.CommandText = sql;
+            r = cmd.ExecuteReader();
+
+            convertMethod(r);
+            transaction.Commit();
+            return r;
         }
     }
 }

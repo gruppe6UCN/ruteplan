@@ -2,6 +2,9 @@
 using System;
 using Server;
 using System.IO;
+using System.Collections.Generic;
+using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace TestServer
 {
@@ -121,6 +124,27 @@ namespace TestServer
             int r = instance.SendUpdateSQL(String.
                 Format("UPDATE DefaultRoute SET extra_route=1 WHERE id={0}", id));
             Assert.Greater(r, 0);
+        }
+
+        [Test()]
+        public void Test_11_SendSQL()
+        {
+            List<object> r = instance.SendSQL("SELECT * FROM DefaultRoute", DelegateMethod);
+            Assert.Pass();
+        }
+
+        public List<object> DelegateMethod(IDataReader data) {
+            List<object> r = new List<DefaultRoute>();
+            while (data.Read())
+            {
+                IDataRecord row = ((IDataRecord)data);
+                r.Add(new DefaultRoute(
+                    row.GetInt64(0),
+                    row.GetString(1),
+                    row.GetInt32(2))
+                );
+            }
+            return r;
         }
     }
 }
