@@ -5,6 +5,7 @@ using System.IO;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using System.Data;
+using Model;
 
 namespace TestServer
 {
@@ -129,19 +130,20 @@ namespace TestServer
         [Test()]
         public void Test_11_SendSQL()
         {
-            List<object> r = instance.SendSQL("SELECT * FROM DefaultRoute", DelegateMethod);
-            Assert.Pass();
+            List<DefaultRoute> r = instance.SendSQL<DefaultRoute>("SELECT * FROM DefaultRoute", DelegateMethod);
+            Assert.IsTrue(r[r.Count - 1].isExtraRoute());
+            Assert.AreEqual(r[r.Count - 1].id, id);
         }
 
-        public List<object> DelegateMethod(IDataReader data) {
-            List<object> r = new List<DefaultRoute>();
+        public List<DefaultRoute> DelegateMethod(IDataReader data) {
+            List<DefaultRoute> r = new List<DefaultRoute>();
             while (data.Read())
             {
                 IDataRecord row = ((IDataRecord)data);
                 r.Add(new DefaultRoute(
                     row.GetInt64(0),
                     row.GetString(1),
-                    row.GetInt32(2))
+                    row.GetBoolean(2))
                 );
             }
             return r;

@@ -84,18 +84,16 @@ namespace Server
             return r; // Returns a number equal to the amount of rows that changed
         }
 
-        public delegate List<object> ConvertMethod(IDataReader data);
-        public object SendSQL(String sql, ConvertMethod convertMethod) {
+        public delegate List<T> SqlToObject<T>(IDataReader sqlData);
+        public List<T> SendSQL<T>(String sql, SqlToObject<T> sqlToObject) {
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = connection;
             cmd.Transaction = transaction;
-            IDataReader r;
 
             cmd.CommandText = sql;
-            r = cmd.ExecuteReader();
+            IDataReader dbData = cmd.ExecuteReader();
 
-            convertMethod(r);
-            transaction.Commit();
+            List<T> r = sqlToObject(dbData);
             return r;
         }
     }

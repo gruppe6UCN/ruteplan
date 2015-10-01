@@ -50,5 +50,9 @@
       <Project>{B5425574-CF10-42E3-A74A-32EFCCD4777D}</Project>
       <Name>Server</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{D2387D10-FFD3-4DD4-8822-DC5F6ED1D93C}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
