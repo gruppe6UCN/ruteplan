@@ -15,26 +15,29 @@ namespace Model
         public DateTime TimeForDeparture { get; private set; }
         public DateTime DateForDeparture { get; private set; }
 
-        public Route(DefaultRoute DefaultRoute, DateTime Date) {
-        this.DefaultRoute = DefaultRoute;
-        this.DateForDeparture = Date;
-        this.Stops = new List<DeliveryStop>();
+        public Route(DefaultRoute DefaultRoute, DateTime Date)
+        {
+            this.DefaultRoute = DefaultRoute;
+            this.DateForDeparture = Date;
+            this.Stops = new List<DeliveryStop>();
 
-        //Automatize dem other variables here later...
+            //Automatize dem other variables here later...
         }
 
         /**
          * @return the load of transport units in the trailer
          */
-        public double GetLoadForTrailer() {
-        double Load = 0.0;
+        public double GetLoadForTrailer()
+        {
+            double Load = 0.0;
 
-        //Enters a loop for each delivery stop.
-        for (DeliveryStop Stop ; Stops) {
-            Load += Stop.GetSizeOfTransportUnits();
-        }
+            //Enters a loop for each delivery stop.
+            foreach (DeliveryStop Stop in Stops)
+            {
+                Load += Stop.getSizeOfTransportUnits();
+            }
 
-        return Load;
+            return Load;
         }
 
         /**
@@ -53,10 +56,10 @@ namespace Model
             Stops.Add(Stop);
         }
 
-          /**
-         * Checks to see if route is under loaded.
-         * @return True if it is and false vice versa
-         */
+        /**
+       * Checks to see if route is under loaded.
+       * @return True if it is and false vice versa
+       */
         public Boolean IsUnderloaded()
         {
             return this.GetLoadForTrailer() < this.GetCapacity() * 0.8;
