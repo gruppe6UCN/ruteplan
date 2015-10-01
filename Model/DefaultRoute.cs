@@ -8,21 +8,21 @@ namespace Model
 {
     public class DefaultRoute
     {
-        public long id { get; private set; }
-        public TrailerType trailerType { get; private set; }
-        public Boolean extraRoute { get; private set; }
+        public long ID { get; private set; }
+        public TrailerType TrailerType { get; private set; }
+        public Boolean ExtraRoute { get; private set; }
 
         public DefaultRoute(long id, TrailerType trailerType, Boolean extraRoute)
         {
-            this.id = id;
-            this.trailerType = trailerType;
-            this.extraRoute = extraRoute;
+            this.ID = id;
+            this.TrailerType = trailerType;
+            this.ExtraRoute = extraRoute;
         }
 
         public DefaultRoute(TrailerType trailerType, Boolean extraRoute)
         {
-            this.trailerType = trailerType;
-            this.extraRoute = extraRoute;
+            this.TrailerType = trailerType;
+            this.ExtraRoute = extraRoute;
         }
 
       
@@ -31,7 +31,7 @@ namespace Model
          */
         public Boolean isExtraRoute()
         {
-            return extraRoute;
+            return ExtraRoute;
         }
     }
 }
