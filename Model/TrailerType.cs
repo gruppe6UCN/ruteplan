@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    class TrailerType
+    public enum TrailerType 
     {
+       STOR = 51.0
     }
 }
+
+
