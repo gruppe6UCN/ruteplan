@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    class DefaultDeliveryStop
+    public class DefaultDeliveryStop
     {
+        private long ID { get; private set; }
+        private List<Customer> Customers { get; private set; }
+        private long GeoLocID { get; private set; }
+
+        public DefaultDeliveryStop(long ID, long GeoLocID)
+        {
+            this.ID = ID;
+            this.GeoLocID = GeoLocID;
+        }
+
     }
 }
