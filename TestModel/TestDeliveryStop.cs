@@ -9,18 +9,20 @@ namespace TestModel
     public class TestDeliveryStop
     {
         DeliveryStop  ds;
+        DefaultDeliveryStop dds;
 
         [SetUp()]
         public void SetUp()
         {
-            ds = new DeliveryStop();
+            dds = new DefaultDeliveryStop(2, 300);
+            ds = new DeliveryStop(dds);
         }
 
         //Test for DefaultStop 
         [Test()]
         public void TestDefaultDeliveryStop()
         {
-            Assert.AreEqual(ds.defaultStop, );
+            Assert.AreEqual(ds.DefaultStop, dds);
         }
     }
 }

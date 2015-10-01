@@ -12,31 +12,31 @@ namespace TestModel
         [SetUp()]
         public void Setup()
         {
-            ro = new Road();
+            ro = new Road(1, 2, 400, new DateTime(12));
         }
         //Test 
         [Test()]
         public void TestFrom()
         {
-            Assert.AreEqual(ro.from, );
+            Assert.AreEqual(ro.From, 1);
         }
         //Test
         [Test()]
         public void TestTo()
         {
-            Assert.AreEqual(ro.to, );
+            Assert.AreEqual(ro.To, 2);
         }
         //Test
         [Test()]
         public void TestDistance()
         {
-            Assert.AreEqual(ro.distance, );
+            Assert.AreEqual(ro.Distance, 400);
         }
         //Test
         [Test()]
         public void TestTime()
         {
-            Assert.AreEqual(ro.time, );
+            Assert.AreEqual(ro.Time, 12);
         }
                
         
