@@ -45,7 +45,7 @@ namespace Model
          */
         public double GetCapacity()
         {
-            return GetDefaultRoute().GetTrailerType().GetCapacity();
+            return DefaultRoute.TrailerType.Capacity;
         }
 
         /**
