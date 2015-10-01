@@ -8,17 +8,17 @@ namespace Model
 {
     public class Road
     {
-        public long from { get; private set; }
-        public long to { get; private set; }
-        public double distance { get; private set; }
-        public DateTime time { get; private set; }
+        public long From { get; private set; }
+        public long To { get; private set; }
+        public double Distance { get; private set; }
+        public DateTime Time { get; private set; }
 
         public Road(long from_ID, long to_ID, double distance, DateTime time)
         {
-            this.from = from_ID;
-            this.to = to_ID;
-            this.distance = distance;
-            this.time = time;
+            this.From = from_ID;
+            this.To = to_ID;
+            this.Distance = distance;
+            this.Time = time;
         }
     }
 
