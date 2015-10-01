@@ -18,24 +18,6 @@ namespace Model
             //Automatize some variables such as id later m8.
         }
 
-        /**
-         *
-         * @return the sum of transport units for this stop
-         */
-        public double GetSizeOfTransportUnits() {
-        //Creates variable.
-        double Load = 0.0;
-
-        //Enters a loop for each transportUnit
-        for (TransportUnit TransportUnit:TransportUnits) {
-
-            //Increments load with the transportUnits size.
-            Load += TransportUnit.GetUnitType();
-        }
-
-        //Returns the load.
-        return Load;
-    }
-  }
+   }
 
 }
