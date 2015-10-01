@@ -132,7 +132,7 @@ namespace TestServer
         {
             List<DefaultRoute> r = instance.SendSQL<DefaultRoute>("SELECT * FROM DefaultRoute", DelegateMethod);
             Assert.IsTrue(r[r.Count - 1].isExtraRoute());
-            Assert.AreEqual(r[r.Count - 1].id, id);
+            Assert.AreEqual(r[r.Count - 1].ID, id);
         }
 
         public List<DefaultRoute> DelegateMethod(IDataReader data) {
@@ -142,7 +142,7 @@ namespace TestServer
                 IDataRecord row = ((IDataRecord)data);
                 r.Add(new DefaultRoute(
                     row.GetInt64(0),
-                    row.GetString(1),
+                    row.GetDouble(1),
                     row.GetBoolean(2))
                 );
             }
