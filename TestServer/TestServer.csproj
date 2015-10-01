@@ -34,10 +34,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Test.cs" />
+    <Compile Include="TestDBConnection.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Server\Server.csproj">
+      <Project>{B5425574-CF10-42E3-A74A-32EFCCD4777D}</Project>
+      <Name>Server</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
