@@ -14,24 +14,19 @@ namespace TestModel
         [SetUp()]
         public void SetUp()
         {
-            dr = new DefaultRoute();
+            dr = new DefaultRoute(4, false);
         }
 
-        //Test for ID
-        [Test()]
-        public void TestID()
-        {
-            Assert.AreEqual(dr.id, );
-        }
+
         //Test for TrailerType
         public void TestTrailerType()
         {
-            Assert.AreEqual(dr.trailerType, );
+            Assert.AreEqual(dr.TrailerType, 4);
         }
         //Test for ExtraRoute
         public void TestExtraRoute()
         {
-            Assert.AreEqual(dr.extraRoute, );
+            Assert.AreEqual(dr.ExtraRoute, false);
         }
 
     }
