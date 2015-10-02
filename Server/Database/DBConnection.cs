@@ -7,6 +7,8 @@ namespace Server
 {
     public class DBConnection
     {
+        public delegate List<T> SqlToObject<T>(IDataReader sqlData);
+
         private static DBConnection instance;
         private MySqlConnection connection;
         private MySqlTransaction transaction;
@@ -17,7 +19,7 @@ namespace Server
         public String Pass { get; set; }
         private const String connectionString = "SERVER={0};DATABASE={1};UID={2};PASSWORD={3};";
 
-        public bool IsConnected { get {return connection.State == System.Data.ConnectionState.Open; } }
+        public bool IsConnected { get {return connection.State == ConnectionState.Open; } }
 
         public static DBConnection Instance { 
             get { 
@@ -32,6 +34,9 @@ namespace Server
             connection = new MySqlConnection();
         }
 
+        /// <summary>
+        /// Connect to The sql database
+        /// </summary>
         public void Connect()
         {
             if (Host == null)
@@ -49,11 +54,19 @@ namespace Server
             transaction = connection.BeginTransaction();
         }
 
+        /// <summary>
+        /// Disconnect from the sql database
+        /// </summary>
         public void Disconnect()
         {
             connection.Close();
         }
 
+        /// <summary>
+        /// Add data to sql database
+        /// </summary>
+        /// <returns>The the id for the added data</returns>
+        /// <param name="sql">Sql command</param>
         public ulong SendInsertSQL(String sql) {
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = connection;
@@ -72,6 +85,11 @@ namespace Server
             return r; // Returns the ID for the new Row
         }
 
+        /// <summary>
+        /// Updates a row(s) in the sql database
+        /// </summary>
+        /// <returns>Return the number</returns>
+        /// <param name="sql">Sql command</param>
         public int SendUpdateSQL(String sql) {
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = connection;
@@ -84,7 +102,13 @@ namespace Server
             return r; // Returns a number equal to the amount of rows that changed
         }
 
-        public delegate List<T> SqlToObject<T>(IDataReader sqlData);
+        /// <summary>
+        /// This method converts the database set to a list of type specified objects
+        /// </summary>
+        /// <returns>List of object</returns>
+        /// <param name="sql">Sql command</param>
+        /// <param name="sqlToObject">The method for converting database set</param>
+        /// <typeparam name="T">The object type insite the returned list</typeparam>
         public List<T> SendSQL<T>(String sql, SqlToObject<T> sqlToObject) {
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = connection;
