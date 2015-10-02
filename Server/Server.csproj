@@ -47,10 +47,10 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Database\DBConnection.cs" />
+    <Compile Include="Database\DBCustomer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -63,5 +63,11 @@
   -->
   <ItemGroup>
     <Folder Include="Database\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{D2387D10-FFD3-4DD4-8822-DC5F6ED1D93C}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

@@ -3,14 +3,13 @@ using System;
 using Server;
 using System.IO;
 using System.Collections.Generic;
-using MySql.Data.MySqlClient;
 using System.Data;
 using Model;
 
 namespace TestServer
 {
     [TestFixture()]
-    public class Test
+    public class TestDBConnection
     {
         DBConnection instance;
         String user;
@@ -35,6 +34,12 @@ namespace TestServer
             instance.DB = "TestArla";
             instance.User = user;
             instance.Pass = pass;
+        }
+
+        [TestFixtureTearDown()]
+        public void ClassTearDown()
+        {
+            instance.Disconnect();
         }
 
         [Test()]
@@ -135,11 +140,11 @@ namespace TestServer
             Assert.AreEqual(r[r.Count - 1].ID, id);
         }
 
-        public List<DefaultRoute> DelegateMethod(IDataReader data) {
+        private List<DefaultRoute> DelegateMethod(IDataReader dataSet) {
             List<DefaultRoute> r = new List<DefaultRoute>();
-            while (data.Read())
+            while (dataSet.Read())
             {
-                IDataRecord row = ((IDataRecord)data);
+                IDataRecord row = ((IDataRecord)dataSet);
                 r.Add(new DefaultRoute(
                     row.GetInt64(0),
                     row.GetDouble(1),
