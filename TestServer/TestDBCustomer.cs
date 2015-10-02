@@ -19,7 +19,7 @@ namespace TestServer
         [TestFixtureSetUp()]
         public void ClassSetUp()
         {
-            DBConnection.Instance;
+           
             try
             {
                 user = File.ReadAllText("Config/user.txt");
