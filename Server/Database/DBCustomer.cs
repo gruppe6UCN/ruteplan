@@ -29,9 +29,9 @@ namespace Server
         }
 
         /// <summary>
-        /// Gets list of customers for database
+        /// Gets a list of customers associated with the given default delivery stop
         /// </summary>
-        /// <returns>list of all Customer for the given id</returns>
+        /// <returns>list of all Customer for the given default delivery stop</returns>
         /// <param name="id">id from a DefaultDeliveryStop</param>
         public List<Customer> GetCustomers(long id) {
             List<Customer> list;
@@ -51,11 +51,11 @@ namespace Server
                 tableList.Add(
                     new Customer(
                         dataSet.GetInt64(0),
-                        dataSet.GetString(1),
                         dataSet.GetString(2),
-                        dataSet.GetInt32(3),
-                        dataSet.GetString(4),
-                        dataSet.GetDateTime(5).ToLocalTime()
+                        dataSet.GetString(3),
+                        dataSet.GetInt32(4),
+                        dataSet.GetString(5),
+                        (TimeSpan) dataSet.GetValue(6)
                     ));
             }
             return tableList;

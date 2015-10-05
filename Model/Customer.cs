@@ -13,9 +13,9 @@ namespace Model
         public String StreetNo { get; private set; }
         public int Zipcode { get; private set; }
         public String City { get; private set; }
-        public DateTime TimeOfDelivery { get; private set; }
+        public TimeSpan TimeOfDelivery { get; private set; }
 
-        public Customer(long ID, String StreetName, String StreetNo, int Zipcode, String City, DateTime TimeOfDelivery)
+        public Customer(long ID, String StreetName, String StreetNo, int Zipcode, String City, TimeSpan TimeOfDelivery)
         {
             this.ID = ID;
             this.StreetName = StreetName;
