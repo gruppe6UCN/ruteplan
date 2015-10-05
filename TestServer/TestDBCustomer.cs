@@ -3,7 +3,6 @@ using System;
 using Server;
 using System.IO;
 using System.Collections.Generic;
-using System.Data;
 using Model;
 
 namespace TestServer
@@ -14,12 +13,10 @@ namespace TestServer
         DBCustomer instance;
         String user;
         String pass;
-        ulong id;
 
         [TestFixtureSetUp()]
         public void ClassSetUp()
         {
-            DBConnection.Instance;
             try
             {
                 user = File.ReadAllText("Config/user.txt");
@@ -42,7 +39,27 @@ namespace TestServer
             DBConnection.Instance.Disconnect();
         }
 
+        [Test()]
+        public void TestGetCustomers()
+        {
+            List<Customer> customers = instance.GetCustomers(555);
+            foreach (Customer customer in customers)
+            {
+                Assert.Greater(customer.ID, 0);
+                Assert.Greater(customer.City.Length, 0);
+                Assert.Greater(customer.StreetName.Length, 0);
+                Assert.Greater(customer.StreetNo.Length, 0);
+                Assert.Greater(customer.Zipcode, 0);
+                Assert.Less(customer.Zipcode, 9999);
 
+                Assert.AreEqual(customer.ID, 21673);
+                Assert.AreEqual(customer.City, "Brabrand");
+                Assert.AreEqual(customer.StreetName, "Stenbækvej");
+                Assert.AreEqual(customer.StreetNo, "1 A");
+                Assert.AreEqual(customer.TimeOfDelivery, new TimeSpan(4,30,0));
+                Assert.AreEqual(customer.Zipcode, 8220);
+            }
+        }
     }
 }
 
