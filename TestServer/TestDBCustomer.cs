@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Server;
 using System.IO;
@@ -17,6 +17,7 @@ namespace TestServer
         [TestFixtureSetUp()]
         public void ClassSetUp()
         {
+
             try
             {
                 user = File.ReadAllText("Config/user.txt");

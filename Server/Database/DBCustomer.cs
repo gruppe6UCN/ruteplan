@@ -23,7 +23,7 @@ namespace Server
 
         /// <summary>
         /// Initializes a new singleton of the <see cref="Server.DBCustomer"/> class.
-        /// </summary>
+        /// 
         private DBCustomer() {
             dbConnection = DBConnection.Instance;
         }
