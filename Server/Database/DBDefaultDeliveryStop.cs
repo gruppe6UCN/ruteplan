@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Model;
+using System.Data;
 
 namespace Server.Database
 
@@ -14,8 +16,8 @@ namespace Server.Database
 
     class DBDefaultDeliveryStop
     {
-        private DBConnection dbConnection;
-        private static DBDefaultDeliveryStop instance;
+        private DBConnection DbConnection { get; private set; }
+        private static DBDefaultDeliveryStop instance; 
 
         /// <summary >
         /// private constructor for singelton
@@ -23,14 +25,14 @@ namespace Server.Database
        
         private DBDefaultDeliveryStop()
         {
-            dbConnection = DBConnection.Instance;
+            DbConnection = DBConnection.Instance;
         }
 
         /// <sunmmary>
         /// singelton get instance method 
         /// returns the instance from DB 
       
-        public static DBDefaultDeliveryStop instance
+        public static DBDefaultDeliveryStop Instance
         {
             get
             {
@@ -42,6 +44,40 @@ namespace Server.Database
                 return instance;
             }
 
+        }
+
+        /**
+     * @param defaultRouteID
+     * @return list of all DefaultDeliveryStop for the given defaultRouteID
+     */
+        public List<DefaultDeliveryStop> GetDefaultDeliveryStops(long defaultRouteID)
+        {
+           List<DefaultDeliveryStop> list;
+            String sql = String.Format("select * from DefaultDeliveryStop where default_route_id = '%s';", defaultRouteID);
+            list = DbConnection.SendSQL<DefaultDeliveryStop>(sql, ConvertTotDefaultDeliveryStop);
+            return list;
+        }
+
+
+        /**
+         * @param rs takes the ResultSet from database
+         * @return list of DefaultDeliveryStop
+         */
+        private List<DefaultDeliveryStop> ConvertTotDefaultDeliveryStop(IDataReader dataSet)
+        {
+           List<DefaultDeliveryStop> tableList = new List<DefaultDeliveryStop>();
+            try
+            {
+                while (dataSet.Read())
+                {
+                    tableList.Add(
+                            new DefaultDeliveryStop(
+                                    dataSet.GetInt64(0),
+                                    dataSet.GetInt64(1)
+                            ));
+                }
+            }
+            return tableList;
         }
     }
 }

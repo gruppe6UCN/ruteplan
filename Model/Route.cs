@@ -49,7 +49,7 @@ namespace Model
         }
 
         /**
-         * @param stop deliveryStop to add to ArrayList.
+         * @param stop deliveryStop to add toList.
          */
         public void AddDeliveryStop(DeliveryStop Stop)
         {
