@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestModel", "TestModel\TestModel.csproj", "{29890411-DCF2-4784-9B5A-B0977CFF6CC2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickGraph", "QuickGraph\QuickGraph.csproj", "{6F99B174-AD36-4C5F-813D-1BC14B271009}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{29890411-DCF2-4784-9B5A-B0977CFF6CC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29890411-DCF2-4784-9B5A-B0977CFF6CC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29890411-DCF2-4784-9B5A-B0977CFF6CC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F99B174-AD36-4C5F-813D-1BC14B271009}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F99B174-AD36-4C5F-813D-1BC14B271009}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F99B174-AD36-4C5F-813D-1BC14B271009}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F99B174-AD36-4C5F-813D-1BC14B271009}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7D8B8C65-0968-4BF4-9955-1DA5D6EFC587}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7D8B8C65-0968-4BF4-9955-1DA5D6EFC587}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D8B8C65-0968-4BF4-9955-1DA5D6EFC587}.Release|Any CPU.ActiveCfg = Release|Any CPU
