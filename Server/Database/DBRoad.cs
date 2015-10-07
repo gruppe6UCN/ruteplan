@@ -8,7 +8,7 @@ using System.Data;
 
 namespace Server.Database
 {
-    class DBRoad
+    public class DBRoad
     {
         private DBConnection DbConnection { get; private set; }
         private static DBRoad instance;

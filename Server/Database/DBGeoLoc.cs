@@ -9,7 +9,7 @@ using System.Data;
 
 namespace Server.Database
 {
-    class DBGeoLoc
+    public class DBGeoLoc
     {
         private DBConnection DbConnection { get; private set; }
         private static DBGeoLoc instance;

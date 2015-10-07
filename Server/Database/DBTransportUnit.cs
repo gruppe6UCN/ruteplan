@@ -8,7 +8,7 @@ using System.Data;
 
 namespace Server.Database
 {
-    class DBTransportUnit
+    public class DBTransportUnit
     {
         private DBConnection DbConnection { get; private set; }
         private static DBTransportUnit instance;
