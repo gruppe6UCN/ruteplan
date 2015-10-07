@@ -47,7 +47,7 @@ namespace Server.Database
             String sql = String.Format("select * from GeoLoc where id = {0}",
                     defaultDeliveryStopID);
             list = DbConnection.SendSQL<GeoLoc>(sql, ConvertToGeoLoc);
-            return list;
+            return list[0];
         }
 
 

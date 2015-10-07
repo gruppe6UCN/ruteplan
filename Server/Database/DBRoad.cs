@@ -40,7 +40,7 @@ namespace Server.Database
         /// </summary>
         /// <param name="defaultDeliveryStopID"></param>
         /// <returns></returns>
-        public Road getRoads()
+        public List<Road> getRoads()
         {
             List<Road> list;
             String sql = "select * from Road";
