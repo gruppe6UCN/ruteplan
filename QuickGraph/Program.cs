@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using QuickGraph.Algorithms.ShortestPath;
 using GLib;
+using QuickGraph.Algorithms.Observers;
 
 namespace QuickGraphExampleFuntime
 {
@@ -21,6 +22,10 @@ namespace QuickGraphExampleFuntime
         public double DistanceTo(Point p2)
         {
             return Math.Pow(Math.Pow(p2.X - X, 2) + Math.Pow(p2.Y - Y, 2), 0.5);
+        }
+
+        public override String ToString() {
+            return String.Format("({0},{1})", X, Y);
         }
     }
 
@@ -54,8 +59,6 @@ namespace QuickGraphExampleFuntime
                 new Point(0, 3)
             };
 
-            graph.AddVertexRange(vertexs);
-
             List<Edge<Point, double>> edges = new List<Edge<Point, double>>()
             {
                 new Edge<Point, double>(vertexs[0], vertexs[1], vertexs[0].DistanceTo(vertexs[1])),
@@ -70,11 +73,24 @@ namespace QuickGraphExampleFuntime
                 new Edge<Point, double>(vertexs[0], vertexs[3], vertexs[0].DistanceTo(vertexs[3]))
             };
 
-            graph.AddEdgeRange(edges);
+            graph.AddVerticesAndEdgeRange(edges);
 
+            // creating the algorithm instance
             var dijkstra = new DijkstraShortestPathAlgorithm<Point, Edge<Point, double>>(graph, e => e.Weight);
-            dijkstra.Compute(vertexs[1]);
-            Console.WriteLine("result is : " + dijkstra.Distances[vertexs[3]]);
+
+            var source = vertexs[1];
+            var target = vertexs[3];
+
+            dijkstra.Compute(source);
+            var test = dijkstra.Distances[target];
+            Console.WriteLine("result is : " + test);
+
+            // Gets a IEnumerable with the edge(s) for the path
+            TryFunc<Point, IEnumerable<Edge<Point, double>>> tryGetPaths = graph.ShortestPathsDijkstra(e => e.Weight, source);
+            IEnumerable<Edge<Point, double>> path;
+            if (tryGetPaths(target, out path))
+                foreach (var edge in path)
+                    Console.WriteLine("From {0} To {1} Distance is {2}", edge.Source, edge.Target, edge.Weight);
         }
     }
 }
