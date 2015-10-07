@@ -8,7 +8,7 @@ using System.Data;
 
 namespace Server.Database
 {
-    class DBDefaultRoute
+    public class DBDefaultRoute
     {
         private DBConnection DbConnection { get; private set; }
         private static DBDefaultRoute instance; 

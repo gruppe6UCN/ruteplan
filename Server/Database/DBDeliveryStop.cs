@@ -8,7 +8,7 @@ using System.Data;
 
 namespace Server.Database
 {
-    class DBDeliveryStop
+    public class DBDeliveryStop
     {
         private DBConnection DbConnection { get; private set; }
         private static DBDeliveryStop instance; 

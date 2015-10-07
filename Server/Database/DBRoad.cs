@@ -6,29 +6,28 @@ using System.Threading.Tasks;
 using Model;
 using System.Data;
 
-
 namespace Server.Database
 {
-    public class DBGeoLoc
+    public class DBRoad
     {
         private DBConnection DbConnection { get; private set; }
-        private static DBGeoLoc instance;
+        private static DBRoad instance;
 
         /// private constructor for singelton     
-        private DBGeoLoc()
+        private DBRoad()
         {
             DbConnection = DBConnection.Instance;
         }
 
         /// singelton get instance method 
         /// returns the instance from DB 
-        public static DBGeoLoc Instance
+        public static DBRoad Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new DBGeoLoc();
+                    instance = new DBRoad();
                 }
 
                 return instance;
@@ -37,33 +36,33 @@ namespace Server.Database
         }
 
         /// <summary>
-        /// Returns a list of all GeoLocs.
+        /// Returns a list of all Roads.
         /// </summary>
         /// <param name="defaultDeliveryStopID"></param>
         /// <returns></returns>
-        public GeoLoc getGeoLoc(long defaultDeliveryStopID)
+        public List<Road> getRoads()
         {
-            List<GeoLoc> list;
-            String sql = String.Format("select * from GeoLoc where id = {0}",
-                    defaultDeliveryStopID);
-            list = DbConnection.SendSQL<GeoLoc>(sql, ConvertToGeoLoc);
-            return list[0];
+            List<Road> list;
+            String sql = "select * from Road";
+            list = DbConnection.SendSQL<Road>(sql, ConvertToRoad);
+            return list;
         }
 
 
         /// <summary>
-        /// Takes the ReulstSet from database and returns a list of all GeoLocs.
+        /// Takes the ReulstSet from database and returns a list of all Roads.
         /// </summary>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public List<GeoLoc> ConvertToGeoLoc(IDataReader dataSet) 
+        public List<Road> ConvertToRoad(IDataReader dataSet) 
         {
-            List<GeoLoc> tableList = new List<GeoLoc>();
+            List<Road> tableList = new List<Road>();
             while (dataSet.Read()) {
-                tableList.Add(new GeoLoc(
+                tableList.Add(new Road(
                     dataSet.GetInt64(0),
-                    dataSet.GetDouble(1),
-                    dataSet.GetDouble(2)
+                    dataSet.GetInt64(1),
+                    dataSet.GetDouble(2),
+                    dataSet.GetDateTime(3)
                 ));
             }
             
