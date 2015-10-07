@@ -8,7 +8,7 @@ namespace Model
 {
     public class DeliveryStop
     {
-        public long ID { get; private set; }
+        public ulong ID { get; private set; }
         public DefaultDeliveryStop DefaultStop { get; private set; }
         public List<TransportUnit> TransportUnits { get; private set; }
 

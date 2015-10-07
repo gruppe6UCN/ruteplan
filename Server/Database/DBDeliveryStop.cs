@@ -35,14 +35,17 @@ namespace Server.Database
         }
 
         /// Returns the id for deliveryStop.
-        public ulong store(long routeID, DeliveryStop deliveryStop)
+        public ulong store(ulong routeID, DeliveryStop deliveryStop)
         {
-            String sql = String.Format("INSERT into DeliveryStop values(%d, %d);",
+            String sql = String.Format("INSERT into DeliveryStop values({0}, {1});",
                     routeID,
                     deliveryStop.DefaultStop.ID);
 
             return DbConnection.SendInsertSQL(sql);
         }
+
+
+      
     }
 }
 
