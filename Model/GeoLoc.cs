@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 
 namespace Model
 {
-    public class GeoLoc : ISerializable
+    public class GeoLoc // : ISerializable
     {
         public long ID { set; private get; }
         public Point location { set; private get; }
