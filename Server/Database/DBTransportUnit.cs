@@ -42,7 +42,7 @@ namespace Server.Database
         /// <returns></returns>
         public List<TransportUnit> getTransportUnits(List<long> IDs)
         {
-            List<TransportUnit> list = new List<TransportUnit>;
+            List<TransportUnit> list = new List<TransportUnit>();
 
             foreach (long id in IDs) 
             {
