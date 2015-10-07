@@ -9,7 +9,7 @@ namespace Model
     public class Route
     {
 
-        public long ID { get; private set; }
+        public ulong ID { get; set; }
         public DefaultRoute DefaultRoute { get; private set; }
         public List<DeliveryStop> Stops { get; private set; }
         public DateTime TimeForDeparture { get; private set; }

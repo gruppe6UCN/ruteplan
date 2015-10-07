@@ -45,6 +45,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\DBDefaultDeliveryStop.cs" />
+    <Compile Include="Database\DBDefaultRoute.cs" />
+    <Compile Include="Database\DBDeliveryStop.cs" />
+    <Compile Include="Database\DBGeoLoc.cs" />
+    <Compile Include="Database\DBRoute.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Database\DBConnection.cs" />
