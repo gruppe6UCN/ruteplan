@@ -16,7 +16,7 @@ namespace Server.Database
 
     public class DBDefaultDeliveryStop
     {
-        public DBConnection DbConnection { get; private set; }
+        public DBConnection DbConnection { get; set; }
         private static DBDefaultDeliveryStop instance; 
 
         /// <summary >

@@ -10,7 +10,7 @@ namespace Server.Database
 {
     public class DBDeliveryStop
     {
-        private DBConnection DbConnection { get; private set; }
+        private DBConnection DbConnection { get; set; }
         private static DBDeliveryStop instance; 
 
         /// private constructor for singelton

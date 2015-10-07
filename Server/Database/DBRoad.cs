@@ -10,7 +10,7 @@ namespace Server.Database
 {
     public class DBRoad
     {
-        private DBConnection DbConnection { get; private set; }
+        private DBConnection DbConnection { get; set; }
         private static DBRoad instance;
 
         /// private constructor for singelton     
