@@ -10,7 +10,7 @@ namespace Server.Database
 {
     public class DBTransportUnit
     {
-        private DBConnection DbConnection { get; private set; }
+        public DBConnection DbConnection { get; private set; }
         private static DBTransportUnit instance;
 
         /// private constructor for singelton     

@@ -10,7 +10,7 @@ namespace Server.Database
 {
     public class DBRoute
     {
-        private DBConnection DbConnection { get; private set; }
+        public DBConnection DbConnection { get; private set; }
         private static DBRoute instance; 
 
         /// private constructor for singelton     
@@ -44,7 +44,7 @@ namespace Server.Database
                     route.DefaultRoute.ID,
                     String.Format("{0}:{1}:{2}", time.Hour, time.Minute, time.Second),
                     String.Format("{0}-{1}-{2}", date.Year, date.Month, date.Day));
-            ulong routeID = DbConnection.SendInsertSQL(sql);
+            long routeID = DbConnection.SendInsertSQL(sql);
             route.ID = routeID;
         }
     }

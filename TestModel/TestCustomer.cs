@@ -13,7 +13,7 @@ namespace TestModel
          [SetUp()]
          public void SetUp()
          {
-             this.c = new Customer(10, "Rejegade", "5", 9080,"Aalborg", new DateTime(12));
+             this.c = new Customer(10, "Rejegade", "5", 9080,"Aalborg", new TimeSpan(0,0,12));
          }
 
          //Test for Customer ID
@@ -51,7 +51,7 @@ namespace TestModel
          [Test()]
          public void TestTimeOfDelivery()
          {
-             Assert.AreEqual(c.TimeOfDelivery, 12);
+             Assert.AreEqual(c.TimeOfDelivery.Seconds, 12);
          }
         
 

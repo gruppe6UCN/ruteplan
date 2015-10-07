@@ -10,7 +10,7 @@ namespace Server.Database
 {
     public class DBDeliveryStop
     {
-        private DBConnection DbConnection { get; private set; }
+        public DBConnection DbConnection { get; private set; }
         private static DBDeliveryStop instance; 
 
         /// private constructor for singelton
@@ -35,7 +35,7 @@ namespace Server.Database
         }
 
         /// Returns the id for deliveryStop.
-        public ulong store(ulong routeID, DeliveryStop deliveryStop)
+        public long store(long routeID, DeliveryStop deliveryStop)
         {
             String sql = String.Format("INSERT into DeliveryStop values({0}, {1});",
                     routeID,

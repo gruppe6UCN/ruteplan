@@ -10,12 +10,12 @@ namespace Model
     public class GeoLoc // : ISerializable
     {
         public long ID { set; private get; }
-        public Point location { set; private get; }
+        public Point Location { set; private get; }
 
         public GeoLoc(long id, double latitude, double longitude)
         {
             this.ID = id;
-            this.location = new Point(latitude, longitude);
+            this.Location = new Point(latitude, longitude);
         }
 
     }

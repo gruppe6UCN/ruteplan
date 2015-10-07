@@ -10,7 +10,7 @@ namespace Server.Database
 {
     public class DBDefaultRoute
     {
-        private DBConnection DbConnection { get; private set; }
+        public DBConnection DbConnection { get; private set; }
         private static DBDefaultRoute instance; 
 
         /// private constructor for singelton     
@@ -56,6 +56,7 @@ namespace Server.Database
                     dataSet.GetInt64(0),
                     dataSet.GetDouble(1),
                     dataSet.GetBoolean(2)
+
                 ));
             }
             return tableList;
@@ -71,7 +72,7 @@ namespace Server.Database
                     defaultRoute.TrailerType,
                     // inline if statement: if true return 1 else return 0
                     defaultRoute.isExtraRoute() ? 1 : 0);
-            ulong defaultRouteID = DbConnection.SendInsertSQL(sql);
+            long defaultRouteID = DbConnection.SendInsertSQL(sql);
             defaultRoute.ID = defaultRouteID;
         }
     }

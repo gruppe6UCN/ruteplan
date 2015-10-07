@@ -8,11 +8,11 @@ namespace Model
 {
     public class DefaultRoute
     {
-        public ulong ID { get; set; }
+        public long ID { get; set; }
         public double TrailerType { get; private set; }
         public Boolean ExtraRoute { get; private set; }
 
-        public DefaultRoute(ulong id, double trailerType, Boolean extraRoute)
+        public DefaultRoute(long id, double trailerType, Boolean extraRoute)
         {
             this.ID = id;
             this.TrailerType = trailerType;

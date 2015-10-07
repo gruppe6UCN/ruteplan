@@ -67,11 +67,11 @@ namespace Server
         /// </summary>
         /// <returns>The the id for the added data</returns>
         /// <param name="sql">Sql command</param>
-        public ulong SendInsertSQL(String sql) {
+        public long SendInsertSQL(String sql) {
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = connection;
             cmd.Transaction = transaction;
-            ulong r = 0;
+            long r = 0;
 
             cmd.CommandText = sql;
             cmd.ExecuteNonQuery();
@@ -79,7 +79,7 @@ namespace Server
             Object obj = cmd.ExecuteScalar();
 
             if (obj is ulong)
-                r = (ulong) obj;
+                r = Convert.ToInt64(obj);
 
             transaction.Commit();
             return r; // Returns the ID for the new Row
