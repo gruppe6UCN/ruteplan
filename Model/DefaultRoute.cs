@@ -12,7 +12,7 @@ namespace Model
         public double TrailerType { get; private set; }
         public Boolean ExtraRoute { get; private set; }
 
-        public DefaultRoute(long id, double trailerType, Boolean extraRoute)
+        public DefaultRoute(ulong id, double trailerType, Boolean extraRoute)
         {
             this.ID = id;
             this.TrailerType = trailerType;
