@@ -36,7 +36,6 @@ namespace Server.Database
         }
 
         /// Stores all routes in the database.
-        /// @param route list of all routes to store.
         public void storeRoute(Route route)
         {
             DateTime time = route.TimeForDeparture;
