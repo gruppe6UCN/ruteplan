@@ -16,7 +16,7 @@ namespace Server.Database
 
     class DBDefaultDeliveryStop
     {
-        private DBConnection DbConnection { get; private set; }
+        public DBConnection DbConnection { get; private set; }
         private static DBDefaultDeliveryStop instance; 
 
         /// <summary >
@@ -65,20 +65,19 @@ namespace Server.Database
          */
         private List<DefaultDeliveryStop> ConvertTotDefaultDeliveryStop(IDataReader dataSet)
         {
-           List<DefaultDeliveryStop> tableList = new List<DefaultDeliveryStop>();
-            try
+        List<DefaultDeliveryStop> tableList = new List<DefaultDeliveryStop>();
+            while (dataSet.Read())
             {
-                while (dataSet.Read())
-                {
-                    tableList.Add(
-                            new DefaultDeliveryStop(
-                                    dataSet.GetInt64(0),
-                                    dataSet.GetInt64(1)
-                            ));
-                }
+                tableList.Add(
+                        new DefaultDeliveryStop(
+                                dataSet.GetInt64(0),
+                                dataSet.GetInt64(1)
+                        ));
             }
+            
             return tableList;
         }
+
     }
 }
 
