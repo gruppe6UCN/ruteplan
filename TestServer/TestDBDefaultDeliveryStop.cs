@@ -44,7 +44,6 @@ namespace TestServer
             DBConnection.Instance.Disconnect();
         }
 
-
         [Test()]
         public void TestGetDefaultDeliveryStop()
         {
@@ -56,15 +55,11 @@ namespace TestServer
             Assert.AreEqual(stops[1].GeoLocID, 84);
         }
 
-
         [Test()]
         public void TestGetDefaultDeliveryStop_IsEmpty()
         {
             List<DefaultDeliveryStop> stops = instance.GetDefaultDeliveryStops(0);
             Assert.IsEmpty(stops);
         }
-
-
     }
-
 }
