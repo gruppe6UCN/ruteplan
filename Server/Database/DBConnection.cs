@@ -118,6 +118,7 @@ namespace Server
             IDataReader dbData = cmd.ExecuteReader();
 
             List<T> r = sqlToObject(dbData);
+            dbData.Close();
             return r;
         }
     }
