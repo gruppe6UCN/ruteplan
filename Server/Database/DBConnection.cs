@@ -3,6 +3,8 @@ using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using System.Data;
 
+// TODO: Overvej om der skal bruges 'ConnectionLess'
+
 namespace Server
 {
     public class DBConnection
