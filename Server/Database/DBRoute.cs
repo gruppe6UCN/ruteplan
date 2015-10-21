@@ -77,7 +77,6 @@ namespace Server.Database
             return list;
         }
 
-
         // Converts database string to a model class.
         private List<TmpRoute> ConvertToRoute(IDataReader dataSet)
         {
