@@ -66,6 +66,7 @@
     <Compile Include="TestDBDefaultDeliveryStop.cs" />
     <Compile Include="TestDBConnection.cs" />
     <Compile Include="TestDBCustomer.cs" />
+    <Compile Include="TestDBDeliveryStop.cs" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

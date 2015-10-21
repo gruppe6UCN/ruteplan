@@ -11,16 +11,16 @@ using Model;
 
 namespace TestServer
 {
-    class TestDBDefaultRoute
+    [TestFixture()]
+    class TestDBDeliveryStop
     {
-        DBDefaultRoute instance;
+        DBDeliveryStop instance;
         String user;
         String pass;
 
         [TestFixtureSetUp()]
         public void ClassSetUp()
         {
-
             try
             {
                 user = File.ReadAllText("Config/user.txt");
@@ -35,7 +35,7 @@ namespace TestServer
 
             DBConnection.Instance.Connect();
 
-            instance = DBDefaultRoute.Instance;
+            instance = DBDeliveryStop.Instance;
         }
 
         [TestFixtureTearDown()]
@@ -45,28 +45,24 @@ namespace TestServer
         }
 
         [Test()]
-        public void TestDefaultRoutes()
+        public void TestStoreDeliveryStop()
         {
-            List<DefaultRoute> routes = instance.DefaultRoutes();
-            Assert.IsNotEmpty(routes);
+            
+            
+            
+            
+            
+            DateTime time = new DateTime();
+            DefaultRoute defaultRoute = new DefaultRoute(TrailerType.STOR, true);
+            Route route = new Route(defaultRoute, time);
+            DefaultDeliveryStop defaultStop = new DefaultDeliveryStop(84, 628);
+            DeliveryStop stop = new DeliveryStop(defaultStop);
+            instance.StoreDeliveryStop(route.ID, stop);
+            
+            
 
-            DefaultRoute route = null;
-            try
-            {
-                route = routes.First(r =>
-                {
-                    return (r.ID == 84 && r.TrailerType == TrailerType.STOR && r.ExtraRoute == false);
-                });
-            }
-            catch (InvalidOperationException e) { }
-            Assert.IsNotNull(route);
-        }
 
-        [Test()]
-        public void TestDefaultRoutes_isNotEmpty()
-        {
-            List<DefaultRoute> routes = instance.DefaultRoutes();
-            Assert.IsNotEmpty(routes);
+            Assert.
         }
     }
 }

@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="CustomerController.cs" />
     <Compile Include="DefaultDeliveryStopController.cs" />
+    <Compile Include="DefaultRouteController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
