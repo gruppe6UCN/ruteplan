@@ -71,7 +71,8 @@ namespace Server.Database
                 {
                     if (tmpStop.IDDefaultStop == s.ID)
                     {
-                        DeliveryStop stop = new DeliveryStop(tmpStop.ID, s);
+                        DeliveryStop stop = new DeliveryStop(s);
+                        stop.ID = tmpStop.ID;
                         list.Add(stop);
                     }
                 }

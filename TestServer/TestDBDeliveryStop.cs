@@ -14,6 +14,7 @@ namespace TestServer
     [TestFixture()]
     class TestDBDeliveryStop
     {
+        DBDefaultDeliveryStop instanceDefault;
         DBDeliveryStop instance;
         String user;
         String pass;
@@ -35,6 +36,7 @@ namespace TestServer
 
             DBConnection.Instance.Connect();
 
+            instanceDefault = DBDefaultDeliveryStop.Instance;
             instance = DBDeliveryStop.Instance;
         }
 
@@ -47,22 +49,26 @@ namespace TestServer
         [Test()]
         public void TestStoreDeliveryStop()
         {
-            
-            
-            
-            
-            
-            DateTime time = new DateTime();
-            DefaultRoute defaultRoute = new DefaultRoute(TrailerType.STOR, true);
-            Route route = new Route(defaultRoute, time);
-            DefaultDeliveryStop defaultStop = new DefaultDeliveryStop(84, 628);
-            DeliveryStop stop = new DeliveryStop(defaultStop);
-            instance.StoreDeliveryStop(route.ID, stop);
-            
-            
+            //Gets Default Stops
+            List<DefaultDeliveryStop> listDefault = instanceDefault.GetDefaultDeliveryStops(84);
+            Assert.IsNotEmpty(listDefault);
 
+            //Creates & Stores Stop.
+            DeliveryStop stop = new DeliveryStop(listDefault[0]);
+            long idTest = instance.StoreDeliveryStop(8, stop);
 
-            Assert.
+            //Checks if stored.
+            List<DeliveryStop> list = instance.GetDeliveryStops(listDefault);
+            DeliveryStop stopTest = null;
+            try
+            {
+                stopTest = list.First(r =>
+                {
+                    return (r.ID == idTest);
+                });
+            }
+            catch (InvalidOperationException e) { }
+            Assert.IsNotNull(stopTest);
         }
     }
 }
