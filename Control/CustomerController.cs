@@ -10,7 +10,7 @@ namespace Control
 {
     class CustomerController
     {
-        private DBCustomer DbCustomer { set; get; }
+        public DBCustomer DbCustomer { get; private set; }
         private static CustomerController instance;
 
         /**
