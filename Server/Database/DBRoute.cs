@@ -36,7 +36,7 @@ namespace Server.Database
         }
 
         /// Stores all routes in the database.
-        public void storeRoute(Route route)
+        public long storeRoute(Route route)
         {
             DateTime time = route.TimeForDeparture;
             DateTime date = route.DateForDeparture;
@@ -46,6 +46,7 @@ namespace Server.Database
                     String.Format("{0}-{1}-{2}", date.Year, date.Month, date.Day));
             long routeID = DbConnection.SendInsertSQL(sql);
             route.ID = routeID;
+            return routeID;
         }
     }
 }

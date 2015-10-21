@@ -15,13 +15,12 @@ namespace Model
         public DateTime TimeForDeparture { get; private set; }
         public DateTime DateForDeparture { get; private set; }
 
-        public Route(DefaultRoute DefaultRoute, DateTime Date)
+        public Route(DefaultRoute DefaultRoute, DateTime Date, DateTime time)
         {
             this.DefaultRoute = DefaultRoute;
             this.DateForDeparture = Date;
+            this.TimeForDeparture = time;
             this.Stops = new List<DeliveryStop>();
-
-            //Automatize dem other variables here later...
         }
 
         /**
