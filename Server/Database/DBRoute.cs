@@ -23,7 +23,6 @@ namespace Server.Database
                 this.DefaultRouteID = DefaultRouteID;
                 this.DateForDeparture = Date;
                 this.TimeForDeparture = time;
-                this.Stops = new List<DeliveryStop>();
             }
         }
         
@@ -85,9 +84,9 @@ namespace Server.Database
             {
                 tableList.Add(new TmpRoute(
 
-                    dataSet.GetInt64(0),
-                    dataSet.GetDateTime(1),
-                    dataSet.GetDateTime(2)
+                    dataSet.GetInt64(1),
+                    dataSet.GetDateTime(2),
+                    dataSet.GetDateTime(3)
                     ));
             }
 
