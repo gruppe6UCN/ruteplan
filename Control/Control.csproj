@@ -40,7 +40,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomerController.cs" />
+    <Compile Include="DefaultDeliveryStopController.cs" />
+    <Compile Include="DefaultRouteController.cs" />
+    <Compile Include="DeliveryStopController.cs" />
+    <Compile Include="ExportController.cs" />
+    <Compile Include="ImportController.cs" />
+    <Compile Include="LogController.cs" />
+    <Compile Include="MapController.cs" />
+    <Compile Include="OptimizeController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RouteController.cs" />
+    <Compile Include="TransportUnitController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
