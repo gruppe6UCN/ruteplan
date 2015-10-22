@@ -17,7 +17,7 @@ namespace Server
         public String DB { get; set; }
         public String User { get; set; }
         public String Pass { get; set; }
-        private const String connectionString = "SERVER={0};DATABASE={1};UID={2};PASSWORD={3};";
+        private const String connectionString = "SERVER={0};DATABASE={1};UID={2};PASSWORD={3};Convert Zero Datetime=True;";
 
         public bool IsConnected { get {return connection.State == ConnectionState.Open; } }
 

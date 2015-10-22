@@ -18,8 +18,9 @@ namespace Server.Database
             public DateTime TimeForDeparture { get; private set; }
             public DateTime DateForDeparture { get; private set; }
 
-            public TmpRoute(long DefaultRouteID, DateTime Date, DateTime time)
+            public TmpRoute(long id, long DefaultRouteID, DateTime time, DateTime Date)
             {
+                this.ID = id;
                 this.DefaultRouteID = DefaultRouteID;
                 this.DateForDeparture = Date;
                 this.TimeForDeparture = time;
@@ -83,7 +84,7 @@ namespace Server.Database
             while (dataSet.Read())
             {
                 tableList.Add(new TmpRoute(
-
+                    dataSet.GetInt64(0),
                     dataSet.GetInt64(1),
                     dataSet.GetDateTime(2),
                     dataSet.GetDateTime(3)
