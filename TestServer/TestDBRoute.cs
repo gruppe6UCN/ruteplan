@@ -56,8 +56,9 @@ namespace TestServer
             Assert.IsNotEmpty(defaultRoutes);
 
             //Creates a route.
-            DateTime date = new DateTime(1995, 01, 28, 12, 3, 4);
-            Route route = new Route(defaultRoutes[0], date);
+            DateTime date = new DateTime(1995, 01, 28);
+            DateTime time = new DateTime(date.Year, date.Month, date.Day, 12, 3, 4);
+            Route route = new Route(defaultRoutes[0], date, time);
 
             //Stores route.
             long routeID = instance.storeRoute(route);

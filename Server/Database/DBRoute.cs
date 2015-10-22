@@ -100,10 +100,16 @@ namespace Server.Database
         {
             DateTime time = route.TimeForDeparture;
             DateTime date = route.DateForDeparture;
+            string sql = string.Format("INSERT into Route (default_route_id, time_for_departure, date_for_departure) values({0}, '{1}', '{2}');",
+                route.DefaultRoute.ID,
+                String.Format("{0}:{1}:{2}", time.Hour, time.Minute, time.Second),
+                String.Format("{0}-{1}-{2}", date.Year, date.Month, date.Day));
+            /*
             String sql = String.Format("INSERT into Route values({0}, '{1}', '{2}');",
                     route.DefaultRoute.ID,
                     String.Format("{0}:{1}:{2}", time.Hour, time.Minute, time.Second),
                     String.Format("{0}-{1}-{2}", date.Year, date.Month, date.Day));
+            */
             long routeID = DbConnection.SendInsertSQL(sql);
             route.ID = routeID;
             return routeID;

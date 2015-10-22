@@ -37,7 +37,7 @@ namespace Server.Database
         }
 
         /// <summary>
-        /// Returns a list of all GeoLocs.
+        /// Returns a geoLoc...
         /// </summary>
         /// <param name="defaultDeliveryStopID"></param>
         /// <returns></returns>
