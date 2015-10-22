@@ -67,6 +67,7 @@
     <Compile Include="TestDBConnection.cs" />
     <Compile Include="TestDBCustomer.cs" />
     <Compile Include="TestDBDeliveryStop.cs" />
+    <Compile Include="TestDBTransportUnit.cs" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
