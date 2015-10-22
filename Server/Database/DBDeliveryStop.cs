@@ -49,11 +49,13 @@ namespace Server.Database
         /// Returns the id for deliveryStop.
         public long StoreDeliveryStop(long routeID, DeliveryStop deliveryStop)
         {
-            String sql = String.Format("INSERT into DeliveryStop values({0}, {1});",
+            String sql = String.Format("INSERT into DeliveryStop (route_id, default_delivery_stop_id) values({0}, {1});",
                     routeID,
                     deliveryStop.DefaultStop.ID);
 
-            return DbConnection.SendInsertSQL(sql);
+            long stopID = DbConnection.SendInsertSQL(sql);
+            deliveryStop.ID = stopID;
+            return stopID;
         }
 
         //Returns a list of all delivery stops.
