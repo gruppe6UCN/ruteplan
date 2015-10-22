@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Control
 {
-    class OptimizeController
+    public class OptimizeController
     {
     }
 }

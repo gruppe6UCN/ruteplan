@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Control
 {
-    class LogController
+    public class LogController
     {
     }
 }

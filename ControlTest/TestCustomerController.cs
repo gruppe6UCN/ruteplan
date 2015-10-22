@@ -20,5 +20,11 @@ namespace ControlTest
             this.cc = new CustomerController(); 
         }
 
+        [Test()]
+        public void TestXXXXX()
+        {
+
+        }
+
     }
 }

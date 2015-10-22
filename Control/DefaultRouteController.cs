@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Control
 {
-    class DefaultRouteController
+    public class DefaultRouteController
     {
     }
 }
