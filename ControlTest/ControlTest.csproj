@@ -46,6 +46,10 @@
     <Compile Include="TestExportController.cs" />
     <Compile Include="TestImportController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestLogController.cs" />
+    <Compile Include="TestMapController.cs" />
+    <Compile Include="TestOptimizeController.cs" />
+    <Compile Include="TestRouteController.cs" />
     <Compile Include="TestTransportUnitController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
