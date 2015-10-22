@@ -68,6 +68,7 @@
     <Compile Include="TestDBCustomer.cs" />
     <Compile Include="TestDBDeliveryStop.cs" />
     <Compile Include="TestDBGeoLoc.cs" />
+    <Compile Include="TestDBRoad.cs" />
     <Compile Include="TestDBRoute.cs" />
     <Compile Include="TestDBTransportUnit.cs" />
   </ItemGroup>
