@@ -8,7 +8,7 @@ using Server.Database;
 
 namespace Control
 {
-    class DefaultDeliveryStopController
+    public class DefaultDeliveryStopController
     {
         public DBDefaultDeliveryStop DbDefaultDeliveryStop { get; private set; }
         public CustomerController CustomerCtr { get; private set; }

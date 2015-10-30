@@ -6,7 +6,7 @@
 
 //namespace Control
 //{
-//    class DefaultRouteController
+//    public class DefaultRouteController
 //    {
 //        private DBDefaultRoute dbDefaultRoute;
 //        private static DefaultRouteController instance;

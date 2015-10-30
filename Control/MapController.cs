@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Control
 {
-    public class Class1
+    public class MapController
     {
     }
 }

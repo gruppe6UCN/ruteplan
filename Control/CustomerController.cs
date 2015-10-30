@@ -8,7 +8,7 @@ using Model;
 
 namespace Control
 {
-    class CustomerController
+    public class CustomerController
     {
         public DBCustomer DbCustomer { get; private set; }
         private static CustomerController instance;
