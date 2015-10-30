@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Model;
+using Server;
 
 namespace Control
 {
@@ -40,9 +42,9 @@ namespace Control
         /// Adds customers to the given default delivery stop.
         /// </summary>
         /// <param name="defaultStop"></param>
-        public void AddCustomers(DefaultDeliveryStop defaultStop)
+        public void AddCustomers(DefaultDeliveryStop DefaultStop)
         {
-            defaultStop.Customers = (DbCustomer.GetCustomers(defaultStop.ID));
+            DefaultStop.Customers = (DbCustomer.GetCustomers(DefaultStop.ID));
         }
     }
 }
