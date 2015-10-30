@@ -1,143 +1,83 @@
-﻿using System;
+﻿using Model;
+using Server.Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GMap;
 
 namespace Control
 {
     public class MapController
     {
-         private static MapController instance;
-    private static LogController log = LogController.getInstance();
-    private DBGeoLoc dbGeoLoc;
-    private DBRoad dbRoad;
+        private static MapController instance;
 
-    private HashMap<Long, GeoLoc> geoLocs = new HashMap<>();
-    private ArrayList<Edge> edges = new ArrayList<>();
-    private ListenableDirectedWeightedGraph<GeoLoc, Edge> map;
+        private DBGeoLoc dbGeoLoc;
+        private DBRoad dbRoad;
 
-    /**
-     * Private constructor for singleton.
-     *
-     * @throws SQLException
-     * @throws ClassNotFoundException
-     */
-    private MapController() {
-        try {
-            dbGeoLoc = DBGeoLoc.getInstance();
-        } catch (ClassNotFoundException | SQLException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        }
-        try {
-            dbRoad = DBRoad.getInstance();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+        private Dictionary<long, GeoLoc> geoLocs = new Dictionary<long, GeoLoc>();
+        private List<Road> edges = new List<Road>();
 
-    /**
-     * Singleton method for class.
-     *
-     * @return instance of class.
-     */
-    public static MapController getInstance() {
-        if (instance == null) {
-            instance = new MapController();
+        private GMap.NET.GMaps gMap;
+        public GMap.NET.MapProviders.GMapProvider MapProvider { get { return GMap.NET.MapProviders.OpenStreetMapProvider.Instance; } }
+
+        public static MapController Instance {
+            get { 
+                if (instance == null)
+                    instance = new MapController();
+                return instance;
+            }
         }
 
-        return instance;
-    }
+        private MapController() {
+            dbGeoLoc = DBGeoLoc.Instance;
+            dbRoad = DBRoad.Instance;
+            gMap = GMap.NET.GMaps.Instance;
+        }
 
-    /**
-     * Loads map pre generated map if it exist.
-     * If not existing created it.
-     * This is much faster.
-     */
-    public void loadPreGeneratedMap() {
-        // TODO: Remove this code
-        String file = "map.obj";
-        if (new File(file).exists()) {
-            ArrayList<Object> backup = null;
-            FileInputStream fout = null;
-            ObjectInputStream oos = null;
-            try {
-                fout = new FileInputStream(file);
-                oos = new ObjectInputStream(fout);
-                backup = (ArrayList<Object>) oos.readObject();
-            } catch (java.io.IOException | ClassNotFoundException e) {
-                try {
-                    Files.deleteIfExists(Paths.get(file));
-                } catch (IOException e1) {
-                    e1.printStackTrace();
+        /**
+         * Loads map pre generated map if it exist.
+         * If not existing created it.
+         * This is much faster.
+         */
+        public void LoadPreGeneratedMap() {
+            // remove old data, if there was any
+            edges.Clear();
+            geoLocs.Clear();
+            GenerateMap();
+        }
+
+
+        /**
+         * Generate map from the database.
+         * This takes time.
+         */
+        public void GenerateMap() {
+            
+
+            ArrayList<Road> roads = dbRoad.getRoads();
+
+            roads.forEach(road -> {
+                GeoLoc geoLocFrom = dbGeoLoc.getGeoLoc(road.getFrom());
+                GeoLoc geoLocTo = dbGeoLoc.getGeoLoc(road.getTo());
+                if (!geoLocs.containsKey(geoLocFrom.getID())) {
+                    geoLocs.put(geoLocFrom.getID(), geoLocFrom);
+                    map.addVertex(geoLocFrom);
                 }
-                e.printStackTrace();
-            }
-            geoLocs = (HashMap<Long, GeoLoc>) backup.get(0);
-            map = (ListenableDirectedWeightedGraph<GeoLoc, Edge>) backup.get(1);
-            edges = (ArrayList<Edge>) backup.get(2);
-        } else {
+                if (!geoLocs.containsKey(geoLocTo.getID())) {
+                    geoLocs.put(geoLocTo.getID(), geoLocTo);
+                    map.addVertex(geoLocTo);
+                }
 
+                Edge edge = map.addEdge(
+                        geoLocs.get(geoLocFrom.getID()),
+                        geoLocs.get(geoLocTo.getID()));
+                map.setEdgeWeight(edge, road.getDistance());
 
-
-
-            generateMap();
-
-
-
-            // TODO: Remove this code
-            ArrayList<Object> backup = new ArrayList<Object>();
-            backup.add(geoLocs);
-            backup.add(map);
-            backup.add(edges);
-            FileOutputStream fout = null;
-            ObjectOutputStream oos = null;
-            try {
-                fout = new FileOutputStream(file);
-                oos = new ObjectOutputStream(fout);
-                oos.writeObject(backup);
-            } catch (java.io.IOException e) {
-                e.printStackTrace();
-            }
+                edges.add(edge);
+            });
         }
-    }
-
-
-    /**
-     * Generate map from the database.
-     * This takes time.
-     */
-    public void generateMap() {
-        // remove old data, if there was any
-        edges.clear();
-        geoLocs.clear();
-        map = new ListenableDirectedWeightedGraph<>(Edge.class);
-
-        ArrayList<Road> roads = dbRoad.getRoads();
-
-        roads.forEach(road -> {
-            GeoLoc geoLocFrom = dbGeoLoc.getGeoLoc(road.getFrom());
-            GeoLoc geoLocTo = dbGeoLoc.getGeoLoc(road.getTo());
-            if (!geoLocs.containsKey(geoLocFrom.getID())) {
-                geoLocs.put(geoLocFrom.getID(), geoLocFrom);
-                map.addVertex(geoLocFrom);
-            }
-            if (!geoLocs.containsKey(geoLocTo.getID())) {
-                geoLocs.put(geoLocTo.getID(), geoLocTo);
-                map.addVertex(geoLocTo);
-            }
-
-            Edge edge = map.addEdge(
-                    geoLocs.get(geoLocFrom.getID()),
-                    geoLocs.get(geoLocTo.getID()));
-            map.setEdgeWeight(edge, road.getDistance());
-
-            edges.add(edge);
-        });
-    }
 
 
     /**
@@ -171,6 +111,5 @@ namespace Control
 
         //Returns the distance found.
         return length;
-    }
     }
 }
