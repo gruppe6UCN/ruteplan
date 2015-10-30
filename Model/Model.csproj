@@ -35,6 +35,8 @@
     <Compile Include="DefaultDeliveryStop.cs" />
     <Compile Include="DefaultRoute.cs" />
     <Compile Include="DeliveryStop.cs" />
+    <Compile Include="GeoLoc.cs" />
+    <Compile Include="Point.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Road.cs" />
     <Compile Include="Route.cs" />

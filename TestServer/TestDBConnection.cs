@@ -14,7 +14,7 @@ namespace TestServer
         DBConnection instance;
         String user;
         String pass;
-        ulong id;
+        long id;
 
         [TestFixtureSetUp()]
         public void ClassSetUp()
@@ -41,6 +41,22 @@ namespace TestServer
         {
             instance.Disconnect();
         }
+
+        //[Test()]
+        //public void TestInOrder()
+        //{
+        //    Test_01_ForUsernameAndPasswordFiles();
+        //    Test_02_GetInstance();
+        //    Test_03_Connect();
+        //    Test_04_Disconnect();
+        //    Test_05_Connect_ExceptionForHost();
+        //    Test_06_Connect_ExceptionForDB();
+        //    Test_07_Connect_ExceptionForUser();
+        //    Test_08_Connect_ExceptionForP();
+        //    Test_09_SendInsertSQL();
+        //    Test_10_SendUpdateSQL();
+        //    Test_11_SendSQL();
+        //}
 
         [Test()]
         public void Test_01_ForUsernameAndPasswordFiles()
@@ -82,7 +98,7 @@ namespace TestServer
         }
 
         [Test()]
-        [ExpectedException(typeof(NullReferenceException), ExpectedMessage="You need to initialize the accessor 'Host'")]
+        [ExpectedException(typeof(NullReferenceException), ExpectedMessage = "You need to initialize the accessor 'Host'")]
         public void Test_05_Connect_ExceptionForHost()
         {
             instance.Host = null;
@@ -120,7 +136,7 @@ namespace TestServer
         [Test()]
         public void Test_09_SendInsertSQL()
         {
-            id = instance.SendInsertSQL("INSERT into DefaultRoute (trailer_type, extra_route) values('STOR', 0)");
+            id = instance.SendInsertSQL("INSERT into DefaultRoute (trailer_type, extra_route) values(51.0, 0)");
             Assert.Greater(id, 0);
         }
 

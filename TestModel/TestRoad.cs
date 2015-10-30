@@ -36,7 +36,7 @@ namespace TestModel
         [Test()]
         public void TestTime()
         {
-            Assert.AreEqual(ro.Time, 12);
+            Assert.AreEqual(ro.Time.Ticks, 12);
         }
                
         

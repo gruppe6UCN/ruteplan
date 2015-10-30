@@ -1,19 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B5425574-CF10-42E3-A74A-32EFCCD4777D}</ProjectGuid>
+<<<<<<< HEAD
+    <ProjectGuid>{2B05A805-5993-476C-84FE-B0749199B8A5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+=======
+    <ProjectGuid>{CAE6D1B8-C1BD-4BE2-A1E8-9FE450BF1DEF}</ProjectGuid>
     <OutputType>Exe</OutputType>
+>>>>>>> 151de459a69ff4d67a3dd0e24090453b21afcce8
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Server</RootNamespace>
-    <AssemblyName>Server</AssemblyName>
+    <RootNamespace>Control</RootNamespace>
+    <AssemblyName>Control</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+<<<<<<< HEAD
+=======
     <PlatformTarget>AnyCPU</PlatformTarget>
+>>>>>>> 151de459a69ff4d67a3dd0e24090453b21afcce8
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+<<<<<<< HEAD
+=======
     <PlatformTarget>AnyCPU</PlatformTarget>
+>>>>>>> 151de459a69ff4d67a3dd0e24090453b21afcce8
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -39,27 +50,33 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="MySql.Data">
-      <HintPath>..\packages\MySql.Data.6.9.7\lib\net45\MySql.Data.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database\DBDefaultDeliveryStop.cs" />
-    <Compile Include="Database\DBDefaultRoute.cs" />
-    <Compile Include="Database\DBDeliveryStop.cs" />
-    <Compile Include="Database\DBGeoLoc.cs" />
-    <Compile Include="Database\DBRoad.cs" />
-    <Compile Include="Database\DBRoute.cs" />
-    <Compile Include="Database\DBTransportUnit.cs" />
+<<<<<<< HEAD
+    <Compile Include="Class1.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+=======
+    <Compile Include="CustomerController.cs" />
+    <Compile Include="DefaultDeliveryStopController.cs" />
+    <Compile Include="DefaultRouteController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Database\DBConnection.cs" />
-    <Compile Include="Database\DBCustomer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{d2387d10-ffd3-4dd4-8822-dc5f6ed1d93c}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Server\Server.csproj">
+      <Project>{b5425574-cf10-42e3-a74a-32efccd4777d}</Project>
+      <Name>Server</Name>
+    </ProjectReference>
+  </ItemGroup>
+>>>>>>> 151de459a69ff4d67a3dd0e24090453b21afcce8
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -68,11 +85,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup />
-  <ItemGroup>
-    <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{D2387D10-FFD3-4DD4-8822-DC5F6ED1D93C}</Project>
-      <Name>Model</Name>
-    </ProjectReference>
-  </ItemGroup>
 </Project>

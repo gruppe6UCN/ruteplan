@@ -15,8 +15,9 @@ namespace TestModel
         public void SetUp()
         {
             dr = new DefaultRoute(1, false);
-            r = new Route(dr, new DateTime(12));
+            r = new Route(dr, new DateTime(1995, 01, 28), new DateTime(12, 3, 4));
         }
+
         //Test for DefaultRoute
         [Test()]
         public void TestDefaultRoute()
@@ -27,7 +28,8 @@ namespace TestModel
         [Test()]
         public void TestDate()
         {
-            Assert.AreEqual(r.DateForDeparture, 12);
+            DateTime testTime = new DateTime(1995, 01, 28);
+            Assert.AreEqual(r.DateForDeparture.Date, testTime);  
         }
                   
     }

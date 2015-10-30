@@ -8,7 +8,7 @@ namespace Model
 {
     public class DefaultRoute
     {
-        public long ID { get; private set; }
+        public long ID { get; set; }
         public double TrailerType { get; private set; }
         public Boolean ExtraRoute { get; private set; }
 

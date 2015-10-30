@@ -6,7 +6,7 @@ using System.Data;
 namespace Server
 {
     public class DBCustomer {
-        private DBConnection dbConnection;
+        public DBConnection dbConnection { set; get; }
         private static DBCustomer instance;
 
         /// <summary>

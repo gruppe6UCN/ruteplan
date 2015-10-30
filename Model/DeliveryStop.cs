@@ -8,14 +8,13 @@ namespace Model
 {
     public class DeliveryStop
     {
-        public long ID { get; private set; }
+        public long ID { get; set; }
         public DefaultDeliveryStop DefaultStop { get; private set; }
         public List<TransportUnit> TransportUnits { get; private set; }
 
         public DeliveryStop(DefaultDeliveryStop defaultStop)
         {
             this.DefaultStop = defaultStop;
-            //Automatize some variables such as id later m8.
         }
 
         public double getSizeOfTransportUnits()
