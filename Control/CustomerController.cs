@@ -3,13 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-<<<<<<< HEAD
 using Server;
 using Model;
-=======
-using Model;
-using Server;
->>>>>>> 26c83865c6d8fb17e15b0b7508bf0eb54dd46189
 
 namespace Control
 {
