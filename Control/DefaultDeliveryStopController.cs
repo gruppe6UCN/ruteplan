@@ -52,7 +52,7 @@ namespace Control
 
             // foreach DefaultDeliveryStop the customers are added
             //TODO: Make some threads n sheit...
-            foreach (DefaultDeliveryStop stop in stops) 
+            foreach (DefaultDeliveryStop stop in stops)
             {
                 CustomerCtr.AddCustomers(stop);
             }
