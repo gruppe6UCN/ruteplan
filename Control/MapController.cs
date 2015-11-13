@@ -13,11 +13,11 @@ namespace Control
     {
         private static MapController instance;
 
-        private DBGeoLoc dbGeoLoc;
-        private DBRoad dbRoad;
+        private readonly DBGeoLoc dbGeoLoc;
+        private readonly DBRoad dbRoad;
 
-        private Dictionary<long, GeoLoc> geoLocs = new Dictionary<long, GeoLoc>();
-        private List<Road> edges = new List<Road>();
+        private readonly Dictionary<long, GeoLoc> geoLocs = new Dictionary<long, GeoLoc>();
+        private readonly List<Road> edges = new List<Road>();
 
         private GMap.NET.GMaps gMap;
         public GMap.NET.MapProviders.GMapProvider MapProvider { get { return GMap.NET.MapProviders.OpenStreetMapProvider.Instance; } }
@@ -56,27 +56,27 @@ namespace Control
         public void GenerateMap() {
             
 
-            ArrayList<Road> roads = dbRoad.getRoads();
+            //ArrayList<Road> roads = dbRoad.getRoads();
 
-            roads.forEach(road -> {
-                GeoLoc geoLocFrom = dbGeoLoc.getGeoLoc(road.getFrom());
-                GeoLoc geoLocTo = dbGeoLoc.getGeoLoc(road.getTo());
-                if (!geoLocs.containsKey(geoLocFrom.getID())) {
-                    geoLocs.put(geoLocFrom.getID(), geoLocFrom);
-                    map.addVertex(geoLocFrom);
-                }
-                if (!geoLocs.containsKey(geoLocTo.getID())) {
-                    geoLocs.put(geoLocTo.getID(), geoLocTo);
-                    map.addVertex(geoLocTo);
-                }
+            //roads.forEach(road -> {
+            //    GeoLoc geoLocFrom = dbGeoLoc.getGeoLoc(road.getFrom());
+            //    GeoLoc geoLocTo = dbGeoLoc.getGeoLoc(road.getTo());
+            //    if (!geoLocs.containsKey(geoLocFrom.getID())) {
+            //        geoLocs.put(geoLocFrom.getID(), geoLocFrom);
+            //        map.addVertex(geoLocFrom);
+            //    }
+            //    if (!geoLocs.containsKey(geoLocTo.getID())) {
+            //        geoLocs.put(geoLocTo.getID(), geoLocTo);
+            //        map.addVertex(geoLocTo);
+            //    }
 
-                Edge edge = map.addEdge(
-                        geoLocs.get(geoLocFrom.getID()),
-                        geoLocs.get(geoLocTo.getID()));
-                map.setEdgeWeight(edge, road.getDistance());
+            //    Edge edge = map.addEdge(
+            //            geoLocs.get(geoLocFrom.getID()),
+            //            geoLocs.get(geoLocTo.getID()));
+            //    map.setEdgeWeight(edge, road.getDistance());
 
-                edges.add(edge);
-            });
+            //    edges.add(edge);
+            //});
         }
 
 
