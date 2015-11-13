@@ -3,60 +3,53 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Server.Database;
+using Model;
 
 namespace Control
 {
     public class DefaultRouteController
     {
-        private DBDefaultRoute dbDefaultRoute;
+        public DBDefaultRoute DbDefaultRoute { get; private set; }
         private static DefaultRouteController instance;
 
         /**
          * Private constructor for singleton.
-         * @throws SQLException 
-         * @throws ClassNotFoundException
          */
         private DefaultRouteController() {
-        try {
-            dbDefaultRoute = DBDefaultRoute.getInstance();
-        } catch (ClassNotFoundException | SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        DbDefaultRoute = DBDefaultRoute.Instance;
     }
 
         /**
          * Singleton method for class.
          * @return instance of class.
          */
-        public static DefaultRouteController getInstance()
+        public static DefaultRouteController Instance
         {
-            if (instance == null)
+            get
             {
-                instance = new DefaultRouteController();
+                if (instance == null)
+                    instance = new DefaultRouteController();
+                return instance;
             }
-
-            return instance;
         }
 
         /**
          * Gets an ArrayList of all defaultRoutes from the database.
          * @return List of all defaultRoutes.
          */
-        public ArrayList<DefaultRoute> getDefaultRoutes()
+        public List<DefaultRoute> GetDefaultRoutes()
         {
-
             //Gets a list of all defaultRoutes.
-            ArrayList<DefaultRoute> list = dbDefaultRoute.getDefaultRoutes();
+            List<DefaultRoute> list = DbDefaultRoute.DefaultRoutes();
 
             //Returns the list.
             return list;
         }
 
-
         public void store(DefaultRoute defaultRoute)
         {
-            dbDefaultRoute.store(defaultRoute);
+            DbDefaultRoute.store(defaultRoute);
         }
     }
 }

@@ -3,26 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Server.Database;
+using Model;
 
 namespace Control
 {
     public class DeliveryStopController
     {
-        private TransportUnitController transportUnitController;
-        private DBDeliveryStop dbDeliveryStop;
+        private TransportUnitController TransportUnitCtr { get; private set; }
+        private DBDeliveryStop DbDeliveryStop { get; private set; }
         private static DeliveryStopController instance;
 
         /**
          * Private constructor for singleton.
          */
         private DeliveryStopController() {
-        transportUnitController = TransportUnitController.getInstance();
-        try {
-            dbDeliveryStop = DBDeliveryStop.getInstance();
-        } catch (ClassNotFoundException | SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        TransportUnitCtr = TransportUnitController.getInstance();
+        DbDeliveryStop = DBDeliveryStop.Instance;
     }
 
         /**
@@ -30,8 +27,9 @@ namespace Control
          * @param route ArrayList containing all stop from a route stops from.
          */
         public void storeDeliveryStops(Route route) {
+
         route.getStops().parallelStream().forEach((stop) -> { // TODO: make parallelStream
-            long deliveryStopID = dbDeliveryStop.store(route.getID(), stop);
+            long deliveryStopID = DbDeliveryStop.store(route.getID(), stop);
             stop.setID(deliveryStopID);
         });
     }
@@ -40,14 +38,14 @@ namespace Control
          * Singleton method for class.
          * @return instance of class.
          */
-        public static DeliveryStopController getInstance()
+        public static DeliveryStopController Instance
         {
-            if (instance == null)
+            get
             {
-                instance = new DeliveryStopController();
+                if (instance == null)
+                    instance = new DeliveryStopController();
+                return instance;
             }
-
-            return instance;
         }
 
 
@@ -56,14 +54,14 @@ namespace Control
          * @param route route to add deliveryStops to.
          * @param defaultStops ArrayList of defaultDeliveryStops.
          */
-        public void addDeliveryStops(Route route, ArrayList<DefaultDeliveryStop> defaultStops) {
+        public void addDeliveryStops(Route route, List<DefaultDeliveryStop> defaultStops) {
         //for each DefaultDeliveryStop add one DeliveryStop to route
         defaultStops.stream().forEach((defaultStop) -> {
 
             DeliveryStop stop = new DeliveryStop(defaultStop);
 
             //add all TransportUnit for this DeliveryStop
-            transportUnitController.addTransportUnit(stop, stop.getDefaultStop().getCustomers());
+            TransportUnitCtr.addTransportUnit(stop, stop.getDefaultStop().getCustomers());
 
             //Adds deliveryStop to route.
             route.addDeliveryStop(stop);

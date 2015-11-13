@@ -10,35 +10,35 @@ namespace Control
 {
     public class ExportController
     {
-        private RouteController routeController;
-    private static ExportController instance;
+        public RouteController RouteCtr { get; private set; }
+        private static ExportController instance;
     
     /**
      * Private constructor for singleton.
      */
     private ExportController() {
-        routeController = RouteController.getInstance();
+        RouteCtr = RouteController.Instance;
     }
     
     /**
      * Singleton method for class.
      * @return instance of class.
      */
-    public static ExportController getInstance() {
-        if (instance == null) {
-            instance = new ExportController();            
+    public static ExportController Instance { 
+            get { 
+                if (instance == null)
+                    instance = new ExportController();
+                return instance;
+            }
         }
-        
-        return instance;
-    }
     
     /**
      * Exports all routes to database.
      */
     public void exportDatas(Vector rowData) {
-        routeController.exportData();
+        RouteCtr.exportData();
 
-        List<Route> routes = routeController.getRoutes();
+        List<Route> routes = RouteCtr.getRoutes();
 
         routes.forEach(route -> {
             Vector row = new Vector();

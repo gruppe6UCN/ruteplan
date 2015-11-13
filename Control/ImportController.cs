@@ -4,19 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace Control
 {
     public class ImportController
     {
-        private RouteController routeController;
+        public RouteController RouteCtr { get; private set; }
         private static ImportController instance;
 
     /**
      * Private constructor for singleton.
      */
     private ImportController() {
-        RouteController = RouteController.GetInstance();
+        RouteCtr = RouteController.Instance;
     }
 
     /**
@@ -24,18 +23,24 @@ namespace Control
      *
      * @return instance of class.
      */
-    public static ImportController getInstance() {
-        if (instance == null) {
-            instance = new ImportController();
+    public static ImportController Instance { 
+            get { 
+                if (instance == null)
+                    instance = new ImportController();
+                return instance;
+            }
         }
-
-        return instance;
-    }
     
+    public void ImportRoutes()
+    {
+        RouteCtr.importRoutes();
+    }
+
+
     /**
      * Imports all routes from database.
      * @param rowData
-     */
+     *
     public void importRoutes(Vector<Vector> rowData) {
         routeController.importRoutes(LocalDate.now());
 
@@ -48,5 +53,7 @@ namespace Control
             row.addElement(String.format("%.1f / %.1f", route.getLoadForTrailer(), route.getCapacity()));
             rowData.add(row);
         });
+     * 
+     * */
     }
 }

@@ -3,29 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Model;
 
 namespace Control
 {
     public class OptimizeController
     {
-           private RouteController routeController;
-    private MapController mapController;
-    private LogController log;
-    private static OptimizeController instance;
-    private List<DeliveryStop> removedStops;
+        private RouteController RouteCtr;
+        private MapController MapCtr;
+        private LogController LogCtr;
+        private static OptimizeController instance;
+        private List<DeliveryStop> RemovedStops;
 
-    List<Route> overloadedRoutes;
-    List<Route> underloadedRoutes;
+    List<Route> OverloadedRoutes;
+    List<Route> UnderloadedRoutes;
 
     /**
      * Private constructor for singleton.
      */
     private OptimizeController() {
-        routeController = RouteController.getInstance();
-        mapController = MapController.getInstance();
-        log = LogController.getInstance();
+        RouteCtr = RouteController.Instance;
+        MapCtr = MapController.Instance;
+        LogCtr = LogController.Instance;
         // Sync List
-        removedStops = Collections.synchronizedList(new ArrayList<>());
+        RemovedStops = Collections.synchronizedList(new List<>());
     }
 
     /**
@@ -48,7 +49,7 @@ namespace Control
     public void optimize(Vector rowData) {
         optimize();
 
-        List<Route> routes = routeController.getRoutes();
+        List<Route> routes = RouteCtr.getRoutes();
 
         routes.forEach(route -> {
             Vector row = new Vector();
@@ -65,13 +66,13 @@ namespace Control
      * Optimizes all imported routes.
      */
     public void optimize() {
-        log.StatusLog("searching for over- and underloaded");
+        LogCtr.StatusLog("searching for over- and underloaded");
 
         // Declaring an anonymous class which implements the interface Runnable
         Thread preloadRoutes = new Thread(new Runnable() {
             public void run() {
-                overloadedRoutes = routeController.findOverloadedRoutes();
-                underloadedRoutes = routeController.findUnderloadedRoutes();
+                OverloadedRoutes = RouteCtr.findOverloadedRoutes();
+                UnderloadedRoutes = RouteCtr.findUnderloadedRoutes();
             }
         });
         preloadRoutes.start();

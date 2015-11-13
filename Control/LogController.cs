@@ -8,13 +8,17 @@ namespace Control
 {
     public class LogController
     {
-          private static LogController ourInstance = new LogController();
-    private DefaultListModel logReceiver = null;
-    private int maxLogLength = 1000;
+        private static LogController ourInstance = new LogController();
+        // private DefaultListModel logReceiver = null;
+        private int maxLogLength = 1000;
 
-    public static LogController getInstance() {
-        return ourInstance;
-    }
+    public static LogController Instance { 
+            get { 
+                if (instance == null)
+                    instance = new LogController();
+                return instance;
+            }
+        }
 
     private LogController() {
     }
