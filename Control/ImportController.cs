@@ -33,7 +33,7 @@ namespace Control
     
     public void ImportRoutes()
     {
-        RouteCtr.importRoutes();
+        RouteCtr.ImportRoutes(DateTime.Now);
     }
 
 

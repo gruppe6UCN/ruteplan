@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ServiceModel;
 using Server.Database;
 using Model;
 
@@ -17,7 +18,9 @@ namespace Control
     public DBRoute DbRoute { get; private set; }
     
     private static RouteController instance;
-    private List<Route> Routes = new List<Route>();
+    private List<Route> Routes = new List<Route>(); //TODO: Syncrhonizzedd collectfkinzion...
+
+
 
     /**
      * Private constructor for singleton.
@@ -48,15 +51,15 @@ namespace Control
     /**
      * Imports all routes from database.
      */
-    public void importRoutes(LocalDate date) {
+    public void ImportRoutes(DateTime date) {
         
         // Remove old data
-        Routes.clear();
+        Routes.Clear();
 
         // Sync List
         List<DefaultRoute> listDefaultRoutes = Collections.synchronizedList(
                 //Gets a list of all defaultRoutes.
-                DefaultRouteCtr.getDefaultRoutes());
+                DefaultRouteCtr.GetDefaultRoutes());
         LogCtr.StatusLog("Loaded defualt routes");
 
         //create a route for each defaultRoute
