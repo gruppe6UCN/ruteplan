@@ -8,14 +8,14 @@ namespace Control
 {
     public class MapController
     {
-         private static MapController instance;
-    private static LogController log = LogController.getInstance();
-    private DBGeoLoc dbGeoLoc;
-    private DBRoad dbRoad;
+        private static MapController instance;
+        private static LogController Log = LogController.Instance;
+        private DBGeoLoc DbGeoLoc;
+        private DBRoad DbRoad;
 
-    private HashMap<Long, GeoLoc> geoLocs = new HashMap<>();
-    private ArrayList<Edge> edges = new ArrayList<>();
-    private ListenableDirectedWeightedGraph<GeoLoc, Edge> map;
+        private HashMap<Long, GeoLoc> geoLocs = new HashMap<>();
+        private List<Edge> edges = new ArrayList<>();
+        private ListenableDirectedWeightedGraph<GeoLoc, Edge> map;
 
     /**
      * Private constructor for singleton.
@@ -24,6 +24,11 @@ namespace Control
      * @throws ClassNotFoundException
      */
     private MapController() {
+
+
+
+
+
         try {
             dbGeoLoc = DBGeoLoc.getInstance();
         } catch (ClassNotFoundException | SQLException e1) {

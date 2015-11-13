@@ -9,9 +9,9 @@ namespace Control
 {
     public class OptimizeController
     {
-        private RouteController RouteCtr;
-        private MapController MapCtr;
-        private LogController LogCtr;
+        public RouteController RouteCtr  { get; private set; }
+        public MapController MapCtr { get; private set; }
+        public LogController LogCtr { get; private set; }
         private static OptimizeController instance;
         private List<DeliveryStop> RemovedStops;
 
