@@ -49,13 +49,13 @@ namespace Control
      *
      * @return instance of class.
      */
-    public static MapController getInstance() {
-        if (instance == null) {
-            instance = new MapController();
+    public static MapController Instance { 
+            get { 
+                if (instance == null)
+                    instance = new MapController();
+                return instance;
+            }
         }
-
-        return instance;
-    }
 
     /**
      * Loads map pre generated map if it exist.
