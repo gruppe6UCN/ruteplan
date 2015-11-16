@@ -5,7 +5,7 @@ using Model;
 namespace TestModel
 {
     [TestFixture()]
-    public class Test
+    public class TestTransportUnit
     {
         TransportUnit tu;
 
