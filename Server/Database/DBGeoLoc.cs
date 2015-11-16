@@ -50,23 +50,34 @@ namespace Server.Database
             return list[0];
         }
 
+        /// <summary>
+        /// Return a list of all GeoPoints
+        /// </summary>
+        /// <returns>GeoPoints</returns>
+        public List<GeoLoc> GetGeoLocs()
+        {
+            List<GeoLoc> list;
+            String sql = String.Format("select * from GeoLoc");
+            return DbConnection.SendSQL<GeoLoc>(sql, ConvertToGeoLoc);
+        }
 
         /// <summary>
         /// Takes the ReulstSet from database and returns a list of all GeoLocs.
         /// </summary>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public List<GeoLoc> ConvertToGeoLoc(IDataReader dataSet) 
+        private List<GeoLoc> ConvertToGeoLoc(IDataReader dataSet)
         {
             List<GeoLoc> tableList = new List<GeoLoc>();
-            while (dataSet.Read()) {
+            while (dataSet.Read())
+            {
                 tableList.Add(new GeoLoc(
                     dataSet.GetInt64(0),
                     dataSet.GetDouble(1),
                     dataSet.GetDouble(2)
                 ));
             }
-            
+
             return tableList;
         }
     }

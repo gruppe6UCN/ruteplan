@@ -52,5 +52,14 @@ namespace TestServer
             geoLoc = instance.getGeoLoc(628);
             Assert.IsNotNull(geoLoc);
         }
+
+        [Test()]
+        public void TestGetGeoLocs()
+        {
+            List<GeoLoc> geoLocs = null;
+            geoLocs = instance.GetGeoLocs();
+            int count = geoLocs.Count;
+            Assert.AreEqual(count, 85);
+        }
     }
 }
