@@ -13,7 +13,7 @@ namespace TestModel
         [SetUp()]
         public void Setup()
         {
-            ro = new Road(1, 2, 400, new DateTime(12));
+            ro = new Road(1, 2, 400, new TimeSpan(12, 0, 0));
         }
         //Test 
         [Test()]
@@ -39,19 +39,19 @@ namespace TestModel
         [Test()]
         public void TestEqual()
         {
-            Road ro1 = new Road(new GeoLoc(1, 0, 0), new GeoLoc(2, 0, 0), 400, new DateTime(12));
-            Road ro2 = new Road(new GeoLoc(11, 0, 0), new GeoLoc(22, 0, 0), 400, new DateTime(12));
+            Road ro1 = new Road(new GeoLoc(1, 0, 0), new GeoLoc(2, 0, 0), 400, new TimeSpan(12, 0, 0));
+            Road ro2 = new Road(new GeoLoc(11, 0, 0), new GeoLoc(22, 0, 0), 400, new TimeSpan(12, 0, 0));
             Assert.IsTrue(ro.Equals(ro1));
             Assert.IsFalse(ro.Equals(ro2));
 
-            Road ro3 = new Road(11, 2, 400, new DateTime(12));
+            Road ro3 = new Road(11, 2, 400, new TimeSpan(12, 0, 0));
             Assert.IsFalse(ro.Equals(ro3));
             ro3.FromGeoLog = new GeoLoc(1, 0, 0);
             Assert.IsTrue(ro.Equals(ro3));
             ro3.FromGeoLog = new GeoLoc(11, 0, 0);
             Assert.IsFalse(ro.Equals(ro3));
 
-            Road ro4 = new Road(1, 22, 400, new DateTime(12));
+            Road ro4 = new Road(1, 22, 400, new TimeSpan(12, 0, 0));
             Assert.IsFalse(ro.Equals(ro4));
             ro4.ToGeoLog = new GeoLoc(2, 0, 0);
             Assert.IsTrue(ro.Equals(ro4));

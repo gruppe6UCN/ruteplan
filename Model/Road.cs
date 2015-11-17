@@ -11,7 +11,7 @@ namespace Model
         public long From { get; private set; }
         public long To { get; private set; }
         public double Distance { get; private set; }
-        public DateTime Time { get; private set; }
+        public TimeSpan Time { get; private set; }
 
         private GeoLoc _fromGeoLoc;
         public GeoLoc FromGeoLog
@@ -34,14 +34,14 @@ namespace Model
             }
         }
 
-        public Road(long from_ID, long to_ID, double distance, DateTime time)
+        public Road(long from_ID, long to_ID, double distance, TimeSpan time)
         {
             this.From = from_ID;
             this.To = to_ID;
             this.Distance = distance;
             this.Time = time;
         }
-        public Road(GeoLoc from, GeoLoc to, double distance, DateTime time)
+        public Road(GeoLoc from, GeoLoc to, double distance, TimeSpan time)
         {
             this.FromGeoLog = from;
             this.ToGeoLog = to;

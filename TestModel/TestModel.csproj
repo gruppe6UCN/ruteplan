@@ -32,6 +32,7 @@
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="System.Device" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TestCustomer.cs" />
@@ -41,6 +42,7 @@
     <Compile Include="TestRoad.cs" />
     <Compile Include="TestRoute.cs" />
     <Compile Include="TestTrailerType.cs" />
+    <Compile Include="TestGeoLoc.cs" />
     <Compile Include="TestTransportUnit.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
