@@ -15,11 +15,8 @@ namespace Control
     public DefaultDeliveryStopController DefaultDeliveryStopCtr { get; private set; }
     public LogController LogCtr { get; private set; }
     public DBRoute DbRoute { get; private set; }
-    
+    public List<Route> Routes { get; private set; }
     private static RouteController instance;
-    private List<Route> Routes = new List<Route>(); //TODO: Syncrhonizzedd collectfkinzion...
-
-
 
     /**
      * Private constructor for singleton.
@@ -30,6 +27,7 @@ namespace Control
         DefaultDeliveryStopCtr = DefaultDeliveryStopController.Instance;
         LogCtr = LogController.Instance;
         DbRoute = DBRoute.Instance;
+        Routes = new List<Route>();
     }
 
     /**
@@ -52,6 +50,32 @@ namespace Control
      */
     public void ImportRoutes(DateTime date) {
         
+        //Loads default routes.
+        Routes.Clear();
+        List<DefaultRoute> listDefaultRoues = DefaultRouteCtr.GetDefaultRoutes();
+        LogCtr.StatusLog("Loaded Default Routes");
+
+        //Creates a route for each default route.
+        Parallel.ForEach(listDefaultRoues, defaultRoute =>
+        {
+            //Creates the route.
+            Route route = new Route(defaultRoute, date, date);
+            LogCtr.StatusLog("Creating new route, based on default route " + defaultRoute.ID);
+            
+            //Syncronize then add stops.
+            lock (listDefaultRoues)
+            {
+                DeliveryStopCtr.addDeliveryStops(route, DefaultDeliveryStopCtr.GetDefaultDeliveryStops(defaultRoute));
+            }
+           
+            //Updates log and adds route.
+            LogCtr.StatusLog("Created new route from default route " + defaultRoute.ID);
+            Routes.Add(route);
+        });
+
+        /* Old Code For Reference - TODO: Implement multithreading.
+
+
         // Remove old data
         Routes.Clear();
 
@@ -80,6 +104,8 @@ namespace Control
 
             Routes.add(route);
         }));
+
+         */
     }
 
     /**
