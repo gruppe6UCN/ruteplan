@@ -12,12 +12,12 @@ namespace ControlTest
     [TestFixture()]
     class TestExportController
     {
-        ExportController ec;
+        //ExportController ec;
 
         [SetUp()]
         public void SetUp()
         {
-            this.ec = ExportController.Instance;
+            //this.ec = ExportController.Instance;
         }
 
         [Test()]
