@@ -59,7 +59,7 @@ namespace TestServer
             }
 
             //Gets a list of transport units.
-            List<TransportUnit> listTP = instance.getTransportUnits(listID);
+            List<TransportUnit> listTP = instance.GetTransportUnits(listID);
             Assert.IsNotEmpty(listTP);
 
             //Checks to see if element exists.

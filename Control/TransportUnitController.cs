@@ -47,7 +47,7 @@ namespace Control
                 IDs.Add(customer.ID);
             }
 
-            deliveryStop.TransportUnits = DbTransportUnit.getTransportUnits(IDs);
+            deliveryStop.TransportUnits = DbTransportUnit.GetTransportUnits(IDs);
         }
     }
 }
