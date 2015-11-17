@@ -62,7 +62,7 @@ namespace Server.Database
                     dataSet.GetInt64(0),
                     dataSet.GetInt64(1),
                     dataSet.GetDouble(2),
-                    dataSet.GetDateTime(3)
+                    (TimeSpan)dataSet.GetValue(3)
                 ));
             }
             
