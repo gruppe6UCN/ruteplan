@@ -26,7 +26,7 @@ namespace Control
          * Stores all the delivery stops for each route in the list.
          * @param route ArrayList containing all stop from a route stops from.
          */
-        public void storeDeliveryStops(Route route) {
+        public void StoreDeliveryStops(Route route) {
 
         route.getStops().parallelStream().forEach((stop) -> { // TODO: make parallelStream
             long deliveryStopID = DbDeliveryStop.store(route.getID(), stop);

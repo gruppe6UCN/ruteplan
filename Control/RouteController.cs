@@ -72,59 +72,33 @@ namespace Control
             LogCtr.StatusLog("Created new route from default route " + defaultRoute.ID);
             Routes.Add(route);
         });
-
-        /* Old Code For Reference - TODO: Implement multithreading.
-
-
-        // Remove old data
-        Routes.Clear();
-
-        // Sync List
-        List<DefaultRoute> listDefaultRoutes = Collections.synchronizedList(
-                //Gets a list of all defaultRoutes.
-                DefaultRouteCtr.GetDefaultRoutes());
-        LogCtr.StatusLog("Loaded defualt routes");
-
-        //create a route for each defaultRoute
-        listDefaultRoutes.parallelStream().forEach((defaultRoute -> { // TODO: make parallelStream
-            //Creates new routes for each defaultRoute.
-            Route route = new Route(defaultRoute, date);
-            LogCtr.StatusLog("Creates new route, base on default route " + defaultRoute.getID());
-
-            //Sync then adding
-            synchronized (listDefaultRoutes) {
-                //Creates Delivery Stops
-                DeliveryStopCtr.addDeliveryStops(
-                        route,
-                        //Gets a list of all stops for the defaultRoute.
-                        DefaultDeliveryStopCtr.getDefaultDeliveryStops(defaultRoute)
-                );
-            }
-            LogCtr.StatusLog("Created new route from default route " + defaultRoute.getID());
-
-            Routes.add(route);
-        }));
-
-         */
     }
 
     /**
      * Exports all data to database.
      */
-    public void exportData() {
+    public void ExportData() {
 
-        Routes.forEach(route -> {
-            if (route.getDefaultRoute().isExtraRoute()) {
-                DefaultRouteCtr.store(route.getDefaultRoute());
-
+        //Enters a loop for each route.
+        foreach (Route route in Routes)
+        {
+            //Checks if extra route.
+            if (route.DefaultRoute.ExtraRoute)
+            {
+                //Saves extra route.
+                DefaultRouteCtr.store(route.DefaultRoute);
             }
-            DbRoute.storeRoute(route);
-            DeliveryStopCtr.storeDeliveryStops(route);
 
-            LogCtr.StatusLog(String.format("Exported %sroute %d to database",
-                    route.getDefaultRoute().isExtraRoute() ? "Extra " : "",
-                    route.getID()));
-        });
+            //Stores routes and stops to database.
+            DbRoute.storeRoute(route);
+            DeliveryStopCtr.StoreDeliveryStops(route);
+            
+            //Updates log.
+            LogCtr.StatusLog(string.Format("Exported {0} route {1} to database",
+                route.DefaultRoute.ExtraRoute ? "Extra " : "", 
+                route.ID
+                ));
+        }
     }
 
     
