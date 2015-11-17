@@ -40,6 +40,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,16 +51,8 @@
   <ItemGroup>
     <Compile Include="CustomerController.cs" />
     <Compile Include="DefaultDeliveryStopController.cs" />
-    <Compile Include="DefaultRouteController.cs" />
-    <Compile Include="DeliveryStopController.cs" />
-    <Compile Include="ExportController.cs" />
-    <Compile Include="ImportController.cs" />
-    <Compile Include="LogController.cs" />
     <Compile Include="MapController.cs" />
-    <Compile Include="OptimizeController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RouteController.cs" />
-    <Compile Include="TransportUnitController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

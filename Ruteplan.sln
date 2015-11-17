@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Control", "Control\Control.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlTest", "ControlTest\ControlTest.csproj", "{6090AD1B-850F-4614-8716-8AC794BE1211}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMap", "GMap\GMap.csproj", "{8E39FC70-AF00-4F83-A7BA-D25F22D3DACE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{6090AD1B-850F-4614-8716-8AC794BE1211}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6090AD1B-850F-4614-8716-8AC794BE1211}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6090AD1B-850F-4614-8716-8AC794BE1211}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E39FC70-AF00-4F83-A7BA-D25F22D3DACE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E39FC70-AF00-4F83-A7BA-D25F22D3DACE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E39FC70-AF00-4F83-A7BA-D25F22D3DACE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E39FC70-AF00-4F83-A7BA-D25F22D3DACE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

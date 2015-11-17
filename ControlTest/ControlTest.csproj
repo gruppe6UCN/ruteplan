@@ -42,18 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TestCustomerController.cs" />
-    <Compile Include="TestDefaultDeliveryStopController.cs" />
-    <Compile Include="TestDefaultRouteController.cs" />
-    <Compile Include="TestDeliveryStopController.cs" />
-    <Compile Include="TestExportController.cs" />
-    <Compile Include="TestImportController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestLogController.cs" />
     <Compile Include="TestMapController.cs" />
-    <Compile Include="TestOptimizeController.cs" />
-    <Compile Include="TestRouteController.cs" />
-    <Compile Include="TestTransportUnitController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -62,6 +52,10 @@
     <ProjectReference Include="..\Control\Control.csproj">
       <Project>{2b05a805-5993-476c-84fe-b0749199b8a5}</Project>
       <Name>Control</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{D2387D10-FFD3-4DD4-8822-DC5F6ED1D93C}</Project>
+      <Name>Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\Server\Server.csproj">
       <Project>{b5425574-cf10-42e3-a74a-32efccd4777d}</Project>
