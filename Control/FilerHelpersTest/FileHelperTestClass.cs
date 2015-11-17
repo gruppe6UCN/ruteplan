@@ -33,6 +33,9 @@ namespace Control.FilerHelpersTest
                 Console.WriteLine(record.TrailerType);
                 Console.WriteLine(record.ExtraRoute);
                 Console.WriteLine();
+
+                //Can then instead of console writeline here, create a model class instead
+                //and then return/store that to database or some sheitz.
             }
         }
 
