@@ -18,9 +18,9 @@ namespace Control
     public List<Route> Routes { get; private set; }
     private static RouteController instance;
 
-    /**
-     * Private constructor for singleton.
-     */
+    /// <summary>
+    /// Private singleton constructor.
+    /// </summary>
     private RouteController() {
         DeliveryStopCtr = DeliveryStopController.Instance;
         DefaultRouteCtr = DefaultRouteController.Instance;
@@ -30,11 +30,10 @@ namespace Control
         Routes = new List<Route>();
     }
 
-    /**
-     * Singleton method for class.
-     *
-     * @return instance of class.
-     */
+    /// <summary>
+    /// Singleton method. Returns the instance of the class.
+    /// </summary>
+    /// <returns>Instance of class.</returns>
     public static RouteController Instance
     {
         get
@@ -45,9 +44,10 @@ namespace Control
         }
     }
 
-    /**
-     * Imports all routes from database.
-     */
+    /// <summary>
+    /// Imports all routes from database.
+    /// </summary>
+    /// <param name="date">Time used in creation of routes.</param>
     public void ImportRoutes(DateTime date) {
         
         //Loads default routes.
@@ -74,9 +74,10 @@ namespace Control
         });
     }
 
-    /**
-     * Exports all data to database.
-     */
+    /// <summary>
+    /// Exports all routes to database. If route contains extra default route,
+    /// default route is exported as well.
+    /// </summary>
     public void ExportData() {
 
         //Enters a loop for each route.
@@ -101,10 +102,10 @@ namespace Control
         }
     }
     
-    /**
-     * Finds and returns all overloaded routes.
-     * @return ArrayList containing all overloaded routes.
-     */
+    /// <summary>
+    /// Finds and returns all overloaded routes.
+    /// </summary>
+    /// <returns>List of all overloaded Routes.</returns>
     public List<Route> findOverloadedRoutes() {
         
         // Sync List
@@ -132,10 +133,10 @@ namespace Control
         return overloadedRoutes;
     }
     
-    /**
-     * Finds and returns all under loaded routes.
-     * @return ArrayList containing all under loaded routes.
-     */
+    /// <summary>
+    /// Finds and returns all underloaded routes.
+    /// </summary>
+    /// <returns>List of all underloaded routes.</returns>
     public List<Route> findUnderloadedRoutes() {
         // Sync List
         List<Route> underloadedRoutes = Collections.synchronizedList(
@@ -155,20 +156,9 @@ namespace Control
         return underloadedRoutes;    
     }
 
-    /**
-     * @return the routes
-     */
-    public List<Route> getRoutes() {
-        return Routes;
-    }
-
-    /**
-     * @param route is added to the overall list of routes
-     */
-    public void addRoute(Route route) {
-        this.Routes.add(route);
-    }
-
+    /// <summary>
+    /// Calculates the time for departure.
+    /// </summary>
     public void calcTimeForDeparture() {
         Routes.parallelStream().forEach(route -> { // TODO: make parallelStream
 
