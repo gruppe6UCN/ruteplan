@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Control
 {
     public class LogController
     {
-        private static LogController ourInstance = new LogController();
-        // private DefaultListModel logReceiver = null;
+        private static LogController instance;
+
         private int maxLogLength = 1000;
+        private Collection<String> logReceiver = null;
 
         /// <summary>
         /// Singleton method. Returns the instance of the class.
@@ -30,7 +29,8 @@ namespace Control
         private LogController() {
         }
 
-        public void setLogReceiver(DefaultListModel logReceiver) {
+        public void setLogReceiver(Collection<String> logReceiver)
+        {
             this.logReceiver = logReceiver;
         }
 
@@ -39,21 +39,18 @@ namespace Control
         }
 
 
-        synchronized public void StatusLog(String log) {
-            try {
-                if (logReceiver != null) {
-                        logReceiver.add(0, log);
-                        maintainLog();
-                } else {
-                    System.out.println(log);
-                }
-            } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+        public void StatusLog(String log) {
+            if (logReceiver != null) {
+                    //logReceiver.Insert(0, log);
+                    maintainLog();
+            } else {
+                Console.WriteLine(log);
             }
         }
 
-        synchronized private void maintainLog() {
-            if (logReceiver.size() > maxLogLength) {
-                logReceiver.removeElement(logReceiver.lastElement());
+        private void maintainLog() {
+            if (logReceiver.Count > maxLogLength) {
+                logReceiver.Remove(logReceiver.Last());
             }
         }
     }
