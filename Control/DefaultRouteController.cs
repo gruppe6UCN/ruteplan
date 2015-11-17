@@ -16,9 +16,10 @@ namespace Control
         /// <summary>
         /// Private singleton constructor.
         /// </summary>
-        private DefaultRouteController() {
-        DbDefaultRoute = DBDefaultRoute.Instance;
-    }
+        private DefaultRouteController() 
+        {
+            DbDefaultRoute = DBDefaultRoute.Instance;
+        }
 
         /// <summary>
         /// Singleton method. Returns the instance of the class.

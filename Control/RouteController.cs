@@ -73,6 +73,37 @@ namespace Control
         }
 
         /// <summary>
+        /// Imports all routes from the given list of default routes.
+        /// </summary>
+        /// <param name="defaultRoutes">List of default routes for routes to reference.</param>
+        /// <param name="date">Time used in creation of routes.</param>
+        public void ImportRoutes(List<DefaultRoute> defaultRoutes, DateTime date)
+        {
+            //Loads default routes.
+            Routes.Clear();
+            List<DefaultRoute> listDefaultRoues = defaultRoutes;
+            LogCtr.StatusLog("Loaded Default Routes");
+
+            //Creates a route for each default route.
+            Parallel.ForEach(listDefaultRoues, defaultRoute =>
+            {
+                //Creates the route.
+                Route route = new Route(defaultRoute, date, date);
+                LogCtr.StatusLog("Creating new route, based on default route " + defaultRoute.ID);
+
+                //Syncronize then add stops.
+                lock (listDefaultRoues)
+                {
+                    DeliveryStopCtr.addDeliveryStops(route, DefaultDeliveryStopCtr.GetDefaultDeliveryStops(defaultRoute));
+                }
+
+                //Updates log and adds route.
+                LogCtr.StatusLog("Created new route from default route " + defaultRoute.ID);
+                Routes.Add(route);
+            });
+        }
+
+        /// <summary>
         /// Exports all routes to database. If route contains extra default route,
         /// default route is exported as well.
         /// </summary>
