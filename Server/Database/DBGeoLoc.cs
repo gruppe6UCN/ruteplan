@@ -73,8 +73,8 @@ namespace Server.Database
             {
                 tableList.Add(new GeoLoc(
                     dataSet.GetInt64(0),
-                    dataSet.GetDouble(1),
-                    dataSet.GetDouble(2)
+                    dataSet.GetDouble(2),
+                    dataSet.GetDouble(1)
                 ));
             }
 
