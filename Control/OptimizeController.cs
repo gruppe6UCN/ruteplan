@@ -1,7 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
+using System.Collections.Concurrent;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Model;
 
@@ -12,11 +14,11 @@ namespace Control
         public RouteController RouteCtr  { get; private set; }
         public MapController MapCtr { get; private set; }
         public LogController LogCtr { get; private set; }
-        private static OptimizeController Instance;
-        private List<DeliveryStop> RemovedStops;
+        private static OptimizeController instance;
 
-        List<Route> OverloadedRoutes;
-        List<Route> UnderloadedRoutes;
+        private ConcurrentQueue<DeliveryStop> RemovedStops;
+        private ConcurrentQueue<Route> OverloadedRoutes;
+        private ConcurrentQueue<Route> UnderloadedRoutes;
 
         /// <summary>
         /// Private singleton constructor.
@@ -25,73 +27,36 @@ namespace Control
             RouteCtr = RouteController.Instance;
             MapCtr = MapController.Instance;
             LogCtr = LogController.Instance;
-            // Sync List
-            RemovedStops = Collections.synchronizedList(new List<>());
+
+            // Sync Queue
+            RemovedStops = new ConcurrentQueue<DeliveryStop>();
         }
 
         /// <summary>
         /// Singleton method. Returns the Instance of the class.
         /// </summary>
         /// <returns>Instance of class.</returns>
-        public static OptimizeController getInstance() {
-            if (Instance == null) {
-                Instance = new OptimizeController();
+        public static OptimizeController Instance {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new OptimizeController();
+                }
+                return instance;
             }
-
-            return Instance;
-        }
-
-        /**
-         * Optimizes all imported routes.
-         * @param rowData
-         */
-        public void optimize(Vector rowData) {
-            optimize();
-
-            List<Route> routes = RouteCtr.getRoutes();
-
-            routes.forEach(route -> {
-                Vector row = new Vector();
-                row.addElement(route.getDefaultRoute().isExtraRoute() ? "NONE" : String.format("%03d", route.getDefaultRoute().getID()));
-                row.addElement(route.getStops().size());
-                row.addElement(String.format("%.1f / %.1f", route.getLoadForTrailer(), route.getCapacity()));
-                row.addElement(String.format("%02d:%02d", route.getTimeForDeparture().getHour(), route.getTimeForDeparture().getMinute()));
-                row.addElement(route.getDefaultRoute().isExtraRoute() ? "Yes" : "No");
-                rowData.add(row);
-            });
         }
 
         /**
          * Optimizes all imported routes.
          */
-        public void optimize() {
+        public void Optimize() {
             LogCtr.StatusLog("searching for over- and underloaded");
 
-            // Declaring an anonymous class which implements the interface Runnable
-            Thread preloadRoutes = new Thread(new Runnable() {
-                public void run() {
-                    OverloadedRoutes = RouteCtr.FindOverloadedRoutes();
-                    UnderloadedRoutes = RouteCtr.FindUnderloadedRoutes();
-                }
-            });
-            preloadRoutes.start();
+            OverloadedRoutes = RouteCtr.FindOverloadedRoutes();
+            UnderloadedRoutes = RouteCtr.FindUnderloadedRoutes();
 
-
-            log.StatusLog("Loading map module...");
-            Thread prelaodMap = new Thread(new Runnable() {
-                public void run() {
-                    mapController.generateMap();
-                }
-            });
-            prelaodMap.start();
-
-            //Waiting for the thread which finds routes if it isn't done
-            try {
-                preloadRoutes.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            log.StatusLog("Found all over- and underloaded routes");
+            LogCtr.StatusLog("Found all over- and under-loaded routes");
 
             //Checks to see if there is overloadedRoutes.
             if (overloadedRoutes.size() >= 1) {
@@ -118,7 +83,7 @@ namespace Control
                         overloadAmount -= best.getSizeOfTransportUnits();
                     }
                 });
-                log.StatusLog(String.format("There is %d delivery stop there need to be moved to another routes", overloadedRoutes.size()));
+                LogCtr.StatusLog(String.format("There is %d delivery stop there need to be moved to another routes", overloadedRoutes.size()));
 
                 //Waiting for the thread which finds routes if it isn't done
                 try {
@@ -126,7 +91,7 @@ namespace Control
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                log.StatusLog("Map module Loaded");
+                LogCtr.StatusLog("Map module Loaded");
 
                 //Enter a loop for each stop removed.
                 removedStops.stream().forEach((removedStop) -> {
@@ -138,7 +103,7 @@ namespace Control
                     //Finds the geoLoc for current removedStop.
                     GeoLoc geoLocRemovedStop = mapController.findGeoLoc(removedStop);
 
-                    log.StatusLog("Searching for routes at a close enough distance, og with enough free space to add the stop");
+                    LogCtr.StatusLog("Searching for routes at a close enough distance, og with enough free space to add the stop");
                     //Enters a loop for each underloadedRoute, to check if one of them is near stop.
                     underloadedRoutes.parallelStream().forEach((underloadedRoute) -> {  // TODO: make parallelStream
                         //Checks if there is space to removedStop on this Route
@@ -178,7 +143,7 @@ namespace Control
                             underloadedRoutes.remove(underloadedRoute);
                         }
 
-                        log.StatusLog("Added delivery stop to route");
+                        LogCtr.StatusLog("Added delivery stop to route");
                     } else {
 
                         //Make a new route.
@@ -188,7 +153,7 @@ namespace Control
                             underloadedRoutes.add(newRoute);
                         }
 
-                        log.StatusLog("Created a new route for delivery stop");
+                        LogCtr.StatusLog("Created a new route for delivery stop");
                     }
                 });
 

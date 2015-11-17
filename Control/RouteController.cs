@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,7 @@ namespace Control
         public DefaultDeliveryStopController DefaultDeliveryStopCtr { get; private set; }
         public LogController LogCtr { get; private set; }
         public DBRoute DbRoute { get; private set; }
-        public List<Route> Routes { get; private set; }
+        public ConcurrentBag<Route> Routes { get; private set; }
         private static RouteController instance;
 
         /// <summary>
@@ -27,7 +28,6 @@ namespace Control
             DefaultDeliveryStopCtr = DefaultDeliveryStopController.Instance;
             LogCtr = LogController.Instance;
             DbRoute = DBRoute.Instance;
-            Routes = new List<Route>();
         }
 
         /// <summary>
@@ -47,9 +47,9 @@ namespace Control
         /// </summary>
         /// <param name="date">Time used in creation of routes.</param>
         public void ImportRoutes(DateTime date) {
-        
+
             //Loads default routes.
-            Routes.Clear();
+            Routes = new ConcurrentBag<Route>();
             List<DefaultRoute> listDefaultRoues = DefaultRouteCtr.GetDefaultRoutes();
             LogCtr.StatusLog("Loaded Default Routes");
 
@@ -57,16 +57,12 @@ namespace Control
             Parallel.ForEach(listDefaultRoues, defaultRoute =>
             {
                 //Creates the route.
-                Route route = new Route(defaultRoute, date, date);
+                Route route = new Route(defaultRoute, date);
                 LogCtr.StatusLog("Creating new route, based on default route " + defaultRoute.ID);
             
-                //Syncronize then add stops.
-                lock (listDefaultRoues)
-                {
-                    DeliveryStopCtr.addDeliveryStops(route, DefaultDeliveryStopCtr.GetDefaultDeliveryStops(defaultRoute));
-                }
+                DeliveryStopCtr.addDeliveryStops(route, DefaultDeliveryStopCtr.GetDefaultDeliveryStops(defaultRoute));
            
-                //Updates log and adds route.
+                //Updates LogCtr and adds route.
                 LogCtr.StatusLog("Created new route from default route " + defaultRoute.ID);
                 Routes.Add(route);
             });
@@ -97,7 +93,7 @@ namespace Control
                     DeliveryStopCtr.addDeliveryStops(route, DefaultDeliveryStopCtr.GetDefaultDeliveryStops(defaultRoute));
                 }
 
-                //Updates log and adds route.
+                //Updates LogCtr and adds route.
                 LogCtr.StatusLog("Created new route from default route " + defaultRoute.ID);
                 Routes.Add(route);
             });
@@ -109,21 +105,21 @@ namespace Control
         /// </summary>
         public void ExportData() {
 
-            //Enters a loop for each route.
+            // Enters a loop for each route.
             foreach (Route route in Routes)
             {
-                //Checks if extra route.
+                // Checks if extra route.
                 if (route.DefaultRoute.ExtraRoute)
                 {
-                    //Saves extra route.
+                    // Saves extra route.
                     DefaultRouteCtr.store(route.DefaultRoute);
                 }
 
-                //Stores routes and stops to database.
+                // Stores routes and stops to database.
                 DbRoute.storeRoute(route);
                 DeliveryStopCtr.StoreDeliveryStops(route);
             
-                //Updates log.
+                // Updates LogCtr.
                 LogCtr.StatusLog(string.Format("Exported {0} route {1} to database",
                     route.DefaultRoute.ExtraRoute ? "Extra " : "", 
                     route.ID
@@ -137,25 +133,29 @@ namespace Control
         /// <returns>List of all overloaded Routes.</returns>
         public List<Route> FindOverloadedRoutes() {
         
-            //Creates a list of routes.
-            List<Route> overloadedRoutes = new List<Route>();
+            // Creates a list of routes.
+            ConcurrentQueue<Route> overloadedRoutes = new ConcurrentQueue<Route>();
 
-            //Checks if each route is overloaded.
-            Parallel.ForEach(overloadedRoutes, route => 
+            // Checks if each route is overloaded.
+            Parallel.ForEach(Routes, route =>
             {
-                //Gets variables.
+                // Gets variables.
                 double load = route.GetLoadForTrailer();
                 double capacity = route.GetCapacity();
+                
+            })
+            Parallel.ForEach(overloadedRoutes, route => 
+            {
 
-                //Checks if overloaded.
+                // Checks if overloaded.
                 if (load > capacity)
                 {
-                    //Adds the route to list.
+                    // Adds the route to list.
                     overloadedRoutes.Add(route);
                 }
             });
 
-            //Return list with routes.
+            // Return list with routes.
             return overloadedRoutes;
         }
     
@@ -165,21 +165,21 @@ namespace Control
         /// <returns>List of all underloaded routes.</returns>
         public List<Route> FindUnderloadedRoutes() {
 
-            //Creates a list of routes.
+            // Creates a list of routes.
             List<Route> underloadedRoutes = new List<Route>();
 
-            //Checks if each route is underloaded.
+            // Checks if each route is underloaded.
             Parallel.ForEach(underloadedRoutes, route => 
             {
-                //Checks if underlaoded.
+                // Checks if underlaoded.
                 if (route.IsUnderloaded())
                 {
-                    //Adds to list.
+                    // Adds to list.
                     underloadedRoutes.Add(route);
                 }
             });
 
-            //Return list with routes.
+            // Return list with routes.
             return underloadedRoutes;   
         }
 
