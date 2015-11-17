@@ -17,7 +17,7 @@ namespace ControlTest
         [SetUp()]
         public void SetUp()
         {
-            this.cc = new CustomerController(); 
+            this.cc = CustomerController.Instance; 
         }
 
         [Test()]

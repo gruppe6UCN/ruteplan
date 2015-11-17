@@ -17,7 +17,7 @@ namespace ControlTest
         [SetUp()]
         public void Setup()
         {
-            this.tuc = new TransportUnitController();
+            this.tuc = TransportUnitController.Instance;
         }
 
         [Test()]

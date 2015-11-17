@@ -17,7 +17,7 @@ namespace ControlTest
         [SetUp()]
         public void SetUp()
         {
-            this.ec = new ExportController();
+            this.ec = ExportController.Instance;
         }
 
         [Test()]

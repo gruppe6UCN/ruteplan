@@ -18,7 +18,7 @@ namespace ControlTest
         [SetUp()]
         public void SetUp()
         {
-            this.ddsc = new DefaultDeliveryStopController();
+            this.ddsc = DefaultDeliveryStopController.Instance;
         }
 
         [Test()]

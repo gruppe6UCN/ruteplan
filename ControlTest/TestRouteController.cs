@@ -17,7 +17,7 @@ namespace ControlTest
         [SetUp()]
         public void SetUp()
         {
-            this.rc = new RouteController();
+            this.rc = RouteController.Instance;
         }
 
         [Test()]

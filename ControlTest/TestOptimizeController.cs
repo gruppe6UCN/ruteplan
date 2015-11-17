@@ -12,12 +12,12 @@ namespace ControlTest
     [TestFixture()]
     class TestOptimizeController
     {
-        OptimizeController oc;
+        //OptimizeController oc;
 
         [SetUp()]
         public void SetUp()
         {
-            this.oc = new OptimizeController();
+            //this.oc = OptimizeController.Instance;
         }
 
         [Test()]

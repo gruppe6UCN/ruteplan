@@ -17,7 +17,7 @@ namespace ControlTest
         [SetUp()]
         public void SetUp()
         {
-            this.lc = new LogController();
+            this.lc = LogController.Instance;
         }
 
         [Test()]

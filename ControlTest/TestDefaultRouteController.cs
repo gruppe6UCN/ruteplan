@@ -17,7 +17,7 @@ namespace ControlTest
         [SetUp()]
         public void SetUp()
         {
-            this.drc = new DefaultRouteController();
+            this.drc = DefaultRouteController.Instance;
         }
 
         [Test()]
