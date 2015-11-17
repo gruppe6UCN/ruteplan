@@ -13,7 +13,7 @@ namespace Control
         public DeliveryStopController DeliveryStopCtr { get; private set; }
         public DefaultRouteController DefaultRouteCtr { get; private set; }
         public DefaultDeliveryStopController DefaultDeliveryStopCtr { get; private set; }
-        public LogController LogCtr { get; private set; }
+        // public LogController LogCtr { get; private set; }
         public DBRoute DbRoute { get; private set; }
         public List<Route> Routes { get; private set; }
         private static RouteController instance;
@@ -25,7 +25,7 @@ namespace Control
             DeliveryStopCtr = DeliveryStopController.Instance;
             DefaultRouteCtr = DefaultRouteController.Instance;
             DefaultDeliveryStopCtr = DefaultDeliveryStopController.Instance;
-            LogCtr = LogController.Instance;
+            // LogCtr = LogController.Instance;
             DbRoute = DBRoute.Instance;
             Routes = new List<Route>();
         }
@@ -51,14 +51,14 @@ namespace Control
             //Loads default routes.
             Routes.Clear();
             List<DefaultRoute> listDefaultRoues = DefaultRouteCtr.GetDefaultRoutes();
-            LogCtr.StatusLog("Loaded Default Routes");
+            // LogCtr.StatusLog("Loaded Default Routes");
 
             //Creates a route for each default route.
             Parallel.ForEach(listDefaultRoues, defaultRoute =>
             {
                 //Creates the route.
                 Route route = new Route(defaultRoute, date, date);
-                LogCtr.StatusLog("Creating new route, based on default route " + defaultRoute.ID);
+                // LogCtr.StatusLog("Creating new route, based on default route " + defaultRoute.ID);
             
                 //Syncronize then add stops.
                 lock (listDefaultRoues)
@@ -67,7 +67,7 @@ namespace Control
                 }
            
                 //Updates log and adds route.
-                LogCtr.StatusLog("Created new route from default route " + defaultRoute.ID);
+                // LogCtr.StatusLog("Created new route from default route " + defaultRoute.ID);
                 Routes.Add(route);
             });
         }
@@ -82,14 +82,14 @@ namespace Control
             //Loads default routes.
             Routes.Clear();
             List<DefaultRoute> listDefaultRoues = defaultRoutes;
-            LogCtr.StatusLog("Loaded Default Routes");
+            // LogCtr.StatusLog("Loaded Default Routes");
 
             //Creates a route for each default route.
             Parallel.ForEach(listDefaultRoues, defaultRoute =>
             {
                 //Creates the route.
                 Route route = new Route(defaultRoute, date, date);
-                LogCtr.StatusLog("Creating new route, based on default route " + defaultRoute.ID);
+                // LogCtr.StatusLog("Creating new route, based on default route " + defaultRoute.ID);
 
                 //Syncronize then add stops.
                 lock (listDefaultRoues)
@@ -98,7 +98,7 @@ namespace Control
                 }
 
                 //Updates log and adds route.
-                LogCtr.StatusLog("Created new route from default route " + defaultRoute.ID);
+                // LogCtr.StatusLog("Created new route from default route " + defaultRoute.ID);
                 Routes.Add(route);
             });
         }
@@ -124,10 +124,10 @@ namespace Control
                 DeliveryStopCtr.StoreDeliveryStops(route);
             
                 //Updates log.
-                LogCtr.StatusLog(string.Format("Exported {0} route {1} to database",
-                    route.DefaultRoute.ExtraRoute ? "Extra " : "", 
-                    route.ID
-                    ));
+                //LogCtr.StatusLog(string.Format("Exported {0} route {1} to database",
+                //    route.DefaultRoute.ExtraRoute ? "Extra " : "", 
+                //    route.ID
+                //    ));
             }
         }
     
