@@ -12,6 +12,10 @@ namespace Control
         // private DefaultListModel logReceiver = null;
         private int maxLogLength = 1000;
 
+    /// <summary>
+    /// Singleton method. Returns the instance of the class.
+    /// </summary>
+    /// <returns>Instance of class.</returns>
     public static LogController Instance { 
             get { 
                 if (instance == null)

@@ -29,11 +29,10 @@ namespace Control
         RemovedStops = Collections.synchronizedList(new List<>());
     }
 
-    /**
-     * Singleton method for class.
-     *
-     * @return instance of class.
-     */
+    /// <summary>
+    /// Singleton method. Returns the instance of the class.
+    /// </summary>
+    /// <returns>Instance of class.</returns>
     public static OptimizeController getInstance() {
         if (instance == null) {
             instance = new OptimizeController();

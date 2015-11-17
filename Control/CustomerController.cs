@@ -21,10 +21,10 @@ namespace Control
             DbCustomer = DBCustomer.Instance;
         }
 
-        /**
-         * Singleton method for class.
-         * @return instance of class.
-         */
+        /// <summary>
+        /// Singleton method. Returns the instance of the class.
+        /// </summary>
+        /// <returns>Instance of class.</returns>
         public static CustomerController Instance
         {
             get
