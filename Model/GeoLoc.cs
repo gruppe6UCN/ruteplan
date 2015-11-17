@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using GMap.NET;
 
 namespace Model
 {
@@ -22,6 +23,10 @@ namespace Model
         public double FliedDistance(GeoLoc geoLoc)
         {
             return Location.GetDistanceTo(geoLoc.Location) / 1000; //Kilometer
+        }
+
+        public PointLatLng Point {
+            get { return new PointLatLng(Location.Latitude, Location.Longitude); }
         }
     }
 }

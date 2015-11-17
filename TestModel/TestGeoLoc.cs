@@ -31,6 +31,13 @@ namespace TestModel
             double sum = gl.FliedDistance(gl2);
             Assert.IsTrue(d - 1 < sum && d + 1 > sum);
         }
+
+        [Test()]
+        public void TestPoint()
+        {
+            Assert.AreEqual(gl.Location.Latitude, gl.Point.Lat);
+            Assert.AreEqual(gl.Location.Longitude, gl.Point.Lng);
+        }
     }
 }
 
