@@ -23,10 +23,22 @@ namespace Control
             DbDeliveryStop = DBDeliveryStop.Instance;
         }
 
-        /**
-         * Stores all the delivery stops for each route in the list.
-         * @param route ArrayList containing all stop from a route stops from.
-         */
+        /// <summary>
+        /// Singleton method. Returns the instance of the class.
+        /// </summary>
+        /// <returns>Instance of class.</returns>
+        public static DeliveryStopController Instance {
+            get {
+                if (instance == null)
+                    instance = new DeliveryStopController();
+                return instance;
+            }
+        }
+
+        /// <summary>
+        /// Stores all delivery stops for the route in the database.
+        /// </summary>
+        /// <param name="route">Route containing stops.</param>
         public void StoreDeliveryStops(Route route) {
 
         route.getStops().parallelStream().forEach((stop) -> { // TODO: make parallelStream
@@ -35,19 +47,11 @@ namespace Control
         });
         }
 
-        /// <summary>
-        /// Singleton method. Returns the instance of the class.
-        /// </summary>
-        /// <returns>Instance of class.</returns>
-        public static DeliveryStopController Instance
-        {
-            get
-            {
-                if (instance == null)
-                    instance = new DeliveryStopController();
-                return instance;
-            }
-        }
+        /**
+        * Stores all the delivery stops for each route in the list.
+        * @param route ArrayList containing all stop from a route stops from.
+        */
+
 
 
         /**

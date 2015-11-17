@@ -10,7 +10,7 @@ namespace Model
     {
         public long ID { get; set; }
         public DefaultDeliveryStop DefaultStop { get; private set; }
-        public List<TransportUnit> TransportUnits { get; private set; }
+        public List<TransportUnit> TransportUnits { get; set; }
 
         public DeliveryStop(DefaultDeliveryStop defaultStop)
         {
