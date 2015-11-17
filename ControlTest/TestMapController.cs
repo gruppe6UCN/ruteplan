@@ -12,12 +12,12 @@ namespace ControlTest
     [TestFixture()]
     class TestMapController
     {
-        MapController mc;
+        //MapController mc;
 
         [SetUp()]
         public void SetUp()
         {
-            this.mc = new MapController();
+            //this.mc = new MapController();
         }
 
         [Test()]
