@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using Control;
 using Server;
+using Model;
 
 namespace ControlTest
 {
