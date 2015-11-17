@@ -10,8 +10,8 @@ namespace Control
 {
     public class DeliveryStopController
     {
-        private TransportUnitController TransportUnitCtr { get; private set; }
-        private DBDeliveryStop DbDeliveryStop { get; private set; }
+        public TransportUnitController TransportUnitCtr { get; private set; }
+        public DBDeliveryStop DbDeliveryStop { get; private set; }
         private static DeliveryStopController instance;
 
         /// <summary>
