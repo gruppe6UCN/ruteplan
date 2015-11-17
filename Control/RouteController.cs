@@ -34,11 +34,9 @@ namespace Control
     /// Singleton method. Returns the instance of the class.
     /// </summary>
     /// <returns>Instance of class.</returns>
-    public static RouteController Instance
-    {
-        get
-        {
-            if (instance == null)
+    public static RouteController Instance {
+        get {
+                if (instance == null)
                 instance = new RouteController();
             return instance;
         }
@@ -134,29 +132,35 @@ namespace Control
     /// Finds and returns all underloaded routes.
     /// </summary>
     /// <returns>List of all underloaded routes.</returns>
-    public List<Route> findUnderloadedRoutes() {
-        // Sync List
-        List<Route> underloadedRoutes = Collections.synchronizedList(
-                //Creates an ArrayList for each overloaded route.
-                new ArrayList<>());
+    public List<Route> FindUnderloadedRoutes() {
 
-        //Enters a loop for each route.
-        Routes.parallelStream().forEach((route) -> { // TODO: make parallelStream
-            //Checks to see if route is underloaded.
-            if (route.isUnderloaded()) {
-                //Adds under loaded route to ArrayList.
-                underloadedRoutes.add(route);
+        //Creates a list of routes.
+        List<Route> underloadedRoutes = new List<Route>();
+
+        //Checks if each route is underloaded.
+        Parallel.ForEach(underloadedRoutes, route => 
+        {
+            //Checks if underlaoded.
+            if (route.IsUnderloaded())
+            {
+                //Adds to list.
+                underloadedRoutes.Add(route);
             }
         });
-        
-        //Return list with all overloaded routes.
-        return underloadedRoutes;    
+
+        //Return list with routes.
+        return underloadedRoutes;   
     }
+
 
     /// <summary>
     /// Calculates the time for departure.
     /// </summary>
     public void calcTimeForDeparture() {
+
+
+
+
         Routes.parallelStream().forEach(route -> { // TODO: make parallelStream
 
 

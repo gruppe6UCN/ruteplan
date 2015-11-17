@@ -72,7 +72,7 @@ namespace Control
         Thread preloadRoutes = new Thread(new Runnable() {
             public void run() {
                 OverloadedRoutes = RouteCtr.FindOverloadedRoutes();
-                UnderloadedRoutes = RouteCtr.findUnderloadedRoutes();
+                UnderloadedRoutes = RouteCtr.FindUnderloadedRoutes();
             }
         });
         preloadRoutes.start();
