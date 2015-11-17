@@ -29,8 +29,11 @@ namespace ControlTest
             Assert.IsNotEmpty(rc.Routes);
         }
 
-
-
-        // "C:\\Users\\The Baron\\Dropbox\\3. Projekt\\Arla Food\\EventyrIBarbiesPrincesseSLot.csv"
+        [Test()]
+        public void TestImportRoutesFromFile()
+        {
+            ic.ImportFromFile("C:\\Users\\The Baron\\Dropbox\\3. Projekt\\Arla Food\\EventyrIBarbiesPrincesseSLot.csv");
+            Assert.IsNotEmpty(rc.Routes);
+        }
     }
 }
