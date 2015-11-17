@@ -40,7 +40,7 @@ namespace Server.Database
         /// </summary>
         /// <param name="defaultDeliveryStopID"></param>
         /// <returns></returns>
-        public List<TransportUnit> getTransportUnits(List<long> IDs)
+        public List<TransportUnit> GetTransportUnits(List<long> IDs)
         {
             List<TransportUnit> list = new List<TransportUnit>();
 

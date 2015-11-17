@@ -54,13 +54,20 @@
       <Name>Control</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
+<<<<<<< HEAD
       <Project>{D2387D10-FFD3-4DD4-8822-DC5F6ED1D93C}</Project>
+=======
+      <Project>{d2387d10-ffd3-4dd4-8822-dc5f6ed1d93c}</Project>
+>>>>>>> 742ec8355ad9e51006afeaf99ddea238f40685c6
       <Name>Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\Server\Server.csproj">
       <Project>{b5425574-cf10-42e3-a74a-32efccd4777d}</Project>
       <Name>Server</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

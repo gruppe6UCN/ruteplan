@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,6 +27,7 @@ namespace Control
             DefaultDeliveryStopCtr = DefaultDeliveryStopController.Instance;
             LogCtr = LogController.Instance;
             DbRoute = DBRoute.Instance;
+            Routes = new List<Route>();
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Control
         /// </summary>
         /// <param name="date">Time used in creation of routes.</param>
         public void ImportRoutes(DateTime date) {
-
+        
             //Loads default routes.
             Routes = new ConcurrentBag<Route>();
             List<DefaultRoute> listDefaultRoues = DefaultRouteCtr.GetDefaultRoutes();

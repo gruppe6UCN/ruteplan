@@ -39,12 +39,11 @@ namespace Control
             }
         }
 
-        /**
-         * Gets an ArrayList of all default delivery stops for the current route.
-         * @return List of all defaultDeliveryStops.
-         * @param defaultRoute The defaultRoute to find all defaultDeliveryStops for.
-         * 
-         */
+        /// <summary>
+        /// Gets all the DefaultDeliveryStops from the database for the given route.
+        /// </summary>
+        /// <param name="defaultRoute">DefaultRoute which DefaultDeliveryStops are to be returned.</param>
+        /// <returns>List of DefaultDeliveryStops for route.</returns>
         public List<DefaultDeliveryStop> GetDefaultDeliveryStops(DefaultRoute defaultRoute)
         {
             long defaultRouteID = defaultRoute.ID;
