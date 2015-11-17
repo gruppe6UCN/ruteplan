@@ -71,7 +71,7 @@ namespace Control
         // Declaring an anonymous class which implements the interface Runnable
         Thread preloadRoutes = new Thread(new Runnable() {
             public void run() {
-                OverloadedRoutes = RouteCtr.findOverloadedRoutes();
+                OverloadedRoutes = RouteCtr.FindOverloadedRoutes();
                 UnderloadedRoutes = RouteCtr.findUnderloadedRoutes();
             }
         });

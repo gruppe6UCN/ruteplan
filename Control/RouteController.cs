@@ -106,30 +106,27 @@ namespace Control
     /// Finds and returns all overloaded routes.
     /// </summary>
     /// <returns>List of all overloaded Routes.</returns>
-    public List<Route> findOverloadedRoutes() {
+    public List<Route> FindOverloadedRoutes() {
         
-        // Sync List
-        List<Route> overloadedRoutes = Collections.synchronizedList(
-                //Creates an ArrayList for each overloaded route.
-                new ArrayList<>());
-        
-        //Enters a loop for each route.
-        Routes.parallelStream().forEach((route) -> { // TODO: make parallelStream
+        //Creates a list of routes.
+        List<Route> overloadedRoutes = new List<Route>();
 
-            //Variable to increment for each load check.
-            double load = route.getLoadForTrailer();
+        //Checks if each route is overloaded.
+        Parallel.ForEach(overloadedRoutes, route => 
+        {
+            //Gets variables.
+            double load = route.GetLoadForTrailer();
+            double capacity = route.GetCapacity();
 
-            //Finds maximum load.
-            double capacity = route.getCapacity();
-
-            //Checks to see if route is overloaded.
-            if (load > capacity) {
-                //Adds overloaded route to ArrayList.
-                overloadedRoutes.add(route);
+            //Checks if overloaded.
+            if (load > capacity)
+            {
+                //Adds the route to list.
+                overloadedRoutes.Add(route);
             }
         });
-        
-        //Return list with all overloaded routes.
+
+        //Return list with routes.
         return overloadedRoutes;
     }
     
