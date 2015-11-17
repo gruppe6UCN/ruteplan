@@ -13,17 +13,27 @@ namespace ControlTest
     public class TestImportController
     {
         ImportController ic;
+        RouteController rc;
 
         [SetUp()]
         public void SetUp()
         {
-            this.ic = new ImportController();
+            ic = ImportController.Instance;
+            rc = RouteController.Instance;
         }
 
         [Test()]
-        public void TestXXXXX()
+        public void TestImportRoutes()
         {
+            ic.ImportRoutes();
+            Assert.IsNotEmpty(rc.Routes);
+        }
 
+        [Test()]
+        public void TestImportRoutesFromFile()
+        {
+            ic.ImportFromFile("C:\\Users\\The Baron\\Dropbox\\3. Projekt\\Arla Food\\EventyrIBarbiesPrincesseSLot.csv");
+            Assert.IsNotEmpty(rc.Routes);
         }
     }
 }

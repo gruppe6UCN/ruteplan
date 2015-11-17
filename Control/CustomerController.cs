@@ -13,18 +13,18 @@ namespace Control
         public DBCustomer DbCustomer { get; private set; }
         private static CustomerController instance;
 
-        /**
-         * Private constructor for singleton.
-         */
+        /// <summary>
+        /// Private singleton constructor.
+        /// </summary>
         private CustomerController()
         {
             DbCustomer = DBCustomer.Instance;
         }
 
-        /**
-         * Singleton method for class.
-         * @return instance of class.
-         */
+        /// <summary>
+        /// Singleton method. Returns the instance of the class.
+        /// </summary>
+        /// <returns>Instance of class.</returns>
         public static CustomerController Instance
         {
             get
