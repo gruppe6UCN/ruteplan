@@ -19,7 +19,7 @@ namespace Control
         /// </summary>
         private DeliveryStopController()
         {
-            TransportUnitCtr = TransportUnitController.getInstance();
+            TransportUnitCtr = TransportUnitController.Instance;
             DbDeliveryStop = DBDeliveryStop.Instance;
         }
 
@@ -39,39 +39,30 @@ namespace Control
         /// Stores all delivery stops for the route in the database.
         /// </summary>
         /// <param name="route">Route containing stops.</param>
-        public void StoreDeliveryStops(Route route) {
-
-        route.getStops().parallelStream().forEach((stop) -> { // TODO: make parallelStream
-            long deliveryStopID = DbDeliveryStop.store(route.getID(), stop);
-            stop.setID(deliveryStopID);
-        });
+        public void StoreDeliveryStops(Route route) 
+        {
+            var stops = route.Stops; //TODO: Use a thread-safe list instead of List<T>
+            Parallel.ForEach(stops, stop =>
+            {
+                long deliveryStopID = DbDeliveryStop.StoreDeliveryStop(route.ID, stop);
+                stop.ID = deliveryStopID;
+            });
         }
 
-        /**
-        * Stores all the delivery stops for each route in the list.
-        * @param route ArrayList containing all stop from a route stops from.
-        */
-
-
-
-        /**
-         * Adds all delivery defaultStops to the the route.
-         * @param route route to add deliveryStops to.
-         * @param defaultStops ArrayList of defaultDeliveryStops.
-         */
-        public void addDeliveryStops(Route route, List<DefaultDeliveryStop> defaultStops) {
-        //for each DefaultDeliveryStop add one DeliveryStop to route
-        defaultStops.stream().forEach((defaultStop) -> {
-
-            DeliveryStop stop = new DeliveryStop(defaultStop);
-
-            //add all TransportUnit for this DeliveryStop
-            TransportUnitCtr.addTransportUnit(stop, stop.getDefaultStop().getCustomers());
-
-            //Adds deliveryStop to route.
-            route.addDeliveryStop(stop);
-        });
+        /// <summary>
+        /// Creates and adds all DeliveryStops to the given route, based on the given DefaultDeliveryStop.
+        /// </summary>
+        /// <param name="route">Route to contain DeliveryStops</param>
+        /// <param name="defaultStops">List of DefaultStops.</param>
+        public void AddDeliveryStops(Route route, List<DefaultDeliveryStop> defaultStops) 
+        {
+            //TODO: Use a thread safe list instead of List<T>
+            Parallel.ForEach(defaultStops, defaultStop =>
+            {
+                DeliveryStop stop = new DeliveryStop(defaultStop);
+                TransportUnitCtr.addTransportUnit(stop, stop.DefaultStop.Customers);
+                route.AddDeliveryStop(stop);
+            });
+        }
     }
-    }
-
 }

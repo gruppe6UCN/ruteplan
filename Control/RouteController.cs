@@ -63,7 +63,7 @@ namespace Control
                 //Syncronize then add stops.
                 lock (listDefaultRoues)
                 {
-                    DeliveryStopCtr.addDeliveryStops(route, DefaultDeliveryStopCtr.GetDefaultDeliveryStops(defaultRoute));
+                    DeliveryStopCtr.AddDeliveryStops(route, DefaultDeliveryStopCtr.GetDefaultDeliveryStops(defaultRoute));
                 }
            
                 //Updates log and adds route.
@@ -94,7 +94,7 @@ namespace Control
                 //Syncronize then add stops.
                 lock (listDefaultRoues)
                 {
-                    DeliveryStopCtr.addDeliveryStops(route, DefaultDeliveryStopCtr.GetDefaultDeliveryStops(defaultRoute));
+                    DeliveryStopCtr.AddDeliveryStops(route, DefaultDeliveryStopCtr.GetDefaultDeliveryStops(defaultRoute));
                 }
 
                 //Updates log and adds route.
