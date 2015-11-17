@@ -1,291 +1,291 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Model;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
+//using Model;
 
-namespace Control
-{
-    public class OptimizeController
-    {
-        public RouteController RouteCtr  { get; private set; }
-        public MapController MapCtr { get; private set; }
-        public LogController LogCtr { get; private set; }
-        private static OptimizeController instance;
-        private List<DeliveryStop> RemovedStops;
+//namespace Control
+//{
+//    public class OptimizeController
+//    {
+//        public RouteController RouteCtr  { get; private set; }
+//        public MapController MapCtr { get; private set; }
+//        public LogController LogCtr { get; private set; }
+//        private static OptimizeController instance;
+//        private List<DeliveryStop> RemovedStops;
 
-        List<Route> OverloadedRoutes;
-        List<Route> UnderloadedRoutes;
+//        List<Route> OverloadedRoutes;
+//        List<Route> UnderloadedRoutes;
 
-        /// <summary>
-        /// Private singleton constructor.
-        /// </summary>
-        private OptimizeController() {
-            RouteCtr = RouteController.Instance;
-            MapCtr = MapController.Instance;
-            LogCtr = LogController.Instance;
-            // Sync List
-            RemovedStops = Collections.synchronizedList(new List<>());
-        }
+//        /// <summary>
+//        /// Private singleton constructor.
+//        /// </summary>
+//        private OptimizeController() {
+//            RouteCtr = RouteController.Instance;
+//            MapCtr = MapController.Instance;
+//            LogCtr = LogController.Instance;
+//            // Sync List
+//            RemovedStops = Collections.synchronizedList(new List<>());
+//        }
 
-        /// <summary>
-        /// Singleton method. Returns the instance of the class.
-        /// </summary>
-        /// <returns>Instance of class.</returns>
-        public static OptimizeController getInstance() {
-            if (instance == null) {
-                instance = new OptimizeController();
-            }
+//        /// <summary>
+//        /// Singleton method. Returns the instance of the class.
+//        /// </summary>
+//        /// <returns>Instance of class.</returns>
+//        public static OptimizeController getInstance() {
+//            if (instance == null) {
+//                instance = new OptimizeController();
+//            }
 
-            return instance;
-        }
+//            return instance;
+//        }
 
-        /**
-         * Optimizes all imported routes.
-         * @param rowData
-         */
-        public void optimize(Vector rowData) {
-            optimize();
+//        /**
+//         * Optimizes all imported routes.
+//         * @param rowData
+//         */
+//        public void optimize(Vector rowData) {
+//            optimize();
 
-            List<Route> routes = RouteCtr.getRoutes();
+//            List<Route> routes = RouteCtr.getRoutes();
 
-            routes.forEach(route -> {
-                Vector row = new Vector();
-                row.addElement(route.getDefaultRoute().isExtraRoute() ? "NONE" : String.format("%03d", route.getDefaultRoute().getID()));
-                row.addElement(route.getStops().size());
-                row.addElement(String.format("%.1f / %.1f", route.getLoadForTrailer(), route.getCapacity()));
-                row.addElement(String.format("%02d:%02d", route.getTimeForDeparture().getHour(), route.getTimeForDeparture().getMinute()));
-                row.addElement(route.getDefaultRoute().isExtraRoute() ? "Yes" : "No");
-                rowData.add(row);
-            });
-        }
+//            routes.forEach(route -> {
+//                Vector row = new Vector();
+//                row.addElement(route.getDefaultRoute().isExtraRoute() ? "NONE" : String.format("%03d", route.getDefaultRoute().getID()));
+//                row.addElement(route.getStops().size());
+//                row.addElement(String.format("%.1f / %.1f", route.getLoadForTrailer(), route.getCapacity()));
+//                row.addElement(String.format("%02d:%02d", route.getTimeForDeparture().getHour(), route.getTimeForDeparture().getMinute()));
+//                row.addElement(route.getDefaultRoute().isExtraRoute() ? "Yes" : "No");
+//                rowData.add(row);
+//            });
+//        }
 
-        /**
-         * Optimizes all imported routes.
-         */
-        public void optimize() {
-            LogCtr.StatusLog("searching for over- and underloaded");
+//        /**
+//         * Optimizes all imported routes.
+//         */
+//        public void optimize() {
+//            LogCtr.StatusLog("searching for over- and underloaded");
 
-            // Declaring an anonymous class which implements the interface Runnable
-            Thread preloadRoutes = new Thread(new Runnable() {
-                public void run() {
-                    OverloadedRoutes = RouteCtr.FindOverloadedRoutes();
-                    UnderloadedRoutes = RouteCtr.FindUnderloadedRoutes();
-                }
-            });
-            preloadRoutes.start();
-
-
-            log.StatusLog("Loading map module...");
-            Thread prelaodMap = new Thread(new Runnable() {
-                public void run() {
-                    mapController.generateMap();
-                }
-            });
-            prelaodMap.start();
-
-            //Waiting for the thread which finds routes if it isn't done
-            try {
-                preloadRoutes.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            log.StatusLog("Found all over- and underloaded routes");
-
-            //Checks to see if there is overloadedRoutes.
-            if (overloadedRoutes.size() >= 1) {
-
-                //Enters a loop for each overloaded route.
-                overloadedRoutes.parallelStream().forEach((overloadedRoute) -> { // TODO: make parallelStream
-
-                    //Finds overloaded amount.
-                    double overloadAmount = overloadedRoute.getLoadForTrailer() - overloadedRoute.getCapacity();
-
-                    //Removes deliveryStops from route, until it's not overloaded, using a greedy algorithm.
-                    while (overloadAmount > 0) {
-
-                        //Finds the most/best overloaded stop.
-                        DeliveryStop best = findBestOverloadedStop(overloadedRoute, overloadAmount);
-
-                        //Removes stop from route.
-                        overloadedRoute.getStops().remove(best);
-
-                        //Adds stop to ArrayList.
-                        removedStops.add(best);
-
-                        //Decrements overload.
-                        overloadAmount -= best.getSizeOfTransportUnits();
-                    }
-                });
-                log.StatusLog(String.format("There is %d delivery stop there need to be moved to another routes", overloadedRoutes.size()));
-
-                //Waiting for the thread which finds routes if it isn't done
-                try {
-                    prelaodMap.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                log.StatusLog("Map module Loaded");
-
-                //Enter a loop for each stop removed.
-                removedStops.stream().forEach((removedStop) -> {
-                    //Sync HashMap
-                    Map<Double, Route> nearRoutes = Collections.synchronizedMap(
-                            //HashMap containing all routes near removedStop with distance as the key.
-                            new HashMap<>());
-
-                    //Finds the geoLoc for current removedStop.
-                    GeoLoc geoLocRemovedStop = mapController.findGeoLoc(removedStop);
-
-                    log.StatusLog("Searching for routes at a close enough distance, og with enough free space to add the stop");
-                    //Enters a loop for each underloadedRoute, to check if one of them is near stop.
-                    underloadedRoutes.parallelStream().forEach((underloadedRoute) -> {  // TODO: make parallelStream
-                        //Checks if there is space to removedStop on this Route
-                        double newLoad = removedStop.getSizeOfTransportUnits() + underloadedRoute.getLoadForTrailer();
-                        if (newLoad <= underloadedRoute.getCapacity()) {
-
-                            //Sync HashMap
-                            Map<Double, DeliveryStop> distanceForStops = Collections.synchronizedMap
-                                    (new HashMap<>());
-
-                            underloadedRoute.getStops().parallelStream().forEach(deliveryStop -> { // TODO: make parallelStream
-                                //Gets the geoLoc, and store the distance for the geoLoc.
-                                GeoLoc geoLacBelongingToRoute = mapController.findGeoLoc(deliveryStop);
-                                double distance = mapController.getShortestDistance(geoLocRemovedStop, geoLacBelongingToRoute);
-
-                                distanceForStops.put(distance, deliveryStop);
-                            });
-
-                            // The shortest distance (HashMap key) for this Route
-                            Double distance = distanceForStops.keySet().stream().sorted().findFirst().get();
-
-                            //Checks to see if within a acceptable distance.
-                            if (distance < 25) {
-                                nearRoutes.put(distance, underloadedRoute);
-                            }
-                        }
-                    });
-
-                    if (nearRoutes.size() > 0) {
-                        // The shortest distance (HashMap key) for all the Routes
-                        Double distance = nearRoutes.keySet().stream().sorted().findFirst().get();
-
-                        //Move stop to this route.
-                        Route underloadedRoute = nearRoutes.get(distance);
-                        underloadedRoute.addDeliveryStop(removedStop);
-                        if (!underloadedRoute.isUnderloaded()) {
-                            underloadedRoutes.remove(underloadedRoute);
-                        }
-
-                        log.StatusLog("Added delivery stop to route");
-                    } else {
-
-                        //Make a new route.
-                        Route newRoute = newRoute(removedStop);
-                        routeController.addRoute(newRoute);
-                        if (newRoute.isUnderloaded()) {
-                            underloadedRoutes.add(newRoute);
-                        }
-
-                        log.StatusLog("Created a new route for delivery stop");
-                    }
-                });
-
-                //Clears ArrayList
-                removedStops.clear();
-
-                routeController.calcTimeForDeparture();
-            }
-        }
+//            // Declaring an anonymous class which implements the interface Runnable
+//            Thread preloadRoutes = new Thread(new Runnable() {
+//                public void run() {
+//                    OverloadedRoutes = RouteCtr.FindOverloadedRoutes();
+//                    UnderloadedRoutes = RouteCtr.FindUnderloadedRoutes();
+//                }
+//            });
+//            preloadRoutes.start();
 
 
-        /**
-         * Makes a new route and add a delivery stop.
-         *
-         * @param deliveryStop
-         * @return returns the new route.
-         */
-        private Route newRoute(DeliveryStop deliveryStop) {
+//            log.StatusLog("Loading map module...");
+//            Thread prelaodMap = new Thread(new Runnable() {
+//                public void run() {
+//                    mapController.generateMap();
+//                }
+//            });
+//            prelaodMap.start();
 
-            //Create default route.
-            TrailerType trailerType = TrailerType.STOR;
-            boolean extraRoute = true;
+//            //Waiting for the thread which finds routes if it isn't done
+//            try {
+//                preloadRoutes.join();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//            log.StatusLog("Found all over- and underloaded routes");
 
-            DefaultRoute defaultRoute = new DefaultRoute(trailerType, extraRoute);
+//            //Checks to see if there is overloadedRoutes.
+//            if (overloadedRoutes.size() >= 1) {
 
-            //Create route.
-            Route route = new Route(defaultRoute, LocalDate.now());
+//                //Enters a loop for each overloaded route.
+//                overloadedRoutes.parallelStream().forEach((overloadedRoute) -> { // TODO: make parallelStream
 
-            //Add stops.
-            route.addDeliveryStop(deliveryStop);
+//                    //Finds overloaded amount.
+//                    double overloadAmount = overloadedRoute.getLoadForTrailer() - overloadedRoute.getCapacity();
 
-            //Return route.
-            return route;
-        }
+//                    //Removes deliveryStops from route, until it's not overloaded, using a greedy algorithm.
+//                    while (overloadAmount > 0) {
+
+//                        //Finds the most/best overloaded stop.
+//                        DeliveryStop best = findBestOverloadedStop(overloadedRoute, overloadAmount);
+
+//                        //Removes stop from route.
+//                        overloadedRoute.getStops().remove(best);
+
+//                        //Adds stop to ArrayList.
+//                        removedStops.add(best);
+
+//                        //Decrements overload.
+//                        overloadAmount -= best.getSizeOfTransportUnits();
+//                    }
+//                });
+//                log.StatusLog(String.format("There is %d delivery stop there need to be moved to another routes", overloadedRoutes.size()));
+
+//                //Waiting for the thread which finds routes if it isn't done
+//                try {
+//                    prelaodMap.join();
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                log.StatusLog("Map module Loaded");
+
+//                //Enter a loop for each stop removed.
+//                removedStops.stream().forEach((removedStop) -> {
+//                    //Sync HashMap
+//                    Map<Double, Route> nearRoutes = Collections.synchronizedMap(
+//                            //HashMap containing all routes near removedStop with distance as the key.
+//                            new HashMap<>());
+
+//                    //Finds the geoLoc for current removedStop.
+//                    GeoLoc geoLocRemovedStop = mapController.findGeoLoc(removedStop);
+
+//                    log.StatusLog("Searching for routes at a close enough distance, og with enough free space to add the stop");
+//                    //Enters a loop for each underloadedRoute, to check if one of them is near stop.
+//                    underloadedRoutes.parallelStream().forEach((underloadedRoute) -> {  // TODO: make parallelStream
+//                        //Checks if there is space to removedStop on this Route
+//                        double newLoad = removedStop.getSizeOfTransportUnits() + underloadedRoute.getLoadForTrailer();
+//                        if (newLoad <= underloadedRoute.getCapacity()) {
+
+//                            //Sync HashMap
+//                            Map<Double, DeliveryStop> distanceForStops = Collections.synchronizedMap
+//                                    (new HashMap<>());
+
+//                            underloadedRoute.getStops().parallelStream().forEach(deliveryStop -> { // TODO: make parallelStream
+//                                //Gets the geoLoc, and store the distance for the geoLoc.
+//                                GeoLoc geoLacBelongingToRoute = mapController.findGeoLoc(deliveryStop);
+//                                double distance = mapController.getShortestDistance(geoLocRemovedStop, geoLacBelongingToRoute);
+
+//                                distanceForStops.put(distance, deliveryStop);
+//                            });
+
+//                            // The shortest distance (HashMap key) for this Route
+//                            Double distance = distanceForStops.keySet().stream().sorted().findFirst().get();
+
+//                            //Checks to see if within a acceptable distance.
+//                            if (distance < 25) {
+//                                nearRoutes.put(distance, underloadedRoute);
+//                            }
+//                        }
+//                    });
+
+//                    if (nearRoutes.size() > 0) {
+//                        // The shortest distance (HashMap key) for all the Routes
+//                        Double distance = nearRoutes.keySet().stream().sorted().findFirst().get();
+
+//                        //Move stop to this route.
+//                        Route underloadedRoute = nearRoutes.get(distance);
+//                        underloadedRoute.addDeliveryStop(removedStop);
+//                        if (!underloadedRoute.isUnderloaded()) {
+//                            underloadedRoutes.remove(underloadedRoute);
+//                        }
+
+//                        log.StatusLog("Added delivery stop to route");
+//                    } else {
+
+//                        //Make a new route.
+//                        Route newRoute = newRoute(removedStop);
+//                        routeController.addRoute(newRoute);
+//                        if (newRoute.isUnderloaded()) {
+//                            underloadedRoutes.add(newRoute);
+//                        }
+
+//                        log.StatusLog("Created a new route for delivery stop");
+//                    }
+//                });
+
+//                //Clears ArrayList
+//                removedStops.clear();
+
+//                routeController.calcTimeForDeparture();
+//            }
+//        }
 
 
-        /**
-         * Finds the most overloaded delivery stop in the given route, as long as it doesn't exceed the overload cap.
-         * If no such stop can be found, finds the least overloaded route instead.
-         *
-         * @param route    the route whose stops are to be checked.
-         * @param overload the overload cap to exclude stops whose load are not optimal.
-         * @return the best suited deliveryStop whose load most closely fits the cap.
-         */
-        private DeliveryStop findBestOverloadedStop(Route route, double overload) {
+//        /**
+//         * Makes a new route and add a delivery stop.
+//         *
+//         * @param deliveryStop
+//         * @return returns the new route.
+//         */
+//        private Route newRoute(DeliveryStop deliveryStop) {
 
-            //Finds an initial stops for comparison.
-            DeliveryStop biggest = route.getStops().get(0);
-            DeliveryStop best = biggest;
+//            //Create default route.
+//            TrailerType trailerType = TrailerType.STOR;
+//            boolean extraRoute = true;
 
-            //Boolean to check if cap is exceeded.
-            boolean exceedCap = false;
+//            DefaultRoute defaultRoute = new DefaultRoute(trailerType, extraRoute);
 
-            //Enters a loop for each stop, to find the most overloaded stop.
-            ArrayList<DeliveryStop> stops = route.getStops();
-            for (DeliveryStop deliveryStop : stops) {
+//            //Create route.
+//            Route route = new Route(defaultRoute, LocalDate.now());
 
-                //Compares the load of the deliveryStop with the load of the biggest, to find which is biggest.
-                double biggestload = biggest.getSizeOfTransportUnits();
-                double compareload = deliveryStop.getSizeOfTransportUnits();
-                if (compareload > biggestload) {
+//            //Add stops.
+//            route.addDeliveryStop(deliveryStop);
 
-                    //Sets the biggest to the current.
-                    biggest = deliveryStop;
-                    best = biggest;
+//            //Return route.
+//            return route;
+//        }
 
-                    //Checks to see if the biggest exceeds the cap.
-                    if (biggestload > overload) {
-                        exceedCap = true;
-                    } else {
-                        exceedCap = false;
-                    }
-                }
-            }
 
-            //Checks to see if the biggest exceeds the limit.
-            if (exceedCap) {
+//        /**
+//         * Finds the most overloaded delivery stop in the given route, as long as it doesn't exceed the overload cap.
+//         * If no such stop can be found, finds the least overloaded route instead.
+//         *
+//         * @param route    the route whose stops are to be checked.
+//         * @param overload the overload cap to exclude stops whose load are not optimal.
+//         * @return the best suited deliveryStop whose load most closely fits the cap.
+//         */
+//        private DeliveryStop findBestOverloadedStop(Route route, double overload) {
 
-                //Initial stop for comparison.
-                DeliveryStop smallest = route.getStops().get(0);
+//            //Finds an initial stops for comparison.
+//            DeliveryStop biggest = route.getStops().get(0);
+//            DeliveryStop best = biggest;
 
-                //Enters a loop for each stop, to find the least overloaded stop.
-                for (DeliveryStop deliveryStop : stops) {
+//            //Boolean to check if cap is exceeded.
+//            boolean exceedCap = false;
 
-                    //Compares the load of the deliveryStop with the load of the smallest, to find which is smallest.
-                    double smallestload = smallest.getSizeOfTransportUnits();
-                    double compareload = deliveryStop.getSizeOfTransportUnits();
-                    if (compareload < smallestload) {
+//            //Enters a loop for each stop, to find the most overloaded stop.
+//            ArrayList<DeliveryStop> stops = route.getStops();
+//            for (DeliveryStop deliveryStop : stops) {
 
-                        //Sets the smallest to current.
-                        smallest = deliveryStop;
-                        best = smallest;
-                    }
-                }
-            }
+//                //Compares the load of the deliveryStop with the load of the biggest, to find which is biggest.
+//                double biggestload = biggest.getSizeOfTransportUnits();
+//                double compareload = deliveryStop.getSizeOfTransportUnits();
+//                if (compareload > biggestload) {
 
-            //Returns the best load.
-            return best;
-    }
-}
+//                    //Sets the biggest to the current.
+//                    biggest = deliveryStop;
+//                    best = biggest;
+
+//                    //Checks to see if the biggest exceeds the cap.
+//                    if (biggestload > overload) {
+//                        exceedCap = true;
+//                    } else {
+//                        exceedCap = false;
+//                    }
+//                }
+//            }
+
+//            //Checks to see if the biggest exceeds the limit.
+//            if (exceedCap) {
+
+//                //Initial stop for comparison.
+//                DeliveryStop smallest = route.getStops().get(0);
+
+//                //Enters a loop for each stop, to find the least overloaded stop.
+//                for (DeliveryStop deliveryStop : stops) {
+
+//                    //Compares the load of the deliveryStop with the load of the smallest, to find which is smallest.
+//                    double smallestload = smallest.getSizeOfTransportUnits();
+//                    double compareload = deliveryStop.getSizeOfTransportUnits();
+//                    if (compareload < smallestload) {
+
+//                        //Sets the smallest to current.
+//                        smallest = deliveryStop;
+//                        best = smallest;
+//                    }
+//                }
+//            }
+
+//            //Returns the best load.
+//            return best;
+//    }
+//}

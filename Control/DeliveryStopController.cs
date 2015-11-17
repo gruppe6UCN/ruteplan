@@ -17,7 +17,7 @@ namespace Control
         /// <summary>
         /// Private singleton constructor.
         /// </summary>
-        private DeliveryStopController() 
+        private DeliveryStopController()
         {
             TransportUnitCtr = TransportUnitController.getInstance();
             DbDeliveryStop = DBDeliveryStop.Instance;
@@ -33,7 +33,7 @@ namespace Control
             long deliveryStopID = DbDeliveryStop.store(route.getID(), stop);
             stop.setID(deliveryStopID);
         });
-    }
+        }
 
         /// <summary>
         /// Singleton method. Returns the instance of the class.
@@ -69,5 +69,5 @@ namespace Control
         });
     }
     }
-  
+
 }
