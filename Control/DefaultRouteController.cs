@@ -13,9 +13,9 @@ namespace Control
         public DBDefaultRoute DbDefaultRoute { get; private set; }
         private static DefaultRouteController instance;
 
-        /**
-         * Private constructor for singleton.
-         */
+        /// <summary>
+        /// Private singleton constructor.
+        /// </summary>
         private DefaultRouteController() {
         DbDefaultRoute = DBDefaultRoute.Instance;
     }

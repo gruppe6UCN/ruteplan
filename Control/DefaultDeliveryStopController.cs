@@ -14,9 +14,9 @@ namespace Control
         public CustomerController CustomerCtr { get; private set; }
         private static DefaultDeliveryStopController instance;
 
-        /**
-         * Private constructor for singleton. 
-         */
+        /// <summary>
+        /// Private singleton constructor.
+        /// </summary>
         private DefaultDeliveryStopController() 
         {
             DbDefaultDeliveryStop = DBDefaultDeliveryStop.Instance;

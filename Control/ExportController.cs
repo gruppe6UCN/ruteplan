@@ -13,42 +13,42 @@ namespace Control
         public RouteController RouteCtr { get; private set; }
         private static ExportController instance;
     
-    /**
-     * Private constructor for singleton.
-     */
-    private ExportController() {
-        RouteCtr = RouteController.Instance;
-    }
-    
-    /// <summary>
-    /// Singleton method. Returns the instance of the class.
-    /// </summary>
-    /// <returns>Instance of class.</returns>
-    public static ExportController Instance { 
-            get { 
-                if (instance == null)
-                    instance = new ExportController();
-                return instance;
-            }
+        /// <summary>
+        /// Private singleton constructor.
+        /// </summary>
+        private ExportController() {
+            RouteCtr = RouteController.Instance;
         }
     
-    /**
-     * Exports all routes to database.
-     */
-    public void exportDatas(Vector rowData) {
-        RouteCtr.exportData();
+        /// <summary>
+        /// Singleton method. Returns the instance of the class.
+        /// </summary>
+        /// <returns>Instance of class.</returns>
+        public static ExportController Instance { 
+                get { 
+                    if (instance == null)
+                        instance = new ExportController();
+                    return instance;
+                }
+            }
+    
+        /**
+         * Exports all routes to database.
+         */
+        public void exportDatas(Vector rowData) {
+            RouteCtr.exportData();
 
-        List<Route> routes = RouteCtr.getRoutes();
+            List<Route> routes = RouteCtr.getRoutes();
 
-        routes.forEach(route -> {
-            Vector row = new Vector();
-            row.addElement(String.format("%03d", route.getID()));
-            row.addElement(route.getDefaultRoute().isExtraRoute() ? "NONE" : String.format("%03d", route.getDefaultRoute().getID()));
-            row.addElement(route.getStops().size());
-            row.addElement(String.format("%.1f / %.1f", route.getLoadForTrailer(), route.getCapacity()));
-            row.addElement(String.format("%02d:%02d", route.getTimeForDeparture().getHour(), route.getTimeForDeparture().getMinute()));
-            row.addElement(route.getDefaultRoute().isExtraRoute() ? "Yes" : "No");
-            rowData.add(row);
-        });
+            routes.forEach(route -> {
+                Vector row = new Vector();
+                row.addElement(String.format("%03d", route.getID()));
+                row.addElement(route.getDefaultRoute().isExtraRoute() ? "NONE" : String.format("%03d", route.getDefaultRoute().getID()));
+                row.addElement(route.getStops().size());
+                row.addElement(String.format("%.1f / %.1f", route.getLoadForTrailer(), route.getCapacity()));
+                row.addElement(String.format("%02d:%02d", route.getTimeForDeparture().getHour(), route.getTimeForDeparture().getMinute()));
+                row.addElement(route.getDefaultRoute().isExtraRoute() ? "Yes" : "No");
+                rowData.add(row);
+            });
     }
 }

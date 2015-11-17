@@ -14,13 +14,14 @@ namespace Control
         private DBDeliveryStop DbDeliveryStop { get; private set; }
         private static DeliveryStopController instance;
 
-        /**
-         * Private constructor for singleton.
-         */
-        private DeliveryStopController() {
-        TransportUnitCtr = TransportUnitController.getInstance();
-        DbDeliveryStop = DBDeliveryStop.Instance;
-    }
+        /// <summary>
+        /// Private singleton constructor.
+        /// </summary>
+        private DeliveryStopController() 
+        {
+            TransportUnitCtr = TransportUnitController.getInstance();
+            DbDeliveryStop = DBDeliveryStop.Instance;
+        }
 
         /**
          * Stores all the delivery stops for each route in the list.

@@ -24,6 +24,9 @@ namespace Control
             }
         }
 
+    /// <summary>
+    /// Private singleton constructor.
+    /// </summary>
     private LogController() {
     }
 
