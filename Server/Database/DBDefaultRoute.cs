@@ -11,16 +11,20 @@ namespace Server.Database
     public class DBDefaultRoute
     {
         public DBConnection DbConnection { get; private set; }
-        private static DBDefaultRoute instance; 
+        private static DBDefaultRoute instance;
 
-        /// private constructor for singelton     
+        /// <summary>
+        /// Private singleton constructor.
+        /// </summary>  
         private DBDefaultRoute()
         {
             DbConnection = DBConnection.Instance;
         }
 
-        /// singelton get instance method 
-        /// returns the instance from DB 
+        /// <summary>
+        /// Singleton method. Returns the instance of the class.
+        /// </summary>
+        /// <returns>Instance of class.</returns>
         public static DBDefaultRoute Instance
         {
             get

@@ -44,7 +44,7 @@ namespace Control
         /// <param name="defaultStop"></param>
         public void AddCustomers(DefaultDeliveryStop defaultStop) 
         {
-            defaultStop.Customers = (DbCustomer.GetCustomers(defaultStop.ID));
+            defaultStop.Customers = DbCustomer.GetCustomers(defaultStop.ID);
         }
     }
 }
