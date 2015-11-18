@@ -14,14 +14,46 @@ namespace Control
         private static ImportController instance;
 
         //Mapping Class for File Import.
+        [IgnoreFirst()]
+        [IgnoreLast()]
         [DelimitedRecord(",")]
         public class MappingDefaultRoute
         {
-            public long ID;
-
-            public double TrailerType;
-
-            public bool ExtraRoute;
+            public string Vialolation;
+            public string StatusViolation;
+            public string Masterplan;
+            public string TransportationDate;
+            public string ShiftExportStatus;
+            public string FirstActionState;
+            public string SAP;
+            public string Mobile;
+            public string ReasonCode;
+            public string Status;
+            public string lastExportDate;
+            public string Route;
+            public string Shipment;
+            public string Gate;
+            public string Truck;
+            public string Trailer;
+            public string DriverNo;
+            public string Driver;
+            public string Vendor;
+            public string Capacity;
+            public string RCE;
+            public string pct_Loaded;
+            public string Start;
+            public string DepartureFromDepot;
+            public string udf_LateDeparture;
+            public string Finish;
+            public string V;
+            public string S;
+            public string LastDeliver;
+            public string Delivers;
+            public string DrivingTime;
+            public string Duration;
+            public string KM;
+            public string Cost;
+            public string udf_DeleteFromDB;
         }
 
         /// <summary>
@@ -68,12 +100,24 @@ namespace Control
             //Converts mapping class to routes.
             foreach (var record in records)
             {
-                DefaultRoute defaultRoute = new DefaultRoute(record.ID, record.TrailerType, record.ExtraRoute);
+                DefaultRoute defaultRoute = new DefaultRoute(ParseID(record.Route), TrailerType.STOR, false);
                 defaultRoutes.Add(defaultRoute);
             }
 
             //Creates routes from list.
             RouteCtr.ImportRoutes(defaultRoutes, DateTime.Now);
         }
+
+        /// <summary>
+        /// Parses the given route string to a long ID and returns it.
+        /// </summary>
+        /// <param name="id">String to be parsed.</param>
+        /// <returns>Long value of id.</returns>
+        private long ParseID(string id)
+        {
+            string idString = id.Substring(3);
+            return long.Parse(idString);
+        }
+
     }
 }
