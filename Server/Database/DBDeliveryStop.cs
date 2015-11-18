@@ -22,15 +22,20 @@ namespace Server.Database
         }
 
         public DBConnection DbConnection { get; private set; }
-        private static DBDeliveryStop instance; 
+        private static DBDeliveryStop instance;
 
-        /// private constructor for singelton
+        /// <summary>
+        /// Private singleton constructor.
+        /// </summary>
         private DBDeliveryStop()
         {
             DbConnection = DBConnection.Instance;
         }
 
-        /// singelton get instance method 
+        /// <summary>
+        /// Singleton method. Returns the instance of the class.
+        /// </summary>
+        /// <returns>Instance of class.</returns>
         public static DBDeliveryStop Instance
         {
             get

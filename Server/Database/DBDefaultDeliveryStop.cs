@@ -17,21 +17,20 @@ namespace Server.Database
     public class DBDefaultDeliveryStop
     {
         public DBConnection DbConnection { get; set; }
-        private static DBDefaultDeliveryStop instance; 
+        private static DBDefaultDeliveryStop instance;
 
-        /// <summary >
-        /// private constructor for singelton
+        /// <summary>
+        /// Private singleton constructor.
         /// </summary>
-       
         private DBDefaultDeliveryStop()
         {
             DbConnection = DBConnection.Instance;
         }
 
-        /// <sunmmary>
-        /// singelton get instance method 
-        /// returns the instance from DB 
-      
+        /// <summary>
+        /// Singleton method. Returns the instance of the class.
+        /// </summary>
+        /// <returns>Instance of class.</returns>      
         public static DBDefaultDeliveryStop Instance
         {
             get
