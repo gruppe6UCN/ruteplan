@@ -12,10 +12,10 @@ namespace Control
     public class CustomerController
     {
         public DBCustomer DbCustomer { get; private set; }
+        public FileHelperEngine<MappingCustomer> engine { get; private set; }
+        public List<MappingCustomer> records { get; private set; }
         private static CustomerController instance;
 
-
-        
         //Mapping Class for File Import.
         [IgnoreFirst()]
         [IgnoreLast()]
@@ -24,7 +24,7 @@ namespace Control
         {
             public string Active;
             public string UdfDepotld;
-            public string CustomerNo;
+            public long CustomerNo;
             public string Name;
             public string StreetName;
             public string DoorNumber;
@@ -70,17 +70,54 @@ namespace Control
         }
 
         /// <summary>
-        /// Adds customers to the given default delivery stop. Customers is gained from the .csv file.
+        /// Adds customers to the given default delivery stop. Customers must be added using the method
+        /// GetCustomersFromFile beforehand.
         /// </summary>
         /// <param name="defaultStop">Default stop to add customers to.</param>
-        /// <param name="path">File path of .csv file.</param>
-        public void AddCustomers(DefaultDeliveryStop defaultStop, string path)
+        public void AddCustomersFromFile(DefaultDeliveryStop defaultStop, Dictionary<DateTime, DefaultDeliveryStopController.MappingDefaultDeliveryStop> dic)
         {
-            
-            //TODO: DO DIZ!
+
+            //Creates list of Customers.
+            List<Customer> customers = new List<Customer>();
+            long id = 1;
+
+            //Converts mapping class to stops.
+            foreach (var record in records)
+            {
+
+                Customer customer = new Customer(record.CustomerNo, record.StreetName, record.DoorNumber, record.ZipCode, record.City, )
+
+
+                DefaultDeliveryStop defaultStop = new DefaultDeliveryStop(id, record);
+
+
+
+                customers.Add(defaultStop);
+                id++;
+
+
+                DefaultRoute defaultRoute = new DefaultRoute(ParseID(record.Route), TrailerType.STOR, false);
+                customers.Add(defaultRoute);
+            }
+
             
             
             defaultStop.Customers = DbCustomer.GetCustomers(defaultStop.ID);
         }
+
+
+
+
+        /// <summary>
+        /// Creates a list of customers from the given .csv file.
+        /// </summary>
+        /// <param name="path">File path of .csv file to be imported.</param>
+        public void GetCustomersFromFile(string path)
+        {
+            //Reads the file and maps it to mapping class.
+            engine = new FileHelperEngine<MappingCustomer>();
+            records = engine.ReadFileAsList(path);
+        }
+
     }
 }

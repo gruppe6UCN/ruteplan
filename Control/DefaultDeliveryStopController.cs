@@ -19,7 +19,7 @@ namespace Control
         [IgnoreFirst()]
         [IgnoreLast()]
         [DelimitedRecord(",")]
-        public class MappingDefaultRoute
+        public class MappingDefaultDeliveryStop
         {
             public string Violation;
             public string Status;
@@ -92,34 +92,80 @@ namespace Control
         /// Gets all the DefaultDeliveryStops from a .csv file for the given route.
         /// </summary>
         /// <param name="defaultRoute">DefaultRoute which DefaultDeliveryStops are to be returned.</param>
-        /// /// <param name="defaultRoute">Filepath of the .csv file to be imported.</param>
+        /// <param name="pathStops">Filepath of the .csv file for stops to be imported.</param>
+        /// <param name="pathCustomers">Filepath of the .csv file for customers.</param>
         /// <returns>List of DefaultDeliveryStops for route.</returns>
-        public List<DefaultDeliveryStop> GetDefaultDeliveryStops(DefaultRoute defaultRoute, string path)
+        public List<DefaultDeliveryStop> GetDefaultDeliveryStops(DefaultRoute defaultRoute, string pathStops, string pathCustomers)
         {
             //Reads the file and maps it to mapping class.
-            var engine = new FileHelperEngine<MappingDefaultRoute>();
-            var records = engine.ReadFile(path);
+            FileHelperEngine<MappingDefaultDeliveryStop> engine = new FileHelperEngine<MappingDefaultDeliveryStop>();
+            List<MappingDefaultDeliveryStop> records = engine.ReadFileAsList(pathStops);
+            CustomerCtr.GetCustomersFromFile(pathCustomers);
 
-            //Creates list of DefaultDeliveryStops.
+            //Creates various lists for use in code.
             List<DefaultDeliveryStop> defaultDeliveryStops = new List<DefaultDeliveryStop>();
+            Dictionary<DateTime, MappingDefaultDeliveryStop> dic = new Dictionary<DateTime, MappingDefaultDeliveryStop>();
+            long id = 1;
 
-            //Converts mapping class to routes.
-            foreach (var record in records)
+            //Creates dictionary for time in use for customer.
+            foreach (MappingDefaultDeliveryStop record in records)
             {
-                DefaultRoute defaultRoute = new DefaultRoute(ParseID(record.Route), TrailerType.STOR, false);
-                defaultDeliveryStops.Add(defaultRoute);
+                dic.Add(ParseToDateTime(record.PromisedTime, record.TransportationDate), record);
+            }
+
+            //Converts mapping class to stops.
+            foreach (MappingDefaultDeliveryStop record in records)
+            {
+                
+
+
+
+                
+                
+                DefaultDeliveryStop defaultStop = new DefaultDeliveryStop(id, );
+
+                
+
+                
+
+
+
+                defaultDeliveryStops.Add(defaultStop);
+                id++;
+                
+                
+
             }
 
 
             //Adds customers to each stop.
             foreach (DefaultDeliveryStop stop in defaultDeliveryStops)
             {
-                Customer.Ctr.AddCustomers(stop);
+                CustomerCtr.AddCustomers(stop, dic);
             }
-
 
             //Returns List
             return defaultDeliveryStops;
         }
+
+
+        /// <summary>
+        /// Converts the given date and time strings from the mapping class to a DateTime.
+        /// </summary>
+        /// <param name="date">String to be converted. Format "MM:DD"</param>
+        /// <param name="time">String to be converted. Format "HH:MM"</param>
+        /// <returns>DateTime object for date.</returns>
+        private DateTime ParseToDateTime(string date, string time)
+        {
+            int year = DateTime.Now.Year;
+            int month = int.Parse(date.Substring(0, 1));
+            int day = int.Parse(date.Substring(3));
+            int hour = int.Parse(time.Substring(0, 1));
+            int minute = int.Parse(time.Substring(3));
+
+            DateTime dateTime = new DateTime(year, month, day, hour, minute, 0);
+            return dateTime;
+        }
+
     }
 }
