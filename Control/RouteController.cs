@@ -146,7 +146,6 @@ namespace Control
                     // Adds the route to list.
                     overloadedRoutes.Enqueue(route);
                 }
-
             });
 
             // Return list with routes.

@@ -17,7 +17,7 @@ namespace Model
             this.DefaultStop = defaultStop;
         }
 
-        public double getSizeOfTransportUnits()
+        public double GetSizeOfTransportUnits()
         {
             //Creates variable.
             double load = 0.0;

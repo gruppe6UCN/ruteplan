@@ -32,7 +32,7 @@ namespace Model
             //Enters a loop for each delivery stop.
             foreach (DeliveryStop Stop in Stops)
             {
-                Load += Stop.getSizeOfTransportUnits();
+                Load += Stop.GetSizeOfTransportUnits();
             }
 
             return Load;
