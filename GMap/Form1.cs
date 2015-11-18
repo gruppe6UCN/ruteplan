@@ -34,7 +34,7 @@ namespace GMap
         private void button1_Click(object sender, EventArgs e)
         {
             geoPosion.Clear();
-            mapController.GenerateMap(gmap.MapProvider, geoPosion);
+            //mapController.GenerateMap(gmap.MapProvider, geoPosion);
             gmap.Overlays.Add(geoPosion);
         }
     }

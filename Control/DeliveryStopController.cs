@@ -61,7 +61,7 @@ namespace Control
             {
                 DeliveryStop stop = new DeliveryStop(defaultStop);
                 TransportUnitCtr.addTransportUnit(stop, stop.DefaultStop.Customers);
-                route.AddDeliveryStop(stop);
+                route.Stops.Add(stop);
             });
         }
     }

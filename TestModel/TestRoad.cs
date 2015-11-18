@@ -22,18 +22,18 @@ namespace TestModel
             Assert.AreEqual(ro.From, 1);
             Assert.AreEqual(ro.To, 2);
             Assert.AreEqual(ro.Distance, 400);
-            Assert.AreEqual(ro.Time.Ticks, 12);
+            Assert.AreEqual(ro.Time.Hours, 12);
         }
 
         [Test()]
         public void TestNewConstructor()
         {
             ro.FromGeoLog = new GeoLoc(11, 0, 0);
-            Assert.Equals(ro.From, 11);
-            Assert.Equals(ro.FromGeoLog.ID, 11);
+            Assert.AreEqual(ro.From, 11);
+            Assert.AreEqual(ro.FromGeoLog.ID, 11);
             ro.ToGeoLog = new GeoLoc(22, 0, 0);
-            Assert.Equals(ro.To, 22);
-            Assert.Equals(ro.ToGeoLog.ID, 22);
+            Assert.AreEqual(ro.To, 22);
+            Assert.AreEqual(ro.ToGeoLog.ID, 22);
         }
 
         [Test()]

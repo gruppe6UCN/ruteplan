@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using Model;
 
 namespace Control
@@ -72,7 +67,7 @@ namespace Control
             //        while (overloadAmount > 0) {
 
             //            //Finds the most/best overloaded stop.
-            //            DeliveryStop best = findBestOverloadedStop(overloadedRoute, overloadAmount);
+            //            DeliveryStop best = FindBestOverloadedStop(overloadedRoute);
 
             //            //Removes stop from route.
             //            overloadedRoute.getStops().remove(best);
@@ -172,7 +167,7 @@ namespace Control
          * @param deliveryStop
          * @return returns the new route.
          */
-        private Route ExtraRoute(DeliveryStop deliveryStop) {
+        private static Route ExtraRoute(DeliveryStop deliveryStop) {
             //Create default route.
             DefaultRoute defaultRoute = new DefaultRoute(trailerType: TrailerType.STOR, extraRoute: true);
 
@@ -180,7 +175,7 @@ namespace Control
             Route route = new Route(defaultRoute, DateTime.Now);
 
             //Add stops.
-            route.AddDeliveryStop(deliveryStop);
+            route.Stops.Add(deliveryStop);
 
             //Return extra route.
             return route;
@@ -196,68 +191,77 @@ namespace Control
          * @return the best suited deliveryStop whose load most closely fits the cap.
          */
 
-        private DeliveryStop findBestOverloadedStop(Route route, double overload)
+        public static List<DeliveryStop> FindBestOverloadedStop(Route route, ConcurrentBag<Route> Routes)
         {
+            List<DeliveryStop> removedStops = new List<DeliveryStop>();
 
-            //Finds an initial stops for comparison.
-            DeliveryStop biggest = route.Stops[0];
-            DeliveryStop best = biggest;
-
-            //Boolean to check if cap is exceeded.
-            bool exceedCap = false;
-
-            //Enters a loop for each stop, to find the most overloaded stop.
-            List<DeliveryStop> stops = route.Stops;
-            foreach (DeliveryStop deliveryStop in stops)
+            // Sort delivery stops after its load size, with the biggeste load first
+            DeliveryStop[] stops = route.Stops.ToArray();
+            Array.Sort(stops, (stop1, stop2) =>
             {
+                if (stop1.GetSizeOfTransportUnits() < stop2.GetSizeOfTransportUnits())
+                    return 1;
+                if (stop1.GetSizeOfTransportUnits() > stop2.GetSizeOfTransportUnits())
+                    return -1;
+                return 0;
+            });
 
-                //Compares the load of the deliveryStop with the load of the biggest, to find which is biggest.
-                double biggestload = biggest.GetSizeOfTransportUnits();
-                double compareload = deliveryStop.GetSizeOfTransportUnits();
-                if (compareload > biggestload)
+            // Removes all delivery stops from route
+            route.Stops.Clear();
+
+            for(int x = 0; x < stops.Length; )
+            {
+                // Check if the size of the trasnsport units is more then there is space to in the trailer
+                if (route.DefaultRoute.TrailerType >= stops[x].GetSizeOfTransportUnits())
                 {
-
-                    //Sets the biggest to the current.
-                    biggest = deliveryStop;
-                    best = biggest;
-
-                    //Checks to see if the biggest exceeds the cap.
-                    if (biggestload > overload)
+                    // Checks if there is enough space in the Trailer else adds the stop to removedStops
+                    if (route.GetCapacity() >= route.GetLoadForTrailer() + stops[x].GetSizeOfTransportUnits())
                     {
-                        exceedCap = true;
+                        route.Stops.Add(stops[x]);
                     }
                     else
                     {
-                        exceedCap = false;
+                        removedStops.Add(stops[x]);
                     }
+                    x += 1;
                 }
-            }
-
-            //Checks to see if the biggest exceeds the limit.
-            if (exceedCap)
-            {
-
-                //Initial stop for comparison.
-                DeliveryStop smallest = route.Stops[0];
-
-                //Enters a loop for each stop, to find the least overloaded stop.
-                foreach (DeliveryStop deliveryStop in stops)
+                else // Create a extra route for this stop, becasuse there is not enough space in the trailer
                 {
-                    //Compares the load of the deliveryStop with the load of the smallest, to find which is smallest.
-                    double smallestload = smallest.GetSizeOfTransportUnits();
-                    double compareload = deliveryStop.GetSizeOfTransportUnits();
-                    if (compareload < smallestload)
-                    {
+                    DeliveryStop newStop = new DeliveryStop(stops[x].DefaultStop);
+                    Route extraRoute = ExtraRoute(newStop);
 
-                        //Sets the smallest to current.
-                        smallest = deliveryStop;
-                        best = smallest;
+                    // Sort transport units after there size, with the biggeste first
+                    stops[x].TransportUnits.Sort((transport1, transport2) =>
+                    {
+                        if (transport1.UnitType < transport2.UnitType)
+                            return 1;
+                        if (transport1.UnitType > transport2.UnitType)
+                            return -1;
+                        return 0;
+                    });
+
+                    // Moves transport units to extra route until the trailer is full
+                    for(int i = 0; i < stops[x].TransportUnits.Count; )
+                    {
+                        TransportUnit transportUnit = stops[x].TransportUnits[i];
+                        if (transportUnit.UnitType + newStop.GetSizeOfTransportUnits() < extraRoute.GetCapacity())
+                        {
+                            stops[x].TransportUnits.RemoveAt(0);
+                            newStop.TransportUnits.Add(transportUnit);
+                        }
+                        else
+                        {
+                            i += 1;
+                        }
                     }
+
+                    // Adds the extra route to the total collection of routes
+                    Routes.Add(extraRoute);
                 }
             }
 
             //Returns the best load.
-            return best;
+            return removedStops;
         }
     }
 }

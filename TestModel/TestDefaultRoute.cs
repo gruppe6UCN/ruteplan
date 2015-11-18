@@ -6,7 +6,6 @@ using Model;
 namespace TestModel
 {
     [TestFixture()]
-
     public class TestDefaultRoute
     {
         DefaultRoute dr;
@@ -14,16 +13,17 @@ namespace TestModel
         [SetUp()]
         public void SetUp()
         {
-            dr = new DefaultRoute(4, false);
+            dr = new DefaultRoute(TrailerType.STOR, false);
         }
-
 
         //Test for TrailerType
+        [Test()]
         public void TestTrailerType()
         {
-            Assert.AreEqual(dr.TrailerType, 4);
+            Assert.AreEqual(dr.TrailerType, TrailerType.STOR);
         }
         //Test for ExtraRoute
+        [Test()]
         public void TestExtraRoute()
         {
             Assert.AreEqual(dr.ExtraRoute, false);

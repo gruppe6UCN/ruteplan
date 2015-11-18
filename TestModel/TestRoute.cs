@@ -15,7 +15,7 @@ namespace TestModel
         public void SetUp()
         {
             dr = new DefaultRoute(1, false);
-            r = new Route(dr, new DateTime(1995, 01, 28), new DateTime(12, 3, 4));
+            r = new Route(dr, new DateTime(1995, 01, 28));
         }
 
         //Test for DefaultRoute

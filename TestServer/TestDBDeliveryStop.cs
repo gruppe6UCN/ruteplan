@@ -60,8 +60,7 @@ namespace TestServer
 
             //Creates & Stores a route.
             DateTime date = new DateTime(1995, 01, 28);
-            DateTime time = new DateTime(12, 3, 4);
-            Route route = new Route(listDefaultRoute[0], date, time);
+            Route route = new Route(listDefaultRoute[0], date);
             long routeID = instanceRoute.storeRoute(route);
 
             //Gets Default Stops

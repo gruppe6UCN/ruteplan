@@ -15,6 +15,7 @@ namespace Model
         public DeliveryStop(DefaultDeliveryStop defaultStop)
         {
             this.DefaultStop = defaultStop;
+            this.TransportUnits = new List<TransportUnit>();
         }
 
         public double GetSizeOfTransportUnits()

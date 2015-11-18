@@ -47,14 +47,6 @@ namespace Model
         }
 
         /**
-         * @param stop deliveryStop to add toList.
-         */
-        public void AddDeliveryStop(DeliveryStop Stop)
-        {
-            Stops.Add(Stop);
-        }
-
-        /**
        * Checks to see if route is under loaded.
        * @return True if it is and false vice versa
        */
