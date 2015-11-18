@@ -45,5 +45,19 @@ namespace Control
         {
             defaultStop.Customers = DbCustomer.GetCustomers(defaultStop.ID);
         }
+
+        /// <summary>
+        /// Adds customers to the given default delivery stop. Customers is gained from the .csv file.
+        /// </summary>
+        /// <param name="defaultStop">Default stop to add customers to.</param>
+        /// <param name="path">File path of .csv file.</param>
+        public void AddCustomers(DefaultDeliveryStop defaultStop, string path)
+        {
+            
+            //TODO: DO DIZ!
+            
+            
+            defaultStop.Customers = DbCustomer.GetCustomers(defaultStop.ID);
+        }
     }
 }
