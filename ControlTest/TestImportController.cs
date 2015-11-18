@@ -24,8 +24,8 @@ namespace ControlTest
         public void ClassSetUp()
         {
             try {
-                user = File.ReadAllText("Config/user.txt");
-                pass = File.ReadAllText("Config/pass.txt");
+                user = File.ReadAllText(@"C:\Users\The Baron\Dropbox\3. Projekt\Scripts\Config\user.txt");
+                pass = File.ReadAllText(@"C:\Users\The Baron\Dropbox\3. Projekt\Scripts\Config\pass.txt");
             }
             catch { }
 

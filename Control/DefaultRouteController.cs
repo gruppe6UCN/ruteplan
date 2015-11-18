@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Server.Database;
+using System.Collections.Concurrent;
 using Model;
 
 namespace Control
@@ -35,10 +36,10 @@ namespace Control
             }
         }
 
-        /**
-         * Gets an ArrayList of all defaultRoutes from the database.
-         * @return List of all defaultRoutes.
-         */
+        /// <summary>
+        /// Gets a list of all default routes from the database.
+        /// </summary>
+        /// <returns>List of default routes.</returns>
         public List<DefaultRoute> GetDefaultRoutes()
         {
             //Gets a list of all defaultRoutes.
@@ -48,6 +49,10 @@ namespace Control
             return list;
         }
 
+        /// <summary>
+        /// Stores given default route to the database.
+        /// </summary>
+        /// <param name="defaultRoute">DefaultRoute to be stored.</param>
         public void store(DefaultRoute defaultRoute)
         {
             DbDefaultRoute.store(defaultRoute);

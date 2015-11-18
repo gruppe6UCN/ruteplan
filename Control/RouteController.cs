@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Server.Database;
+using System.Collections.Concurrent;
 using Model;
 
 namespace Control
@@ -15,7 +16,7 @@ namespace Control
         public DefaultDeliveryStopController DefaultDeliveryStopCtr { get; private set; }
         // public LogController LogCtr { get; private set; }
         public DBRoute DbRoute { get; private set; }
-        public List<Route> Routes { get; private set; }
+        public ConcurrentBag<Route> Routes { get; private set; }
         private static RouteController instance;
 
         /// <summary>
@@ -27,7 +28,7 @@ namespace Control
             DefaultDeliveryStopCtr = DefaultDeliveryStopController.Instance;
             // LogCtr = LogController.Instance;
             DbRoute = DBRoute.Instance;
-            Routes = new List<Route>();
+            Routes = new ConcurrentBag<Route>();
         }
 
         /// <summary>
@@ -47,21 +48,22 @@ namespace Control
         /// </summary>
         /// <param name="date">Time used in creation of routes.</param>
         public void ImportRoutes(DateTime date) {
-        
+
             //Loads default routes.
-            Routes.Clear();
-            List<DefaultRoute> listDefaultRoues = DefaultRouteCtr.GetDefaultRoutes();
+            Routes = new ConcurrentBag<Route>();
+            List<DefaultRoute> listDefaultRoutes = DefaultRouteCtr.GetDefaultRoutes();
+            ConcurrentBag<DefaultRoute> bagDefaultRoutes = new ConcurrentBag<DefaultRoute>(listDefaultRoutes);
             // LogCtr.StatusLog("Loaded Default Routes");
 
             //Creates a route for each default route.
-            Parallel.ForEach(listDefaultRoues, defaultRoute =>
+            Parallel.ForEach(bagDefaultRoutes, defaultRoute =>
             {
                 //Creates the route.
                 Route route = new Route(defaultRoute, date, date);
                 // LogCtr.StatusLog("Creating new route, based on default route " + defaultRoute.ID);
             
                 //Syncronize then add stops.
-                lock (listDefaultRoues)
+                lock (bagDefaultRoutes)
                 {
                     DeliveryStopCtr.AddDeliveryStops(route, DefaultDeliveryStopCtr.GetDefaultDeliveryStops(defaultRoute));
                 }
@@ -80,19 +82,19 @@ namespace Control
         public void ImportRoutes(List<DefaultRoute> defaultRoutes, DateTime date)
         {
             //Loads default routes.
-            Routes.Clear();
-            List<DefaultRoute> listDefaultRoues = defaultRoutes;
+            Routes = new ConcurrentBag<Route>();
+            ConcurrentBag<DefaultRoute> bagDefaultRoutes = new ConcurrentBag<DefaultRoute>(defaultRoutes);
             // LogCtr.StatusLog("Loaded Default Routes");
 
             //Creates a route for each default route.
-            Parallel.ForEach(listDefaultRoues, defaultRoute =>
+            Parallel.ForEach(bagDefaultRoutes, defaultRoute =>
             {
                 //Creates the route.
                 Route route = new Route(defaultRoute, date, date);
                 // LogCtr.StatusLog("Creating new route, based on default route " + defaultRoute.ID);
 
                 //Syncronize then add stops.
-                lock (listDefaultRoues)
+                lock (bagDefaultRoutes)
                 {
                     DeliveryStopCtr.AddDeliveryStops(route, DefaultDeliveryStopCtr.GetDefaultDeliveryStops(defaultRoute));
                 }

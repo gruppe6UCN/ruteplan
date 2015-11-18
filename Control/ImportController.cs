@@ -53,7 +53,7 @@ namespace Control
         }
 
         /// <summary>
-        /// Imports all routes from a .csv file.
+        /// Imports all default routes from a .csv file.
         /// </summary>
         /// <param name="path">Path of .csv file to be imported.</param>
         public void ImportFromFile(string path)
@@ -69,6 +69,7 @@ namespace Control
             foreach (var record in records)
             {
                 DefaultRoute defaultRoute = new DefaultRoute(record.ID, record.TrailerType, record.ExtraRoute);
+                defaultRoutes.Add(defaultRoute);
             }
 
             //Creates routes from list.
