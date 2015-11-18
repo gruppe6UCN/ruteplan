@@ -13,6 +13,7 @@ namespace Control
         public DBCustomer DbCustomer { get; private set; }
         private static CustomerController instance;
 
+
         /// <summary>
         /// Private singleton constructor.
         /// </summary>
