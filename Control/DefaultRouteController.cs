@@ -45,7 +45,7 @@ namespace Control
             public string pct_Loaded;
             public string Start;
             public string DepartureFromDepot;
-            public string udf_LateDeparture;
+            public string UdfLateDeparture;
             public string Finish;
             public string V;
             public string S;
@@ -55,7 +55,7 @@ namespace Control
             public string Duration;
             public string KM;
             public string Cost;
-            public string udf_DeleteFromDB;
+            public string UdfDeleteFromDB;
         }
 
         /// <summary>

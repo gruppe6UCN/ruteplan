@@ -25,9 +25,9 @@ namespace Control
             public long GeoLocID { get; private set; }
             public long RouteID { get; private set; }
             public List<Customer> Customers { get; set; }
-            public int SequenceNbr { get; private set; }
+            public int? SequenceNbr { get; private set; }
 
-            public TmpDefaultDeliveryStop(long ID, long GeoLocID, long RouteID, long CustomerID, int SequenceNbr)
+            public TmpDefaultDeliveryStop(long ID, long GeoLocID, long RouteID, long CustomerID, int? SequenceNbr)
             {
                 this.ID = ID;
                 this.GeoLocID = GeoLocID;
@@ -57,7 +57,7 @@ namespace Control
             public string Route;
             public string Shipment;
             public long CustomerNO;
-            public int UdfSequencenumber;
+            public int? UdfSequencenumber;
             public string CustomerName;
             public string Zipcode;
             public string City;
@@ -67,7 +67,7 @@ namespace Control
             public string PromisedTime;
             public string RCE;
             public string Distance;
-            public string udf_deleteFromDB;
+            public string UdfDeleteFromDB;
         }
 
         /// <summary>
