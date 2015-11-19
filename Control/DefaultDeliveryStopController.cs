@@ -40,7 +40,7 @@ namespace Control
         //Mapping Class for File Import.
         [IgnoreFirst()]
         [IgnoreLast()]
-        [DelimitedRecord(",")]
+        [DelimitedRecord(";")]
         public class MappingDefaultDeliveryStop
         {
             public string Violation;
@@ -57,7 +57,7 @@ namespace Control
             public string Route;
             public string Shipment;
             public long CustomerNO;
-            public int? UdfSequencenumber;
+            public string UdfSequencenumber;
             public string CustomerName;
             public string Zipcode;
             public string City;
@@ -191,7 +191,10 @@ namespace Control
                     }
                 }
 
-                TmpDefaultDeliveryStop defaultStop = new TmpDefaultDeliveryStop(id, geoLoc.ID, DefaultRouteController.ParseID(record.SAPRoute), record.CustomerNO, record.UdfSequencenumber);
+                TmpDefaultDeliveryStop defaultStop = new TmpDefaultDeliveryStop(id, 
+                    geoLoc.ID, 
+                    DefaultRouteController.ParseID(record.SAPRoute), 
+                    record.CustomerNO, ParseToInt(record.UdfSequencenumber));
                 TmpDefaultStops.Add(defaultStop);
                 id++;
             }
@@ -205,15 +208,15 @@ namespace Control
         /// <summary>
         /// Converts the given date and time strings from the mapping class to a DateTime.
         /// </summary>
-        /// <param name="date">String to be converted. Format "MM:DD"</param>
         /// <param name="time">String to be converted. Format "HH:MM"</param>
+        /// <param name="date">String to be converted. Format "MM:DD"</param>
         /// <returns>DateTime object for date.</returns>
-        private DateTime ParseToDateTime(string date, string time)
+        private DateTime ParseToDateTime(string time, string date)
         {
             int year = DateTime.Now.Year;
-            int month = int.Parse(date.Substring(0, 1));
+            int month = int.Parse(date.Substring(0, 2));
             int day = int.Parse(date.Substring(3));
-            int hour = int.Parse(time.Substring(0, 1));
+            int hour = int.Parse(time.Substring(0, 2));
             int minute = int.Parse(time.Substring(3));
 
             DateTime dateTime = new DateTime(year, month, day, hour, minute, 0);
@@ -231,5 +234,26 @@ namespace Control
             return time;
         }
 
+
+        /// <summary>
+        /// Converts the given string to a nullable int?.
+        /// </summary>
+        /// <param name="str">String to be parsed.</param>
+        /// <returns>Int of string. Null if "".</returns>
+        private int? ParseToInt(string str)
+        {
+            int? value;
+
+            if (string.Equals(str, ""))
+            {
+                value = null;
+            }
+            else
+            {
+                value = int.Parse(str);
+            }
+
+            return value;
+        }
     }
 }

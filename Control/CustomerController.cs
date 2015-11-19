@@ -19,9 +19,10 @@ namespace Control
         //Mapping Class for File Import.
         [IgnoreFirst(2)]
         [IgnoreLast()]
-        [DelimitedRecord(",")]
+        [DelimitedRecord(";")]
         public class MappingCustomer 
         {
+            public string AAAANAAALL;
             public string Active;
             public string UdfDepotld;
             public long CustomerNo;
