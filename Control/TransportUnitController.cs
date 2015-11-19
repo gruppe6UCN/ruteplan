@@ -38,7 +38,7 @@ namespace Control
         /// </summary>
         /// <param name="deliveryStop">DeliveryStop to contain TransportUnits.</param>
         /// <param name="customers">List of customers for stop.</param>
-        public void addTransportUnit(DeliveryStop deliveryStop, List<Customer> customers) {
+        public void AddTransportUnit(DeliveryStop deliveryStop, List<Customer> customers) {
 
             List<long> IDs = new List<long>();
 

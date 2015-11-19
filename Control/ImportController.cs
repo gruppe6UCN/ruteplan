@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
-using FileHelpers;
 
 namespace Control
 {
@@ -12,17 +11,6 @@ namespace Control
     {
         public RouteController RouteCtr { get; private set; }
         private static ImportController instance;
-
-        //Mapping Class for File Import.
-        [DelimitedRecord(",")]
-        public class MappingDefaultRoute
-        {
-            public long ID;
-
-            public double TrailerType;
-
-            public bool ExtraRoute;
-        }
 
         /// <summary>
         /// Private singleton constructor.
@@ -53,46 +41,31 @@ namespace Control
         }
 
         /// <summary>
-        /// Imports all routes from a .csv file.
+        /// Imports all default routes from a .csv file.
         /// </summary>
         /// <param name="path">Path of .csv file to be imported.</param>
         public void ImportFromFile(string path)
-        {
-            //Reads the file and maps it to mapping class.
-            var engine = new FileHelperEngine<MappingDefaultRoute>();
-            var records = engine.ReadFile(path);
+        {            
+            
+            
+            
+            
+            ////Reads the file and maps it to mapping class.
+            //var engine = new FileHelperEngine<MappingDefaultRoute>();
+            //var records = engine.ReadFile(path);
 
-            //Creates list of default routes.
-            List<DefaultRoute> defaultRoutes = new List<DefaultRoute>();
+            ////Creates list of default routes.
+            //List<DefaultRoute> defaultRoutes = new List<DefaultRoute>();
 
-            //Converts mapping class to routes.
-            foreach (var record in records)
-            {
-                DefaultRoute defaultRoute = new DefaultRoute(record.ID, record.TrailerType, record.ExtraRoute);
-            }
+            ////Converts mapping class to routes.
+            //foreach (var record in records)
+            //{
+            //    DefaultRoute defaultRoute = new DefaultRoute(ParseID(record.Route), TrailerType.STOR, false);
+            //    defaultRoutes.Add(defaultRoute);
+            //}
 
-            //Creates routes from list.
-            RouteCtr.ImportRoutes(defaultRoutes, DateTime.Now);
+            ////Creates routes from list.
+            //RouteCtr.ImportRoutes(defaultRoutes, DateTime.Now);
         }
-
-
-        /**
-         * Imports all routes from database.
-         * @param rowData
-         *
-        public void importRoutes(Vector<Vector> rowData) {
-            routeController.importRoutes(LocalDate.now());
-
-            List<Route> routes = routeController.getRoutes();
-
-            routes.forEach(route -> {
-                Vector row = new Vector();
-                row.addElement(String.format("%03d", route.getDefaultRoute().getID()));
-                row.addElement(route.getStops().size());
-                row.addElement(String.format("%.1f / %.1f", route.getLoadForTrailer(), route.getCapacity()));
-                rowData.add(row);
-            });
-         * 
-         * */
     }
 }

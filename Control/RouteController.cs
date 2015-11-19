@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Server.Database;
 using Model;
@@ -48,11 +50,12 @@ namespace Control
         {
             Routes = new ConcurrentBag<Route>();
             //Loads default routes.
-            List<DefaultRoute> listDefaultRoues = DefaultRouteCtr.GetDefaultRoutes();
+            ConcurrentBag<DefaultRoute> defaultRoutes =
+                new ConcurrentBag<DefaultRoute>(DefaultRouteCtr.GetDefaultRoutes());
             LogCtr.StatusLog("Loaded Default Routes");
 
             //Creates a route for each default route.
-            Parallel.ForEach(listDefaultRoues, defaultRoute =>
+            Parallel.ForEach(defaultRoutes, defaultRoute =>
             {
                 //Creates the route.
                 Route route = new Route(defaultRoute, date);
@@ -75,24 +78,24 @@ namespace Control
         {
             Routes = new ConcurrentBag<Route>();
             //Loads default routes.
-            List<DefaultRoute> listDefaultRoues = defaultRoutes;
+            ConcurrentBag<DefaultRoute> bagDefaultRoutes = new ConcurrentBag<DefaultRoute>(defaultRoutes);
             LogCtr.StatusLog("Loaded Default Routes");
 
             //Creates a route for each default route.
-            Parallel.ForEach(listDefaultRoues, defaultRoute =>
+            Parallel.ForEach(bagDefaultRoutes, defaultRoute =>
             {
                 //Creates the route.
                 Route route = new Route(defaultRoute, date);
                 LogCtr.StatusLog("Creating new route, based on default route " + defaultRoute.ID);
 
                 //Syncronize then add stops.
-                lock (listDefaultRoues)
+                lock (bagDefaultRoutes)
                 {
                     DeliveryStopCtr.AddDeliveryStops(route, DefaultDeliveryStopCtr.GetDefaultDeliveryStops(defaultRoute));
                 }
 
-                //Updates LogCtr and adds route.
-                LogCtr.StatusLog("Created new route from default route " + defaultRoute.ID);
+                //Updates log and adds route.
+                // LogCtr.StatusLog("Created new route from default route " + defaultRoute.ID);
                 Routes.Add(route);
             });
         }

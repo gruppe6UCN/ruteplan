@@ -13,14 +13,18 @@ namespace Server.Database
         public DBConnection DbConnection { get; private set; }
         private static DBTransportUnit instance;
 
-        /// private constructor for singelton     
+        /// <summary>
+        /// Private singleton constructor.
+        /// </summary> 
         private DBTransportUnit()
         {
             DbConnection = DBConnection.Instance;
         }
 
-        /// singelton get instance method 
-        /// returns the instance from DB 
+        /// <summary>
+        /// Singleton method. Returns the instance of the class.
+        /// </summary>
+        /// <returns>Instance of class.</returns>
         public static DBTransportUnit Instance
         {
             get

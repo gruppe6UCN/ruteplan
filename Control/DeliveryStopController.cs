@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Server.Database;
+using System.Collections.Concurrent;
 using Model;
 
 namespace Control
@@ -56,11 +57,12 @@ namespace Control
         /// <param name="defaultStops">List of DefaultStops.</param>
         public void AddDeliveryStops(Route route, List<DefaultDeliveryStop> defaultStops) 
         {
+            //Creates delivery stop for each default stop.
             //TODO: Use a thread safe list instead of List<T>
             Parallel.ForEach(defaultStops, defaultStop =>
             {
                 DeliveryStop stop = new DeliveryStop(defaultStop);
-                TransportUnitCtr.addTransportUnit(stop, stop.DefaultStop.Customers);
+                TransportUnitCtr.AddTransportUnit(stop, stop.DefaultStop.Customers);
                 route.Stops.Add(stop);
             });
         }
