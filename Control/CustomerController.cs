@@ -78,14 +78,21 @@ namespace Control
         /// <param name="dic">Dictionary containing time for customer.</param>
         public void AddCustomersFromFile(DefaultDeliveryStopController.TmpDefaultDeliveryStop defaultStop, Dictionary<long, TimeSpan> dic)
         {
+            //TODO: LIST OF MAPPING STOP RECORDS NEED TO BE PORTED OVER AND DANCEH!!!
+            
             //Creates list of Customers.
             List<Customer> customers = new List<Customer>();
 
             //Converts mapping class to stops.
             foreach (var record in records)
             {
+                //Check if stop contains customer.
+
+                //Finds the 
+                
                 //Check if time have customer yaih!!
-                Customer customer = new Customer(record.CustomerNo, record.StreetName, record.DoorNumber, record.ZipCode, record.City, dic[record.CustomerNo]);
+                Customer customer = new Customer(record.CustomerNo, record.StreetName, 
+                    record.DoorNumber, record.ZipCode, record.City, dic[record.CustomerNo]);
                 customers.Add(customer);
             }
 
