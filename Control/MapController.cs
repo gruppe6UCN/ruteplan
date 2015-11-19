@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using Model;
 using Server.Database;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Threading;
+using System.Threading.Tasks;
 using GMap.NET;
 using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
@@ -18,8 +21,7 @@ namespace Control
         private readonly DBGeoLoc dbGeoLoc;
         private readonly DBRoad dbRoad;
 
-        private readonly Dictionary<long, GeoLoc> geoLocs = new Dictionary<long, GeoLoc>();
-        private readonly List<Road> edges = new List<Road>();
+        private readonly ConcurrentDictionary<long, GeoLoc> geoLocs = new ConcurrentDictionary<long, GeoLoc>();
 
         private GMap.NET.GMaps gMap;
         public static GMap.NET.MapProviders.OpenStreetMapProvider MapProvider { get { return GMap.NET.MapProviders.OpenStreetMapProvider.Instance; } }
@@ -43,7 +45,7 @@ namespace Control
             List<Road> roads = new List<Road>();
             geoLocs.ForEach(to =>
             {
-                if (!Equals(from, to))
+                if(!Equals(from, to))
                 {
                     MapRoute route = MapProvider.GetRoute(from.Point, to.Point, false, false, 15);
 
@@ -57,17 +59,10 @@ namespace Control
             roads.Sort((road1, road2) =>
             {
                 if (road1.Distance > road2.Distance)
-                {
                     return 1;
-                }
-                else if (road1.Distance < road2.Distance)
-                {
+                if (road1.Distance < road2.Distance)
                     return -1;
-                }
-                else
-                {
-                    return 0;
-                }
+                return 0;
             });
 
             return roads;

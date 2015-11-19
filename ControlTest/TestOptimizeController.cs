@@ -78,7 +78,7 @@ namespace ControlTest
         [Test()]
         public void TestFindBestOverloadedStop()
         {
-            List<DeliveryStop> stops = OptimizeController.FindBestOverloadedStop(route1, routes);
+            List<DeliveryStop> stops = OptimizeController.FindAndRemoveStops(route1, routes);
             Assert.Contains(d9, stops);
             Assert.Contains(d3, stops);
         }
@@ -86,7 +86,7 @@ namespace ControlTest
         [Test()]
         public void TestFindBestOverloadedStop_AddExtraRoute()
         {
-            List<DeliveryStop> stops = OptimizeController.FindBestOverloadedStop(route2, routes);
+            List<DeliveryStop> stops = OptimizeController.FindAndRemoveStops(route2, routes);
             Assert.AreEqual(0, stops.Count);
             Assert.AreEqual(1, route2.Stops.Count);
             foreach (TransportUnit transportUnit in route2.Stops[0].TransportUnits)
