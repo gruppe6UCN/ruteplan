@@ -13,7 +13,25 @@ namespace Control
     {
         public DBDefaultDeliveryStop DbDefaultDeliveryStop { get; private set; }
         public CustomerController CustomerCtr { get; private set; }
+        public List<TmpDefaultDeliveryStop> TmpDefaultStops { get; private set; }
+        public Dictionary<long, TimeSpan> dic { get; private set; }
+        private GeoLoc geoLoc;
         private static DefaultDeliveryStopController instance;
+
+        private class TmpDefaultDeliveryStop
+        {
+            public long ID { get; private set; }
+            public List<Customer> Customers { get; set; }
+            public long GeoLocID { get; private set; }
+            public long RouteID { get; private set; }
+
+            public TmpDefaultDeliveryStop(long ID, long GeoLocID, long RouteID)
+            {
+                this.ID = ID;
+                this.GeoLocID = GeoLocID;
+                this.RouteID = RouteID;
+            }
+        }
 
         //Mapping Class for File Import.
         [IgnoreFirst()]
@@ -34,7 +52,7 @@ namespace Control
             public string SAPRoute;
             public string Route;
             public string Shipment;
-            public string CUstomerNO;
+            public long CustomerNO;
             public string udf_sequencenumber;
             public string CustomerName;
             public string Zipcode;
@@ -89,13 +107,35 @@ namespace Control
         }
 
         /// <summary>
+        /// Gets a list of all default delivery stops imported from a .csv file for the given route.
+        /// List must be created first by using the method GetDefaultDeliveryStopFromFile.
+        /// </summary>
+        /// <param name="defaultRoute">DefaultRoute which DefaultDeliveryStops are to be returned.</param>
+        /// <returns>List of DefaultDeliveryStops for route.</returns>
+        public List<DefaultDeliveryStop> GetDefaultDeliveryStopsFromFile(DefaultRoute defaultRoute)
+        {
+            List<DefaultDeliveryStop> stops = new List<DefaultDeliveryStop>();
+
+            foreach (TmpDefaultDeliveryStop stop in TmpDefaultStops)
+            {
+                if (stop.RouteID == defaultRoute.ID)
+                {
+                    DefaultDeliveryStop defaultStop = new DefaultDeliveryStop(stop.ID, stop.GeoLocID);
+                    CustomerCtr.AddCustomersFromFile(defaultStop, dic);
+                }
+            }
+
+            return stops;
+        }
+
+
+        /// <summary>
         /// Gets all the DefaultDeliveryStops from a .csv file for the given route.
         /// </summary>
         /// <param name="defaultRoute">DefaultRoute which DefaultDeliveryStops are to be returned.</param>
         /// <param name="pathStops">Filepath of the .csv file for stops to be imported.</param>
         /// <param name="pathCustomers">Filepath of the .csv file for customers.</param>
-        /// <returns>List of DefaultDeliveryStops for route.</returns>
-        public List<DefaultDeliveryStop> GetDefaultDeliveryStops(DefaultRoute defaultRoute, string pathStops, string pathCustomers)
+        public void ImportDefaultDeliveryStopsFromFile(DefaultRoute defaultRoute, string pathStops, string pathCustomers)
         {
             //Reads the file and maps it to mapping class.
             FileHelperEngine<MappingDefaultDeliveryStop> engine = new FileHelperEngine<MappingDefaultDeliveryStop>();
@@ -103,51 +143,57 @@ namespace Control
             CustomerCtr.GetCustomersFromFile(pathCustomers);
 
             //Creates various lists for use in code.
-            List<DefaultDeliveryStop> defaultDeliveryStops = new List<DefaultDeliveryStop>();
-            Dictionary<DateTime, MappingDefaultDeliveryStop> dic = new Dictionary<DateTime, MappingDefaultDeliveryStop>();
+            dic = new Dictionary<long, TimeSpan>();
+            Dictionary<double, double> geoLocDic = new Dictionary<double,double>();
+            Dictionary<double ,GeoLoc> geoLocs = new Dictionary<double, GeoLoc>();
+            long geoId = 1;
             long id = 1;
 
             //Creates dictionary for time in use for customer.
             foreach (MappingDefaultDeliveryStop record in records)
             {
-                dic.Add(ParseToDateTime(record.PromisedTime, record.TransportationDate), record);
+                DateTime date = ParseToDateTime(record.PromisedTime, record.TransportationDate);
+                TimeSpan time = ParseToTimeSpan(date);
+                dic.Add(record.CustomerNO, time);
+            }
+
+            //Creates dictionary for geoLocs.
+            foreach (CustomerController.MappingCustomer customer in CustomerCtr.records)
+            {
+                double xx = customer.X;
+                double yy = customer.Y;
+
+                if (geoLocDic.ContainsKey(yy)) {
+                    continue;
+                }
+                    
+                GeoLoc geoLoc = new GeoLoc(geoId, yy, xx);
+                geoLocDic.Add(yy, xx);
+                geoLocs.Add(yy, geoLoc);
+                geoId++;
             }
 
             //Converts mapping class to stops.
             foreach (MappingDefaultDeliveryStop record in records)
-            {
-                
+            {               
+                //Does shit with geolocs...
+                foreach (CustomerController.MappingCustomer customer in CustomerCtr.records)
+                {
+                    long idCustomerStop = record.CustomerNO;
+                    long idCustomer = customer.CustomerNo;
 
+                    if (idCustomerStop == idCustomer)
+                    {
+                        geoLoc = geoLocs[customer.Y];
+                        break;
+                    }
+                }
 
-
-                
-                
-                DefaultDeliveryStop defaultStop = new DefaultDeliveryStop(id, );
-
-                
-
-                
-
-
-
-                defaultDeliveryStops.Add(defaultStop);
+                TmpDefaultDeliveryStop defaultStop = new TmpDefaultDeliveryStop(id, geoLoc.ID, DefaultRouteController.ParseID(record.SAPRoute));
+                TmpDefaultStops.Add(defaultStop);
                 id++;
-                
-                
-
             }
-
-
-            //Adds customers to each stop.
-            foreach (DefaultDeliveryStop stop in defaultDeliveryStops)
-            {
-                CustomerCtr.AddCustomers(stop, dic);
-            }
-
-            //Returns List
-            return defaultDeliveryStops;
         }
-
 
         /// <summary>
         /// Converts the given date and time strings from the mapping class to a DateTime.
@@ -165,6 +211,17 @@ namespace Control
 
             DateTime dateTime = new DateTime(year, month, day, hour, minute, 0);
             return dateTime;
+        }
+
+        /// <summary>
+        /// Converts given date time to a timespan.
+        /// </summary>
+        /// <param name="?">DateTime to be converted.</param>
+        /// <returns>TimeSpan for datetime.</returns>
+        private TimeSpan ParseToTimeSpan(DateTime date)
+        {
+            TimeSpan time = date.TimeOfDay;
+            return time;
         }
 
     }

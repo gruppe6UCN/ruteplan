@@ -9,8 +9,8 @@ namespace Model
 {
     public class GeoLoc // : ISerializable
     {
-        public long ID { set; private get; }
-        public Point Location { set; private get; }
+        public long ID { get; private set; }
+        public Point Location { get; private set; }
 
         public GeoLoc(long id, double latitude, double longitude)
         {

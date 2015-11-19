@@ -17,7 +17,7 @@ namespace Control
         private static CustomerController instance;
 
         //Mapping Class for File Import.
-        [IgnoreFirst()]
+        [IgnoreFirst(2)]
         [IgnoreLast()]
         [DelimitedRecord(",")]
         public class MappingCustomer 
@@ -31,8 +31,8 @@ namespace Control
             public string AreaDescription;
             public int    ZipCode;
             public string City;
-            public string X;
-            public string Y;
+            public double X;
+            public double Y;
         }
 
 
@@ -74,39 +74,20 @@ namespace Control
         /// GetCustomersFromFile beforehand.
         /// </summary>
         /// <param name="defaultStop">Default stop to add customers to.</param>
-        public void AddCustomersFromFile(DefaultDeliveryStop defaultStop, Dictionary<DateTime, DefaultDeliveryStopController.MappingDefaultDeliveryStop> dic)
+        /// <param name="dic">Dictionary containing time for customer.</param>
+        public void AddCustomersFromFile(DefaultDeliveryStop defaultStop, Dictionary<long, TimeSpan> dic)
         {
-
             //Creates list of Customers.
             List<Customer> customers = new List<Customer>();
-            long id = 1;
 
             //Converts mapping class to stops.
             foreach (var record in records)
             {
-
-                Customer customer = new Customer(record.CustomerNo, record.StreetName, record.DoorNumber, record.ZipCode, record.City, )
-
-
-                DefaultDeliveryStop defaultStop = new DefaultDeliveryStop(id, record);
-
-
-
-                customers.Add(defaultStop);
-                id++;
-
-
-                DefaultRoute defaultRoute = new DefaultRoute(ParseID(record.Route), TrailerType.STOR, false);
-                customers.Add(defaultRoute);
+                //Check if time have customer yaih!!
+                Customer customer = new Customer(record.CustomerNo, record.StreetName, record.DoorNumber, record.ZipCode, record.City, dic[record.CustomerNo]);
+                customers.Add(customer);
             }
-
-            
-            
-            defaultStop.Customers = DbCustomer.GetCustomers(defaultStop.ID);
         }
-
-
-
 
         /// <summary>
         /// Creates a list of customers from the given .csv file.

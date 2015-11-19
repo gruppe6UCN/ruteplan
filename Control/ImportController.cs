@@ -43,29 +43,12 @@ namespace Control
         /// <summary>
         /// Imports all default routes from a .csv file.
         /// </summary>
-        /// <param name="path">Path of .csv file to be imported.</param>
-        public void ImportFromFile(string path)
-        {            
-            
-            
-            
-            
-            ////Reads the file and maps it to mapping class.
-            //var engine = new FileHelperEngine<MappingDefaultRoute>();
-            //var records = engine.ReadFile(path);
-
-            ////Creates list of default routes.
-            //List<DefaultRoute> defaultRoutes = new List<DefaultRoute>();
-
-            ////Converts mapping class to routes.
-            //foreach (var record in records)
-            //{
-            //    DefaultRoute defaultRoute = new DefaultRoute(ParseID(record.Route), TrailerType.STOR, false);
-            //    defaultRoutes.Add(defaultRoute);
-            //}
-
-            ////Creates routes from list.
-            //RouteCtr.ImportRoutes(defaultRoutes, DateTime.Now);
+        /// <param name="pathRoutes">Path of .csv file to be imported.</param>
+        /// <param name="pathStops">Path of .csv file to be imported.</param>
+        /// <param name="pathCustomers">Path of .csv file to be imported.</param>
+        public void ImportFromFile(string pathRoutes, string pathStops, string pathCustomers)
+        {
+            RouteCtr.ImportRoutesFromFile(DateTime.Now, pathRoutes, pathStops, pathCustomers);
         }
     }
 }

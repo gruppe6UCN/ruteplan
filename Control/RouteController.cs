@@ -75,15 +75,18 @@ namespace Control
         }
 
         /// <summary>
-        /// Imports all routes from the given list of default routes.
+        /// Imports all routes from the given .csv files.
         /// </summary>
-        /// <param name="defaultRoutes">List of default routes for routes to reference.</param>
         /// <param name="date">Time used in creation of routes.</param>
-        public void ImportRoutes(List<DefaultRoute> defaultRoutes, DateTime date)
+        /// <param name="pathRoutes">Path of .csv file to be imported.</param>
+        /// <param name="pathStops">Path of .csv file to be imported.</param>
+        /// <param name="pathCustomers">Path of .csv file to be imported.</param>
+        public void ImportRoutesFromFile(DateTime date, string pathRoutes, string pathStops, string pathCustomers)
         {
             //Loads default routes.
             Routes = new ConcurrentBag<Route>();
-            ConcurrentBag<DefaultRoute> bagDefaultRoutes = new ConcurrentBag<DefaultRoute>(defaultRoutes);
+            List<DefaultRoute> listDefaultRoutes = DefaultRouteCtr.GetDefaultRoutes(pathRoutes);
+            ConcurrentBag<DefaultRoute> bagDefaultRoutes = new ConcurrentBag<DefaultRoute>(listDefaultRoutes);
             // LogCtr.StatusLog("Loaded Default Routes");
 
             //Creates a route for each default route.
@@ -96,7 +99,7 @@ namespace Control
                 //Syncronize then add stops.
                 lock (bagDefaultRoutes)
                 {
-                    DeliveryStopCtr.AddDeliveryStops(route, DefaultDeliveryStopCtr.GetDefaultDeliveryStops(defaultRoute));
+                    DeliveryStopCtr.AddDeliveryStops(route, DefaultDeliveryStopCtr.ImportDefaultDeliveryStopsFromFile(defaultRoute, pathStops, pathCustomers));
                 }
 
                 //Updates log and adds route.

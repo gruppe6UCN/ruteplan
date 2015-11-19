@@ -55,8 +55,10 @@ namespace ControlTest
         [Test()]
         public void TestImportRoutesFromFile()
         {
-            //ic.ImportFromFile("C:\\Users\\The Baron\\Dropbox\\3. Projekt\\Arla Food\\EventyrIBarbiesPrincesseSLot.csv");
-            ic.ImportFromFile(@"C:\Users\The Baron\Dropbox\3. Projekt\Arla Food\RuterCSVTest.csv");
+            string pathRoutes = @"C:\Users\The Baron\Dropbox\3. Projekt\Arla Food\RuterCSVTest.csv";
+            string pathStops = @"C:\Users\The Baron\Dropbox\3. Projekt\Arla Food\stopsCSV.csv";
+            string pathCustomers = @"C:\Users\The Baron\Dropbox\3. Projekt\Arla Food\kunderCSV.csv";
+            ic.ImportFromFile(pathRoutes, pathStops, pathCustomers);
             Assert.IsNotEmpty(rc.Routes);
         }
     }

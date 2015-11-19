@@ -48,7 +48,6 @@
     <Compile Include="DefaultRouteController.cs" />
     <Compile Include="DeliveryStopController.cs" />
     <Compile Include="ExportController.cs" />
-    <Compile Include="FilerHelpersTest\FileHelperTestClass.cs" />
     <Compile Include="ImportController.cs" />
     <Compile Include="LogController.cs" />
     <Compile Include="MapController.cs" />

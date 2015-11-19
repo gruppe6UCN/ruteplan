@@ -131,7 +131,7 @@ namespace Control
         /// </summary>
         /// <param name="id">String to be parsed.</param>
         /// <returns>Long value of id.</returns>
-        private long ParseID(string id)
+        public static long ParseID(string id)
         {
             string idString = id.Substring(3);
             return long.Parse(idString);
