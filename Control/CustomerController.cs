@@ -75,7 +75,7 @@ namespace Control
         /// </summary>
         /// <param name="defaultStop">Default stop to add customers to.</param>
         /// <param name="dic">Dictionary containing time for customer.</param>
-        public void AddCustomersFromFile(DefaultDeliveryStop defaultStop, Dictionary<long, TimeSpan> dic)
+        public void AddCustomersFromFile(DefaultDeliveryStopController.TmpDefaultDeliveryStop defaultStop, Dictionary<long, TimeSpan> dic)
         {
             //Creates list of Customers.
             List<Customer> customers = new List<Customer>();
@@ -87,6 +87,9 @@ namespace Control
                 Customer customer = new Customer(record.CustomerNo, record.StreetName, record.DoorNumber, record.ZipCode, record.City, dic[record.CustomerNo]);
                 customers.Add(customer);
             }
+
+            //Adds customers to stop.
+            defaultStop.Customers = customers;
         }
 
         /// <summary>

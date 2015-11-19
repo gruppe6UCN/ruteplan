@@ -18,18 +18,20 @@ namespace Control
         private GeoLoc geoLoc;
         private static DefaultDeliveryStopController instance;
 
-        private class TmpDefaultDeliveryStop
+        public class TmpDefaultDeliveryStop
         {
             public long ID { get; private set; }
-            public List<Customer> Customers { get; set; }
+            public long CustomerID { get; private set; }
             public long GeoLocID { get; private set; }
             public long RouteID { get; private set; }
+            public List<Customer> Customers { get; set; }
 
-            public TmpDefaultDeliveryStop(long ID, long GeoLocID, long RouteID)
+            public TmpDefaultDeliveryStop(long ID, long GeoLocID, long RouteID, long CustomerID)
             {
                 this.ID = ID;
                 this.GeoLocID = GeoLocID;
                 this.RouteID = RouteID;
+                this.CustomerID = CustomerID;
             }
         }
 
@@ -121,13 +123,12 @@ namespace Control
                 if (stop.RouteID == defaultRoute.ID)
                 {
                     DefaultDeliveryStop defaultStop = new DefaultDeliveryStop(stop.ID, stop.GeoLocID);
-                    CustomerCtr.AddCustomersFromFile(defaultStop, dic);
+                    defaultStop.Customers = stop.Customers;
                 }
             }
 
             return stops;
         }
-
 
         /// <summary>
         /// Gets all the DefaultDeliveryStops from a .csv file for the given route.
@@ -189,9 +190,14 @@ namespace Control
                     }
                 }
 
-                TmpDefaultDeliveryStop defaultStop = new TmpDefaultDeliveryStop(id, geoLoc.ID, DefaultRouteController.ParseID(record.SAPRoute));
+                TmpDefaultDeliveryStop defaultStop = new TmpDefaultDeliveryStop(id, geoLoc.ID, DefaultRouteController.ParseID(record.SAPRoute), record.CustomerNO);
                 TmpDefaultStops.Add(defaultStop);
                 id++;
+            }
+
+            foreach (TmpDefaultDeliveryStop stop in TmpDefaultStops)
+            {
+                CustomerCtr.AddCustomersFromFile(stop, dic);
             }
         }
 
