@@ -87,6 +87,7 @@ namespace Control
             Routes = new ConcurrentBag<Route>();
             List<DefaultRoute> listDefaultRoutes = DefaultRouteCtr.GetDefaultRoutes(pathRoutes);
             ConcurrentBag<DefaultRoute> bagDefaultRoutes = new ConcurrentBag<DefaultRoute>(listDefaultRoutes);
+            DefaultDeliveryStopCtr.ImportDefaultDeliveryStopsFromFile(pathStops, pathCustomers);
             // LogCtr.StatusLog("Loaded Default Routes");
 
             //Creates a route for each default route.
@@ -99,7 +100,7 @@ namespace Control
                 //Syncronize then add stops.
                 lock (bagDefaultRoutes)
                 {
-                    DeliveryStopCtr.AddDeliveryStops(route, DefaultDeliveryStopCtr.ImportDefaultDeliveryStopsFromFile(defaultRoute, pathStops, pathCustomers));
+                    DeliveryStopCtr.AddDeliveryStops(route, DefaultDeliveryStopCtr.GetDefaultDeliveryStopsFromFile(defaultRoute));
                 }
 
                 //Updates log and adds route.

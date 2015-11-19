@@ -25,13 +25,15 @@ namespace Control
             public long GeoLocID { get; private set; }
             public long RouteID { get; private set; }
             public List<Customer> Customers { get; set; }
+            public int SequenceNbr { get; private set; }
 
-            public TmpDefaultDeliveryStop(long ID, long GeoLocID, long RouteID, long CustomerID)
+            public TmpDefaultDeliveryStop(long ID, long GeoLocID, long RouteID, long CustomerID, int SequenceNbr)
             {
                 this.ID = ID;
                 this.GeoLocID = GeoLocID;
                 this.RouteID = RouteID;
                 this.CustomerID = CustomerID;
+                this.SequenceNbr = SequenceNbr;
             }
         }
 
@@ -55,7 +57,7 @@ namespace Control
             public string Route;
             public string Shipment;
             public long CustomerNO;
-            public string udf_sequencenumber;
+            public int UdfSequencenumber;
             public string CustomerName;
             public string Zipcode;
             public string City;
@@ -122,7 +124,7 @@ namespace Control
             {
                 if (stop.RouteID == defaultRoute.ID)
                 {
-                    DefaultDeliveryStop defaultStop = new DefaultDeliveryStop(stop.ID, stop.GeoLocID);
+                    DefaultDeliveryStop defaultStop = new DefaultDeliveryStop(stop.ID, stop.GeoLocID, stop.SequenceNbr);
                     defaultStop.Customers = stop.Customers;
                 }
             }
@@ -133,10 +135,9 @@ namespace Control
         /// <summary>
         /// Gets all the DefaultDeliveryStops from a .csv file for the given route.
         /// </summary>
-        /// <param name="defaultRoute">DefaultRoute which DefaultDeliveryStops are to be returned.</param>
         /// <param name="pathStops">Filepath of the .csv file for stops to be imported.</param>
         /// <param name="pathCustomers">Filepath of the .csv file for customers.</param>
-        public void ImportDefaultDeliveryStopsFromFile(DefaultRoute defaultRoute, string pathStops, string pathCustomers)
+        public void ImportDefaultDeliveryStopsFromFile(string pathStops, string pathCustomers)
         {
             //Reads the file and maps it to mapping class.
             FileHelperEngine<MappingDefaultDeliveryStop> engine = new FileHelperEngine<MappingDefaultDeliveryStop>();
@@ -190,7 +191,7 @@ namespace Control
                     }
                 }
 
-                TmpDefaultDeliveryStop defaultStop = new TmpDefaultDeliveryStop(id, geoLoc.ID, DefaultRouteController.ParseID(record.SAPRoute), record.CustomerNO);
+                TmpDefaultDeliveryStop defaultStop = new TmpDefaultDeliveryStop(id, geoLoc.ID, DefaultRouteController.ParseID(record.SAPRoute), record.CustomerNO, record.UdfSequencenumber);
                 TmpDefaultStops.Add(defaultStop);
                 id++;
             }
