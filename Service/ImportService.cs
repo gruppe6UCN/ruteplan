@@ -13,7 +13,7 @@ namespace Service
         //TODO: Everything... Also not use a string.
         public string Import()
         {
-            return "Nej, du blev snydt, thihi fniz. #Putin!"
+            return "Nej, du blev snydt, thihi fniz. #Putin!";
         }
 
     }
