@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using GMap.NET;
 using Model;
 
 namespace Control
@@ -14,8 +16,8 @@ namespace Control
         private static OptimizeController instance;
 
         private ConcurrentQueue<DeliveryStop> removedStops;
-        private ConcurrentQueue<Route> overloadedRoutes;
-        private ConcurrentQueue<Route> underloadedRoutes;
+        private List<Route> overloadedRoutes;
+        private List<Route> underloadedRoutes;
 
         // /<summary>
         // /Private singleton constructor.
@@ -24,9 +26,6 @@ namespace Control
             RouteCtr = RouteController.Instance;
             MapCtr = MapController.Instance;
             LogCtr = LogController.Instance;
-
-            // Sync Queue
-            removedStops = new ConcurrentQueue<DeliveryStop>();
         }
 
         // /<summary>
@@ -48,96 +47,78 @@ namespace Control
          * Optimizes all imported routes.
          */
         public void Optimize() {
-            LogCtr.StatusLog("searching for over- and underloaded");
+            // Sync Queue
+            removedStops = new ConcurrentQueue<DeliveryStop>();
 
+            LogCtr.StatusLog("searching for over- and underloaded");
             overloadedRoutes = RouteCtr.FindOverloadedRoutes();
             underloadedRoutes = RouteCtr.FindUnderloadedRoutes();
 
             LogCtr.StatusLog("Found all over- and under-loaded routes");
 
             // Checks to see if there is overloadedRoutes.
-            //if (overloadedRoutes.Count > 0) {
+            if (overloadedRoutes.Count > 0) {
 
-            //    // Enters a loop for each overloaded route.
-            //    Parallel.ForEach(overloadedRoutes, overloadedRoute => {
+                // Enters a loop for each overloaded route.
+                Parallel.ForEach(overloadedRoutes, overloadedRoute => {
 
-            //        // Removes deliveryStops from route, until it's not overloaded, using a greedy algorithm.
-            //        List<DeliveryStop> stops = FindAndRemoveStops(overloadedRoute, RouteCtr.Routes);
-            //        foreach (DeliveryStop stop in stops)
-            //        {
-            //            removedStops.Enqueue(stop);
-            //        }
-            //    });
-            //    LogCtr.StatusLog(String.Format("There is %d delivery stop there need to be moved to another routes", overloadedRoutes.Count));
+                    // Removes deliveryStops from route, until it's no longer overloaded, using a greedy algorithm.
+                    List<DeliveryStop> stops = FindAndRemoveStops(overloadedRoute, RouteCtr.Routes);
+                    foreach (DeliveryStop stop in stops)
+                    {
+                        removedStops.Enqueue(stop);
+                    }
+                });
+                LogCtr.StatusLog(String.Format("There is %d delivery stop there need to be moved to another routes", overloadedRoutes.Count));
 
-            //    // Enter a loop for each stop removed.
-            //    foreach (DeliveryStop removedStop in removedStops)
-            //    {
-            //        // The synced dictionary containing all routes near removedStop with distance as the key.
-            //        ConcurrentDictionary<Double, Route> nearRoutes = new ConcurrentDictionary<double, Route>();
+                // Enter a loop for each stop removed.
+                foreach (DeliveryStop removedStop in removedStops)
+                {
+                    // The thread-safe dictionary contains all routes near removedStop with distance as the key.
+                    ConcurrentDictionary<Double, Route> nearRoutes = new ConcurrentDictionary<double, Route>();
 
-            //        // Finds the geoLoc for current removedStop.
-            //        GeoLoc geoLocRemovedStop = MapController.ShortestDistances()
+                    LogCtr.StatusLog("Searching for routes at a close enough distance, and with enough free space to add the stop");
+                    // Enters a loop for each underloadedRoute, to check if one of them is near stop.
+                    Parallel.ForEach(underloadedRoutes, underloadedRoute => {  // TODO: make parallelStream
+                        // Checks if there is space to removedStop on this Route
+                        double newLoad = removedStop.GetSizeOfTransportUnits() + underloadedRoute.GetLoadForTrailer();
+                        if (newLoad <= underloadedRoute.GetCapacity()) {
+                            // Finds the shortest distance from removedStop to underloadedRoute.
+                            MapRoute mapRoute = MapController.ShortestDistancesTo(removedStop, underloadedRoute);
+                            
+                            // Checks to see if within a acceptable distance.
+                            if (mapRoute.Distance < 25) {
+                                nearRoutes.AddOrUpdate(mapRoute.Distance, underloadedRoute, (d, route) => route);
+                            }
+                        }
+                    });
 
-            //        LogCtr.StatusLog("Searching for routes at a close enough distance, og with enough free space to add the stop");
-            //        // Enters a loop for each underloadedRoute, to check if one of them is near stop.
-            //        underloadedRoutes.parallelStream().forEach((underloadedRoute) -> {  // TODO: make parallelStream
-            //            // Checks if there is space to removedStop on this Route
-            //            double newLoad = removedStop.getSizeOfTransportUnits() + underloadedRoute.getLoadForTrailer();
-            //            if (newLoad <= underloadedRoute.getCapacity()) {
+                    if (nearRoutes.Count > 0) {
+                        // The shortest distance (HashMap key) for all the Routes
+                        double distance = nearRoutes.Keys.Min();
 
-            //                // Sync HashMap
-            //                Map<Double, DeliveryStop> distanceForStops = Collections.synchronizedMap
-            //                        (new HashMap<>());
+                        // Move stop to this route.
+                        Route underloadedRoute = nearRoutes[distance];
+                        underloadedRoute.Stops.Add(removedStop);
+                        if (!underloadedRoute.IsUnderloaded()) {
+                            underloadedRoutes.Remove(underloadedRoute);
+                        }
 
-            //                underloadedRoute.getStops().parallelStream().forEach(deliveryStop -> { // TODO: make parallelStream
-            //                    // Gets the geoLoc, and store the distance for the geoLoc.
-            //                    GeoLoc geoLacBelongingToRoute = mapController.findGeoLoc(deliveryStop);
-            //                    double distance = mapController.getShortestDistance(geoLocRemovedStop, geoLacBelongingToRoute);
+                        LogCtr.StatusLog("Added delivery stop to route");
+                    } else {
+                        // Make a extra route.
+                        Route extraRoute = ExtraRoute(removedStop);
+                        RouteCtr.Routes.Add(extraRoute);
+                        if (extraRoute.IsUnderloaded()) {
+                            underloadedRoutes.Add(extraRoute);
+                        }
 
-            //                    distanceForStops.put(distance, deliveryStop);
-            //                });
+                        LogCtr.StatusLog("Created a new route for delivery stop");
+                    }
+                }
 
-            //                // The shortest distance (HashMap key) for this Route
-            //                Double distance = distanceForStops.keySet().stream().sorted().findFirst().get();
-
-            //                // Checks to see if within a acceptable distance.
-            //                if (distance < 25) {
-            //                    nearRoutes.put(distance, underloadedRoute);
-            //                }
-            //            }
-            //        });
-
-            //        if (nearRoutes.size() > 0) {
-            //            // The shortest distance (HashMap key) for all the Routes
-            //            Double distance = nearRoutes.keySet().stream().sorted().findFirst().get();
-
-            //            // Move stop to this route.
-            //            Route underloadedRoute = nearRoutes.get(distance);
-            //            underloadedRoute.addDeliveryStop(removedStop);
-            //            if (!underloadedRoute.isUnderloaded()) {
-            //                underloadedRoutes.remove(underloadedRoute);
-            //            }
-
-            //            LogCtr.StatusLog("Added delivery stop to route");
-            //        } else {
-
-            //            // Make a new route.
-            //            Route newRoute = newRoute(removedStop);
-            //            routeController.addRoute(newRoute);
-            //            if (newRoute.isUnderloaded()) {
-            //                underloadedRoutes.add(newRoute);
-            //            }
-
-            //            LogCtr.StatusLog("Created a new route for delivery stop");
-            //        }
-            //    });
-
-            //    // Clears ArrayList
-            //    removedStops.clear();
-
-            //    routeController.calcTimeForDeparture();
-            //}
+                RouteCtr.CalcTimeForDeparture();
+            }
         }
 
 

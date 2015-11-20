@@ -87,10 +87,10 @@ namespace Control
         public List<DefaultRoute> GetDefaultRoutes()
         {
             //Gets a list of all defaultRoutes.
-            List<DefaultRoute> list = DbDefaultRoute.DefaultRoutes();
+            List<DefaultRoute> defaultRoutes = DbDefaultRoute.DefaultRoutes();
 
             //Returns the list.
-            return list;
+            return defaultRoutes;
         }
 
         /// <summary>

@@ -40,32 +40,28 @@ namespace Control
             gMap = GMap.NET.GMaps.Instance;
         }
 
-        public static List<Road> ShortestDistances(GeoLoc from, List<GeoLoc> geoLocs)
+        public static MapRoute ShortestDistancesTo(DeliveryStop from, Route route)
         {
-            List<Road> roads = new List<Road>();
-            geoLocs.ForEach(to =>
+            List<GeoLoc> geoLocs = new List<GeoLoc>();
+            route.Stops.ForEach(stop => {geoLocs.Add(stop.DefaultStop.GeoLoc);});
+            ConcurrentDictionary<double, MapRoute> roads = new ConcurrentDictionary<double, MapRoute>();
+            Parallel.ForEach(route.Stops, to =>
             {
-                if(!Equals(from, to))
-                {
-                    MapRoute route = MapProvider.GetRoute(from.Point, to.Point, false, false, 15);
+                MapRoute mapRoute = MapProvider.GetRoute(from.DefaultStop.GeoLoc.Point,
+                    to.DefaultStop.GeoLoc.Point, false, false, 15);
 
-                    if (from.FliedDistance(to)*1.25 > route.Distance || route.Distance < 4)
-                    {
-                        roads.Add(new Road(to, from, route.Distance, new TimeSpan(0, 0, 0)));
-                    }
-                }
+                    // TODO: What to do if there is 2 distance with the same value?
+                    roads.AddOrUpdate(mapRoute.Distance, mapRoute, (d, route1) => route1);
             });
 
-            roads.Sort((road1, road2) =>
-            {
-                if (road1.Distance > road2.Distance)
-                    return 1;
-                if (road1.Distance < road2.Distance)
-                    return -1;
-                return 0;
-            });
+            double shortestDistances = roads.Keys.Min();
 
-            return roads;
+            return roads[shortestDistances];
+        }
+
+        public void AddGeoLog(DefaultDeliveryStop stop)
+        {
+            stop.GeoLoc = dbGeoLoc.getGeoLoc(stop.GeoLocID);
         }
     }
 }

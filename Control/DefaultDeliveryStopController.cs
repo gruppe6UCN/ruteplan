@@ -11,8 +11,9 @@ namespace Control
 {
     public class DefaultDeliveryStopController
     {
-        public DBDefaultDeliveryStop DbDefaultDeliveryStop { get; private set; }
-        public CustomerController CustomerCtr { get; private set; }
+        private DBDefaultDeliveryStop dbDefaultDeliveryStop;
+        private CustomerController customerCtr;
+        private MapController mapCtr;
         private static DefaultDeliveryStopController instance;
 
         //Mapping Class for File Import.
@@ -53,8 +54,9 @@ namespace Control
         /// </summary>
         private DefaultDeliveryStopController() 
         {
-            DbDefaultDeliveryStop = DBDefaultDeliveryStop.Instance;
-            CustomerCtr = CustomerController.Instance;
+            this.dbDefaultDeliveryStop = DBDefaultDeliveryStop.Instance;
+            this.customerCtr = CustomerController.Instance;
+            this.mapCtr = MapController.Instance;
         }
 
         /// <summary>
@@ -81,10 +83,12 @@ namespace Control
         public List<DefaultDeliveryStop> GetDefaultDeliveryStops(DefaultRoute defaultRoute)
         {
             long defaultRouteID = defaultRoute.ID;
-            List<DefaultDeliveryStop> stops = DbDefaultDeliveryStop.GetDefaultDeliveryStops(defaultRouteID);
-            foreach (DefaultDeliveryStop stop in stops) {
-                CustomerCtr.AddCustomers(stop);
-            }
+            List<DefaultDeliveryStop> stops = dbDefaultDeliveryStop.GetDefaultDeliveryStops(defaultRouteID);
+            Parallel.ForEach(stops, stop =>
+            {
+                customerCtr.AddCustomers(stop);
+                mapCtr.AddGeoLog(stop);
+            });
             return stops;
         }
 
@@ -100,7 +104,7 @@ namespace Control
             //Reads the file and maps it to mapping class.
             FileHelperEngine<MappingDefaultDeliveryStop> engine = new FileHelperEngine<MappingDefaultDeliveryStop>();
             List<MappingDefaultDeliveryStop> records = engine.ReadFileAsList(pathStops);
-            CustomerCtr.GetCustomersFromFile(pathCustomers);
+            customerCtr.GetCustomersFromFile(pathCustomers);
 
             //Creates various lists for use in code.
             List<DefaultDeliveryStop> defaultDeliveryStops = new List<DefaultDeliveryStop>();
@@ -141,7 +145,7 @@ namespace Control
             //Adds customers to each stop.
             foreach (DefaultDeliveryStop stop in defaultDeliveryStops)
             {
-                //CustomerCtr.AddCustomers(stop, dic);
+                //customerCtr.AddCustomers(stop, dic);
             }
 
             //Returns List

@@ -10,13 +10,19 @@ namespace Model
     {
         public long ID { get; private set; }
         public List<Customer> Customers { get; set; }
-        public long GeoLocID { get; private set; }
+        private long _GeoLogID;
+
+        public long GeoLocID
+        {
+            get { return GeoLoc == null ? _GeoLogID : GeoLoc.ID; }
+        }
+
+        public GeoLoc GeoLoc { get; set; }
 
         public DefaultDeliveryStop(long ID, long GeoLocID)
         {
             this.ID = ID;
-            this.GeoLocID = GeoLocID;
+            this._GeoLogID = GeoLocID;
         }
-
     }
 }

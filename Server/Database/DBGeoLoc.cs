@@ -11,7 +11,7 @@ namespace Server.Database
 {
     public class DBGeoLoc
     {
-        public DBConnection DbConnection { get; private set; }
+        private DBConnection DbConnection { get; set; }
         private static DBGeoLoc instance;
 
         /// <summary>

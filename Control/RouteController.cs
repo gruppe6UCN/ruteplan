@@ -55,6 +55,7 @@ namespace Control
             LogCtr.StatusLog("Loaded Default Routes");
 
             //Creates a route for each default route.
+            //foreach (DefaultRoute defaultRoute in defaultRoutes)
             Parallel.ForEach(defaultRoutes, defaultRoute =>
             {
                 //Creates the route.
@@ -67,6 +68,7 @@ namespace Control
                 LogCtr.StatusLog("Created new route from default route " + defaultRoute.ID);
                 Routes.Add(route);
             });
+            //}
         }
 
         /// <summary>
@@ -88,11 +90,7 @@ namespace Control
                 Route route = new Route(defaultRoute, date);
                 LogCtr.StatusLog("Creating new route, based on default route " + defaultRoute.ID);
 
-                //Syncronize then add stops.
-                lock (bagDefaultRoutes)
-                {
-                    DeliveryStopCtr.AddDeliveryStops(route, DefaultDeliveryStopCtr.GetDefaultDeliveryStops(defaultRoute));
-                }
+                DeliveryStopCtr.AddDeliveryStops(route, DefaultDeliveryStopCtr.GetDefaultDeliveryStops(defaultRoute));
 
                 //Updates log and adds route.
                 // LogCtr.StatusLog("Created new route from default route " + defaultRoute.ID);
@@ -131,10 +129,10 @@ namespace Control
         /// Finds and returns all overloaded routes.
         /// </summary>
         /// <returns>List of all overloaded Routes.</returns>
-        public ConcurrentQueue<Route> FindOverloadedRoutes()
+        public List<Route> FindOverloadedRoutes()
         {
             // Creates a list of routes.
-            ConcurrentQueue<Route> overloadedRoutes = new ConcurrentQueue<Route>();
+            ConcurrentBag<Route> overloadedRoutes = new ConcurrentBag<Route>();
 
             // Checks if each route is overloaded.
             Parallel.ForEach(Routes, route =>
@@ -147,22 +145,22 @@ namespace Control
                 if (load > capacity)
                 {
                     // Adds the route to list.
-                    overloadedRoutes.Enqueue(route);
+                    overloadedRoutes.Add(route);
                 }
             });
 
             // Return list with routes.
-            return overloadedRoutes;
+            return overloadedRoutes.ToList();
         }
 
         /// <summary>
         /// Finds and returns all underloaded routes.
         /// </summary>
         /// <returns>List of all underloaded routes.</returns>
-        public ConcurrentQueue<Route> FindUnderloadedRoutes()
+        public List<Route> FindUnderloadedRoutes()
         {
             // Creates a list of routes.
-            ConcurrentQueue<Route> underloadedRoutes = new ConcurrentQueue<Route>();
+            ConcurrentBag<Route> underloadedRoutes = new ConcurrentBag<Route>();
 
             // Checks if each route is underloaded.
             Parallel.ForEach(Routes, route => 
@@ -171,12 +169,12 @@ namespace Control
                 if (route.IsUnderloaded())
                 {
                     // Adds to list.
-                    underloadedRoutes.Enqueue(route);
+                    underloadedRoutes.Add(route);
                 }
             });
 
             // Return list with routes.
-            return underloadedRoutes;   
+            return underloadedRoutes.ToList();   
         }
 
 

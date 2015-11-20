@@ -59,7 +59,7 @@ namespace Control
         {
             //Creates delivery stop for each default stop.
             //TODO: Use a thread safe list instead of List<T>
-            Parallel.ForEach(defaultStops, defaultStop =>
+            defaultStops.ForEach(defaultStop =>
             {
                 DeliveryStop stop = new DeliveryStop(defaultStop);
                 TransportUnitCtr.AddTransportUnit(stop, stop.DefaultStop.Customers);

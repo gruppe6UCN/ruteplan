@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using Control;
+using GMap.NET;
 using Model;
 using Server;
 using Server.Database;
@@ -30,6 +29,7 @@ namespace ControlTest
             dbConnection.Pass = File.ReadAllText("Config/pass.txt");
             dbConnection.Connect();
             this.dbGeoLoc = DBGeoLoc.Instance;
+
         }
 
         [SetUp()]
@@ -46,16 +46,14 @@ namespace ControlTest
         [Test()]
         public void TestFindShortestDistance()
         {
-            List<GeoLoc> geoLocs = dbGeoLoc.GetGeoLocs();
-            List<Road> shortestDistance = MapController.ShortestDistances(geoLocs[3], geoLocs);
+            RouteController.Instance.ImportRoutes(new DateTime(2015, 11, 19));
+            List<Route> routes = RouteController.Instance.Routes.ToList();
 
-            double shortest = 0.0;
-            foreach (Road key in shortestDistance)
-            {
-                Assert.LessOrEqual(shortest, key.Distance);
-                shortest = key.Distance;
-            }
-            Assert.Pass();
+            MapRoute mapRoute = MapController.ShortestDistancesTo(
+                routes[3].Stops[routes[3].Stops.Count-1], routes[1]);
+
+            Assert.NotNull(mapRoute.Distance);
+            Assert.AreNotEqual(0.0, mapRoute.Distance);
         }
     }
 }

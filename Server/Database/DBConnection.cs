@@ -111,14 +111,20 @@ namespace Server
         /// <typeparam name="T">The object type insite the returned list</typeparam>
         public List<T> SendSQL<T>(String sql, SqlToObject<T> sqlToObject) {
             MySqlCommand cmd = new MySqlCommand();
-            cmd.Connection = connection;
-            cmd.Transaction = transaction;
+            List<T> r = null;
 
-            cmd.CommandText = sql;
-            IDataReader dbData = cmd.ExecuteReader();
+                cmd.Connection = connection;
+                cmd.Transaction = transaction;
 
-            List<T> r = sqlToObject(dbData);
-            dbData.Close();
+                cmd.CommandText = sql;
+            lock (connection)
+            {
+                IDataReader dbData = cmd.ExecuteReader();
+
+                r = sqlToObject(dbData);
+                dbData.Close();
+            }
+
             return r;
         }
     }
