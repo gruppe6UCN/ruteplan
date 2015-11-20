@@ -26,14 +26,18 @@ namespace Control
             public long RouteID { get; private set; }
             public List<Customer> Customers { get; set; }
             public int? SequenceNbr { get; private set; }
+            public string PromisedTime { get; private set; }
+            public string TransportationDate { get; private set; }
 
-            public TmpDefaultDeliveryStop(long ID, long GeoLocID, long RouteID, long CustomerID, int? SequenceNbr)
+            public TmpDefaultDeliveryStop(long ID, long GeoLocID, long RouteID, long CustomerID, int? SequenceNbr, string PromisedTime, string TransportationDate)
             {
                 this.ID = ID;
                 this.GeoLocID = GeoLocID;
                 this.RouteID = RouteID;
                 this.CustomerID = CustomerID;
                 this.SequenceNbr = SequenceNbr;
+                this.PromisedTime = PromisedTime;
+                this.TransportationDate = TransportationDate;
             }
         }
 
@@ -145,19 +149,10 @@ namespace Control
             CustomerCtr.GetCustomersFromFile(pathCustomers);
 
             //Creates various lists for use in code.
-            dic = new Dictionary<long, TimeSpan>();
-            Dictionary<double, double> geoLocDic = new Dictionary<double,double>();
-            Dictionary<double ,GeoLoc> geoLocs = new Dictionary<double, GeoLoc>();
+            TmpDefaultStops = new List<TmpDefaultDeliveryStop>();
+            Dictionary<double, GeoLoc> geoLocDic = new Dictionary<double, GeoLoc>();
             long geoId = 1;
             long id = 1;
-
-            //Creates dictionary for time in use for customer.
-            foreach (MappingDefaultDeliveryStop record in records)
-            {
-                DateTime date = ParseToDateTime(record.PromisedTime, record.TransportationDate);
-                TimeSpan time = ParseToTimeSpan(date);
-                dic.Add(record.CustomerNO, time);
-            }
 
             //Creates dictionary for geoLocs.
             foreach (CustomerController.MappingCustomer customer in CustomerCtr.records)
@@ -170,8 +165,7 @@ namespace Control
                 }
                     
                 GeoLoc geoLoc = new GeoLoc(geoId, yy, xx);
-                geoLocDic.Add(yy, xx);
-                geoLocs.Add(yy, geoLoc);
+                geoLocDic.Add(yy, geoLoc);
                 geoId++;
             }
 
@@ -186,54 +180,28 @@ namespace Control
 
                     if (idCustomerStop == idCustomer)
                     {
-                        geoLoc = geoLocs[customer.Y];
+                        geoLoc = geoLocDic[customer.Y];
                         break;
                     }
                 }
 
-                TmpDefaultDeliveryStop defaultStop = new TmpDefaultDeliveryStop(id, 
+                TmpDefaultDeliveryStop defaultStop = new TmpDefaultDeliveryStop(
+                    id, 
                     geoLoc.ID, 
                     DefaultRouteController.ParseID(record.SAPRoute), 
-                    record.CustomerNO, ParseToInt(record.UdfSequencenumber));
+                    record.CustomerNO, ParseToInt(record.UdfSequencenumber),
+                    record.PromisedTime,
+                    record.TransportationDate);
+                
                 TmpDefaultStops.Add(defaultStop);
                 id++;
             }
 
             foreach (TmpDefaultDeliveryStop stop in TmpDefaultStops)
             {
-                CustomerCtr.AddCustomersFromFile(stop, dic);
+                CustomerCtr.AddCustomersFromFile(stop);
             }
         }
-
-        /// <summary>
-        /// Converts the given date and time strings from the mapping class to a DateTime.
-        /// </summary>
-        /// <param name="time">String to be converted. Format "HH:MM"</param>
-        /// <param name="date">String to be converted. Format "MM:DD"</param>
-        /// <returns>DateTime object for date.</returns>
-        private DateTime ParseToDateTime(string time, string date)
-        {
-            int year = DateTime.Now.Year;
-            int month = int.Parse(date.Substring(0, 2));
-            int day = int.Parse(date.Substring(3));
-            int hour = int.Parse(time.Substring(0, 2));
-            int minute = int.Parse(time.Substring(3));
-
-            DateTime dateTime = new DateTime(year, month, day, hour, minute, 0);
-            return dateTime;
-        }
-
-        /// <summary>
-        /// Converts given date time to a timespan.
-        /// </summary>
-        /// <param name="?">DateTime to be converted.</param>
-        /// <returns>TimeSpan for datetime.</returns>
-        private TimeSpan ParseToTimeSpan(DateTime date)
-        {
-            TimeSpan time = date.TimeOfDay;
-            return time;
-        }
-
 
         /// <summary>
         /// Converts the given string to a nullable int?.
