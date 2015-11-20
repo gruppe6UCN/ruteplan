@@ -185,16 +185,20 @@ namespace Control
                     }
                 }
 
-                TmpDefaultDeliveryStop defaultStop = new TmpDefaultDeliveryStop(
-                    id, 
-                    geoLoc.ID, 
-                    DefaultRouteController.ParseID(record.SAPRoute), 
-                    record.CustomerNO, ParseToInt(record.UdfSequencenumber),
-                    record.PromisedTime,
-                    record.TransportationDate);
-                
-                TmpDefaultStops.Add(defaultStop);
-                id++;
+                try
+                {
+                    TmpDefaultDeliveryStop defaultStop = new TmpDefaultDeliveryStop(
+                        id,
+                        geoLoc.ID,
+                        DefaultRouteController.ParseID(record.SAPRoute),
+                        record.CustomerNO, ParseToInt(record.UdfSequencenumber),
+                        record.PromisedTime,
+                        record.TransportationDate);
+
+                    TmpDefaultStops.Add(defaultStop);
+                    id++;
+                }
+                catch (FormatException e) { Console.WriteLine("Invalid SAPRoute ID {0}", e); }
             }
 
             foreach (TmpDefaultDeliveryStop stop in TmpDefaultStops)

@@ -133,8 +133,12 @@ namespace Control
         /// <returns>Long value of id.</returns>
         public static long ParseID(string id)
         {
-            string idString = id.Substring(3);
-            return long.Parse(idString);
+            try
+            {
+                string idString = id.Substring(3);
+                return long.Parse(idString);
+            }
+            catch { throw; }
         }
 
     }
