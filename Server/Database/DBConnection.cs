@@ -109,16 +109,23 @@ namespace Server
         /// <param name="sql">Sql command</param>
         /// <param name="sqlToObject">The method for converting database set</param>
         /// <typeparam name="T">The object type insite the returned list</typeparam>
-        public List<T> SendSQL<T>(String sql, SqlToObject<T> sqlToObject) {
+        public List<T> SendSQL<T>(String sql, SqlToObject<T> sqlToObject)
+        {
             MySqlCommand cmd = new MySqlCommand();
+            List<T> r = null;
+
             cmd.Connection = connection;
             cmd.Transaction = transaction;
 
             cmd.CommandText = sql;
-            IDataReader dbData = cmd.ExecuteReader();
+            lock (connection)
+            {
+                IDataReader dbData = cmd.ExecuteReader();
 
-            List<T> r = sqlToObject(dbData);
-            dbData.Close();
+                r = sqlToObject(dbData);
+                dbData.Close();
+            }
+
             return r;
         }
     }

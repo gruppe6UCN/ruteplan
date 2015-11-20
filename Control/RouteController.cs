@@ -62,11 +62,7 @@ namespace Control
                 Route route = new Route(defaultRoute, date, date);
                 // LogCtr.StatusLog("Creating new route, based on default route " + defaultRoute.ID);
             
-                //Syncronize then add stops.
-                lock (bagDefaultRoutes)
-                {
-                    DeliveryStopCtr.AddDeliveryStops(route, DefaultDeliveryStopCtr.GetDefaultDeliveryStops(defaultRoute));
-                }
+                DeliveryStopCtr.AddDeliveryStops(route, DefaultDeliveryStopCtr.GetDefaultDeliveryStops(defaultRoute));
            
                 //Updates log and adds route.
                 // LogCtr.StatusLog("Created new route from default route " + defaultRoute.ID);
@@ -97,11 +93,7 @@ namespace Control
                 Route route = new Route(defaultRoute, date, date);
                 // LogCtr.StatusLog("Creating new route, based on default route " + defaultRoute.ID);
 
-                //Syncronize then add stops.
-                lock (bagDefaultRoutes)
-                {
-                    DeliveryStopCtr.AddDeliveryStops(route, DefaultDeliveryStopCtr.GetDefaultDeliveryStopsFromFile(defaultRoute));
-                }
+                DeliveryStopCtr.AddDeliveryStops(route, DefaultDeliveryStopCtr.GetDefaultDeliveryStopsFromFile(defaultRoute));
 
                 //Updates log and adds route.
                 // LogCtr.StatusLog("Created new route from default route " + defaultRoute.ID);
