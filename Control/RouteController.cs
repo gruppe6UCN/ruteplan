@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Server.Database;
+using System.Collections.Concurrent;
 using Model;
 
 namespace Control
@@ -28,6 +28,7 @@ namespace Control
             DefaultDeliveryStopCtr = DefaultDeliveryStopController.Instance;
             LogCtr = LogController.Instance;
             DbRoute = DBRoute.Instance;
+            Routes = new ConcurrentBag<Route>();
         }
 
         /// <summary>
@@ -46,41 +47,43 @@ namespace Control
         /// Imports all routes from database.
         /// </summary>
         /// <param name="date">Time used in creation of routes.</param>
-        public void ImportRoutes(DateTime date)
-        {
-            Routes = new ConcurrentBag<Route>();
+        public void ImportRoutes(DateTime date) {
+
             //Loads default routes.
-            ConcurrentBag<DefaultRoute> defaultRoutes =
+            Routes = new ConcurrentBag<Route>();
+            ConcurrentBag<DefaultRoute> listDefaultRoutes =
                 new ConcurrentBag<DefaultRoute>(DefaultRouteCtr.GetDefaultRoutes());
             LogCtr.StatusLog("Loaded Default Routes");
 
             //Creates a route for each default route.
-            //foreach (DefaultRoute defaultRoute in defaultRoutes)
-            Parallel.ForEach(defaultRoutes, defaultRoute =>
+            Parallel.ForEach(listDefaultRoutes, defaultRoute =>
             {
                 //Creates the route.
                 Route route = new Route(defaultRoute, date);
                 LogCtr.StatusLog("Creating new route, based on default route " + defaultRoute.ID);
-
+            
                 DeliveryStopCtr.AddDeliveryStops(route, DefaultDeliveryStopCtr.GetDefaultDeliveryStops(defaultRoute));
 
-                //Updates LogCtr and adds route.
+                //Updates log and adds route.
                 LogCtr.StatusLog("Created new route from default route " + defaultRoute.ID);
                 Routes.Add(route);
             });
-            //}
         }
 
         /// <summary>
-        /// Imports all routes from the given list of default routes.
+        /// Imports all routes from the given .csv files.
         /// </summary>
-        /// <param name="defaultRoutes">List of default routes for routes to reference.</param>
         /// <param name="date">Time used in creation of routes.</param>
-        public void ImportRoutes(List<DefaultRoute> defaultRoutes, DateTime date)
+        /// <param name="pathRoutes">Path of .csv file to be imported.</param>
+        /// <param name="pathStops">Path of .csv file to be imported.</param>
+        /// <param name="pathCustomers">Path of .csv file to be imported.</param>
+        public void ImportRoutesFromFile(DateTime date, string pathRoutes, string pathStops, string pathCustomers)
         {
-            Routes = new ConcurrentBag<Route>();
             //Loads default routes.
-            ConcurrentBag<DefaultRoute> bagDefaultRoutes = new ConcurrentBag<DefaultRoute>(defaultRoutes);
+            Routes = new ConcurrentBag<Route>();
+            List<DefaultRoute> listDefaultRoutes = DefaultRouteCtr.GetDefaultRoutes(pathRoutes);
+            ConcurrentBag<DefaultRoute> bagDefaultRoutes = new ConcurrentBag<DefaultRoute>(listDefaultRoutes);
+            DefaultDeliveryStopCtr.ImportDefaultDeliveryStopsFromFile(pathStops, pathCustomers);
             LogCtr.StatusLog("Loaded Default Routes");
 
             //Creates a route for each default route.
@@ -90,10 +93,10 @@ namespace Control
                 Route route = new Route(defaultRoute, date);
                 LogCtr.StatusLog("Creating new route, based on default route " + defaultRoute.ID);
 
-                DeliveryStopCtr.AddDeliveryStops(route, DefaultDeliveryStopCtr.GetDefaultDeliveryStops(defaultRoute));
+                DeliveryStopCtr.AddDeliveryStops(route, DefaultDeliveryStopCtr.GetDefaultDeliveryStopsFromFile(defaultRoute));
 
                 //Updates log and adds route.
-                // LogCtr.StatusLog("Created new route from default route " + defaultRoute.ID);
+                LogCtr.StatusLog("Created new route from default route " + defaultRoute.ID);
                 Routes.Add(route);
             });
         }
@@ -102,91 +105,92 @@ namespace Control
         /// Exports all routes to database. If route contains extra default route,
         /// default route is exported as well.
         /// </summary>
-        public void ExportData()
-        {
-            // Enters a loop for each route.
+        public void ExportData() {
+
+            //Enters a loop for each route.
             foreach (Route route in Routes)
             {
-                // Checks if extra route.
+                //Checks if extra route.
                 if (route.DefaultRoute.ExtraRoute)
                 {
-                    // Saves extra route.
+                    //Saves extra route.
                     DefaultRouteCtr.store(route.DefaultRoute);
                 }
 
-                // Stores routes and stops to database.
+                //Stores routes and stops to database.
                 DbRoute.storeRoute(route);
                 DeliveryStopCtr.StoreDeliveryStops(route);
-
-                // Updates LogCtr.
+            
+                //Updates log.
                 LogCtr.StatusLog(string.Format("Exported {0} route {1} to database",
                     route.DefaultRoute.ExtraRoute ? "Extra " : "",
-                    route.ID));
+                    route.ID
+                    ));
             }
         }
-
+    
         /// <summary>
         /// Finds and returns all overloaded routes.
         /// </summary>
         /// <returns>List of all overloaded Routes.</returns>
-        public List<Route> FindOverloadedRoutes()
-        {
-            // Creates a list of routes.
-            ConcurrentBag<Route> overloadedRoutes = new ConcurrentBag<Route>();
+        public List<Route> FindOverloadedRoutes() {
+        
+            //Creates a list of routes.
+            List<Route> overloadedRoutes = new List<Route>();
 
-            // Checks if each route is overloaded.
-            Parallel.ForEach(Routes, route =>
+            //Checks if each route is overloaded.
+            Parallel.ForEach(overloadedRoutes, route => 
             {
-                // Gets variables.
+                //Gets variables.
                 double load = route.GetLoadForTrailer();
                 double capacity = route.GetCapacity();
 
-                // Checks if overloaded.
+                //Checks if overloaded.
                 if (load > capacity)
                 {
-                    // Adds the route to list.
+                    //Adds the route to list.
                     overloadedRoutes.Add(route);
                 }
             });
 
-            // Return list with routes.
-            return overloadedRoutes.ToList();
+            //Return list with routes.
+            return overloadedRoutes;
         }
-
+    
         /// <summary>
         /// Finds and returns all underloaded routes.
         /// </summary>
         /// <returns>List of all underloaded routes.</returns>
-        public List<Route> FindUnderloadedRoutes()
-        {
-            // Creates a list of routes.
-            ConcurrentBag<Route> underloadedRoutes = new ConcurrentBag<Route>();
+        public List<Route> FindUnderloadedRoutes() {
 
-            // Checks if each route is underloaded.
-            Parallel.ForEach(Routes, route => 
+            //Creates a list of routes.
+            List<Route> underloadedRoutes = new List<Route>();
+
+            //Checks if each route is underloaded.
+            Parallel.ForEach(underloadedRoutes, route => 
             {
-                // Checks if underlaoded.
+                //Checks if underlaoded.
                 if (route.IsUnderloaded())
                 {
-                    // Adds to list.
+                    //Adds to list.
                     underloadedRoutes.Add(route);
                 }
             });
 
-            // Return list with routes.
-            return underloadedRoutes.ToList();   
+            //Return list with routes.
+            return underloadedRoutes;   
         }
 
 
         /// <summary>
         /// Calculates the time for departure.
         /// </summary>
-        public void CalcTimeForDeparture()
-        {
+        public void CalcTimeForDeparture() {
+
             DateTime now = DateTime.Now;
             Parallel.ForEach(Routes, route => 
             {
-                route.TimeForDeparture = new TimeSpan(0, 0, 0);
+                route.TimeForDeparture = new TimeSpan(0,0,0);
             });
         }
     }

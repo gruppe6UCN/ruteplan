@@ -59,7 +59,7 @@ namespace TestServer
             List<GeoLoc> geoLocs = null;
             geoLocs = instance.GetGeoLocs();
             int count = geoLocs.Count;
-            Assert.AreEqual(count, 85);
+            Assert.AreEqual(count, 91);
         }
     }
 }

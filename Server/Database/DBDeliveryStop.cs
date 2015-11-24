@@ -10,17 +10,6 @@ namespace Server.Database
 {
     public class DBDeliveryStop
     {
-        class TmpDefaultDeliveryStop
-        {
-            public long ID { get; private set; }
-            public long IDDefaultStop { get; private set; }
-            public TmpDefaultDeliveryStop(long ID, long IDDefaultStop)
-            {
-                this.ID = ID;
-                this.IDDefaultStop = IDDefaultStop;               
-            }
-        }
-
         public DBConnection DbConnection { get; private set; }
         private static DBDeliveryStop instance;
 
@@ -62,47 +51,6 @@ namespace Server.Database
             deliveryStop.ID = stopID;
             return stopID;
         }
-
-        //Returns a list of all delivery stops.
-        //TODO - Optimize with lambda...
-        public List<DeliveryStop> GetDeliveryStops(List<DefaultDeliveryStop> defaultStops)
-        {
-            List<TmpDefaultDeliveryStop> tmpList;
-            string sql = string.Format("select * from DeliveryStop;");
-            tmpList = DbConnection.SendSQL<TmpDefaultDeliveryStop>(sql, ConvertToDeliveryStop);
-
-            List<DeliveryStop> list = new List<DeliveryStop>();
-
-            defaultStops.ForEach(s => {
-                foreach (TmpDefaultDeliveryStop tmpStop in tmpList)
-                {
-                    if (tmpStop.IDDefaultStop == s.ID)
-                    {
-                        DeliveryStop stop = new DeliveryStop(s);
-                        stop.ID = tmpStop.ID;
-                        list.Add(stop);
-                    }
-                }
-            });
-
-            return list;
-        }
-
-        // Converts database string to a model class.
-        private List<TmpDefaultDeliveryStop> ConvertToDeliveryStop(IDataReader dataSet)
-        {
-            List<TmpDefaultDeliveryStop> tableList = new List<TmpDefaultDeliveryStop>();
-            while (dataSet.Read())
-            {
-                tableList.Add(new TmpDefaultDeliveryStop(
-
-                    dataSet.GetInt64(0),
-                    dataSet.GetInt64(1)
-                    ));
-            }
-
-            return tableList;
-        }      
     }
 }
 

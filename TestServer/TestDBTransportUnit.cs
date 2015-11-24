@@ -59,20 +59,15 @@ namespace TestServer
             }
 
             //Gets a list of transport units.
-            List<TransportUnit> listTP = instance.GetTransportUnits(listID);
-            Assert.IsNotEmpty(listTP);
+            List<TransportUnit> listTU = instance.GetTransportUnits(listID);
+            Assert.IsNotEmpty(listTU);
 
             //Checks to see if element exists.
-            TransportUnit unit = null;
-            try
+            Assert.IsNotEmpty(listTU);
+            listTU.ForEach(unit =>
             {
-                unit = listTP.First(u =>
-                    {
-                        return (u.ID == 1); //NOTE: No transport units currently exists in database. Test will not work.
-                    });
-            }
-            catch (InvalidOperationException e) { }
-            Assert.IsNotNull(unit);
+                Assert.IsTrue(listID.Contains(unit.CustomerID));
+            });
         }
     }
 }

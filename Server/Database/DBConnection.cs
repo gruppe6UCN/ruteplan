@@ -81,7 +81,6 @@ namespace Server
             if (obj is ulong)
                 r = Convert.ToInt64(obj);
 
-            transaction.Commit();
             return r; // Returns the ID for the new Row
         }
 
@@ -109,14 +108,15 @@ namespace Server
         /// <param name="sql">Sql command</param>
         /// <param name="sqlToObject">The method for converting database set</param>
         /// <typeparam name="T">The object type insite the returned list</typeparam>
-        public List<T> SendSQL<T>(String sql, SqlToObject<T> sqlToObject) {
+        public List<T> SendSQL<T>(String sql, SqlToObject<T> sqlToObject)
+        {
             MySqlCommand cmd = new MySqlCommand();
             List<T> r = null;
 
-                cmd.Connection = connection;
-                cmd.Transaction = transaction;
+            cmd.Connection = connection;
+            cmd.Transaction = transaction;
 
-                cmd.CommandText = sql;
+            cmd.CommandText = sql;
             lock (connection)
             {
                 IDataReader dbData = cmd.ExecuteReader();

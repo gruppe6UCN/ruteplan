@@ -48,7 +48,6 @@
     <Compile Include="Database\DBDefaultRoute.cs" />
     <Compile Include="Database\DBDeliveryStop.cs" />
     <Compile Include="Database\DBGeoLoc.cs" />
-    <Compile Include="Database\DBRoad.cs" />
     <Compile Include="Database\DBRoute.cs" />
     <Compile Include="Database\DBTransportUnit.cs" />
     <Compile Include="Program.cs" />
@@ -68,7 +67,6 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{D2387D10-FFD3-4DD4-8822-DC5F6ED1D93C}</Project>

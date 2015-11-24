@@ -47,7 +47,6 @@
     <Compile Include="DeliveryStop.cs" />
     <Compile Include="GeoLoc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Road.cs" />
     <Compile Include="Route.cs" />
     <Compile Include="TrailerType.cs" />
     <Compile Include="TransportUnit.cs" />

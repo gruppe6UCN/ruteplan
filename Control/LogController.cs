@@ -40,12 +40,12 @@ namespace Control
 
 
         public void StatusLog(String log) {
-            if (logReceiver != null) {
-                    //logReceiver.Insert(0, log);
-                    maintainLog();
-            } else {
-                Console.WriteLine(log);
-            }
+            //if (logReceiver != null) {
+            //        //logReceiver.Insert(0, log);
+            //        //maintainLog();
+            //} else {
+            //    Console.WriteLine(log);
+            //}
         }
 
         private void maintainLog() {

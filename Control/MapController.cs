@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 using Model;
 using Server.Database;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Threading;
 using System.Threading.Tasks;
 using GMap.NET;
-using GMap.NET.MapProviders;
-using GMap.NET.WindowsForms;
-using GMap.NET.WindowsForms.Markers;
 
 namespace Control
 {
@@ -19,7 +13,6 @@ namespace Control
         private static MapController instance;
 
         private readonly DBGeoLoc dbGeoLoc;
-        private readonly DBRoad dbRoad;
 
         private readonly ConcurrentDictionary<long, GeoLoc> geoLocs = new ConcurrentDictionary<long, GeoLoc>();
 
@@ -36,7 +29,6 @@ namespace Control
 
         private MapController() {
             dbGeoLoc = DBGeoLoc.Instance;
-            dbRoad = DBRoad.Instance;
             gMap = GMap.NET.GMaps.Instance;
         }
 
@@ -45,6 +37,7 @@ namespace Control
             List<GeoLoc> geoLocs = new List<GeoLoc>();
             route.Stops.ForEach(stop => {geoLocs.Add(stop.DefaultStop.GeoLoc);});
             ConcurrentDictionary<double, MapRoute> roads = new ConcurrentDictionary<double, MapRoute>();
+
             Parallel.ForEach(route.Stops, to =>
             {
                 MapRoute mapRoute = MapProvider.GetRoute(from.DefaultStop.GeoLoc.Point,

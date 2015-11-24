@@ -2,10 +2,8 @@
 using Server;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Server.Database;
 using Model;
 
@@ -72,18 +70,31 @@ namespace TestServer
             long idTest = instance.StoreDeliveryStop(route.ID, stop);
 
             //Checks if stored.
-            List<DeliveryStop> list = instance.GetDeliveryStops(listDefault);
-            Assert.IsNotEmpty(list);
-            DeliveryStop stopTest = null;
-            try
+            List<Dictionary<String, long>> checkStops = DBConnection.Instance.SendSQL("Select * From DeliveryStop", ConvertMethod);
+            Assert.IsNotEmpty(checkStops);
+
+            int count = 0;
+            checkStops.ForEach(checkStop =>
             {
-                stopTest = list.First(r =>
+                if (checkStop["id"] == idTest)
+                    count++;
+            });
+            Assert.Greater(count, 0);
+        }
+
+        private List<Dictionary<String, long>> ConvertMethod(IDataReader dataSet)
+        {
+            List<Dictionary<String, long>> table = new List<Dictionary<String, long>>();
+            while (dataSet.Read())
+            {
+                Dictionary<String, long> row = new Dictionary<String, long>();
+                for (int i = 0; i < dataSet.FieldCount; i++)
                 {
-                    return (r.ID == idTest);
-                });
+                    row[dataSet.GetName(i)] = dataSet.GetInt64(i);
+                }
+                table.Add(row);
             }
-            catch (InvalidOperationException e) { }
-            Assert.IsNotNull(stopTest);
+            return table;
         }
     }
 }

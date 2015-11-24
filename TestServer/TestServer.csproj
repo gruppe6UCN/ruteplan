@@ -68,7 +68,6 @@
     <Compile Include="TestDBCustomer.cs" />
     <Compile Include="TestDBDeliveryStop.cs" />
     <Compile Include="TestDBGeoLoc.cs" />
-    <Compile Include="TestDBRoad.cs" />
     <Compile Include="TestDBRoute.cs" />
     <Compile Include="TestDBTransportUnit.cs" />
   </ItemGroup>
@@ -82,6 +81,10 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Control\Control.csproj">
+      <Project>{2B05A805-5993-476C-84FE-B0749199B8A5}</Project>
+      <Name>Control</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Server\Server.csproj">
       <Project>{B5425574-CF10-42E3-A74A-32EFCCD4777D}</Project>
       <Name>Server</Name>

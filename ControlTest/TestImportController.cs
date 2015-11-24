@@ -23,9 +23,13 @@ namespace ControlTest
         [TestFixtureSetUp()]
         public void ClassSetUp()
         {
-            try {
-                user = File.ReadAllText(@"C:\Users\The Baron\Dropbox\3. Projekt\Scripts\Config\user.txt");
-                pass = File.ReadAllText(@"C:\Users\The Baron\Dropbox\3. Projekt\Scripts\Config\pass.txt");
+            ic = ImportController.Instance;
+            rc = RouteController.Instance;
+
+            try
+            {
+                user = File.ReadAllText("Config/user.txt");
+                pass = File.ReadAllText("Config/pass.txt");
             }
             catch { }
 
@@ -34,9 +38,6 @@ namespace ControlTest
             DBConnection.Instance.User = user;
             DBConnection.Instance.Pass = pass;
             DBConnection.Instance.Connect();
-
-            ic = ImportController.Instance;
-            rc = RouteController.Instance;
         }
 
         [TestFixtureTearDown()]
@@ -55,8 +56,10 @@ namespace ControlTest
         [Test()]
         public void TestImportRoutesFromFile()
         {
-            //ic.ImportFromFile("C:\\Users\\The Baron\\Dropbox\\3. Projekt\\Arla Food\\EventyrIBarbiesPrincesseSLot.csv");
-            ic.ImportFromFile(@"C:\Users\The Baron\Dropbox\3. Projekt\Arla Food\RuterCSVTest.csv");
+            string pathRoutes = "Config/RuterCSVTest.csv";
+            string pathStops = "Config/stopsCSV.csv";
+            string pathCustomers = "Config/kunderCSV.csv";
+            ic.ImportFromFile(pathRoutes, pathStops, pathCustomers);
             Assert.IsNotEmpty(rc.Routes);
         }
     }
