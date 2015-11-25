@@ -3,7 +3,7 @@ using NUnit.Framework;
 using Model;
 
 
-namespace TestModel
+namespace TestWCFService
 {
     [TestFixture()]
     public class TestDefaultDeliveryStop

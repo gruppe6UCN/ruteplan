@@ -2,7 +2,7 @@
 using System;
 using Model;
 
-namespace TestModel
+namespace TestWCFService
 {
     [TestFixture()]
     public class TestTransportUnit

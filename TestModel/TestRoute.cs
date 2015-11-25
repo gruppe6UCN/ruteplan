@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using Model;
 
-namespace TestModel
+namespace TestWCFService
 {
     [TestFixture()]
 
