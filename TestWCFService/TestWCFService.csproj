@@ -45,28 +45,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Service References\ServiceRoute\Reference.cs">
+    <Compile Include="Service References\ServiceImport\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="TestServiceRoute.cs" />
+    <Compile Include="TestServiceImport.cs" />
+    <Compile Include="TestServiceDemo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestServiceRoute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="Service References\ServiceRoute\service.wsdl" />
-    <None Include="Service References\ServiceRoute\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceRoute\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceRoute\TestWCFService.ServiceRoute.CompositeType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceRoute\WCFService.xsd">
+    <None Include="Service References\ServiceImport\service.wsdl" />
+    <None Include="Service References\ServiceImport\service.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -74,16 +67,16 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\ServiceRoute\" />
+    <WCFMetadataStorage Include="Service References\ServiceImport\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceRoute\configuration91.svcinfo" />
+    <None Include="Service References\ServiceImport\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceRoute\configuration.svcinfo" />
+    <None Include="Service References\ServiceImport\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceRoute\Reference.svcmap">
+    <None Include="Service References\ServiceImport\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

@@ -1,19 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
+using TestWCFService.ServiceRoute;
 
 namespace TestWCFService
 {
     [TestFixture()]
-    class TestServiceRoute
+    public class TestServiceDemo
     {
-        IServiceRoute
+        private IServiceRoute service;
+
         [TestFixtureSetUp()]
         public void ClassSetUp()
         {
+            service = new ServiceRoute.ServiceRouteClient();
         }
 
         [SetUp()]
@@ -22,9 +21,9 @@ namespace TestWCFService
         }
 
         [Test()]
-        public void TestGetRoutes_ExceptionNoList()
+        public void TestGetData()
         {
-            
+            Assert.AreEqual("You entered: 42", service.GetData(42));
         }
     }
 }

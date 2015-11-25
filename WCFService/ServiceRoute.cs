@@ -1,31 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Threading.Tasks;
+using Control;
+using Model;
 
 namespace WCFService
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
-    public class ServiceRoute : IServiceRoute
+    class ServiceRoute : IServiceRoute
     {
-        public string GetData(int value)
+        public List<Route> GetRoutes()
         {
-            return string.Format("You entered: {0}", value);
-        }
-
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
-        {
-            if (composite == null)
+            List<Route> routes = RouteController.Instance.Routes.ToList();
+            if (routes == null)
             {
-                throw new ArgumentNullException("composite");
+                throw new FaultException<ExceptionNoRoutes>(new ExceptionNoRoutes("No routes is imported."));
             }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
+            return routes;
         }
     }
 }

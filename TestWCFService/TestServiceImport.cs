@@ -1,19 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
+using TestWCFService.ServiceImport;
 
 namespace TestWCFService
 {
     [TestFixture()]
-    class TestServiceRoute
+    public class TestServiceImport
     {
-        IServiceRoute
+        private IServiceImport service;
+
         [TestFixtureSetUp()]
         public void ClassSetUp()
         {
+            service = new ServiceImport.ServiceImportClient();
         }
 
         [SetUp()]
@@ -22,9 +21,10 @@ namespace TestWCFService
         }
 
         [Test()]
-        public void TestGetRoutes_ExceptionNoList()
+        public void TestImport()
         {
-            
+            service.Import();
+            Assert.Pass();
         }
     }
 }
