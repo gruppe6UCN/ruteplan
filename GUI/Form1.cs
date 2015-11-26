@@ -9,18 +9,23 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Control;
-using Server;
+using Server.Database;
+using Model;
+using System.IO;
 
 namespace GUI
 {
     public partial class Form1 : Form
     {
+        string user;
+        string pass;
+        
         public Form1()
         {
             InitializeComponent();
         }
 
-        public async void button1_Click(object sender, EventArgs e)
+        public void button1_Click(object sender, EventArgs e)
         {
             //ProgressBar
             //Maximum er mængden af routes der bliver importet
@@ -29,17 +34,52 @@ namespace GUI
             //progressBar1.Step = 1;
 
             //Import
-              
-            //dataGridView1.Columns.Add(new DataGridViewColumn);
-
-            Thread t = new Thread(ImportController.Instance.ImportRoutes);
+            
+            Thread t = new Thread(ImportStart);
             t.Start();
             
-            
+
             
             
  
         }
+
+        public void ImportStart()
+        {
+            Server.DBConnection instance = Server.DBConnection.Instance;
+            try
+            {
+                user = File.ReadAllText("Config/user.txt");
+                pass = File.ReadAllText("Config/pass.txt");
+            }
+            catch { }
+
+            instance.Host = "localhost";
+            instance.DB = "TestArla";
+            instance.User = user;
+            instance.Pass = pass;
+            instance.Connect();
+
+            
+            
+            ImportController.Instance.ImportRoutes();
+
+
+            foreach (Route route in RouteController.Instance.Routes)
+            {
+                dataGridView1.Rows.Add(
+                    route.ID.ToString(),
+                    route.Stops.Count.ToString(),
+                    string.Format("{0}/{1}", 
+                        route.GetLoadForTrailer(),
+                        route.DefaultRoute.TrailerType
+                        )
+                    );
+            }
+
+
+        }
+
 
         public void button2_Click(object sender, EventArgs e)
         {
