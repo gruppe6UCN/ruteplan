@@ -1,15 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Model
 {
+    [DataContract()]
     public class DefaultRoute
     {
+        [DataMember()]
         public long ID { get; set; }
-        public double TrailerType { get; private set; }
+        [DataMember()]
+        public double TrailerType { get; set; }
+        [DataMember()]
         public Boolean ExtraRoute { get; private set; }
 
         public DefaultRoute(long id, double trailerType, Boolean extraRoute)
@@ -23,15 +28,6 @@ namespace Model
         {
             this.TrailerType = trailerType;
             this.ExtraRoute = extraRoute;
-        }
-
-      
-        /**
-         * @return the extraRoute
-         */
-        public Boolean isExtraRoute()
-        {
-            return ExtraRoute;
         }
     }
 }

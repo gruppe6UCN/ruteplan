@@ -1,18 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Model
 {
+    [DataContract()]
     public class Route
     {
-
+        [DataMember()]
         public long ID { get; set; }
+        [DataMember()]
         public DefaultRoute DefaultRoute { get; private set; }
         public List<DeliveryStop> Stops { get; private set; }
+        [DataMember()]
         public TimeSpan TimeForDeparture { get; set; }
+        [DataMember()]
         public DateTime DateForDeparture { get; private set; }
 
         public Route(DefaultRoute DefaultRoute, DateTime Date)
