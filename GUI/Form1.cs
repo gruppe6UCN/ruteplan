@@ -19,7 +19,8 @@ namespace GUI
     {
         string user;
         string pass;
-        
+        public delegate void ImportFest();
+
         public Form1()
         {
             InitializeComponent();
@@ -34,8 +35,8 @@ namespace GUI
             //progressBar1.Step = 1;
 
             //Import
-            
-            Thread t = new Thread(ImportStart);
+
+            Thread t = new Thread(new ThreadStart(ImportThreadStart));
             t.Start();
             
 
@@ -44,6 +45,12 @@ namespace GUI
  
         }
 
+        public void ImportThreadStart()
+        {
+            ImportFest fest = new ImportFest(ImportStart);
+            this.BeginInvoke(fest);
+
+        }
         public void ImportStart()
         {
             Server.DBConnection instance = Server.DBConnection.Instance;
@@ -67,8 +74,9 @@ namespace GUI
 
             foreach (Route route in RouteController.Instance.Routes)
             {
-                dataGridView1.Rows.Add(
-                    route.ID.ToString(),
+                
+                this.dataGridView1.Rows.Add(
+                    route.DefaultRoute.ID.ToString(),
                     route.Stops.Count.ToString(),
                     string.Format("{0}/{1}", 
                         route.GetLoadForTrailer(),
