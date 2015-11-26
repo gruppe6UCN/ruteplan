@@ -10,11 +10,11 @@ using Model;
 namespace WCFService
 {
     [ServiceContract()]
-    interface IServiceRoute
+    public interface IServiceRoute
     {
         [OperationContract()]
         [FaultContract(typeof(ExceptionNoRoutes))]
-        List<Route> GetRoutes();
+        Route GetRoutes();
     }
 
     [DataContract()]

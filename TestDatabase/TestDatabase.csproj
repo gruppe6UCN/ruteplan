@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2B05A805-5993-476C-84FE-B0749199B8A5}</ProjectGuid>
+    <ProjectGuid>{C923C236-A8C9-42A7-AC71-C688FBB1499A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Control</RootNamespace>
-    <AssemblyName>Control</AssemblyName>
+    <RootNamespace>TestDatabase</RootNamespace>
+    <AssemblyName>TestDatabase</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,22 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FileHelpers, Version=3.1.5.0, Culture=neutral, PublicKeyToken=3e0c08d59cc3d657, processorArchitecture=MSIL">
-      <HintPath>..\packages\FileHelpers.3.1.5\lib\net45\FileHelpers.dll</HintPath>
+    <Reference Include="MySql.Data, Version=6.9.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.7\lib\net45\MySql.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="GMap.NET.Core, Version=1.7.0.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
-      <HintPath>..\packages\GMap.NET.WindowsForms.1.7.1\lib\net40\GMap.NET.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="GMap.NET.WindowsForms, Version=1.7.0.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
-      <HintPath>..\packages\GMap.NET.WindowsForms.1.7.1\lib\net40\GMap.NET.WindowsForms.dll</HintPath>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,24 +47,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomerController.cs" />
-    <Compile Include="DefaultDeliveryStopController.cs" />
-    <Compile Include="DefaultRouteController.cs" />
-    <Compile Include="DeliveryStopController.cs" />
-    <Compile Include="ExportController.cs" />
-    <Compile Include="ImportController.cs" />
-    <Compile Include="LogController.cs" />
-    <Compile Include="MapController.cs" />
-    <Compile Include="OptimizeController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RouteController.cs" />
-    <Compile Include="TransportUnitController.cs" />
+    <Compile Include="TestDBConnection.cs" />
+    <Compile Include="TestDBCustomer.cs" />
+    <Compile Include="TestDBDefaultDeliveryStop.cs" />
+    <Compile Include="TestDBDefaultRoute.cs" />
+    <Compile Include="TestDBDeliveryStop.cs" />
+    <Compile Include="TestDBGeoLoc.cs" />
+    <Compile Include="TestDBRoute.cs" />
+    <Compile Include="TestDBTransportUnit.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Database\Database.csproj">
@@ -78,11 +67,10 @@
       <Name>Database</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{d2387d10-ffd3-4dd4-8822-dc5f6ed1d93c}</Project>
+      <Project>{D2387D10-FFD3-4DD4-8822-DC5F6ED1D93C}</Project>
       <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

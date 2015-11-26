@@ -31,7 +31,7 @@
   </wsdl:binding>
   <wsdl:service name="ServiceImport">
     <wsdl:port name="BasicHttpBinding_IServiceImport" binding="tns:BasicHttpBinding_IServiceImport">
-      <soap:address location="http://localhost:8733/Design_Time_Addresses/WCFService/Service1/" />
+      <soap:address location="http://localhost:8733/Design_Time_Addresses/WCFService/Import/" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

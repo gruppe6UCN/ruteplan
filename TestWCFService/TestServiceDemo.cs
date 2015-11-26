@@ -23,7 +23,6 @@ namespace TestWCFService
         [Test()]
         public void TestGetData()
         {
-            Assert.AreEqual("You entered: 42", service.GetData(42));
         }
     }
 }

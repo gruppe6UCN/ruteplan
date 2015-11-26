@@ -75,7 +75,7 @@ namespace Server.Database
             String sql = String.Format("INSERT into DefaultRoute values('{0}', {1});",
                     defaultRoute.TrailerType,
                     // inline if statement: if true return 1 else return 0
-                    defaultRoute.isExtraRoute() ? 1 : 0);
+                    defaultRoute.ExtraRoute ? 1 : 0);
             long defaultRouteID = DbConnection.SendInsertSQL(sql);
             defaultRoute.ID = defaultRouteID;
         }

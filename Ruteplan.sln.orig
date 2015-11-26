@@ -15,16 +15,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Control", "Control\Control.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestControl", "TestControl\TestControl.csproj", "{6090AD1B-850F-4614-8716-8AC794BE1211}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{7E11D2BB-3939-4075-9764-002F88454ED0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDatabase", "TestDatabase\TestDatabase.csproj", "{C923C236-A8C9-42A7-AC71-C688FBB1499A}"
+<<<<<<< HEAD
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFService", "WCFService\WCFService.csproj", "{1800D1D5-307D-49B4-BAD6-45BAB48EECCC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWCFService", "TestWCFService\TestWCFService.csproj", "{5206C19E-3BE0-4CB8-9035-528CB0097CF5}"
 	ProjectSection(ProjectDependencies) = postProject
 		{1800D1D5-307D-49B4-BAD6-45BAB48EECCC} = {1800D1D5-307D-49B4-BAD6-45BAB48EECCC}
 	EndProjectSection
+=======
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{7E11D2BB-3939-4075-9764-002F88454ED0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFService", "WCFService\WCFService.csproj", "{1800D1D5-307D-49B4-BAD6-45BAB48EECCC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDatabase", "TestDatabase\TestDatabase.csproj", "{C923C236-A8C9-42A7-AC71-C688FBB1499A}"
+>>>>>>> master
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,6 +58,16 @@ Global
 		{6090AD1B-850F-4614-8716-8AC794BE1211}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6090AD1B-850F-4614-8716-8AC794BE1211}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6090AD1B-850F-4614-8716-8AC794BE1211}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
+		{1800D1D5-307D-49B4-BAD6-45BAB48EECCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1800D1D5-307D-49B4-BAD6-45BAB48EECCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1800D1D5-307D-49B4-BAD6-45BAB48EECCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1800D1D5-307D-49B4-BAD6-45BAB48EECCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5206C19E-3BE0-4CB8-9035-528CB0097CF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5206C19E-3BE0-4CB8-9035-528CB0097CF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5206C19E-3BE0-4CB8-9035-528CB0097CF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5206C19E-3BE0-4CB8-9035-528CB0097CF5}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
 		{7E11D2BB-3939-4075-9764-002F88454ED0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7E11D2BB-3939-4075-9764-002F88454ED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E11D2BB-3939-4075-9764-002F88454ED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -64,14 +76,7 @@ Global
 		{C923C236-A8C9-42A7-AC71-C688FBB1499A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C923C236-A8C9-42A7-AC71-C688FBB1499A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C923C236-A8C9-42A7-AC71-C688FBB1499A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5206C19E-3BE0-4CB8-9035-528CB0097CF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5206C19E-3BE0-4CB8-9035-528CB0097CF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5206C19E-3BE0-4CB8-9035-528CB0097CF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5206C19E-3BE0-4CB8-9035-528CB0097CF5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1800D1D5-307D-49B4-BAD6-45BAB48EECCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1800D1D5-307D-49B4-BAD6-45BAB48EECCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1800D1D5-307D-49B4-BAD6-45BAB48EECCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1800D1D5-307D-49B4-BAD6-45BAB48EECCC}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> master
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

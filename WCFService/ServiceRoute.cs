@@ -9,16 +9,16 @@ using Model;
 
 namespace WCFService
 {
-    class ServiceRoute : IServiceRoute
+    public class ServiceRoute : IServiceRoute
     {
-        public List<Route> GetRoutes()
+        public Route GetRoutes()
         {
             List<Route> routes = RouteController.Instance.Routes.ToList();
             if (routes == null)
             {
                 throw new FaultException<ExceptionNoRoutes>(new ExceptionNoRoutes("No routes is imported."));
             }
-            return routes;
+            return new Route(new DefaultRoute(21, 51, false), DateTime.Today);
         }
     }
 }
