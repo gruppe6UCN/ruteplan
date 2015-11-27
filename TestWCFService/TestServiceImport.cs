@@ -7,12 +7,14 @@ namespace TestWCFService
     [TestFixture()]
     public class TestServiceImport
     {
-        private IServiceImport service;
+        private ServiceImportClient client;
 
         [TestFixtureSetUp()]
         public void ClassSetUp()
         {
-            service = new ServiceImport.ServiceImportClient();
+            Server.WCFServer.Initialize();
+            Server.WCFServer.StartServer();
+            client = new ServiceImportClient();
         }
 
         [SetUp()]
@@ -20,10 +22,17 @@ namespace TestWCFService
         {
         }
 
+        [TestFixtureTearDown()]
+        public void ClassTeardown()
+        {
+            client.Close();
+            Server.WCFServer.StopServer();
+        }
+
         [Test()]
         public void TestImport()
         {
-            service.Import();
+            client.Import();
             Assert.Pass();
         }
     }
