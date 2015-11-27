@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Model;
 using System.Data;
 
-namespace Server.Database
+namespace Database
 {
     public class DBRoute
     {

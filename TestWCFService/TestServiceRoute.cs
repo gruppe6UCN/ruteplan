@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using TestWCFService.ServiceImport;
 using TestWCFService.ServiceRoute;
 
 namespace TestWCFService
@@ -11,13 +12,16 @@ namespace TestWCFService
     [TestFixture()]
     class TestServiceRoute
     {
-        private ServiceRouteClient client;
+        private ServiceImportClient importClient;
+        private ServiceRouteClient routeClient;
 
         [TestFixtureSetUp()]
         public void ClassSetUp()
         {
-            Server.Program.StartServer();
-            client = new ServiceRouteClient();
+            Server.WCFServer.Initialize();
+            Server.WCFServer.StartServer();
+            importClient = new ServiceImportClient();
+            routeClient = new ServiceRouteClient();
         }
 
         [SetUp()]
@@ -28,16 +32,17 @@ namespace TestWCFService
         [TestFixtureTearDown()]
         public void ClassTeardown()
         {
-            client.Close();
-            Server.Program.StopServer();
+            routeClient.Close();
+            Server.WCFServer.StopServer();
         }
 
         [Test()]
         public void TestGetRoutes_ExceptionNoList()
         {
-            Route route = client.GetRoutes();
-            Assert.NotNull(route);
-            Assert.AreEqual(21, route.ID);
+            importClient.Import();
+            Route[] routes = routeClient.GetRoutes();
+            Assert.NotNull(routes);
+            Assert.IsNotEmpty(routes);
         }
     }
 }

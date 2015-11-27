@@ -234,10 +234,10 @@ namespace TestWCFService.ServiceRoute {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceRoute/GetRoutes", ReplyAction="http://tempuri.org/IServiceRoute/GetRoutesResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(TestWCFService.ServiceRoute.ExceptionNoRoutes), Action="http://tempuri.org/IServiceRoute/GetRoutesExceptionNoRoutesFault", Name="ExceptionNoRoutes", Namespace="http://schemas.datacontract.org/2004/07/WCFService")]
-        TestWCFService.ServiceRoute.Route GetRoutes();
+        TestWCFService.ServiceRoute.Route[] GetRoutes();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceRoute/GetRoutes", ReplyAction="http://tempuri.org/IServiceRoute/GetRoutesResponse")]
-        System.Threading.Tasks.Task<TestWCFService.ServiceRoute.Route> GetRoutesAsync();
+        System.Threading.Tasks.Task<TestWCFService.ServiceRoute.Route[]> GetRoutesAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -267,11 +267,11 @@ namespace TestWCFService.ServiceRoute {
                 base(binding, remoteAddress) {
         }
         
-        public TestWCFService.ServiceRoute.Route GetRoutes() {
+        public TestWCFService.ServiceRoute.Route[] GetRoutes() {
             return base.Channel.GetRoutes();
         }
         
-        public System.Threading.Tasks.Task<TestWCFService.ServiceRoute.Route> GetRoutesAsync() {
+        public System.Threading.Tasks.Task<TestWCFService.ServiceRoute.Route[]> GetRoutesAsync() {
             return base.Channel.GetRoutesAsync();
         }
     }

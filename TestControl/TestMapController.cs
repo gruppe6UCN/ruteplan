@@ -4,10 +4,9 @@ using System.IO;
 using System.Linq;
 using NUnit.Framework;
 using Control;
+using Database;
 using GMap.NET;
 using Model;
-using Server;
-using Server.Database;
 
 namespace ControlTest
 {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Model;
 using System.Data;
 
-namespace Server
+namespace Database
 {
     public class DBCustomer {
         public DBConnection dbConnection { set; get; }
@@ -22,7 +22,7 @@ namespace Server
         }
 
         /// <summary>
-        /// Initializes a new singleton of the <see cref="Server.DBCustomer"/> class.
+        /// Initializes a new singleton of the <see cref="DBCustomer"/> class.
         /// 
         private DBCustomer() {
             dbConnection = DBConnection.Instance;

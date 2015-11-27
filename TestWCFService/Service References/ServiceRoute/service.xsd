@@ -9,7 +9,7 @@
   <xs:element name="GetRoutesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="GetRoutesResult" nillable="true" type="q1:Route" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="GetRoutesResult" nillable="true" type="q1:ArrayOfRoute" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

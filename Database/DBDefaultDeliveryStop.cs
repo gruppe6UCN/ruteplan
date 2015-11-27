@@ -6,14 +6,11 @@ using System.Threading.Tasks;
 using Model;
 using System.Data;
 
-namespace Server.Database
-
+namespace Database
 {
     /// all database functionality for default delivery stops will be handled by this class
     /// 
     /// </summary>
- 
-
     public class DBDefaultDeliveryStop
     {
         public DBConnection DbConnection { get; set; }

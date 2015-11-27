@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using Model;
 
-namespace TestWCFService
+namespace TestModel
 {
     [TestFixture()]
     public class TestGeoLoc

@@ -1,10 +1,9 @@
 ﻿using NUnit.Framework;
-using Server;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using Server.Database;
+using Database;
 using Model;
 
 namespace TestServer

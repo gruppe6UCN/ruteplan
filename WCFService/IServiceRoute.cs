@@ -14,7 +14,7 @@ namespace WCFService
     {
         [OperationContract()]
         [FaultContract(typeof(ExceptionNoRoutes))]
-        Route GetRoutes();
+        List<Route> GetRoutes();
     }
 
     [DataContract()]

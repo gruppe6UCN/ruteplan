@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Database;
 using Model;
-using Server.Database;
 using FileHelpers;
 
 namespace Control

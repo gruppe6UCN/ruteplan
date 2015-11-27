@@ -11,14 +11,14 @@ namespace WCFService
 {
     public class ServiceRoute : IServiceRoute
     {
-        public Route GetRoutes()
+        public List<Route> GetRoutes()
         {
             List<Route> routes = RouteController.Instance.Routes.ToList();
             if (routes == null)
             {
                 throw new FaultException<ExceptionNoRoutes>(new ExceptionNoRoutes("No routes is imported."));
             }
-            return new Route(new DefaultRoute(21, 51, false), DateTime.Today);
+            return routes;
         }
     }
 }
