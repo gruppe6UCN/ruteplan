@@ -20,12 +20,13 @@ namespace WCFService
     [DataContract()]
     public class ExceptionNoRoutes
     {
+        private String _message;
         public ExceptionNoRoutes(String reason)
         {
             this.Message = reason;
         }
 
         [DataMember]
-        public string Message { get; set; }
+        public string Message { get { return _message; } set { _message = value; } }
     }
 }

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ServiceModel;
 using NUnit.Framework;
 using TestWCFService.ServiceImport;
 using TestWCFService.ServiceRoute;
@@ -37,7 +34,21 @@ namespace TestWCFService
         }
 
         [Test()]
-        public void TestGetRoutes_ExceptionNoList()
+        public void TestGetRoutes_01_ExceptionNoList()
+        {
+            try
+            {
+                routeClient.GetRoutes();
+                Assert.Fail();
+            }
+            catch (FaultException<ExceptionNoRoutes> e)
+            {
+                Assert.AreEqual("No routes is imported.", e.Detail.Message);
+            }
+        }
+
+        [Test()]
+        public void TestGetRoutes_02()
         {
             importClient.Import();
             Route[] routes = routeClient.GetRoutes();
