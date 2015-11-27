@@ -12,6 +12,8 @@ using Model;
 using System.IO;
 using WCFService;
 using Server;
+using GUI.ServiceImport;
+using GUI.ServiceRoute;
 
 namespace GUI
 {
@@ -19,6 +21,8 @@ namespace GUI
     {
         public delegate void ImportFest();
         public delegate void OptimizeThread();
+        private ServiceImportClient importClient;
+        private ServiceRouteClient routeClient;
 
         public Form1()
         {
@@ -48,12 +52,11 @@ namespace GUI
         }
         public void ImportStart()
         {
-
-            Server.WCFServer.Initialize();
-            Server.WCFServer.StartServer();
+            WCFServer.Initialize();
+            WCFServer.StartServer();
             
-            ServiceImport.IServiceImport importClient = new ServiceImport.ServiceImportClient();
-            ServiceRoute.IServiceRoute routeClient = new ServiceRoute.ServiceRouteClient();
+            importClient = new ServiceImportClient();
+            routeClient = new ServiceRouteClient();
 
             importClient.Import();
 
@@ -72,6 +75,10 @@ namespace GUI
                         )
                     );
             }
+
+            importClient.Close();
+            routeClient.Close();
+            WCFServer.StopServer();
 
 
         }
