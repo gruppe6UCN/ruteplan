@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,16 +45,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database\DBDefaultDeliveryStop.cs" />
-    <Compile Include="Database\DBDefaultRoute.cs" />
-    <Compile Include="Database\DBDeliveryStop.cs" />
-    <Compile Include="Database\DBGeoLoc.cs" />
-    <Compile Include="Database\DBRoute.cs" />
-    <Compile Include="Database\DBTransportUnit.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Database\DBConnection.cs" />
-    <Compile Include="Database\DBCustomer.cs" />
+    <Compile Include="WCFServer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -68,9 +62,17 @@
   </Target>
   -->
   <ItemGroup>
+    <ProjectReference Include="..\Database\Database.csproj">
+      <Project>{7E11D2BB-3939-4075-9764-002F88454ED0}</Project>
+      <Name>Database</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{D2387D10-FFD3-4DD4-8822-DC5F6ED1D93C}</Project>
       <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WCFService\WCFService.csproj">
+      <Project>{1800d1d5-307d-49b4-bad6-45bab48eeccc}</Project>
+      <Name>WCFService</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

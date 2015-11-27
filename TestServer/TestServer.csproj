@@ -53,23 +53,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="MySql.Data">
-      <HintPath>..\packages\MySql.Data.6.9.7\lib\net45\MySql.Data.dll</HintPath>
-    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="TestDBDefaultRoute.cs" />
-    <Compile Include="TestDBDefaultDeliveryStop.cs" />
-    <Compile Include="TestDBConnection.cs" />
-    <Compile Include="TestDBCustomer.cs" />
-    <Compile Include="TestDBDeliveryStop.cs" />
-    <Compile Include="TestDBGeoLoc.cs" />
-    <Compile Include="TestDBRoute.cs" />
-    <Compile Include="TestDBTransportUnit.cs" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

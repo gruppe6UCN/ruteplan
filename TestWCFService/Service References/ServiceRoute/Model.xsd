@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Model" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Model" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfRoute">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Route" nillable="true" type="tns:Route" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRoute" nillable="true" type="tns:ArrayOfRoute" />
+  <xs:complexType name="Route">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DateForDeparture" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DefaultRoute" nillable="true" type="tns:DefaultRoute" />
+      <xs:element minOccurs="0" name="ID" type="xs:long" />
+      <xs:element minOccurs="0" name="TimeForDeparture" type="ser:duration" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Route" nillable="true" type="tns:Route" />
+  <xs:complexType name="DefaultRoute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ExtraRoute" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ID" type="xs:long" />
+      <xs:element minOccurs="0" name="TrailerType" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DefaultRoute" nillable="true" type="tns:DefaultRoute" />
+</xs:schema>

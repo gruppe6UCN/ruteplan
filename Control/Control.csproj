@@ -73,13 +73,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Database\Database.csproj">
+      <Project>{7E11D2BB-3939-4075-9764-002F88454ED0}</Project>
+      <Name>Database</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{d2387d10-ffd3-4dd4-8822-dc5f6ed1d93c}</Project>
       <Name>Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Server\Server.csproj">
-      <Project>{b5425574-cf10-42e3-a74a-32efccd4777d}</Project>
-      <Name>Server</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

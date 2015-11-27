@@ -1,13 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.ServiceModel;
+using System.ServiceModel.Description;
+using WCFService;
 
 namespace Server
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-//            DBConnection.GetInstance();
-            Console.WriteLine("Jobs Done");
+            WCFServer.Initialize();
+            WCFServer.StartServer();
+            Console.Read();
+            WCFServer.StopServer();
         }
     }
 }

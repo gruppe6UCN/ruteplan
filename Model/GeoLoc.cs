@@ -9,9 +9,12 @@ using GMap.NET;
 
 namespace Model
 {
+    [DataContract()]
     public class GeoLoc
     {
+        [DataMember()]
         public long ID { get; private set; }
+        [DataMember()]
         public GeoCoordinate Location { get; private set; }
 
         public GeoLoc(long id, double latitude, double longitude)

@@ -1,0 +1,1566 @@
+;active;udf_depotId;Customer No;Name;Street name;Door number;areaDescription;Zip code;City;x;y
+udf_depotId : T100 ;;;;;;;;;;;
+;True;T100;10001200;Arla Foods amba;Sønderhøj;14;;8260;Viby J;10.157532;56.119802
+;True;T100;10515;Min Købmand Frederiks;Søndergade;10;Frederiks;7470;Karup;9.253505;56.33899
+;True;T100;10545;Dagli' Brugsen Viborg;Gammel Ålborgvej;72;;8800;Viborg;9.416325;56.46451
+;True;T100;10598;Østjysk Mælk A/S;Blomstervej;5;;8381;Tilst;10.126109;56.182954
+;True;T100;10650;Fakta Vestergade Silkeborg;Vestergade;53;;8600;Silkeborg;9.541141;56.167275
+;True;T100;10883;Supergros Herning;Mørupvej;8B;;7400;Herning;8.945278;56.128611
+;True;T100;10914;Netto Ringkøbing;Skolevænget;15;;6950;Ringkøbing;8.242585;56.092505
+;True;T100;11091;Netto Holstebro;Lavhedevej;54;;7500;Holstebro;8.61589;56.375445
+;True;T100;11113;Bilka Holstebro;Nyholmvej;20;;7500;Holstebro;8.621231;56.37803
+;True;T100;11220;Terminal Vest Køl;Axel Gruhnsvej;7;;8270;Højbjerg;10.16449;56.11254
+;True;T100;11332;Føtex Viborg;Gravene;37-39;;8800;Viborg;9.407811;56.452086
+;True;T100;11381;LUKKET Mejeriforeningen;Sønderhøj 46 22;;;8260;Viby J;10.162732;56.123199
+;True;T100;11459;KT Food Fårup;Randersvej;147;Gundestrup;8990;Fårup;9.852777;56.55802
+;True;T100;11582;Fakta Arden;Skovvej;2;;9510;Arden;9.858333;56.76954
+;True;T100;11618;Fakta Åstrupvej Hjørring;Åstrupvej;1;;9800;Hjørring;9.978061;57.45575
+;True;T100;11622;Fakta Støvring;Jernbanegade;5;;9530;Støvring;9.838335;56.89206
+;True;T100;11666;Frellsen Kaffe;Tunøvej;9B;;8940;Randers Sv;10.04434;56.4231
+;True;T100;11736;Fakta Hurup Thy;Bredgade;102;;7760;Hurup Thy;8.421105;56.749295
+;True;T100;11741;Netto Ikast;Eli Christensen;3;;7430;Ikast;9.145331;56.139305
+;True;T100;11762;Spar Jebjerg;Vestergade;21;JEBJERG;7870;Roslev;9.010828;56.669075
+;True;T100;11777;Netto Nørresundby;Lindholm Nærbanevej;5;;9400;Nørresundby;9.904453;57.066837
+;True;T100;11854;Fakta Vestergade Holstebro;Vestergade;16;;7500;Holstebro;8.616089;56.358113
+;True;T100;11855;Fakta Ålestrup;Nørreled;6;;9620;Ålestrup;9.490752;56.69485
+;True;T100;11943;Coolex Automater;Sønderskovvej;7;;8362;Hørning;10.029634;56.079917
+;True;T100;11946;Fakta Sunds;Sunds Hovedgade;58-60;SUNDS;7451;Sunds;9.015935;56.20465
+;True;T100;11961;Kvickly Bruuns Galleri;M.P. Bruuns Gade;25;;8000;Aarhus C;10.20319;56.149185
+;True;T100;12382;LokalBrugsen Rødding;Kirkegade;21;RØDDING;8830;Tjele;9.504158;56.500081
+;True;T100;12385;Dagli' Brugsen Lem;Bredgade;100;LEM;6940;Lem St.;8.393846;56.026261
+;True;T100;12386;Dagli' Brugsen Rødding;Borgergade;19;RØDDING;7860;Spøttrup;8.80914;56.645255
+;True;T100;12542;MENY Herning;Dæmningen;17;HERNING;7400;Herning;8.95763;56.132329
+;True;T100;12615;Kvickly Åbyhøj;Haslevej;3;Åbyhøjcentret;8230;Åbyhøj;10.165365;56.15605
+;True;T100;12625;Spar Lønstrup;Strandvejen;82;Lønstrup;9800;Hjørring;9.796927;57.471352
+;True;T100;12671;Spar Ålbæk;Skagensvej;29;ÅLBÆK;9982;Ålbæk;10.412601;57.592995
+;True;T100;12692;Netto 547;Udbyhøjvej;87;RANDERS;8930;Randers Nø;10.067423;56.472455
+;True;T100;12695;Fakta Mundelstrup;Haurumsvej;8;;8381;Tilst;10.106021;56.187922
+;True;T100;12696;Fakta Skanderborg;Kildevej;3;;8660;Skanderborg;9.984195;56.063815
+;True;T100;12701;Fakta Nørresundby;Forbindelsesvejen;148;;9400;Nørresundby;9.94528;57.069914
+;True;T100;12716;Spar Gandrup;Borgergade;84;;9362;Gandrup;10.181935;57.06191
+;True;T100;12734;Fakta Ålborg  Ø;Saltumvej;1;ÅLBORG;9220;Ålborg Øst;10.009698;57.03425
+;True;T100;12782;Fakta Århus;Viborgvej;155-159;;8210;Aarhus V;10.162944;56.167725
+;True;T100;12815;Spar Øster Brønderselv;Elmevej;62;ØSTER BRØNDERSLEV;9700;Brønderslev;9.9966;57.24889
+;True;T100;13109;Fakta Åbyhøj;Silkeborgvej;340;;8230;Åbyhøj;10.146573;56.153839
+;True;T100;13164;Dagli' Brugsen Lime;Limegårdsvej;4;LIME;8544;Mørke;10.247095;56.38435
+;True;T100;13255;Fakta Glesborg;Torvet;6;;8585;Glesborg;10.727115;56.479015
+;True;T100;13261;Superen Skallerup Klit;Nordre Klitvej;21;;9800;Hjørring;9.83997;57.49337
+;True;T100;13269;Min Købmand Tylstrup;Luneborgvej;78;;9382;Tylstrup;9.944075;57.19681
+;True;T100;13281;Min Købmand Lemvig;Industrivej;1;;7620;Lemvig;8.30365;56.54432
+;True;T100;13285;Min Købmand Jerslev J;Borgergade;1;;9740;Jerslev;10.092055;57.28495
+;True;T100;13288;Netto Lemvig;Skous Gade;1;;7620;Lemvig;8.310794;56.551641
+;True;T100;13295;Netto Jægergårdsgade Århus;Jægergårdsgade;64;;8000;Aarhus C;10.20073;56.148175
+;True;T100;13300;Fakta Langå;Bredgade;24;;8870;Langå;9.89552;56.390075
+;True;T100;13303;Min Købmand Nykøbing M;Fjordgade;6;;7900;Nykøbing Mors;8.86476;56.79613
+;True;T100;13304;Min Købmand  Nykøbing M;Fælledvej;17;;7900;Nykøbing Mors;8.86296;56.79961
+;True;T100;13305;LUKKET Min Købmand Silkeborg;Balle Bygade;2;;8600;Silkeborg;9.522446;56.196353
+;True;T100;13306;Min Købmand Fjerritslev;Vestergade;20;;9690;Fjerritslev;9.26193;57.08835
+;True;T100;13308;Min Købmand Vester Hornum;Hovedgaden;60;Vester Hornum;9640;Farsø;9.360045;56.835485
+;True;T100;13313;Min Købmand Havndal;Kronborgvej;40;Dalbyover;8970;Havndal;10.203754;56.618026
+;True;T100;13316;Købmandsgården Hvidbjerg Karby;Næssundvej;358;;7960;Karby;8.59086;56.746261
+;True;T100;13318;Min Købmand Blenstrup;Vesterbygade;16;Blenstrup;9520;Skørping;10.008094;56.879468
+;True;T100;13321;LUKKET Letkøb Aggersund;Ullerupvej;51;Aggersund;9670;Løgstør;9.2799;57.005039
+;True;T100;13352;Spar Årestrupvej Ålborg;Årestrupvej;2;;9000;Ålborg;9.966912;57.041883
+;True;T100;13365;Min Købmand Øster Assels;Asselsvej;184;Assels;7990;Øster Assels;8.695445;56.70223
+;True;T100;13366;Merko Bedsted;Hedegårdsvej;24;;7755;Bedsted;8.36397;56.84624
+;True;T100;13374;Min Købmand Vammen;Hobrovej;2;Vammen;8830;Tjele;9.575215;56.528775
+;True;T100;13378;Min Købmand Ulstrup;Hovedgaden;24;;8860;Ulstrup;9.79271;56.39018
+;True;T100;13380;Min Købmand Nr.Nissum;Seminarievej;9;Nr. Nissum;7620;Lemvig;8.41785;56.549723
+;True;T100;13381;LUKKET Min Købmand Ulfborg;Holmegade;18;;6990;Ulfborg;8.322003;56.27396
+;True;T100;13397;Min Købmand Vils;Nørrealle;1;;7980;Vils;8.727835;56.764435
+;True;T100;13406;Min Købmand Thorsminde;Vesterhavsgade;8;Thorsminde;6990;Ulfborg;8.12103;56.374176
+;True;T100;13410;Min Købmand Sennels;Sennelsvej;81;Sennels;7700;Thisted;8.794007;56.965408
+;True;T100;13412;Vitten;Vittenvej 81;;;8382;Hinnerup;10.005389;56.290616
+;True;T100;13416;Min Købmand Hjortshøj;Hjortshøj Stationsvej;8;;8530;Hjortshøj;10.267517;56.244521
+;True;T100;13422;Min Købmand Ulbjerg;Borgergade;1;Ulbjerg;8832;Skals;9.344771;56.62758
+;True;T100;13424;Min Købmand Asp;Langhøjvej;10;Asp;7600;Struer;8.51376;56.432745
+;True;T100;13425;Min Købmand Farstrup;Ny Møllevej;121;Farstrup;9240;Nibe;9.461982;56.982953
+;True;T100;13449;Bjerregaard Købmandshandel I/S;Kirksvej 2;;;6960;Hvide Sande;8.181683;55.864451
+;True;T100;13451;Spar Valsgård;Hovedgaden;15;VALSGÅRD;9500;Hobro;9.855611;56.674086
+;True;T100;13453;Min Købmand Risskov;Nordre Strandvej;45;;8240;Risskov;10.24733;56.19503
+;True;T100;13465;Spar;Vestergade 20;;;9620;Aalestrup;9.4738;56.693565
+;True;T100;13467;Min Købmand  Nr. Søby;Viborgvej;273;Nr. Søby;7840;Højslev;9.12549;56.54491
+;True;T100;13477;Letkøb Amtoft;Gårdbækvej;2;Amtoft;7742;Vesløs;8.941467;57.00597
+;True;T100;13486;Min Købmand Stadil;Skelmosevej;89;Stadil;6980;Tim;8.213305;56.19879
+;True;T100;13496;Min Købmand Kjellerup;Søndergade;116;;8620;Kjellerup;9.43457;56.27932
+;True;T100;13501;Min Købmand Harre;Sallingsundvej;122;Roslev;7870;Roslev;8.924336;56.713786
+;True;T100;13520;Min Købmand Astrup;Højevej;25;Astrup;6900;Skjern;8.600828;56.005545
+;True;T100;13555;Fakta Markedsgade Randers;Markedsgade;10 A;;8900;Randers C;10.034755;56.46406
+;True;T100;13556;Fakta Svenstrup;Hobrovej;751;;9230;Svenstrup J;9.855405;56.97349
+;True;T100;13570;LUKKET Min Købmand Langholt;Horsensvej;22;LANGHOLT;9310;Vodskov;10.085916;57.102391
+;True;T100;13595;Superbrugsen Vildbjerg;Bredgade;35;;7480;Vildbjerg;8.76825;56.200585
+;True;T100;13635;LUKKET Spar Biersted;Stationsvej;27;Biersted;9440;Åbybro;9.806826;57.146772
+;True;T100;13636;Letkøb Ramme;Strøggade;53;Ramme;7620;Lemvig;8.207135;56.49094
+;True;T100;13743;Spar Borbjerg;Købmandsgade;1;Borbjerg;7500;Holstebro;8.618874;56.360251
+;True;T100;13744;Letkøb - Hauge Minimarked;Haugevej;33;HAUGE;8620;Kjellerup;9.37596;56.258894
+;True;T100;13779;Letkøb Aarhus C;Sønderborggade;9;;8000;Aarhus C;10.181495;56.141083
+;True;T100;13792;Letkøb Serrislev;Syrenvej;15;Serritslev;9700;Brønderslev;9.97539;57.31373
+;True;T100;13804;Letkøb Silkeborg;Århusvej;16;;8600;Silkeborg;9.56393;56.16955
+;True;T100;13807;Min Købmand Gjessø;Rustrupvej;47;;8600;Silkeborg;9.494445;56.116017
+;True;T100;13850;Spar Bækmarksbro;Brogade;78;;7660;Bækmarksbro;8.3065;56.42008
+;True;T100;13920;Spar Kås;Brogårdsgade;3;Kaas;9490;Pandrup;9.674545;57.195865
+;True;T100;13933;Norway Seafood;Nordre Kajgade;7;;8500;Grenå;10.923519;56.410914
+;True;T100;13956;Netto Hasseris;Skelagervej;301;;9000;Ålborg;9.87415;57.02339
+;True;T100;13978;Fakta Klarup;Klarupvej;39;;9270;Klarup;10.049335;57.014
+;True;T100;13979;Fakta Vejgaard;Odinsgade;1;;9000;Aalborg Sø;9.951325;57.040635
+;True;T100;14303;Netto Vodskov;Vodskovvej;31-33;;9310;Vodskov;10.028925;57.104412
+;True;T100;14363;Rema 1000 Gjellerup;Klokkekildevej;23;GJELLERUP;7400;Herning;9.043915;56.146615
+;True;T100;14364;Rema 1000 Lind;Lind Hovedgade;2;;7400;Herning;8.978985;56.10743
+;True;T100;14365;Rema 1000 Herning;Viborgvej;97;;7400;Herning;8.993274;56.14485
+;True;T100;14366;LUKKET Rema 1000 Ikast;Jens Holdgårds Vej;58;;7430;Ikast;9.140305;56.142675
+;True;T100;14367;Rema 1000 Karup;Herningvej;4;;7470;Karup J;9.164613;56.308568
+;True;T100;14368;Rema 1000 Avlum;Kirkegade;7-11;;7490;Avlum;8.797575;56.266465
+;True;T100;14369;Rema 1000 Nørreport Holstebro;Nørregade;58;NØRREPORTCENTERET;7500;Holstebro;8.61907;56.362215
+;True;T100;14370;Rema 1000 Struer;Vestergade;11;;7600;Struer;8.590896;56.491913
+;True;T100;14371;Rema 1000 Lemvig;Enghavevej;12;;7620;Lemvig;8.312855;56.548405
+;True;T100;14377;Rema 1000 Thisted;Rosenkrantzgade;3;;7700;Thisted;8.68713;56.955375
+;True;T100;14378;Rema 1000 Hurup - 785;Auktionsvej;4;;7760;Hurup Thy;8.416867;56.752133
+;True;T100;14379;Rema 1000 Holstebrovej Skive;Holstebrovej;70;;7800;Skive;9.00547;56.568945
+;True;T100;14380;Rema 1000 Nørregade Skive;Nørregade;40-42;;7800;Skive;9.02817;56.569499
+;True;T100;14381;Rema 1000 Vinderup;Søndergade;58;;7830;Vinderup;8.777045;56.4781
+;True;T100;14382;Rema 1000 Nykøbing Mors;Vestergade;8;;7900;Nykøbing M;8.855965;56.794357
+;True;T100;14383;Rema 1000 Trøjborg;Aldersrovej;33;;8200;Aarhus N;10.210815;56.17316
+;True;T100;14384;Rema 1000 Egå;Muslingevej;10;;8250;Egå;10.279425;56.211721
+;True;T100;14385;Rema 1000 Stautrup;Ormslevvej;230-234;;8260;Viby J;10.119965;56.128495
+;True;T100;14386;Rema 1000 Hammel;Anbækvej;1;;8450;Hammel;9.862404;56.257455
+;True;T100;14387;Rema 1000 Grenå;Havnevej;128;;8500;Grenå;10.90775;56.411648
+;True;T100;14388;Rema 1000 Silkeborg;Balle Torv;1;BALLE;8600;Silkeborg;9.52409;56.18895
+;True;T100;14389;Rema 1000 Sejs;Julsøvej;89;Sejs;8600;Silkeborg;9.606081;56.13976
+;True;T100;14390;Rema 1000 Kjellerup;Torvet;11;;8620;Kjellerup;9.42958;56.288025
+;True;T100;14392;Rema 1000 Dagmar. Skanderborg;Dagmar Centret 4;;;8660;Skanderborg;9.930667;56.033451
+;True;T100;14393;Rema 1000 Vrold. Skanderborg;Vroldvej;31;;8660;Skanderborg;9.91412;56.03931
+;True;T100;14394;Rema 1000 Koldingvej Viborg;Koldingvej;99;;8800;Viborg;9.388334;56.43057
+;True;T100;14396;Rema 1000 Farvervej Viborg;Farvervej;2;;8800;Viborg;9.398475;56.460335
+;True;T100;14397;Rema 1000 Langå;Markedsgade;1;;8870;Langå;9.89426;56.390515
+;True;T100;14405;Rema 1000 Vorup;Pramvej;4;;8900;Randers;10.04176;56.45074
+;True;T100;14407;Rema 1000 Jernbanegade Randers;Jernbanegade;6 b;;8900;Randers C;10.029573;56.460328
+;True;T100;14413;Rema 1000 Hornbæk;Kjølvejen;2;HORNBÆK;8920;Randers Nv;9.972579;56.463001
+;True;T100;14416;Rema 1000 Dronningb.- 760;Tjærebyvej;2-4;;8930;Randers Nø;10.068473;56.472495
+;True;T100;14417;Rema 1000 Vejgård;Vejgård Bymidte;8;Vejgård Centret;9000;Ålborg;9.949185;57.042085
+;True;T100;14418;Rema 1000 Gug;Gugvej;211;;9210;Ålborg Sø;9.92632;57.00912
+;True;T100;14419;Rema 1000 Svenstrup;Godthåbsvej;15-17;;9230;Svenstrup;9.8518;56.972355
+;True;T100;14420;Rema 1000 Storvorde;Rødhøjsvej;4;;9280;Storvorde;10.100915;56.999965
+;True;T100;14421;Rema 1000 Nørresundby;Vestergade;22;;9400;Nørresundby;9.919585;57.059534
+;True;T100;14426;Rema 1000 Vadum;Ellehammersvej;84;;9430;Vadum;9.86221;57.120935
+;True;T100;14428;Fakta Industrivej Ikast;Industrivej;1;;7430;Ikast;9.16459;56.131305
+;True;T100;14459;Rema 1000 Brovst;Østergade;24;;9460;Brovst;9.52647;57.097355
+;True;T100;14460;Rema 1000 Mariager;Gl. Hobrovej;2;;9550;Mariager;9.986765;56.59745
+;True;T100;14461;Rema 1000 Års;Søndergade;36;;9600;Års;9.51949;56.80244
+;True;T100;14462;Rema 1000 Ålestrup;Vestergade;55;;9620;Ålestrup;9.487095;56.693755
+;True;T100;14463;Rema 1000 Farsø - 712;T.H.Eriksensvej;22A;;9640;Farsø;9.34118;56.772531
+;True;T100;14464;Rema 1000 Brønderslev;Sdr. Omfartsvej;5;;9700;Brønderslev;9.924095;57.274525
+;True;T100;14465;Rema 1000 Trold. Hjørring;Trollhättanvej;2;;9800;Hjørring;9.973145;57.466685
+;True;T100;14466;Rema 1000 Odinsvej Hjørring;Odinsvej;2;;9800;Hjørring;9.994495;57.447337
+;True;T100;14476;Rema 1000 Gærumvej Frederikshavn;Gærumvej;36;;9900;Frederikshavn;10.51361;57.42733
+;True;T100;14525;Fakta Frugtparken Skive;Frugtparken;3;;7800;Skive;9.027375;56.585125
+;True;T100;14535;Fakta J.Baggensensvej Århus;Jens Baggesensvej;7;;8210;Aarhus N;10.186255;56.165865
+;True;T100;14536;LUKKET Fakta Mårslet;Hørretvej;16;MÅRSLET;8320;Mårslet;10.163926;56.06776
+;True;T100;14543;Tulip Food Company;Tulipvej 3 Sdr. Borup;;;8940;Randers SV;10.061985;56.411676
+;True;T100;14554;Fakta Vildbjerg;Jernbanealle;7;;7480;Vildbjerg;8.768315;56.19831
+;True;T100;14559;BB. Kantineserv.  AB mejeri;Gørrilds Alle;72;;8920;Randers NV;9.99676;56.478125
+;True;T100;14571;Spar Hald;Ørslev Klostervej;107;Hald;7840;Højslev;9.197249;56.596608
+;True;T100;14586;Letkøb Vrensted;Bådstedhedevej;8;;9480;Løkken;9.775314;57.337825
+;True;T100;14587;Vrist Minimarked - Letkøb;Strandvejen;51;;7673;Harboøre;8.153121;56.603832
+;True;T100;14602;Netto Århus V;Bronzealdervej;2;;8210;Aarhus V;10.136285;56.17286
+;True;T100;14608;Spar Fårup;Butikstorvet;3;;8990;Fårup;9.857386;56.545444
+;True;T100;14621;Fakta Rådhus Centret Sæby;Sophus Falcks Vej;1 C;;9300;Sæby;10.504757;57.331831
+;True;T100;14631;Netto Hjørring;Bispensgade;87;;9800;Hjørring;9.9956;57.448825
+;True;T100;14657;Catering Engros  A/S;Nørremarken 2, Skovlund;;;6823;Ansager;8.703125;55.74112
+;True;T100;14659;LUKKET Min Købmand Harboøre;Kirkegade;1;;7673;Harboøre;8.183545;56.620642
+;True;T100;14666;Netto Randers;Marsvej;35 B;;8960;Randers Sø;10.058153;56.427101
+;True;T100;14668;HCH Gruppen A/S;PRIORSVEJ;31;;8600;Silkeborg;9.56827;56.204355
+;True;T100;14700;Kantinen Arinco Videbæk;Mælkevejen;4;;6920;Videbæk;8.630114;56.084752
+;True;T100;14722;Arla Foods AMBA;Sønderhøj;14;;8260;Viby;10.157532;56.119802
+;True;T100;14730;Arla Foods Hjørring Mejeri;Skanderborgvej 277;;;8260;Viby;10.174843;56.136045
+;True;T100;14735;LUKKET AKAFA AMBA;SVENSTRUP SKOLEVEJ 25;;;9230;SVENSTRUP;9.845155;56.974061
+;True;T100;14815;Fakta Lemvig;Ågade;10;;7620;Lemvig;8.310564;56.550599
+;True;T100;14830;Netto Hammel;Dalvej;12-14;;8450;Hammel;9.861555;56.257535
+;True;T100;14847;Hørkram Foodservice A/S;Torshøjvej;59;Kolt;8362;Hørning;10.048172;56.108937
+;True;T100;14855;MENY Hadsten;Nørregade;2;;8370;Hadsten;10.04726;56.328136
+;True;T100;14880;Restaurant Karoline Amalie;Uglesøvej;1;;8600;Silkeborg;9.560407;56.1404
+;True;T100;14883;LUKKET Euro Spar Aalborg Ø;Saltumvej;3;;9220;Aalborg Øst;10.008865;57.035135
+;True;T100;14890;Bilka Viborg;Holstebrovej;79;;8800;Viborg;9.36688;56.446425
+;True;T100;14907;Fakta Vester Hassing;Springvandspladsen;5;VESTER HASSING;9310;Vodskov;10.129253;57.066942
+;True;T100;14921;Rema 1000 Vejlby Risskov;Smedegade;12;Vejlby Riis;8240;Risskov;10.216762;56.196175
+;True;T100;14923;Fakta Gug;Fridtjof Nansensvej;2A;GUG;9210;Ålborg Sø;9.93954;57.023447
+;True;T100;14943;HCH Gruppen A/S;Priorsvej;31;;8600;Silkeborg;9.56827;56.204355
+;True;T100;15011;AB Catering Aalborg A/S;Kystvejen;80;;9400;Nørresundby;9.98598;57.087625
+;True;T100;15013;LUKKET AB Catering Nørresundby;Kystvejen 80;;;9400;Nørresundby;9.98598;57.087625
+;True;T100;1509;Føtex Frederiks Alle;Frederiksalle;22-24;;8000;Århus C;10.199681;56.150791
+;True;T100;15180;Spar Ans A/S;Søndermarksgade;10;;8643;Ans By;9.59424;56.306235
+;True;T100;15196;Rema 1000 Hornslet;Dalgårdsparken;4;ROSENHOLM;8543;Hornslet;10.31494;56.306531
+;True;T100;15225;Min Købmand Nørager;Munkhusevej;7;Nørager;8961;Allingåbro;10.50512;56.477225
+;True;T100;15253;Min Købmand Rostrup;Lundgaardsvej;2;Rostrup;9510;Arden;9.932351;56.731158
+;True;T100;15262;Rema 1000 Stoholm;Vestergade;30;;7850;Stoholm;9.146793;56.485905
+;True;T100;15361;Netto Thisted;Sydhavnsvej;1;;7700;Thisted;8.69248;56.95215
+;True;T100;15371;Fakta Øster Vrå;Bredgade;5;;9750;Øster Vrå;10.237261;57.341
+;True;T100;15382;Coop Ålborg;Hobrovej;461;;9200;Ålborg Sv.;9.880366;57.003837
+;True;T100;15414;Fakta Galten;Søndergade;49;;8464;Galten;9.90169;56.14904
+;True;T100;15423;LokalBrugsen Nykøbing Mors;Fåruphusevej;1;;7900;Nykøbing M;8.8389;56.77544
+;True;T100;15521;Fakta Malling;Stationspladsen;4;MALLING;8340;Malling;10.191455;56.038136
+;True;T100;15531;Rema 1000 Nørreland Holstebro;Nørreland Cent.Døesv.;17;;7500;Holstebro;8.616952;56.360714
+;True;T100;15540;Min Købmand Flauenskjold;Ålborgvej;597;Flauenskjold;9330;Dronninglund;10.284513;57.24927
+;True;T100;15544;Fakta Sjællandsgade Ålborg;Sjællandsgade;16-22;;9000;Aalborg;9.936355;57.04033
+;True;T100;15553;Rema 1000 Sæby;Sophus Falcks Vej;2;;9300;Sæby;10.504757;57.331831
+;True;T100;15554;Min Købmand Tvis;Hovedgaden;8;Tvis;7500;Holstebro;8.71105;56.320345
+;True;T100;15594;A.J. Skjern  i  Randers;Frederiksbergvej;9;Østerbjerregrav;8920;Randers Nv;9.909024;56.483817
+;True;T100;15833;Min Købmand Ravnkilde;Bygaden;8;RAVNKILDE;9610;Nørager;9.75337;56.755235
+;True;T100;15841;Rema 1000-843 Hobro;Mariagervej;3;;9500;Hobro;9.80108;56.63388
+;True;T100;15842;Rema 1000 Højbjerg;Oddervej;176;;8270;Højbjerg;10.206866;56.104636
+;True;T100;15847;CNO Foodservice;Skanderborgvej 277;;;8260;Viby J;10.174843;56.136045
+;True;T100;15863;Letkøb Vittrup;Løkkensvej;821;Vittrup;9480;Løkken;9.783225;57.39471
+;True;T100;15873;Jesperhus - Letkøb;Legindvej;30;;7900;Nykøbing Mors;8.81429;56.764222
+;True;T100;15898;Letkøb Thise;Sundsørevej;91;Thise;7870;Roslev;9.126823;56.703759
+;True;T100;15918;Fakta Århus Norges Allé;Norges Allé;1-5;;8200;Aarhus N;10.200115;56.17695
+;True;T100;15931;LUKKET Min Købmand Struer;Ådalen;1;;7600;Struer;8.591585;56.486118
+;True;T100;15961;Fakta Hornslet;Tingvej;6;;8543;Hornslet;10.31755;56.316665
+;True;T100;15965;Letkøb  Brabrand;Hougårdsvej;66;;8220;Brabrand;10.09126;56.150215
+;True;T100;15966;Rema 1000 Hjørringvej Frederkshavn;Hjørringvej;33;;9900;Frederikshavn;10.521515;57.447827
+;True;T100;15974;Dagli' Brugsen Engesvang;Jernbanegade;4;;7442;Engesvang;9.349665;56.167477
+;True;T100;15976;FDF Julsølejr 2006;Hedelundsvej 5, Gl. Rye;;;8680;Ry;9.69144;56.069275
+;True;T100;15978;Min Købmand Søderholm;Nibevej;518;Sønderholm;9240;Nibe;9.74144;57.00169
+;True;T100;16173;Premier Is Kolding;Birkedam 11, Port 22-23;;;6000;Kolding;9.44019;55.513936
+;True;T100;16178;Fakta Ålborg Ø;Mistrals Plads;1;;9220;Aalborg Ø;9.968615;57.013215
+;True;T100;16182;Rema 1000 Hasseris;Hasseris Bymidte;4;HASSERIS;9000;Ålborg;9.882856;57.036587
+;True;T100;16651;Føtex Ikast;Rådhusstrædet;2;;7430;Ikast;9.158415;56.138855
+;True;T100;16670;Fakta Bøsbrovej Randers;Bøsbrovej;22;;8940;Randers Sv;10.041441;56.449843
+;True;T100;16671;Rema 1000 Skive;Brårupvej;58;;7800;Skive;9.03437;56.55356
+;True;T100;16678;Rema 1000 Tranbjerg;Kirketorvet;1;;8310;Tranbjerg;10.136936;56.090686
+;True;T100;16681;Rema 1000 Snejbjerg;Snejbjerg Hovedgade;38;;7400;Herning;8.896782;56.132134
+;True;T100;16682;Rema 1000 Helsted;Oust Møllevej;51;HELSTED;8920;Randers Nv;9.998445;56.47979
+;True;T100;16737;Netto Kjellerup;Parallelvej;2;;8620;Kjellerup;9.415895;56.28602
+;True;T100;16759;Netto Vesteralle Ålborg;Vestre Allè;3;;9000;Ålborg;9.907621;57.033544
+;True;T100;16785;SPAR ASAA;Sæbyvej;3;;9340;Asaa;10.404542;57.148578
+;True;T100;16788;Nørreskov Grill Silkeborg;Nørreskov Bakke;21;;8600;Silkeborg;9.581774;56.191072
+;True;T100;16790;Letkøb Barmer;Kirkevej;2;BARMER;9240;Nibe;9.540017;56.979916
+;True;T100;17049;Fakta Hadsund;Jernbanegade;2;;9560;Hadsund;10.119876;56.718142
+;True;T100;17076;Netto Holstebro;Banetoften;2-4;;7500;Holstebro;8.594782;56.363875
+;True;T100;17079;Letkøb Lagunen Hals;Lagunen;2;HOU;9370;Hals;10.357835;57.04038
+;True;T100;18738;Brugsen Sandavagur;Sandavagur;2;;0360;Sandavagur;10.070303;56.099472
+;True;T100;18827;Min Købmand Vegger;Aagade;32;Vegger;9240;Nibe;9.569877;56.88629
+;True;T100;18841;Letkøb Højbjerg;Pottemagertoften;2;;8270;Højbjerg;10.167999;56.105124
+;True;T100;18846;Grindsted Skole;Uggerhalnevej;4;Grindsted;9310;Vodskov;10.04354;57.1496
+;True;T100;18849;Ørebroskolen;Ørebrovej;128;Fjerritslev;9690;Fjerritslev;9.235694;57.053934
+;True;T100;18850;Arla Foods Mejeriforeningen (extern;Sønderhøj;46;;8260;Viby J;10.159351;56.120469
+;True;T100;18852;Dybvad Skole;Ørnevej;6;Dybvad;9352;Dybvad;10.355655;57.275915
+;True;T100;18853;2236 Aalbæk Skole;Engvej;8;Aalbæk;9982;Ålbæk;10.411545;57.594445
+;True;T100;18854;Tranum Skole;Uglevej;6;Tranum;9460;Brovst;9.463611;57.132988
+;True;T100;18858;Hou Skole;Nørregade 9, Hou;;Hou;9370;Hals;10.29648;57.014925
+;True;T100;18859;Skovsgårdskolen;Hovedgaden;71;Brovst;9460;Brovst;9.487684;57.08146
+;True;T100;18861;Ulsted Skole;Jyllensgade 29, Ulsted;;Ulsted;9370;Hals;10.258745;57.07449
+;True;T100;18862;Jetsmark Centralskole;Skolegade 2, Kås;;Kås;9490;Pandrup;9.669404;57.199794
+;True;T100;18865;Fjerritslev Skole;Borups Alle;8;;9690;Fjerritslev;9.264035;57.08917
+;True;T100;18866;Brovst Skole;Skolevej;5;;9460;Brovst;9.529167;57.096588
+;True;T100;18867;Hjørring Private Realsk.;Vendiavej;7;;9800;Hjørring;9.997011;57.456459
+;True;T100;18868;Skolegades Skole;Skolegade;36;;9700;Brønderslev;9.951685;57.26827
+;True;T100;18869;Lørslev Friskole;Ugiltvej;881;Lørslev;9800;Hjørring;10.083334;57.428265
+;True;T100;18870;Trekronerskolen;Skolevænget;3;;9690;Fjerritslev;9.36986;57.049035
+;True;T100;18871;Toftegårdsskolen;Samsøgade;40;;9740;Jerslev J;10.09381;57.282525
+;True;T100;18872;Tolstrup-Stenum Friskole;Tømmerbyvej;2;;9700;Brønderslev;9.868815;57.318635
+;True;T100;18873;Løkken Skole;Studievej;10;;9480;Løkken;9.71759;57.372615
+;True;T100;18874;Vrå Skole;Skolegade;6;;9760;Vrå;9.938534;57.354698
+;True;T100;18875;Stensnæsskolen;Østkystvejen 314, Voerså;;Voerså;9300;Sæby;10.511943;57.253439
+;True;T100;18876;Hedegårdsskolen;Nordens Alle;56;;9700;Brønderslev;9.940254;57.281884
+;True;T100;18877;Søndergades Skole;Søndergade;40;;9700;Brønderslev;9.940782;57.265742
+;True;T100;18878;Vodskov Skole;Brorsonsvej;1;;9310;Vodskov;10.02575;57.10899
+;True;T100;18879;Ø. Brønderslev Centralsk.;Elmevej;100;;9700;Brønderslev;10.006819;57.248453
+;True;T100;18880;Privatsk. I Frederikshavn;Peter Wesselsvej;1;;9900;Frederikshavn;10.513475;57.43551
+;True;T100;18881;Pandrup Skole;Blokhusvej;41;;9400;Pandrup;9.899225;57.06775
+;True;T100;18882;Vestbjerg Skole;Bakmøllevej;280;;9380;Vestbjerg;9.962465;57.13584
+;True;T100;18883;Asaa Skole;Ankervej;1;;9340;Asaa;10.40165;57.149575
+;True;T100;18884;Hjallerup Skole;Idræts Alle;6;;9320;Hjallerup;10.15422;57.165807
+;True;T100;18885;Klokkerholm Skole;Smørblomstvej;5 A;Klokkerholm;9320;Hjallerup;10.15405;57.20811
+;True;T100;18887;Frejlev Skole;Frejlev Skolevej 7, Frejlev;;Frejlev;9200;Ålborg SV;9.812425;57.00935
+;True;T100;18888;Fakta Terndrup;Terndrup Center;1 A;;9575;Terndrup;10.05835;56.81243
+;True;T100;18889;Fakta Herning;Vestergade;10;;7400;Herning;8.964495;56.136265
+;True;T100;18981;Rekl. PIORH lev.Brabrand;Skanderborgvej 277;;;8260;Viby J;10.174843;56.136045
+;True;T100;18990;LUKKET Metro Ålborg;Fiskene;10;;9200;Ålborg Sv;9.869631;57.000217
+;True;T100;19083;Min Købmand Grenå;Trekanten;46;;8500;Grenå;10.87758;56.3917
+;True;T100;193;Reitan Distribution A/S;Marsalle;32;;8700;HORSENS;9.798799;55.836925
+;True;T100;20030;LUKKET Metro Tranbjerg;Sletvej;36;;8310;Tranbjerg J;10.13474;56.106345
+;True;T100;2011;Kvickly Åbyhøj;Haslevej;3;Åbyhøjcentret;8230;Åbyhøj;10.165365;56.15605
+;True;T100;20142;Netto Herning;Silkeborgvej;82 B;HERNING;7400;Herning;8.993195;56.13335
+;True;T100;20143;Føtex Herning;Bredgade;43;;7400;Herning;8.970919;56.136196
+;True;T100;2052;Superbrugsen Bjerringbro;Markedsgade;1;;8850;Bjerringbro;9.655088;56.374817
+;True;T100;20892;Letkøb Staby;Stabyvej;61;;6990;Ulfborg;8.240108;56.265741
+;True;T100;20910;Fakta Gistrup;Nøvlingvej;27;;9260;Gistrup;9.996735;56.998
+;True;T100;20937;Fakta Randersvej Silkeborg;Randersvej;10;;8600;Silkeborg;9.577534;56.187908
+;True;T100;2096;Dagli' Brugsen Allingåbro;Hovedgaden;80;;8961;Allingåbro;10.334423;56.463789
+;True;T100;2100;DagliBrugsen Anholt;Beringvej;2;;8361;Hasselager;10.070303;56.099472
+;True;T100;2104;Superbrugsen Ans;Søndermarksgade;16;;8643;Ans By;9.59471;56.30552
+;True;T100;21045;Fakta Hadsten;Kirketorvet;1;;8370;Hadsten;10.04609;56.32897
+;True;T100;21056;Inco CC Århus A/S;Blomstervej;5;;8381;Tilst;10.126109;56.182954
+;True;T100;21061;Fakta Aars;Markedsvej;3 A;;9600;Aars;9.510274;56.801218
+;True;T100;21076;Rema 1000 Hirtshals;Banegårdspladsen;13;;9850;Hirtshals;9.961097;57.591276
+;True;T100;21083;AB Catering Hinnerup;Beta 1;;;8382;Hinnerup;10.110099;56.23524
+;True;T100;2113;Superbrugsen Assentoft;Storegade;51;ASSENTOFT;8960;Randers Sø;10.145405;56.440135
+;True;T100;2115;Superbrugsen Solbjerg;Østergårdsvej;278;;8355;Solbjerg;10.083412;56.037152
+;True;T100;21167;Kvickly Års;Markedsvej;3;;9600;Års;9.510274;56.801218
+;True;T100;21168;Kvickly Års;Markedsvej;3;;9600;Års;9.510274;56.801218
+;True;T100;21171;Kvickly Grenå Bageri;Østerbrogade;55;;8500;Grenå;10.88787;56.414335
+;True;T100;21172;Kvickly Grenå;Østerbrogade;55;;8500;Grenå;10.88787;56.414335
+;True;T100;21215;Min Købmand Trustrup;Århusvej;191;GRENÅ;8570;Trustrup;10.771031;56.347551
+;True;T100;21217;Min Købmand Hodsager;Hovedgaden;31;Hodsager;7490;Aulum;8.85579;56.313855
+;True;T100;2123;Dagli' Brugsen Ballen;Beringvej;2;;8361;Hasselager;10.070303;56.099472
+;True;T100;21238;Vester Hassing Skole;Halsvej 199, V.Hassing;;;9310;Vodskov;10.163921;57.079799
+;True;T100;21241;Dronninglund Skole;Rørholtvej;20;;9330;Dronninglund;10.28584;57.15112
+;True;T100;21242;Agersted Skole;Præstbrovej;23;Dronninglund;9330;Dronninglund - R 50;10.38195;57.19972
+;True;T100;21244;Min Købmand Østerby Havn;Havnegade;2;Østerby;9940;Læsø;10.538092;57.436418
+;True;T100;21249;Løvbjerg Ikast;Vestergade;63;;7430;Ikast;9.142625;56.138511
+;True;T100;21250;Løvbjerg Struer;Søndergårdsvej;2;;7600;Struer;8.58284;56.484145
+;True;T100;21251;Løvbjerg Nykøbing Mors;Vestergade;15;;7900;Nykøbing M;8.854938;56.794189
+;True;T100;21252;Løvbjerg Trøjborg;Otto Rudsgade;98;;8200;Aarhus N;10.211938;56.172214
+;True;T100;21254;Løvbjerg Skanderborg;Adelgade;70;;8660;Skanderborg;9.93211;56.033099
+;True;T100;21256;Løvbjerg Viborg;Koldingvej;130;;8800;Viborg;9.387558;56.42989
+;True;T100;21257;Løvbjerg Brønderslev;Arkaden;14;;9700;Brønderslev;9.947805;57.266415
+;True;T100;21263;Bislev Skole;Halkærvej;42;;9240;Nibe;9.608909;56.944158
+;True;T100;21264;Min Købmand;Knudsgade;100;;9700;Brønderslev;9.961505;57.27009
+;True;T100;21277;Min Købmand Vridsted;Egebjergvej;4;Vridsted;7800;Skive;9.006966;56.442429
+;True;T100;21294;Fakta Q Ålborg;Vesterbro;62;;9000;Ålborg;9.91654;57.04922
+;True;T100;21296;Fakta Q Guldsmedegade Århus;Guldsmedegade;42;;8000;Aarhus C;10.20779;56.159625
+;True;T100;21307;Min Købmand Fabjerg;Fabjergstad;52;Fabjerg;7620;Lemvig;8.383552;56.525544
+;True;T100;21318;Fakta Sindal;Ved Banen;14;;9870;Sindal;10.195945;57.46992
+;True;T100;21319;SPAR THYBORØN;Drejøvej;1;;7680;Thyborøn;8.214935;56.695124
+;True;T100;21322;Superbrugsen Thisted;Vestergade;15;;7700;Thisted;8.68758;56.954784
+;True;T100;21323;SuperBrugsen Thisted, Bageri;Vestergade;15;;7700;Thisted;8.68758;56.954784
+;True;T100;21324;SuperBrugsen Thisted, Delikatesse;Vestergade;15;;7700;Thisted;8.68758;56.954784
+;True;T100;21325;SuperBrugsen Thisted, Salgsområde;Vestergade;15;;7700;Thisted;8.68758;56.954784
+;True;T100;21339;Kvickly Metropol Hjørring;Østergade;30;;9800;Hjørring;9.992208;57.458091
+;True;T100;21353;LUKKET Netto Hasle;Ryhavevej;28;HASLE;8210;Aarhus V;10.156514;56.165791
+;True;T100;21387;MENYÅrhus C;Skanderborgvej;18-24;;8000;Aarhus C;10.185124;56.141765
+;True;T100;21394;MENY Sæby;Stygge Krumpens Vej;2;;9300;Sæby;10.50276;57.332755
+;True;T100;21402;Fakta Løkken;Industrivej;4;;9480;Løkken;9.728202;57.373309
+;True;T100;21410;Catering Samsø;Industrivej;6;;8305;Samsø;10.598863;55.834951
+;True;T100;21411;Spar Humlum;Vesterbrogade;2;;7600;Struer;8.55121;56.539725
+;True;T100;21421;Superland Sindal;Ved Banen;9;;9870;Sindal;10.197669;57.470063
+;True;T100;21433;Min Købmand Laurbjerg;Kirkevej;1;Laurbjerg;8870;Langå;9.917215;56.356305
+;True;T100;21437;Rema 1000 Skagen;Kattegatvej;3;;9990;Skagen;10.564255;57.726166
+;True;T100;21439;Letkøb Ydby;Oddesundvej;267;Ydby;7790;Hurup Thy;8.465399;56.679737
+;True;T100;21468;Fakta Randers;Gl. Jenumvej;3;;8930;Randers Nø;10.040848;56.480362
+;True;T100;21481;Kiwi Them 154;Silkeborgvej;66-68;;8653;Them;9.548319;56.09336
+;True;T100;21483;Kiwi Brovst 157;Vestergade;30;;9460;Brovst;9.520375;57.09719
+;True;T100;21485;Kiwi Åbyhøj;Silkeborgvej;263;;8230;Åbyhøj;10.166285;56.15523
+;True;T100;21486;Kiwi Hadsten 109;Ågade;20;;8370;Hadsten;10.04432;56.32835
+;True;T100;21487;Kiwi Hammel 111;Nørreport;6;;8450;Hammel;9.864696;56.256697
+;True;T100;21488;Kiwi Lystrup 125;Lyshøjen;1;;8520;Lystrup;10.238365;56.228605
+;True;T100;21489;Kiwi Dronninglund 158;Stationstorvet;2;;9330;Dronninglund;10.29255;57.1605
+;True;T100;21490;Kiwi Fr. Allé, Århus C. 108;Frederiks Alle;170;;8000;Aarhus C;10.194253;56.146488
+;True;T100;21491;Kiwi Egå 101;Blomstervangen;1;;8250;Egå;10.274864;56.205793
+;True;T100;21492;Kiwi Hinnerup 113;Pakhusvej;7;;8382;Hinnerup;10.06267;56.265465
+;True;T100;21493;LUKKET Kiwi Galten 110;Torvet;2;;8464;Galten;9.903935;56.154975
+;True;T100;21494;Kiwi Ebeltoft 105;Sønder Skovvej;2;;8400;Ebeltoft;10.703653;56.238445
+;True;T100;21503;Kiwi Ikast 107;Grønlandsgade;15;;7430;Ikast;9.166895;56.137325
+;True;T100;21505;Kiwi Grenå 129;De Lichtenbergsvej;11-13;;8500;Grenå;10.912885;56.40805
+;True;T100;21506;Kiwi Skovvejen, Århus C. 146;Skovvejen;17;;8000;Aarhus C;10.216992;56.164259
+;True;T100;21513;Kiwi Ryomgård 128;Vestergade;98;;8550;Ryomgård;10.491105;56.381977
+;True;T100;21514;LUKKET Kiwi Møllevangsalle;Møllevangsalle;151;;8210;Aarhus V;10.18469;56.170905
+;True;T100;21515;Kiwi Nibe 131;Skomagertorvet;7;;9240;Nibe;9.637675;56.981405
+;True;T100;21516;Kiwi Hadsund 136;Himmerlandsgade;6-8;;9560;Hadsund;10.112484;56.717207
+;True;T100;21517;Kiwi Bjerringbro 115;Brogade;30-34;;8850;Bjerringbro;9.660225;56.370351
+;True;T100;21520;Kiwi Hobro 114;Forsythiavej;2;;9500;Hobro;9.770955;56.652055
+;True;T100;21521;Kiwi Pandrup 126;Bredgade;6;;9490;Pandrup;9.677059;57.224505
+;True;T100;21522;Kiwi Kridthøj (Højbjerg) 127;Kridthøjvej;8;;8270;Højbjerg;10.193188;56.117561
+;True;T100;21523;Kiwi Støvring 137;Grangårdcentret;51;;9530;Støvring;9.835565;56.888055
+;True;T100;21524;Kiwi Hornslet 121;Tingvej;43;;8543;Hornslet;10.31329;56.31966
+;True;T100;21525;Kiwi Auning 112;Mølletorvet;5;;8963;Auning;10.376135;56.429419
+;True;T100;21526;LUKKET Kiwi Fr.Havn 120;Maigårdsvej;3;;9900;Frederikshavn;10.49983;57.447068
+;True;T100;21527;Kiwi Løgten 139;Grenåvej;745;;8541;Skødstrup;10.31486;56.275535
+;True;T100;21528;Kiwi Stilling 103;Hotelvej;7;Stilling;8660;Skanderborg;9.985689;56.061447
+;True;T100;21530;Kiwi Ålbæk 118;Sønder Havnevej;2;;9982;Ålbæk;10.41393;57.592755
+;True;T100;21531;Kiwi Vrå 143;Mejerigade;15;;9760;Vrå;9.942073;57.352864
+;True;T100;21532;Kiwi Assentoft 144;Park Alle;9 A;Assentoft;8960;Randers Sø;10.147655;56.439735
+;True;T100;21541;Fakta Solbjerg;Solbjerg Hedevej;25;;8355;Solbjerg;10.086284;56.046148
+;True;T100;21557;Min Købmand  Sæby;Grønnegade;20;;9300;Sæby;10.517145;57.334125
+;True;T100;21558;Letkøb Tange;Tangesøvej;4;;8850;Bjerringbro;9.587387;56.351999
+;True;T100;21574;Dagli' Brugsen Nørrehalne;Bygaden;2;NØRRE HALNE;9430;Vadum;9.872597;57.1501
+;True;T100;21589;Kiwi Ringkøbing 135;Vellingvej;47;;6950;Ringkøbing;8.265761;56.078465
+;True;T100;21620;Løvbjerg Viborg;Randersvej;60;;8800;Viborg;9.448629;56.453083
+;True;T100;21624;Kvickly Ringkøbing Bageri;Skaadsmosevej;11;;6950;Ringkøbing;8.272175;56.08636
+;True;T100;21625;Kvickly Ringkøbing;Skaadsmosevej;11;;6950;Ringkøbing;8.272175;56.08636
+;True;T100;21641;Rema 1000 Søften;Ekkovej;4;;8382;Hinnerup;10.088188;56.23745
+;True;T100;21652;Ravnshøj Skole;Ravnshøjvej;155;;9900;Frederikshavn;10.424027;57.452461
+;True;T100;21653;Rema 1000 Romalt Randers;Romalt Boulevard;22;;8960;Randers Sø;10.09006;56.448555
+;True;T100;21654;Letkøb Manna;Bredningen;101;;9700;Brønderslev;9.813944;57.28416
+;True;T100;21658;Netto Finderupvej Århus;Finderupvej;1-3;;8000;Aarhus;10.18186;56.15493
+;True;T100;21660;Føtex Nørresundby;Vestergade;30;;9400;Nørresundby;9.917553;57.060448
+;True;T100;21670;Min Købmand Nr. felding;Sognstrupvej;4;;7500;Holstebro;8.60549;56.315515
+;True;T100;21673;Rema 1000 Brabrand;Stenbækvej;1 A;;8220;Brabrand;10.117387;56.15453
+;True;T100;21687;Rema 1000 Trige;Lergravvej;1;;8380;Trige;10.154005;56.25517
+;True;T100;21689;Føtex Thisted;Storegade;2-6;;7700;Thisted;8.69174;56.954715
+;True;T100;21701;Netto Engholm Søpark;Engholm Søpark;2;;7400;Herning;9.001797;56.150701
+;True;T100;21703;LUKKET Min Købmand Godthåb;Ridemandsmøllevej;14;;9230;Svenstrup J;9.813925;56.962705
+;True;T100;21762;AB Catering Hinnerup;Beta;1;;8382;Hinnerup;10.110099;56.23524
+;True;T100;21775;Føtex Food Hasseris;Hasseris Bymidte;29;;9000;Aalborg;9.882856;57.036587
+;True;T100;21787;Min Købmand Løvel;Gl. Aalborgvej;11;LØVEL;8830;Tjele;9.468028;56.534608
+;True;T100;21792;LUKKET 119 Kiwi Hammerum;Hammerum Hovedgade;78 A;;7400;Herning;9.06296;56.133135
+;True;T100;21804;Superbrugsen Ry;Parallelvej;5;;8680;Ry;9.781454;56.090379
+;True;T100;21808;Superbrugsen Løgten;Grenåvej;768;;8541;Skødstrup;10.317575;56.277915
+;True;T100;21823;LUKKET Letkøb-Jegindø Købmandsh;Kongevejen;64;;7790;Thyholm;8.618525;56.647955
+;True;T100;21839;Spar Kristrup;Vennelystvej;56 B;;8960;Randers Sø;10.058317;56.444985
+;True;T100;21841;Letkøb Hedebo Sæby;Frederikshavnsvej;110;;9300;Sæby;10.510644;57.355327
+;True;T100;21846;Spar Holstebro;Struervej;63-65;;7500;Holstebro;8.61761;56.36756
+;True;T100;21847;Restaurant Mellemrum;Fredens Torv;2;;8000;Aarhus C;10.21053;56.154065
+;True;T100;21848;MENY Skagen;Doggerbanke;2;;9990;Skagen;10.549198;57.729945
+;True;T100;21854;Letkøb  Gjerrild;Stokkebro;77;;8500;Grenå;10.821701;56.505517
+;True;T100;21858;Letkøb Ørsted;Storegade;34;;8950;Ørsted;10.340365;56.50047
+;True;T100;21863;Lendum Skole;Enghavevej;4;;9870;Sindal;10.296255;57.408052
+;True;T100;21864;Tornby-Vidstrup Skole;Hovedvejen;35;;9850;Hirtshals;9.945545;57.534185
+;True;T100;21865;Hørby Skole;Hybenvej;11;;9300;Sæby;10.382048;57.325454
+;True;T100;21867;Bindslev Skole;Islandsgade;21;;9870;Sindal;10.196165;57.477115
+;True;T100;21868;Astrup Skole;Skolestien;2;;9800;Hjørring;10.095797;57.475912
+;True;T100;21869;Horne-Asdal Skole;Stendyssevej;80;;9850;Hirtshals;10.007463;57.564564
+;True;T100;21875;Color Line Danmark Super Speed 1;Postboks;119;;9850;Hirtshals;9.97512;57.587967
+;True;T100;21876;Color Line Danmark Super Speed 2;Postboks;119;;9850;Hirtshals;9.97512;57.587967
+;True;T100;21877;Color Line Danmark Central Køkken.;Postboks;119;;9850;Hirtshals;9.97512;57.587967
+;True;T100;21878;Color Line Danmark MS Bohus;Postboks;119;;9850;Hirtshals;9.97512;57.587967
+;True;T100;21879;Color Line Danmark MS Fantasy;Postboks;119;;9850;Hirtshals;9.97512;57.587967
+;True;T100;21880;Color Line Danmark Magic Køkken;Postboks;119;;9850;Hirtshals;9.97512;57.587967
+;True;T100;21881;Color Line Danmark Viking Køkken;Postboks;119;;9850;Hirtshals;9.97512;57.587967
+;True;T100;21901;LUKKET Min Købmand Skagen;Ulrik Plesnersvej;58;;9990;Skagen;10.57757;57.729995
+;True;T100;21904;Spar Vejgård;Doravej;1;;9000;Aalborg;9.95573;57.03208
+;True;T100;21905;Spar Kornblomstvej;Kornblomstvej;50;;9000;Aalborg;9.903032;57.026835
+;True;T100;21907;Spar Tversted;Tannisbugtvej;38;TVERSTED;9881;Bindslev;10.187385;57.584524
+;True;T100;21908;Vedersø Klit Camping;Øhusevej;23;;6990;Ulfborg;8.14596;56.25969
+;True;T100;21914;Min Købmand Hobro;Løgstørvej;3;;9500;Hobro;9.779475;56.64887
+;True;T100;21919;Min Købmand Bjerregrav;Gl. Ålborgvej;16;BJERREGRAV;9632;Møldrup;9.49521;56.580705
+;True;T100;21920;Min Købmand Møldrup;Søndergade;2;;9632;Møldrup;9.50154;56.615635
+;True;T100;21924;Nærkøb;Forbindelsesvejen;115;;9400;Nørresundby;9.934991;57.070698
+;True;T100;21942;Superbrugsen Ringkøbing;Torvegade;9-11;;6950;Ringkøbing;8.24196;56.09082
+;True;T100;21947;Min Købmand Skansevej;Skansevej;42;;9400;Nørresundby;9.92553;57.06394
+;True;T100;21948;Min Købmand Tulipanvej Viborg;Tulipanvej;14;;8800;Viborg;9.40108;56.44414
+;True;T100;21951;Min Købmand Nr. Uttrup;Nørre Uttrup Torv;15;;9400;Nørresundby;9.946967;57.068896
+;True;T100;21963;Min Købmand Velling;Rydbjergvej;2;;6950;Ringkøbing;8.312745;56.054545
+;True;T100;21964;Min Købmand Nr. Vorupør;Vesterhavsgade;103;;7700;Thisted;8.36752;56.95555
+;True;T100;21965;Spar Nors;Skellet;2;Nors;7700;Thisted;8.67434;57.021375
+;True;T100;21966;Min Købmand Vestervig;Klostergade;33;;7770;Vestervig;8.320821;56.762946
+;True;T100;21967;Min Købmand Østerild;Østerild Byvej;79;ØSTERILD;7700;Thisted;8.849882;57.030183
+;True;T100;21968;LUKKET Letkøb Ikast;Bygaden;6;ISENVAD;7430;Ikast;9.20506;56.095965
+;True;T100;21970;Spar Hanstholm;Kaj Lindbergsgade;75;;7730;Hanstholm;8.597425;57.118515
+;True;T100;21972;Letkøb Vorning;Vorningvej;75;TJELE;8830;Tjele;9.728165;56.527
+;True;T100;21975;Spar Sjørring;Vorupørvej;48;SJØRRING;7700;Thisted;8.588182;56.952449
+;True;T100;22049;Min Købmand Aalborg;Nr. Trandersvej;99;;9000;Aalborg;9.965885;57.036415
+;True;T100;22050;MENY Ringkøbing;Badevej;1;SØNDERVIG;6950;Ringkøbing;8.11686;56.11905
+;True;T100;22059;Købmand Munch Tornby;Strandvejen;31;;9850;Hirtshals;9.917335;57.558925
+;True;T100;22060;Min Købmand Åbyen;Alligdamvej;1;;9850;Hirtshals;10.029145;57.562525
+;True;T100;22073;Sæbygaardskolen;Sæbygårdsvej;34;;9300;Sæby;10.49983;57.334635
+;True;T100;22211;LUKKET Spar Gødvad;Arendalsvej;29;;8600;Silkeborg;9.601895;56.193576
+;True;T100;22213;Spar Virklund;Virklundvej;3;VIRKLUND;8600;Silkeborg;9.5618;56.130999
+;True;T100;22266;LUKKET Kiosken Sjællandsgade ApS;Sjællandsgade;15-17;;8900;Randers;10.02046;56.46374
+;True;T100;22280;Min Købmand Ullits;Foulumvej;12;ULLITS;9640;Farsø;9.286395;56.72658
+;True;T100;22282;Spar Bælum;Østergade;8;;9574;Bælum;10.121473;56.830148
+;True;T100;22301;Damsgaard Skibshandel;Langerak;45;;9900;Frederikshavn;10.551485;57.43636
+;True;T100;22328;Min Købmand Ramsing;Kirke Allé;2;;7860;Spøttrup;8.84172;56.59639
+;True;T100;22382;Spar Viborg;Falkevej;2;;8800;Viborg;9.38897;56.448885
+;True;T100;22393;Anholt Skibproviantering - Letkøb;Gennem Landet;76;;8592;Anholt;10.925617;56.410371
+;True;T100;2240;Dagli' Brugsen Dybvang;Mølletoften, Lyngby;2;LYNGBY;8570;Trustrup;10.7467;56.364555
+;True;T100;22402;Reklameartikler - konsulenter;Ålborgvej;86;;9800;Hjørring;9.99603;57.433269
+;True;T100;22403;Reklameartikler - konsulenter;Hjermvej;24-26;;7500;Holstebro;8.621125;56.38189
+;True;T100;22407;Reklameartikler - konsulenter.;Skivevej;41;;9500;Hobro;9.7794;56.637935
+;True;T100;22408;Reklameartikler - konsulenter.;Gjellerupvej;105;;8220;Brabrand;10.145125;56.146652
+;True;T100;22427;Dagli' Brugsen Suldrup;Stensgade;6;;9541;Suldrup;9.699115;56.84795
+;True;T100;22450;Fakta 237 Grenå;Nørregade;18;;8500;Grenå;10.878189;56.414556
+;True;T100;22455;Kiwi Randers 160;Gammel Hobrovej;80;;8920;Randers Nv;10.01402;56.476705
+;True;T100;2246;Kvickly Ebeltoft;Øster Alle;16;;8400;Ebeltoft;10.67974;56.196281
+;True;T100;22466;Netto Brønderslev;;;;9700;Brønderslev;9.93137;57.269865
+;True;T100;22513;Føtex Brønderslev;Østergade;43-53;;9700;Brønderslev;9.948027;57.265253
+;True;T100;22523;Fakta Pandrup;Blokhusvej;9-11;;9490;Pandrup;9.674955;57.225215
+;True;T100;22533;LUKKET E.V. Marked;Rolighedsvej;6;;8881;Thorsø;9.789215;56.296461
+;True;T100;22540;Min Købmand Sejerslev;Sejersvej;26;Sejerslev;7900;Nykøbing Mors;8.86656;56.922385
+;True;T100;22542;Kiwi Hjørring 161;Nørrebro;9;;9800;Hjørring;9.98525;57.463765
+;True;T100;22543;Kiwi Herning 166;Ringstedvej;1;;7400;Herning;8.98944;56.141605
+;True;T100;22546;Kiwi Thisted 162;Simons Bakke;72;;7700;Thisted;8.663453;56.949617
+;True;T100;22548;Kiwi Hobro Syd 165;Thurøvej;9;;9500;Hobro;9.807011;56.625746
+;True;T100;22552;Rema 1000 Sabro;Stillingvej;99;;8471;Sabro;10.021751;56.211316
+;True;T100;22557;Superfrugt Brabrand;Emmasvej;1;;8220;Brabrand;10.129625;56.15815
+;True;T100;22558;Fakta 235 Tranbjerg;Ingerslevtoften;2;;8310;Tranbjerg;10.118632;56.085108
+;True;T100;22561;Netto Nibe;Kræmmergade;7;;9240;Nibe;9.636629;56.985547
+;True;T100;22564;Fakta Storegade Hinnerup;Storegade;20;;8382;Hinnerup;10.062725;56.264745
+;True;T100;22568;Netto Harlev;Brombærvej;1;;8462;Harlev J;10.005735;56.152165
+;True;T100;22571;AB Catering A/S;Kystvejen;80;;9400;Nørresundby;9.98598;57.087625
+;True;T100;22582;TFC Fast Food A/S;Skivevej;43;;9500;Hobro;9.776921;56.636333
+;True;T100;22613;MENY Århus V;Viborgvej;277;;8210;Aarhus V;10.137943;56.177462
+;True;T100;22634;BKI Kaffe A/S;Michael Drewsens Vej;6;;8270;Højbjerg;10.15868;56.108284
+;True;T100;22635;Coffee Zone;Grønhøj Skivevej;7;;7470;Karup J;9.20998;56.366644
+;True;T100;22636;HCH Gruppen;Priorsvej;31;;8600;Silkeborg;9.56827;56.204355
+;True;T100;22643;Fakta Tårs 202;Guldregnvej;3;;9830;Tårs;10.114352;57.387707
+;True;T100;22655;Tulip Food Company;Tulipvej 1;1;;8940;Randers SV;10.065593;56.411683
+;True;T100;22667;Daglibrugsen Oddense;Gravene;1;;7860;Spøttrup;8.93089;56.654125
+;True;T100;22682;KK Engros;Nørremarken;2;;6823;Ansager;8.707294;55.741801
+;True;T100;22683;HKI Ost;Nørremarken;2;;6823;Ansager;8.707294;55.741801
+;True;T100;22687;Letkøb Vejrumbro;Hovedgaden;24;;8830;Tjele;9.554115;56.44
+;True;T100;22699;Netto Brabrand Centrallager;Rosbjergvej;35;;8220;Brabrand;10.051463;56.161758
+;True;T100;22702;K.K. Engros I/S;Nørremarken 2, Skovlund;;;6823;Ansager;8.703125;55.74112
+;True;T100;22734;Brabrand Mejeri;Gjellerupvej;105;;8220;Brabrand;10.145125;56.146652
+;True;T100;22739;L.C.Lauritsen Silkeborg;Priorsvej;31;;8600;Silkeborg;9.56827;56.204355
+;True;T100;22751;Min Købmand Funder;Funder Kirkevej;83;;8600;Silkeborg;9.439405;56.155485
+;True;T100;2279;LokalBrugsen Fjellerup;Strandvejen;8;FJELLERUP;8585;Glesborg;10.58816;56.506484
+;True;T100;22837;Netto Randers building number;Energivej;22;;8920;Randers;10.025835;56.47199
+;True;T100;22840;Hørkram Foodservice A/S;Torshøjvej 59, Kolt;;;8362;Hørning;10.03185;56.108186
+;True;T100;22859;Rema 1000 Århus;Frederiksgade;85;;8000;Aarhus C;10.203385;56.153935
+;True;T100;22863;LUKKET Kiwi Thisted Iversensvej 104;Iversensvej;1;;7700;Thisted;8.7128;56.954665
+;True;T100;22872;Vebbestrup Flødeis;Sdr. Truevej;1;Vebbestrup;9500;Hobro;9.822982;56.724037
+;True;T100;22903;Letkøb Viby J;Rosenvangsallè;50;;8260;Viby J;10.18105;56.13173
+;True;T100;22906;Fakta Ringkøbing;Skaadsmosevej;17;;6950;Ringkøbing;8.272175;56.08636
+;True;T100;2292;LokalBrugsen Århusbakken;Spættevej;16;;8600;Silkeborg;9.566465;56.169015
+;True;T100;22989;Forsynings Virksomhederne;Adr. Stigsborg Brygge;5;;9400;Nørresundby;9.935558;57.055328
+;True;T100;22994;Forsynings Virksomhederne;Hjulmagervej 24;;;9000;Ålborg;9.922295;57.03939
+;True;T100;23004;Netto Tranbjerg;Børupvej;3;;8310;Tranbjerg J.;10.129109;56.095023
+;True;T100;23005;Letkøb Femmøller;Kystvejen;1;Femmøller;8400;Ebeltoft;10.611765;56.229545
+;True;T100;2302;Superbrugsen Galten;Søndergade;47;;8464;Galten;9.90197;56.149785
+;True;T100;23074;Fakta Randers;Energivej;22;;8920;Randers Nv;10.025835;56.47199
+;True;T100;23078;Købmand Smedegård I/S;Sjællandsgade;103;;8000;Aarhus C;10.205115;56.163075
+;True;T100;2308;Dagli' Brugsen Gassum;Amtsvejen;31;GASSUM;8981;Spentrup;9.996143;56.575309
+;True;T100;23080;Rema 1000 Mårslet Butik 903;Mårslet Byvej;28;;8320;Mårslet;10.168221;56.073706
+;True;T100;23082;Rema 1000 Frejlev Butik 898;Nibevej;308;;9200;Ålborg Sv;9.817423;57.00686
+;True;T100;23105;AB Catering Hinnerup;Beta;1;;8382;Hinnerup;10.110099;56.23524
+;True;T100;23109;Min Købmand Mørke;Ebeltoftvej;20;;8544;Ebeltoft;10.375805;56.33759
+;True;T100;23151;Føtex Hjørring;Bispetorv;40;;9800;Hjørring;9.992952;57.455381
+;True;T100;2318;Superbrugsen Glesborg;Glesborg Bygade;54;;8585;Glesborg;10.72551;56.478367
+;True;T100;23353;Rema 1000 Sunds Butik 899;Thorupvej;2;;7451;Sunds;9.019789;56.198916
+;True;T100;23358;Rema 1000 Skovby Butik 897;Skovlundvej;5;;8464;Galten;9.94444;56.156526
+;True;T100;23362;Norway Seafood;Djurslandskajen;5;;8500;Grenå;10.922999;56.415171
+;True;T100;23366;LUKKET Kiwi Herning Holstebrovej;Holstebrovej;33;;7400;Herning;8.946248;56.138772
+;True;T100;23374;Rema 1000 Aalborg Øst Butik 893;Stenbjergvej;1;;9220;Aalborg;10.005007;57.040904
+;True;T100;23392;Fakta Grenå;Østerbrogade;63;;8500;Grenå;10.88787;56.414335
+;True;T100;23403;Fakta Marsvej Randers;Marsvej;26;;8960;Randers Sø;10.059813;56.429082
+;True;T100;23409;Fakta  Aalborgvej Brønderslev;Aalborgvej;80;;9700;Brønderslev;9.96884;57.260815
+;True;T100;23421;Netto Brabrand;Silkeborgvej;650;;8220;Brabrand;10.097279;56.153541
+;True;T100;23424;Min Købmand Halvrimmen;Aalborgvej;14;;9460;Brovst;9.58668;57.10995
+;True;T100;23425;Handshake;Kongsvangs Allé;23;;8000;Aarhus C;10.186075;56.140111
+;True;T100;23427;Fakta Hammerum;Hammerum Hovedgade;51-53;;7400;Herning;9.059315;56.133206
+;True;T100;23432;LUKKET SS Super Århus;Funch Thomsensgade;2;;8200;Aarhus N;10.203145;56.17436
+;True;T100;23436;Kvickly Randers Afdisponering;Merkurvej;53;;8960;Randers Sø;10.06198;56.429045
+;True;T100;23437;Kvickly Viby Afdisponering;Ringvej Syd;100;;8260;Viby J;10.152137;56.114598
+;True;T100;23448;Superbrugsen Sindal;Nørregade;7;;9870;Sindal;10.202135;57.47182
+;True;T100;23458;DagliBrugsen Rødkærsbro;Søndergade;2;;8840;Rødkærsbro;9.50257;56.352375
+;True;T100;23460;Superbrugsen Kolt;Kolt Østervej;37-39;;8361;Hasselager;10.076874;56.10934
+;True;T100;23464;Inco CC Århus A/S (ab mejeri);Blomstervej;5;;8381;Tilst;10.126109;56.182954
+;True;T100;23470;Bilka Herning;Golfvej;5;;7400;Herning;9.006656;56.136218
+;True;T100;23482;Spar Terndrup;Bymidten;4;;9575;Terndrup;10.05753;56.815065
+;True;T100;23492;LUKKET Spar Thorning;Blichersvej;13;;8620;Kjellerup;9.331345;56.286125
+;True;T100;23504;DagliBrugsen Skødstrup;Kløvervangen;108;;8541;Skødstrup;10.300957;56.26265
+;True;T100;23511;Rema 1000 Herning Butik 904;Absalonsvej;2;;7400;Herning;9.000615;56.134275
+;True;T100;23512;Øer Købmand APS;Øerkrogvej;2;;8400;Ebeltoft;10.693255;56.1523
+;True;T100;23515;LUKKET Spar;Mejerivej;1;;8560;Kolind;10.58632;56.360995
+;True;T100;23516;Superkød Aps - Super Spar;Skagavej;104;;9990;Skagen;10.591955;57.727345
+;True;T100;23518;Min Købmand Thyborøn;Havnegade;52;;7680;Thyborøn;8.218415;56.702585
+;True;T100;23521;KIWI Randers Mariagervej 124;Mariagervej;65;;8900;Randers;10.03165;56.468805
+;True;T100;23536;LUKKET Letkøb Mammen;Mammen Byvej;54 A;Mammen;8850;Bjerringbro;9.613505;56.410655
+;True;T100;23539;Fakta Thisted;Østbakken;57;;7700;Thisted;8.705795;56.95685
+;True;T100;23543;LUKKET Kwik Spar Houvig;Houvig Klitvej;51;;6950;Ringkøbing;8.123825;56.140135
+;True;T100;23550;Min Købmand Balle;Søndervang;1;;8444;Balle;10.807223;56.316174
+;True;T100;23551;Netto Skive;Holstebrovej;91;;7800;Skive;9.003415;56.568411
+;True;T100;23571;MENY Thorsø;Jernbanegade;26;;8881;Thorsø;9.790692;56.297371
+;True;T100;23577;Fakta Løgstør;Bredgade;43;;9670;Løgstør;9.261485;56.966495
+;True;T100;23580;Daglibrugsen Visse;Vissevej;93;;9210;Ålborg Sø;9.929037;56.995918
+;True;T100;23581;Rema 1000 Ikast Butik 906;Marienlunds Alle;2;;7430;Ikast;9.164505;56.13168
+;True;T100;23592;KIWI Randers Århusvej 174;Århusvej;102;;8920;Randers Nv;10.050805;56.43836
+;True;T100;23594;DagliBrugsen Blokhus;Torvet;1;;9492;Blokhus;9.584165;57.2521
+;True;T100;23596;Fakta Hasseris;Thulebakken;42;;9000;Ålborg;9.885989;57.036795
+;True;T100;23612;Føtex Eternitten;Synergivej;5;;9000;Aalborg;9.934909;57.037476
+;True;T100;23622;Min Købmand Skave;Viborgvej;234;;7500;Holstebro;8.805957;56.390636
+;True;T100;23627;Lokalbrugsen Gl. Hadsundsvej;Gl. Hadsundvej;22;;8900;Randers;10.043109;56.467181
+;True;T100;23628;Daglibrugsen Vivild;Langgade;43;;8961;Allingeåbro;10.447815;56.483149
+;True;T100;23631;Rema 1000 Herning III Butik 918;H.P.Hansens Vej;50;;7400;Herning;8.962589;56.1457
+;True;T100;23632;Rema 1000 Resenbro Butik 908;Sensommervej;34;;8600;Silkeborg;9.62763;56.17656
+;True;T100;23638;Svinkløv Badehotel;Svinkløvvej;593;;9690;Fjerritslev;9.327455;57.153633
+;True;T100;23639;Min Købmand Redsted M;Gl.Møllevej;43;;7970;Redsted;8.65417;56.738905
+;True;T100;2364;Superbrugsen Hammel;Torvegade;5;;8450;Hammel;9.865003;56.255533
+;True;T100;23660;Min Købmand Arden;Bytorvet;18;;9510;Arden;9.858923;56.769222
+;True;T100;23682;Jesperhus BP;Legindvej;13;;7900;Nykøbing M;8.822267;56.762575
+;True;T100;23693;Min Købmand Randers NV;Skelvangsvej;54;;8920;Randers Nv;10.01499;56.485825
+;True;T100;23695;ABC Herning (OST);Årebygårdvej;1;;7400;Herning;9.023545;56.137535
+;True;T100;23696;Rema 1000 Ålborg Butik 914;Danalien;1 E;;9000;Ålborg;9.943194;57.029359
+;True;T100;23705;ABC Videbæk ( OST);Høgevej;2;;6920;Videbæk;8.616555;56.088015
+;True;T100;23706;ABC Ulfborg ( OST);Harboegade;17;;6990;Ulfborg;8.3189;56.27206
+;True;T100;23715;Spar Silkeborg;Grønbækvej;9;Grauballe;8600;Silkeborg;9.629935;56.22656
+;True;T100;23719;DS Terminal Vest;Axel Gruhns vej;7;;8270;Højbjerg;10.16449;56.11254
+;True;T100;23723;Fakta Spentrup;Birke Alle´;15;;8981;Spentrup;10.045875;56.537131
+;True;T100;23727;Skanderborg Festivalklub;Birkvevej;20;;8660;Skanderborg;9.916219;56.037216
+;True;T100;23733;Føtex Silkeborg;Nørrevænget;47A;;8600;Silkeborg;9.54697;56.185145
+;True;T100;23751;LUKKET Color Line Danmark;Postboks 119;;;9850;Hirtshals;9.956447;57.581139
+;True;T100;23752;Color Line Danmark Lager;Niels Juelsvej;6;;9850;Hirtshals;9.97643;57.590425
+;True;T100;23762;Spar Ø.Tørslev;Udbyhøjvej;570;;8983;Gjerlev J;10.190033;56.580544
+;True;T100;23764;Rema 1000 Overlund Butik 909;Randersvej;62;;8800;Viborg;9.448629;56.453083
+;True;T100;23765;Rema 1000 Trojborg II Butik 915;Trøjborgvej;8k;;8000;Aarhus C;10.21657;56.16914
+;True;T100;23766;Rema 1000 Hjallerup Butik 925;Skovglimt;2;;9320;Hjallerup;10.143025;57.167341
+;True;T100;23770;Nordisk Spisehus;Vestre Kongevej;4-6;;8260;Viby J;10.152217;56.122703
+;True;T100;23795;Fakta Struer;Bredgade;61;;7600;Struer;8.59135;56.483222
+;True;T100;23799;SPAR HVIDE SANDE HAVN;Stormgade;2;;6960;Hvide Sande;8.126795;56.000115
+;True;T100;23800;SPAR HVIDE SANDE NORD;Parallelvej;68;;6960;Hvide Sande;8.12507;56.01588
+;True;T100;23805;Min Købmand Bjerregård;Kirksvej;2;;6960;Hvide Sande;8.181025;55.864225
+;True;T100;2381;Dagli' Brugsen Helgenæs;Askildhøjevej;16;Kongsgårde;8420;Knebel;10.51689;56.144554
+;True;T100;23880;Parkskolen;Park Alle;2;;7600;Struer;8.575515;56.48809
+;True;T100;2392;Dagli' Brugsen Herskind;Langelinie;62;HERSKIND;8464;Galten;9.964109;56.184185
+;True;T100;2394;Superbrugsen Hinnerup;Storegade;7;;8382;Hinnerup;10.062725;56.264745
+;True;T100;2398;Dagli' Brugsen Hjortshøj;Hundkjærvej;2-4;;8530;Hjortshøj;10.26691;56.24664
+;True;T100;2410;Dagli' Brugsen Fårvang;Lærkevej;15;;8882;Fårvang;9.731395;56.267475
+;True;T100;24276;Vorgod Skole;Bardevej;24;;6920;Videbæk;8.70251;56.0909
+;True;T100;24277;Videbæk Skole;Bredgade;120;;6920;Videbæk;8.611045;56.09103
+;True;T100;24278;Videbæk Skole Sfo;Bæktoften;;;6920;Videbæk;8.705121;56.087183
+;True;T100;24280;Herborg Friskole Sfo;Skolevej;40;;6920;Videbæk;8.60759;56.06855
+;True;T100;24281;Herborg Friskole;Skolevej;40;;6920;Videbæk;8.60759;56.06855
+;True;T100;24282;Videbæk Kristne Friskole;Ternevej;1;;6920;Videbæk;8.618245;56.08623
+;True;T100;24286;Højmark Skole;Adelvej;45;;6940;Lem St.;8.406385;56.053195
+;True;T100;24288;Hee Skole;Agersbækvej;13;;6950;Ringkøbing;8.279389;56.145383
+;True;T100;24289;Holmsland Skole;Klostervej;85;;6950;Ringkøbing;8.179683;56.128893
+;True;T100;24290;Spjald Skole;Skolegade;12;;6971;Spjald;8.506243;56.126911
+;True;T100;24291;Stadil/Vedersø Skole;Skelmosevej;22;;6980;Tim;8.205325;56.200085
+;True;T100;24293;Ulfborg Skole;Ole Chr. Kirksvej;8;;6990;Ulfborg;8.31976;56.27464
+;True;T100;24294;Staby Skole;Stabyvej;36;;6990;Ulfborg;8.24608;56.26611
+;True;T100;24302;Midtjyllands Kr. Friskole;Brændgårdvej;4;;7400;Herning;8.9675;56.148395
+;True;T100;24306;Engbjergskolen;Engbjerg;21;;7400;Herning;8.89736;56.137056
+;True;T100;24308;Tjørring Skole;Gilmosevej;20;;7400;Herning;8.936714;56.163905
+;True;T100;24315;Herningsholmskolen;Sjællandsgade;86;;7400;Herning;8.992283;56.140699
+;True;T100;24332;Gjellerupskolen;Skolebakken;2;;7400;Herning;9.052993;56.143278
+;True;T100;24342;Snejbjerg Skole;Hovedgaden;71;;7400;Herning;8.92682;56.16822
+;True;T100;2435;Superbrugsen Hørning;Nørre All+;27;;8362;Hørning;10.037695;56.087045
+;True;T100;24350;Sinding-Ørre Midtpunkt Skole;Skoletoften;7;;7400;Herning;8.851708;56.213415
+;True;T100;24352;Lind Skole;Skolevænget;17;;7400;Herning;8.9817;56.10676
+;True;T100;24356;Lundgårdskolen;Tjelevej;25;;7400;Herning;8.930022;56.151901
+;True;T100;24358;Åmoseskolen;Valdemarsvej;347;;7400;Herning;9.001416;56.132614
+;True;T100;24362;Vestervangskolen;Vestergade;82;;7400;Herning;8.95705;56.135985
+;True;T100;24372;Vildbjerg Skole;Bjørnkærvej;2;;7480;Vildbjerg;8.748133;56.18756
+;True;T100;24379;Timring Skole;Fuglevænget;1;;7480;Vildbjerg;8.73892;56.175175
+;True;T100;24380;Nøvling Skole;Herningvej;70 A;;7480;Vildbjerg;8.83987;56.17525
+;True;T100;24382;Kildebakkeskolen;Soldalen;8;;7480;Vildbjerg;8.774144;56.195999
+;True;T100;24383;Aulum Byskole;Markedspladsen;2;;7490;Aulum;8.798645;56.265745
+;True;T100;24384;Aulum Kristne Friskole;Østergade;11;;7490;Aulum;8.800765;56.261365
+;True;T100;24385;Ellebækskolen;Beethovensvej;24;;7500;Holstebro;8.579015;56.37696
+;True;T100;24386;Borbjerg Skole;Bukdalvej;1;;7500;Holstebro;8.75423;56.404925
+;True;T100;24387;Balletskolen;Den Røde Plads;4;;7500;Holstebro;8.618274;56.356717
+;True;T100;24388;Sct. Jørgens Skole;Døesvej;54;;7500;Holstebro;8.605205;56.369056
+;True;T100;24389;Sønderlandsskolen Mellemtrin;Døesvej;7;;7500;Holstebro;8.609763;56.364791
+;True;T100;24390;Halgård Skole;Halgårdvej;1-3;;7500;Holstebro;8.66262;56.332991
+;True;T100;24391;Rolf Krake Skole;Hjaltesvej;1;;7500;Holstebro;8.633397;56.367648
+;True;T100;24392;Idom-Råsted Skole;Idomlundvej;27;;7500;Holstebro;8.486162;56.338568
+;True;T100;24393;Holstebro Friskole;Lægårdvej;102;;7500;Holstebro;8.644978;56.367107
+;True;T100;24394;Mejrup Skole;Mejrup Kirkevej;3;;7500;Holstebro;8.692561;56.365512
+;True;T100;24395;Birkelundskolen;Nørre Boulevard;57;;7500;Holstebro;8.59343;56.37606
+;True;T100;24396;Storåskolen;Odinsvej;2;;7500;Holstebro;8.608038;56.363979
+;True;T100;24397;Naur-Sir Skole;Sirvej;3;;7500;Holstebro;8.545461;56.396889
+;True;T100;24400;Nr. Felding Skole;Skolevej;7;;7500;Holstebro;8.60498;56.31473
+;True;T100;24401;Tvis Skole;Skolevænget;1;;7500;Holstebro;8.710656;56.322211
+;True;T100;24403;2059 Sønderlandsskolen Indskoling O;Døesvej;7;;7500;Holstebro;8.609763;56.364791
+;True;T100;24404;Den Kristne Friskole Holstebro;Vald Poulsens Vej;16;;7500;Holstebro;8.603252;56.3808
+;True;T100;24405;Skave Skole;Viborgvej;203;;7500;Holstebro;8.79933;56.390508
+;True;T100;24406;Feldborg Centralskole;Bredgade;76;;7540;Haderup;8.928945;56.328905
+;True;T100;24407;Haderup Skole;Skolevænget;1;;7540;Haderup;8.998364;56.388131
+;True;T100;24408;Vinding Skole;Skolegade;6;;7550;Sørvad;8.65838;56.2603
+;True;T100;24409;Hjerm Skole;Skolevej;1;;7560;Hjerm;8.6368;56.438335
+;True;T100;24410;Vemb Skole;Skolegade;12;;7570;Vemb;8.34748;56.342135
+;True;T100;24411;Humlum Skole;Chr. Gades Vej;32;;7600;Struer;8.558455;56.53738
+;True;T100;24412;Bremdal Skole;Drosselvej;5;;7600;Struer;8.581906;56.510887
+;True;T100;24413;Gimsing Skole;Drøwten;1;;7600;Struer;8.601371;56.476126
+;True;T100;24414;Langhøjskolen;Langhøjvej;29;;7600;Struer;8.512181;56.43546
+;True;T100;24416;Ramme Skole;Algade;92;;7620;Lemvig;8.20885;56.48665
+;True;T100;24417;Bonnet Friskole;Bøgelundvej;52;;7620;Lemvig;8.216195;56.525408
+;True;T100;24418;Christinelystskolen;Christinelystvej;3;;7620;Lemvig;8.300035;56.5415
+;True;T100;24419;Udefriskolen;Fabjergstad;32;;7620;Lemvig;8.37787;56.52653
+;True;T100;24420;Klinkby Skole;Nejrupvej;6;;7620;Lemvig;8.225197;56.556733
+;True;T100;24421;2069 Lemtorpskolen;Nissumvej;10;;7620;Lemvig;8.32622;56.552535
+;True;T100;24422;Nr. Nissum Skole;Skolevænget;11;;7620;Lemvig;8.4203;56.5499
+;True;T100;24423;Fjaltring Friskole;Vestermøllevej;11;;7620;Lemvig;8.13773;56.473545
+;True;T100;24424;Bøvling Friskole;Høvsørevej;13;;7650;Bøvlingbjerg;8.200515;56.435173
+;True;T100;24425;Tangsøskolen;Brogade;67;;7660;Bækmarksbro;8.306695;56.41941
+;True;T100;24428;Harboøre Skole;Skolegade;8;;7673;Harboøre;8.17869;56.618364
+;True;T100;24429;Thyborøn Skole;Skolevej;7;;7680;Thyborøn;8.21621;56.70406
+;True;T100;24430;Hillerslev Skole;Hillerslev Kærvej;9;;7700;Thisted;8.729593;57.013004
+;True;T100;24431;Nors Skole;Kirkebyvej;25;;7700;Thisted;8.669926;57.023486
+;True;T100;24432;Østre Skole;Kronborgvej;26;;7700;Thisted;8.70294;56.959755
+;True;T100;24434;Sennels Skole;Sennelsvej;122;;7700;Thisted;8.798357;56.969877
+;True;T100;24435;Tilsted Skole;Silstrupvej;47;;7700;Thisted;8.644291;56.949503
+;True;T100;24436;Klitmøller Friskole;Skolestien;3;;7700;Thisted;8.509911;57.039108
+;True;T100;24437;Thisted Friskole;Stensagervej;19;;7700;THISTED;8.666586;56.965212
+;True;T100;24438;Tingstrup Skole;Thorstedvej;21;;7700;Thisted;8.667725;56.960235
+;True;T100;24439;Østerild Skole;Vesterbyvej;1A;;7700;Thisted;8.842365;57.02949
+;True;T100;24441;Snedsted Skole;Hovedgaden;5;;7752;Snedsted;8.533495;56.89276
+;True;T100;24442;Koldby Skole;Limfjordsgade;9;;7752;Snedsted;8.529024;56.845659
+;True;T100;24443;Hurup Skole;Idrætsvej;11;;7760;Hurup Thy;8.417212;56.753957
+;True;T100;24444;Boddum-Ydby Friskole;Ydbyvej;193;;7760;Hurup Thy;8.410289;56.709189
+;True;T100;24445;Vestervig Skole;Klostergade;11;;7770;Vestervig;8.320787;56.764572
+;True;T100;24446;Thyholm Friskole;Jupitervej;26;;7790;Thyholm;8.53735;56.608157
+;True;T100;24448;Brårup Skole;Brårupvej;94;;7800;Skive;9.034865;56.550575
+;True;T100;24450;Vestfjendsskolen;Dåsbjergvej;17;;7800;Skive;9.00642;56.44512
+;True;T100;24451;Friskolen I Skive;Fredensgade;11;;7800;Skive;9.027819;56.564148
+;True;T100;24452;Aakjærskolen;Frederiksgade;21J;;7800;Skive;9.022875;56.567435
+;True;T100;24453;Resen Skole;Furvej;9;;7800;Skive;9.028085;56.592225
+;True;T100;24454;Ådalsskolen Afd Rønbjerg;Kisumvej;30;;7800;Skive;8.940515;56.53474
+;True;T100;24455;Skivehus Skole;Rosenbakken;8;;7800;Skive;9.036255;56.581345
+;True;T100;24456;Hem Skole;Rudemøllevej;3;;7800;Skive;8.963765;56.596215
+;True;T100;24457;Ejsing Friskole;Gl. Landevej;24;;7830;Vinderup;8.78182;56.48142
+;True;T100;24458;Vinderup Skole;Sevelvej;27;;7830;Vinderup;8.78312;56.478995
+;True;T100;24459;Sevel Skole;Skoletoften;3-5;;7830;Vinderup;8.866171;56.456151
+;True;T100;24460;Margrethe Reedtz Skolen;Skolevænget;14;Ryde;7830;Vinderup;8.777027;56.434709
+;True;T100;24461;Ørslevkloster Skole;Hejlskovvej;27;;7840;Højslev;9.21878;56.599785
+;True;T100;24462;Højslev Skole;Skolevej;13;;7840;Højslev;9.113155;56.552493
+;True;T100;24463;Nr. Søby Skole;Stoholmvej;24;;7840;Højslev;9.126058;56.542327
+;True;T100;24464;Stoholm Skole;Vesterled;3-5;;7850;Stoholm;9.147115;56.48543
+;True;T100;24465;Oddense Skole;Andrupvej;1 B;;7860;Spøttrup;8.932218;56.6504
+;True;T100;24466;Vestsalling Skole Lihm;Ålbækvej;18;;7860;Lihme, Spøttrup;8.73249;56.60218
+;True;T100;24467;Vestsalling Skole Afd. Balling;Stadion Allé;18;;7860;Spøttrup;8.881822;56.611175
+;True;T100;24468;Roslev Skole;Sallingsundvej;26;;7870;Roslev;8.985748;56.701448
+;True;T100;24469;Breum Skole;Skolevej;11;;7870;Roslev;9.071335;56.687635
+;True;T100;24470;Jebjerg Skole;Vestergårdsvej;8;;7870;Roslev;9.010575;56.670405
+;True;T100;24471;Lødderup Friskole;Degnestræde;11;;7900;Nykøbing M;8.795552;56.774926
+;True;T100;24474;Nordmorsskolen;Skolestræde;15;;7900;Nykøbing M;8.868387;56.921356
+;True;T100;24475;Bjergby Friskole;Friskolevej;13;;7950;Erslev;8.733935;56.868795
+;True;T100;24476;Sundby Friskole;Skolebakken;12;;7950;Erslev;8.672884;56.876193
+;True;T100;24479;Sparkær Skole;Langgade;32;;8800;Viborg;9.228385;56.474331
+;True;T100;24480;Vejgaard Østre Skole;Chresten Koldsvej;1;;9000;AALBORG;9.96215;57.038255
+;True;T100;24481;Klostermarksskolen;Dr. Christinesvej;6;;9000;AALBORG;9.906645;57.048755
+;True;T100;24482;Filstedvejens Skole;Filstedvej;16;;9000;AALBORG;9.959903;57.03578
+;True;T100;24483;Skipper Clement Skolen;Gl. Kærvej;28-30;;9000;AALBORG;9.939728;57.037607
+;True;T100;24484;Gl. Hasseris Skole;Mester Eriksvej;57;;9000;AALBORG;9.87035;57.035505
+;True;T100;24485;Kærbyskolen;Oluf Borchsvej;2;;9000;AALBORG;9.917815;57.028525
+;True;T100;24486;Sønderbroskolen;Sjællandsgade;2;;9000;AALBORG;9.932629;57.039796
+;True;T100;24487;Vesterkærets Skole;Skydebanevej;1;;9000;AALBORG;9.889505;57.055465
+;True;T100;24488;Aalborg Friskole;Sohngårdsholmsvej;47;;9000;AALBORG;9.946465;57.028875
+;True;T100;24489;Filipskolen Aalborg;Sohngårdsholmsvej;53;;9000;AALBORG;9.945599;57.02811
+;True;T100;24490;Sct. Mariæ Skole;Valdemarsgade;14;;9000;AALBORG;9.91159;57.050395
+;True;T100;24491;Sofiendalskolen;Lange Müllersvej;18;;9200;AALBORG SV;9.892735;57.017437
+;True;T100;24492;Vester Mariendal Skole;Stjernevej;5;;9200;AALBORG SV;9.908445;57.02237
+;True;T100;24493;Gug Skole;Solhøjsvej;2;;9210;AALBORG SØ;9.93082;57.00578
+;True;T100;24494;Herningvej Skole;Herningvej;35;;9220;AALBORG Ø;9.982874;57.02822
+;True;T100;24495;Svenstrup Skole;Egemarksvej;1;;9230;SVENSTRUP J;9.85034;56.97334
+;True;T100;24496;Ellidshøj Skole;Ny Skolevej;2;;9230;SVENSTRUP J;9.865525;56.928995
+;True;T100;24499;Ferslev Skole;Rævedalsvej;5;;9230;SVENSTRUP;9.89998;56.95248
+;True;T100;24500;Højvangskolen;Tingstedet;20;;9230;SVENSTRUP J;9.830705;56.970635
+;True;T100;24503;Skørbæk-Ejdrup Friskole;Ejdrupvej;33;;9240;NIBE;9.540105;56.903055
+;True;T100;24504;Sebber Skole;Gl. Skolevej;1A;;9240;NIBE;9.447863;57.001545
+;True;T100;24505;Vokslev Friskole;Hobrovej;97;;9240;NIBE;9.686365;56.966951
+;True;T100;24508;Nørholm Skole;Nørholmsvej;480-482;;9240;NIBE;9.72396;57.036269
+;True;T100;24510;Farstrup Centralskole;Vårvej;9;;9240;NIBE;9.460279;56.984308
+;True;T100;24512;Gistrup Skole;Hadsundvej;406;;9260;GISTRUP;10.00052;56.992755
+;True;T100;24513;Vaarst/Fjellerad Skole;Hålsvej;4;;9260;GISTRUP;10.017145;56.922967
+;True;T100;24514;Nøvling Skole;Nøvling Skolevej;5;;9260;GISTRUP;9.955742;56.97291
+;True;T100;24516;Nøvling Skole - Børnehave;Nøvling Skolevej;7;;9260;GISTRUP;9.955742;56.97291
+;True;T100;24517;Klarup Skole;Hellasvej;17;;9270;KLARUP;10.047283;57.011012
+;True;T100;24522;Langholt Skole;Øster Hassingvej;1;;9310;VODSKOV;10.088556;57.102886
+;True;T100;24524;Nr. Uttrup Skole;Hjørringvej;83;;9400;NØRRESUNDBY;9.948238;57.070557
+;True;T100;24525;Gl. Lindholm Skole;Lindholmsvej;65;;9400;NØRRESUNDBY;9.908185;57.06892
+;True;T100;24526;Løvvangskolen;Løvbakken;6;;9400;NØRRESUNDBY;9.92972;57.07418
+;True;T100;24527;Skansevejens Skole;Skansevej;2;;9400;NØRRESUNDBY;9.923105;57.060675
+;True;T100;24528;Nørhalne Skole;Bygaden;24;;9430;VADUM;9.875449;57.152364
+;True;T100;24531;Aabybro Friskole;Peter Løthsvej;5;;9440;AABYBRO;9.746938;57.157817
+;True;T100;24532;Gjøl Skole;Rønnebærvej;8;;9440;AABYBRO;9.730683;57.069876
+;True;T100;24533;Vedsted Friskole;Terpsvej;1;;9440;AABYBRO;9.687395;57.149345
+;True;T100;24537;Børnehaven Ørebroskolen;Ørebrovej;128;;9690;FJERRITSLEV;9.235694;57.053934
+;True;T100;24539;Serritslev Skole;Hybenvej;22;;9700;BRØNDERSLEV;9.97186;57.31458
+;True;T100;24540;Thise Skole;Jens Thisevej;26;;9700;BRØNDERSLEV;9.813865;57.28743
+;True;T100;24541;Torslev Skole;Brøndenvej;3;;9750;ØSTERVRAA;10.244273;57.340524
+;True;T100;24542;Bjergby-Mygdal Skole;ASDALVEJ 14, BJERGBY;;;9800;HJØRRING;9.964939;57.4429
+;True;T100;24549;Sdr. Nissum Friskole;Kirkebyvej;11;;6990;Ulfborg;8.19015;56.30574
+;True;T100;24550;Fjelstervang Skole;Skolestræde;1;;6933;Kibæk;8.81253;56.074025
+;True;T100;24551;Vendsyssel Friskole;Pladsen;1;;9870;SINDAL;10.28006;57.506525
+;True;T100;24556;Kødgros Vest A/S;Søvejen;10;Herrup;7830;Vinderup;8.918114;56.409455
+;True;T100;24564;Att. KARN;Sønderupvej;15;;6920;Videbæk;8.667825;56.049915
+;True;T100;24565;Arla Foods HOCO;Bülowsvej;7;;7500;Holstebro;8.610651;56.349006
+;True;T100;24569;Lilleåskolen;Skolevej;2-4;;8870;Langå;9.918193;56.357213
+;True;T100;24570;Tungelundskolen;Skolegade;15;;8881;Thorsø;9.788356;56.305122
+;True;T100;24571;Ulstrup Skole;Hovedgaden;58;;8860;Ulstrup;9.788636;56.387216
+;True;T100;24575;Hammerum Skole;Hovedgaden;1;;7400;Herning;8.970225;56.13863
+;True;T100;24576;Ilskov Skole;Ilskov Hovedgade;32-34;;7451;Sunds;9.088639;56.236224
+;True;T100;24577;Skalmejeskolen;Skalmejevej;33;;7451;Sunds;8.997623;56.20669
+;True;T100;24578;Sunds Skole;Nøddevej;13;;7451;Sunds;9.01945;56.20259
+;True;T100;2458;Superbrugsen Jægergårdsgade;Jægergårdsgade;16;;8000;Aarhus C;10.198035;56.14808
+;True;T100;24584;Bording Skole;Solsortevej;10;;7441;Bording;9.27756;56.14186
+;True;T100;24586;Engesvang Skole;Gl. Kongevej;97;;7442;Engesvang;9.34411;56.170825
+;True;T100;24588;Hyldgårdsskolen;Hyldgårds Alle;9;;7430;Ikast;9.154553;56.125755
+;True;T100;24589;Ikast Nordre Skole;Hagelskærvej;1;;7430;Ikast;9.14846;56.147765
+;True;T100;24590;Ikast Vestre Skole;Vestergade;47;;7430;Ikast;9.14642;56.138815
+;True;T100;24591;Ikast Østre Skole;Jyllandsgade;10;;7430;Ikast;9.164705;56.13827
+;True;T100;24592;Isenvad Skole;Bygaden;41;;7430;Ikast;9.20079;56.09977
+;True;T100;24595;Ans Skole;Teglgade;20-26;;8643;Ans By;9.587755;56.307305
+;True;T100;24596;Balleskolen;Balle Kirkevej;120;;8600;Silkeborg;9.523315;56.19016
+;True;T100;24599;Buskelundskolen;Buskelundtoften;5;;8600;Silkeborg;9.509216;56.183078
+;True;T100;24600;Dybkær Specialskole;Arendalsvej;273;;8600;Silkeborg;9.596647;56.190371
+;True;T100;24602;Frisholm Skole;Frisholmvej;20;;8653;Them;9.544002;56.081093
+;True;T100;24603;Funder Skole;Funder Skolevej;3;;8600;Silkeborg;9.46285;56.14862
+;True;T100;24604;Gjern Skole;Søndergade;17;;8883;Gjern;9.741454;56.223653
+;True;T100;24605;Gjessø Skole;Brandevej;6;;8600;Silkeborg;9.487319;56.114097
+;True;T100;24606;Grauballe Skole;Grauballe Gudenåvej;21;;8600;Silkeborg;9.633762;56.226418
+;True;T100;24607;Kjellerup Skole;Tinghusvej;16;;8620;Kjellerup;9.42926;56.287235
+;True;T100;24609;Kornmod Realskole;Skolegade;4-12;;8600;Silkeborg;9.543875;56.16643
+;True;T100;2461;Superbrugsen Kolind;Bugtrupvej;1;;8560;Kolind;10.58811;56.36155
+;True;T100;24610;Kragelund Skole;Frederiksdalvej;9;;8600;Silkeborg;9.405143;56.196681
+;True;T100;24611;Resenbro Skole;Skellerupvej;16;;8600;Silkeborg;9.653878;56.18193
+;True;T100;24612;Sjørslev Skole;Sognegårdsvej;41;;8620;Kjellerup;9.43452;56.331235
+;True;T100;24613;Skægkærskolen;Sindingvej;15;;8600;Silkeborg;9.500226;56.211642
+;True;T100;24614;Sorring Skole;Skolebakken;4;;8641;Sorring;9.777023;56.177625
+;True;T100;24616;Sølystskolen Afd. Gran Alle;Gran Alle;20;;8600;Silkeborg;9.56197;56.181421
+;True;T100;24617;Thorning Skole;Møllevej;5-7;;8620;Kjellerup;9.331297;56.2855
+;True;T100;24618;Vinderslev Skole;Vinderslevholmvej;2;;8620;Kjellerup;9.42634;56.253615
+;True;T100;24619;Virklund Skole;Thorsøvænget;1A;;8600;Silkeborg;9.559287;56.127516
+;True;T100;24620;Voel Skole;Højgårdsvej;4;;8600;Silkeborg;9.700527;56.187407
+;True;T100;24621;Gl. Rye Skole;Nyvej;1;;8680;Ry;9.699534;56.076764
+;True;T100;24622;Knudsøskolen;Tulstrupvej;80;;8680;Ry;9.781599;56.107629
+;True;T100;24623;Knudsøskolen Sfo;Tulstrupvej;84;;8680;Ry;9.781599;56.107629
+;True;T100;24624;Låsby Skole;Skolevej;10;;8670;Låsby;9.804993;56.149583
+;True;T100;24625;Mølleskolen;Skanderborgvej;50;;8680;Ry;9.762282;56.091446
+;True;T100;24628;Bøgeskovskolen;Koldskær;8;;8850;Bjerringbro;9.665975;56.364465
+;True;T100;24629;Finderuphøj Skole;Spættevej;2;;8800;Viborg;9.380715;56.4424
+;True;T100;24630;Frederiks Skole;Skolen Nr.;3;;7470;Karup J;9.248455;56.344255
+;True;T100;24631;Friskolen I Viborg;Ammunitionsvej;5;;8800;Viborg;9.40511;56.45858
+;True;T100;24632;Gudenådalens Friskole;Bjerring Hede;13B;;8850;Bjerringbro;9.620641;56.381544
+;True;T100;24633;Hald Ege Skole;Egeskovvej;75;;8800;Viborg;9.350792;56.401209
+;True;T100;24634;Karup Skole;Østergade;19;;7470;Karup J;9.17009;56.30711
+;True;T100;24635;Møllehøjskolen;Bruunshåbvej;25;;8800;Viborg;9.4417;56.419925
+;True;T100;24636;Nørreå Skolen;Gl. Randersvej;8;;8850;Bjerringbro;9.747115;56.451729
+;True;T100;24637;Rosenvængets Skole;Rørsangervej;1;;8800;Viborg;9.376242;56.444194
+;True;T100;24638;Rødkærsbro Skole;Brandstrupvej;23;;8840;Rødkærsbro;9.504416;56.354977
+;True;T100;24639;Skals Skole;Gl. Skolevej;1;;8832;Skals;9.403843;56.556032
+;True;T100;24640;Søndre Skole;Koldingvej;114;;8800;Viborg;9.391413;56.432773
+;True;T100;24641;Tange Kristne Friskole;Husbondvej;39;;8850;Bjerringbro;9.584275;56.355569
+;True;T100;24642;Vestervang Skole;Boghvedevej;26;;8800;Viborg;9.387781;56.464829
+;True;T100;24643;Viborg Private Realskole;Trekronervej;12-14;;8800;Viborg;9.401686;56.448846
+;True;T100;24647;Skolemælk BKS Nord 1;Sundsholmen;37;;9400;Nørressundby;9.95116;57.064555
+;True;T100;24648;SkoleMælk BKS Nord 2;Sundsholmen;37;;9400;Nørresundby;9.95116;57.064555
+;True;T100;2465;Superbrugsen Kjellerup;Bryggertorv;9;;8620;Kjellerup;9.432095;56.289055
+;True;T100;24650;Skole Vest rute 1;Hobro Terminal;;;9100;Hobro;9.767715;56.63423
+;True;T100;24651;Rema 1000 Silkeborg Butik 927;Nørrevænget;74;;8600;Silkeborg;9.549247;56.186078
+;True;T100;24652;Bruno - skolemælk 2;Hobro Terminal;;;9100;Hobro;9.767715;56.63423
+;True;T100;24655;Min Købmand Rørbæk;Skovmosevej;1;Rørbæk;9500;Hobro;9.715246;56.705986
+;True;T100;24869;Frøken Koch;Kystpromenaden;5;;8000;Aarhus C;10.223709;56.165677
+;True;T100;24882;EventGrossisten;Caroline Amalie Vej;9;;2800;Kgs. Lyngby;12.502767;55.780059
+;True;T100;24886;Østjysk Mælk A/S;Kongefolden 6, 5. tv.;6, 5. tv.;;8660;Skanderborg;9.928781;56.047068
+;True;T100;24914;LUKKET Min Købmand Brunshåb;Vinkelvej;85;;8800;Viborg;9.444362;56.42227
+;True;T100;24923;LUKKET SPAR RANDERS NØ;Glarbjergvej;75;;8930;Randers Nø;10.034375;56.4799
+;True;T100;24925;Kram  Madservice A/S;Lykkebækvej;1;;4600;Køge;12.1663;55.477288
+;True;T100;24934;Sinding-Ørre Midtpunkt Sfo;Skoletoften;7;;7400;Herning;8.851708;56.213415
+;True;T100;24946;Skolemælk BKS Nord 3;Sundsholmen;37;;9400;Nørressundby;9.95116;57.064555
+;True;T100;24947;Skolemælk BKS Nord 4;Sundsholmen;37;;9400;Nørresundby;9.95116;57.064555
+;True;T100;24949;Skole Vest Rute 3;Hobro Terminal;;;9100;Hobro;9.767715;56.63423
+;True;T100;24950;Skole Vest Rute 4;Hobro Terminal;;;9100;Hobro;9.767715;56.63423
+;True;T100;24951;Skole Hobro Rute 3;Hobro Terminal;;;9100;Hobro;9.767715;56.63423
+;True;T100;24956;I.F. Samhandel;Vejlevej;16;;8700;Horsens;9.829265;55.850805
+;True;T100;24957;Letkøb Brønderslev;Vestergade;69;;9700;Brønderslev;9.940218;57.270443
+;True;T100;24963;Cheval Blanc Servicerestauranter A/;Brogårdsvej;22;;2820;Gentofte;12.539235;55.75353
+;True;T100;24965;Djurs Sommerland;Randersvej;17;;8581;Nimtofte;10.550945;56.427305
+;True;T100;24966;Fårup Sommerland;Pirupvejen 147;;;9492;Blokhus;9.643149;57.264281
+;True;T100;24970;Netto Eternitten;Alexander Foss Gade;30;;9000;Ålborg;9.93528;57.036165
+;True;T100;24975;Vestsalling Skole Afd. Rødding;Skolevej;1;;7860;Spøttrup;8.809493;56.643452
+;True;T100;24986;Rema 1000 Århus V Butik 928;Vilhelm Bersøesvej;62;;8210;Århus V;10.18776;56.168262
+;True;T100;25277;Ebeltoft IF;Østeralle;17;;8400;Ebeltoft;10.682489;56.194381
+;True;T100;25344;DagliBrugsen Mejdal;Prins Burrisvej;44;;7500;Holstebro;8.645829;56.34743
+;True;T100;2538;Superbrugsen Mariemagdalene;Vestergade;63;;8550;Ryomgård;10.491105;56.381977
+;True;T100;25469;Bavinchi A/S;Priorsvej;31;;8600;Silkeborg;9.56827;56.204355
+;True;T100;25478;LUKKET Letkøb Hvilsom;Hannerupvej;259;Hvilsom;9500;Hobro;9.610311;56.6593
+;True;T100;25490;Min Købmand Virring;Gadebakken;36;Virring;8660;Skanderborg;10.034087;56.030719
+;True;T100;25491;Kiwi Nykøbing Mors 180;Fruevej;37-41;;7900;Nykøbing Mors;8.846758;56.787435
+;True;T100;25496;Lagkagehuset;Amerikavej;21;;1756;København V;12.54192;55.669425
+;True;T100;25523;Fakta Houlkær;Odshøjvej;1 F;;8800;Viborg;9.447905;56.46196
+;True;T100;25532;Netto Vissevej, Gug;Vissevej 1 B (byggenr);;;9210;Ålborg SØ;9.972237;57.04017
+;True;T100;25533;Fakta Ulfborg;Holmegade;34;;6990;Ulfborg;8.323655;56.27576
+;True;T100;25535;Fakta Lind;Lind Hovedgade;17;;7400;Herning;8.979205;56.10551
+;True;T100;2556;Dagli' Brugsen Mørke-Ommestrup;Stationsvej;12;;8544;Mørke;10.377647;56.339576
+;True;T100;25563;Føtex Skanderborg;Gasværksvej;5;;8660;Skanderborg;9.931313;56.032728
+;True;T100;25584;Fakta Hobro;Hostrupvej;87;;9500;Hobro;9.793508;56.649099
+;True;T100;25588;Fakta Brovst;Toftevej;18;;9460;Brovst;9.520411;57.098942
+;True;T100;25597;Netto Samsø;Beringvej;2;;8361;Hasselager;10.070303;56.099472
+;True;T100;25598;Kiwi Viborg 183;Vestervangsvej;12;;8800;Viborg;9.39325;56.45915
+;True;T100;25599;Fakta Viborgvej;Viborgvej;21;;8600;Silkeborg;9.542345;56.185885
+;True;T100;25634;Jobamora ApS;Michael Drewsens Vej 7 (bygning 3);;;8270;Højbjerg;10.153605;56.10429
+;True;T100;25636;Modermælk.dk;Michael Drewsens Vej;7;;8270;Højbjerg;10.154969;56.105743
+;True;T100;25646;Kiwi Silkeborg, Lupinvej 186;Lupinvej;2;;8600;Silkeborg;9.5545;56.1812
+;True;T100;25649;Spar Asferg Aps;Vestergade;16;Asferg;8990;Fårup;9.929837;56.546428
+;True;T100;25651;Hørkram Foodservice A/S;Torshøjvej 59, Kolt;;;8362;Hørning;10.03185;56.108186
+;True;T100;25661;Netto Campus - byggenr;Jens Otto Kraghs Plads;5;;8900;Randers C;10.042561;56.461171
+;True;T100;25665;SPAR HOLSTEBRO;Døesvej;109;;7500;Holstebro;8.60217;56.3705
+;True;T100;25669;Fakta Herning;Grøndahlsvej;20;;7400;Herning;8.97564;56.128215
+;True;T100;25674;Det Danske Madhus;Vestergade;12, 2.sal;;7700;Thisted;8.689121;56.954841
+;True;T100;25697;Min  Købmand Lem;Vesterbrogade;1;Lem;7860;Spøttrup;8.782417;56.591436
+;True;T100;25701;KIWI Aalborg, Gug 182;Nøhr Sørensensvej;1 B, Gug;;9210;Aalborg;9.931641;57.015869
+;True;T100;25705;Fakta Nykøbing Mors;Algade;5;;7900;Nykøbing M;8.860825;56.79578
+;True;T100;25718;Rema 1000 Åbyhøj Butik 912;Silkeborgvej;261;;8230;Åbyhøj;10.166285;56.15523
+;True;T100;25722;Rema 1000 Kristrup Butik 943;Vennelystvej;33;;8960;Randers Sø;10.058317;56.444985
+;True;T100;25726;LUKKET EuroSpar;Nøhr Sørensensvej;1 A;;9210;Ålborg Sø;9.931641;57.015869
+;True;T100;25737;Jespers Torvekøkken;Telefonvej;6;;2660;Søborg;12.411973;55.618822
+;True;T100;25746;Supergros Herning - Baby and Me;Mørupvej;8B;;7400;Herning;8.945278;56.128611
+;True;T100;25756;Børnehaven Mo2Rikken;Den Røde Plads;4;;7500;Holstebro;8.618274;56.356717
+;True;T100;25773;Min Købmand Ørding;Skolesvinget;18;Ørding;7990;Øster Assels;8.759856;56.718422
+;True;T100;25781;Fakta Q Dytmærsken;Dytmærsken;9;;8900;Randers C;10.03982;56.459565
+;True;T100;25786;Bredgades Kiosk ApS;Bredgade;29;;6920;Videbæk;8.631714;56.091259
+;True;T100;25791;KIWI Aalborg, Vesterbro 187;Vesterbro;95-97;;9000;Ålborg C;9.916512;57.050539
+;True;T100;25793;Forenede Service;Buddingevej;312 - 316;;2860;Søborg;12.49403;55.74429
+;True;T100;25794;Spar;Vestergade;31;;7850;Stoholm;9.146793;56.485905
+;True;T100;2580;BRUGSEN MÅRUP;SVENSKGYDE 3;;;8305;SAMSØ;10.565704;55.945924
+;True;T100;25800;Min Købmand Knebel;Knebel Bygade;27;;8420;Knebel;10.486871;56.213294
+;True;T100;25814;Salling Super Aarhus;Søndergade;27;;8000;Aarhus;10.206888;56.154733
+;True;T100;25819;Fitness.Dk Frisko;Daugbjergvej;26;;8000;Århus C;10.184475;56.155659
+;True;T100;25839;Superbrugsen Hornslet;Toftevej;11;;8543;Hornslet;10.318718;56.314059
+;True;T100;25843;Salling Aalborg;Nytorv;8;;9000;Aalborg C;9.922679;57.048449
+;True;T100;25852;MENY Aabybro;Aabybro Centret;12;;9440;Aabybro;9.735168;57.159262
+;True;T100;25877;KIWI Grøfthøj 185;Grøfthøjparken;3;;8260;Viby J;10.14257;56.122045
+;True;T100;25879;Fakta Frydenlund PÅ KØL;Frydenlunds Alle;7;Hasle;8210;Århus V;10.17417;56.1649
+;True;T100;25886;Fakta Glentevej;Glentevej;16;;7400;Herning;8.95342;56.140235
+;True;T100;25887;Fakta Hanstholm;Bytorvet;3;;7730;Hanstholm;8.605848;57.113951
+;True;T100;25888;Fakta Aulum;Skolegade;7;;7490;Aulum;8.796585;56.264
+;True;T100;25891;Rema 1000 Sindal Butik 944;Ved Banen;5;;9870;Sindal;10.197669;57.470063
+;True;T100;25893;Fakta Nibe;Toften;9;;9240;Nibe;9.640889;56.984713
+;True;T100;25903;KIWI Vesterbro Torv, Aarhus 189;Vesterbro Torv;10;;8000;Århus C;10.19854;56.158245
+;True;T100;25905;JAMA ost (Unika);Hørgårdsvej;46;;8240;Risskov;10.237351;56.198435
+;True;T100;25914;Fakta Skipperen;Vestre Alle;13;;9000;Ålborg;9.907253;57.034058
+;True;T100;25953;LUKKET Eurospar Løgten;Grenåvej;752;Løgten;8541;Skødstrup;10.31568;56.27626
+;True;T100;25956;MENY Bjerringbro;Torvet;5;;8850;Bjerringbro;9.65614;56.376075
+;True;T100;25957;LUKKET Eurospar;Hovedgaden;11-13;;8670;Låsby;9.809126;56.150646
+;True;T100;25958;SPAR SKANDERBORG;Højvang Centret;4;;8660;Skanderborg;9.948169;56.044212
+;True;T100;25960;MENY Vildbjerg;Bredgade;14;;7480;Vildbjerg;8.767306;56.197619
+;True;T100;25961;MENY Harlev J;Gammel Stillingvej;431;;8462;Harlev J;10.0003;56.144505
+;True;T100;25962;MENY Risskov;Tornebakken;1;;8240;Risskov;10.212075;56.203
+;True;T100;25963;MENY Borgergade Silkeborg;Borgergade;71;;8600;Silkeborg;9.549672;56.1806
+;True;T100;25965;MENY Fjerritslev;Søgade;10;;9690;Fjerritslev;9.26745;57.087265
+;True;T100;25966;MENY Gl. Skagensvej Fr.Havn;GL. Skagenvej;85;;9900;Frederikshavn;10.528565;57.45435
+;True;T100;25967;SPAR FREDERIKSHAVN, LÆSØGADE;Læsøgade;16;;9900;Frederikshavn;10.534272;57.436474
+;True;T100;25968;MENY Skørping;Skørping Centret;14;;9520;Skørping;9.89067;56.85708
+;True;T100;25969;Spar;J.F Kennedys Plads;;;9000;Aalborg;9.91769;57.04318
+;True;T100;25970;SPAR SKAGEN;Skagavej;104;;9990;Skagen;10.591955;57.727345
+;True;T100;25971;MENY Dronninglund;Stationsvej;2;;9330;Dronninglund;10.293665;57.16012
+;True;T100;25972;SPAR AALBORG ØST;Tornhøjvej;4;;9220;Aalborg Ø;10.00246;57.025785
+;True;T100;25976;SPAR KASTETVEJ ÅLBORG;Kastetvej;101;;9000;Aalborg;9.89576;57.055275
+;True;T100;25977;MENY Klarup;Klarupvej;52;;9270;Klarup;10.046036;57.012973
+;True;T100;25989;Fakta Egeris, Skive;Kirkealle;92;;7800;Skive;9.029545;56.55176
+;True;T100;25990;Fakta Sct Olai Plads;Sct Olai Plads;5;;9800;Hjørring;9.9857;57.46192
+;True;T100;25991;Fakta Q Risskov;Ndr. Strandvej;19;;8240;Risskov;10.243;56.19285
+;True;T100;25994;SPAR SULDRUP;Hjedsbækvej;349;;9541;Suldrup;9.70003;56.84716
+;True;T100;25995;SPAR NØRAGER;Jernbanegade;4;;9610;Nørager;9.630543;56.706035
+;True;T100;26033;Fakta Strandby - Elling;Grundtvigsvej;86;Elling;9900;Frederikshavn;10.475555;57.481912
+;True;T100;26058;S-Engros Århus;Edwins Rahrsvej;68;;8220;Brabrand;10.111119;56.165556
+;True;T100;2608;Dagli' Brugsen Pindstrup;Storegade;62;PINDSTRUP;8550;Ryomgård;10.411214;56.393333
+;True;T100;26091;Fakta Frederikshavn;Søndergade;14;;9900;Frederikshavn;10.533435;57.43674
+;True;T100;26095;Købmanden på Boulevarden;Boulevarden;33;;9000;Aalborg;9.918501;57.043938
+;True;T100;26096;Mølholm Nærbutik;Svalegaardsvej;67;;9000;Aalborg;9.872293;57.041597
+;True;T100;26103;Restaurant Villa Vest;Strandvejen;138;Lønstrup;9800;Hjørring;9.796048;57.476332
+;True;T100;26104;KIWI Vestbjerg 190;Blomsterbakken;4;;9380;Vestbjerg;9.962525;57.12881
+;True;T100;26107;Mini Høkeren;Nordre Strandvej;122;;8240;Riskkov;10.25875;56.200767
+;True;T100;26136;KIWI Hirtshals 193;Nejstdalen;2;;9850;Hirtshals;9.967239;57.581259
+;True;T100;26144;KIWI Skagen 191;Chr. Xs Vej;6;;9990;Skagen;10.589925;57.72337
+;True;T100;26147;Fakta Sønderport;Østerbrogade;54;;9400;Nørresundby;9.924697;57.057824
+;True;T100;26148;SPAR HADSUND;Butikstorvet;11;;9560;Hadsund;10.113275;56.718225
+;True;T100;26166;Fitness.Dk Randers;Vestergrave;2;;8900;Randers;10.03436;56.459025
+;True;T100;26188;Rema 1000 Ålborg Butik 932;Østerbro;29 A;;9000;Ålborg;9.936019;57.046067
+;True;T100;26198;Netto Storcenter Nord;Finlandsgade;15;;8200;Århus N;10.19015;56.17071
+;True;T100;26209;Spar Gjern;Søndergade;54;;8883;Gjern;9.742215;56.221726
+;True;T100;26285;Letkøb Houvig;Houvig Klitvej;51;;6950;Ringkøbing;8.123825;56.140135
+;True;T100;26299;Rækker Mølle Købmænd;Søvejen;3;;6900;Skjern;8.537331;56.021536
+;True;T100;26313;Letkøb  Hylke;Hylkevej;52;Hylke;8660;Skanderborg;9.934266;55.992886
+;True;T100;26322;Letkøb Junget;Fjordvej;102;Junget;7870;Roslev;9.099387;56.762624
+;True;T100;26343;Holmegårdskolen;Norgesvej;6;;9800;Hjørring;9.993939;57.463811
+;True;T100;26345;Nordstjerneskolen;Rimmens Alle;75;;9900;Frederikshavn;10.5125;57.445465
+;True;T100;26347;Sønderhå-Hørsted Friskole;Legindvej;84;;7752;Snedsted;8.451873;56.869579
+;True;T100;26364;Fakta Aabybro;Passagen;70;;9440;Aabybro;9.732204;57.160877
+;True;T100;26423;Byens kiosk Nærkøb;Borgergade;21;;9620;Ålestrup;9.49956;56.694309
+;True;T100;26429;KIWI Skive 201;Søndergade;1;;7800;Skive;9.026238;56.564425
+;True;T100;26445;Starbucks, Salling Aalborg;Nytorv;8;;9000;Aalborg;9.922679;57.048449
+;True;T100;26446;Starbucks, Salling Aarhus;Søndergade;27;;8000;Aarhus C;10.206888;56.154733
+;True;T100;26456;Restaurant Skovmøllen;Skovmøllevej;51;;8270;Højbjerg;10.23523;56.084243
+;True;T100;26457;Ringkøbing Skole;Rindumvej;1;;6950;Ringkøbing;8.26757;56.094335
+;True;T100;26459;Min Købmand Kølkær;Kølkær hovedgade;45;;7400;Herning;9.083738;56.066474
+;True;T100;26461;SPAR SNEDSTED;Banegårdsvej;3;;7752;Snedsted;8.526245;56.89143
+;True;T100;26462;SPAR KOLDBY (SNEDSTED);Limfjordsgade;15;Koldby;7752;Snedsted;8.53123;56.845255
+;True;T100;26463;SPAR SKALS;Hovedgade;25;;8832;Skals;9.403125;56.555875
+;True;T100;26468;Sügro Nord;Kjeldsmarkvej;3-9;;7600;Struer;8.592587;56.482395
+;True;T100;26472;KIWI Viborg 194;Gammel Aalborgvej;21-23;;8800;Viborg;9.416762;56.460053
+;True;T100;26481;KIWI Nørresundby 198;Viaduktvej;16;;9400;Nørresundby;9.903631;57.069507
+;True;T100;26490;Rema 1000 Solbjerg Butik 954;Solbjerg Hovedgade;11;;8355;Solbjerg;10.081509;56.044409
+;True;T100;26491;Rema 1000 Viby J Butik 952;Gammel Kongevej;7-13;;8260;Viby J;10.173355;56.134625
+;True;T100;26514;Letkøb- Tunø Købmandsgård;Beringvej;2;;8361;Hasselager;10.070303;56.099472
+;True;T100;26516;S-Engros Thisted;Industrivej;8;;7700;Thisted;8.709425;56.96308
+;True;T100;26664;DagliBrugsen Ålum;Gammel Viborgvej;381;ÅLUM;8920;Randers Nv;9.835878;56.453622
+;True;T100;26665;Superbrugsen Auning;Centervej;6;;8963;Auning;10.374175;56.431527
+;True;T100;26666;LokalBrugsen Bønnerup;Bønnerupvej;12;BØNNERUP STRAND;8585;Glesborg;10.705407;56.528783
+;True;T100;26668;Dagli' Brugsen Bjerregrav;Frederiksbergvej;1 C;Ø. BJERREGRAV;8920;Randers Nv;9.908724;56.485298
+;True;T100;26678;Kvickly Hadsten;Søndergade;15;;8370;Hadsten;10.044568;56.32725
+;True;T100;26687;Lokalbrugsen Kragelund;Engesvangvej;9;KRAGELUND;8600;Silkeborg;9.408854;56.19483
+;True;T100;26691;Daglibrugsen Mejlby;Mejlbyvej;685;MEJLBY;8530;Hjortshøj;10.212845;56.301384
+;True;T100;26692;Dagli' Brugsen Nimtofte;Torvet;8;;8581;Nimtofte;10.56775;56.408685
+;True;T100;26719;Fakta Hjallerup;Hjallerup Centeret;22;;9320;Hjalleurp;10.14708;57.168585
+;True;T100;26720;Fakta Skødstrup;Ny Studstrupvej;2A;;8541;Skødstrup;10.335373;56.254583
+;True;T100;26728;MENY Sct. Mathias;Sct. Mathias Marked;38;;8800;Viborg;9.405403;56.449324
+;True;T100;26736;LUKKET Letkøb -Rønbjerg Købmand;Stationsvej;30;Rønbjerg;7800;Skive;8.93245;56.53444
+;True;T100;26737;SPAR HJØRRING;Nordens Alle;14;;9800;Hjørring;9.966765;57.464575
+;True;T100;2679;Superbrugsen Beder;Kirkebakken;4;;8330;Beder;10.205069;56.05902
+;True;T100;26791;Dagli' Brugsen Øster Hornum;Nibevej;189;Ø. HORNUM;9530;Støvring;9.748787;56.937354
+;True;T100;26793;Dagli' Brugsen Øster Hurup;Kystevejen;51;Ø. HURUP;9560;Hadsund;10.271127;56.804035
+;True;T100;26796;Superbrugsen Hirtshals;Jørgen Fibigers Gade;1;;9850;Hirtshals;9.95817;57.59071
+;True;T100;26798;Dagli' Brugsen Lendum;Søndergade;1;LENDUM;9870;Sindal;10.299871;57.409778
+;True;T100;26799;Dagli' Brugsen Holbøll Plads;Mylius Erichsensvej;74;;9210;Ålborg Sø;9.938035;57.02136
+;True;T100;26800;Superbrugsen Løgstør;Limfjordsvej;17;;9670;Løgstør;9.26306;56.96828
+;True;T100;26801;Superbrugsen Løkken;Jyllandsgade;11;;9480;Løkken;9.712891;57.369056
+;True;T100;26802;Dagli' Brugsen Mosbjerg;Mosbjergvej;429;;9870;Sindal;10.278842;57.502819
+;True;T100;26804;Dagli' Brugsen Ulsted;Vestergade;80;ULSTED;9370;Hals;10.25669;57.081338
+;True;T100;26805;Superbrugsen Nibe;Toften;1A;;9240;Nibe;9.640889;56.984713
+;True;T100;26806;Superbrugsen Vodskov;Vodskovvej;17;;9310;Vodskov;10.024375;57.10278
+;True;T100;26807;Superbrugsen Vrå;Strømgade;5-7;;9760;Vrå;9.941228;57.353377
+;True;T100;2681;Superbrugsen Skåde;Stenvej;17;SKÅDE;8270;Højbjerg;10.205079;56.106793
+;True;T100;26811;Dagli' Brugsen Ranum;Vestergade;35;RANUM;9681;Ranum;9.228335;56.897385
+;True;T100;26813;Lokalbrugsen Hørby S;Hjørringvej;120;HØRBY;9300;Sæby;10.381895;57.32286
+;True;T100;26815;Dagli' Brugsen Storvorde;Stationsvej;5 D;;9280;Storvorde;10.101705;57.00179
+;True;T100;26817;Superbrugsen Vejgård;Vejgård Bymidte;10;VEJGÅRD;9000;Ålborg;9.949448;57.041398
+;True;T100;26818;DagliBrugsen Sulsted;Elkærvej;11;;9381;Sulsted;9.96324;57.157415
+;True;T100;26823;Superbrugsen Skagen S.Omr.;Sankt Laurentiivej;28;;9990;Skagen;10.591215;57.723015
+;True;T100;26824;Superbrugsen Terndrup;Terndrup Centervej;1;;9575;Terndrup;10.056752;56.818787
+;True;T100;26826;Dagli' Brugsen Tornby;Gl. Landevej;7;;9850;Hirtshals;10.003595;57.559181
+;True;T100;26827;Kvickly Hobro;Adelgade;14;;9500;Hobro;9.793522;56.639091
+;True;T100;26828;DagliBrugsen Tversted;Østervej;4;TVERSTED;9881;Bindslev;10.190015;57.586925
+;True;T100;26830;Superbrugsen Vester Hassing;Springvandspladsen;2;;9310;Vodskov;10.129793;57.066567
+;True;T100;26833;DagliBrugsen Store Ajstrup;Brugsvej;7;;9240;Nibe;9.502608;56.95045
+;True;T100;26836;Dagli' Brugsen Assens;Storegade;15;ASSENS;9550;Mariager;10.063655;56.67684
+;True;T100;26839;Dagli' Brugsen Gedsted;Vesterbro;2;;9631;Gedsted;9.335594;56.690019
+;True;T100;26841;Dagli' Brugsen Havndal;Østerbro;17;;8970;Havndal;10.19537;56.65337
+;True;T100;26842;Superbrugsen Fjerritslev;Østergade;23;;9690;Fjerritslev;9.268415;57.08818
+;True;T100;26843;Dagli' Brugsen Klejtrup;Skårupvej;14;KLEJTRUP;9500;Hobro;9.633069;56.589679
+;True;T100;26844;DagliBrugsen Vester Thorup;Thistedvej;465;;9690;Fjerritslev;9.125311;57.103162
+;True;T100;26845;Dagli' Brugsen Gjerlev;Hammergårdsvej;2;;8983;Gjerlev J;10.132345;56.587795
+;True;T100;26846;Dagli' Brugsen Råby;Ved Dammen;31;RÅBY;8970;Havndal;10.229755;56.608387
+;True;T100;26858;Kvickly Randers;Merkurvej;53;;8960;Randers Sø;10.06198;56.429045
+;True;T100;26859;Dagli' Brugsen Jerslev;Boulevarden;19;;9740;Jerslevj;10.091845;57.286675
+;True;T100;2686;Superbrugsen Kridthøj;Kridthøjvej;3;;8270;Højbjerg;10.194549;56.117519
+;True;T100;26861;Kvickly Randers;Merkurvej;53;;8960;Randers SØ;10.06198;56.429045
+;True;T100;26862;Kvickly Randers Bageri;Merkurvej;53;;8960;Randers SØ;10.06198;56.429045
+;True;T100;26874;BRUGSEN NANORTALIK SALGSOMR;LUNDIP AQQUTAA B 376 PB 167;;;3922;NANORTALIK;12.400119;55.87338
+;True;T100;26877;BRUGSEN PAAMIUT;ILLOQARFIUP QEQQA 10 PB 512;;;3940;PAAMIUT;9.437742;55.292431
+;True;T100;26878;BRUGSEN NARSAQ;MESTERSVEJ B 1230 PB 170;;;3921;NARSAQ;11.950895;55.12612
+;True;T100;26880;BRUGSEN QAQORTOQ S-OMR;A. OLSENSVEJ B 852 BOX 525;;;3920;QAQORTOQ;9.257545;56.964885
+;True;T100;26882;Brugsen Nuuk;Aqqusinersuaq;2 pb 152;;3900;Nuuk;9.81023;55.74402
+;True;T100;26887;BRUGSEN MANIITSOQ S-OMR;UJUAANSIP AQQUTAA 2 PB 148;;;3912;MANIITSOQ;12.4367;56.03452
+;True;T100;26889;BRUGSEN SISIMIUT S-OMR;AQQUSINERSUAQ 52 PB 1019;;;3911;SISIMUT GRØNLAND;12.4921;55.997155
+;True;T100;26891;Fakta Egå;Egå Havvej;2 C;;8250;Egå;10.280965;56.211975
+;True;T100;26895;Kvickly Holstebro;Brogårdsvej;6;;7500;Holstebro;8.619443;56.355175
+;True;T100;26896;Kvickly Holstebro;Brogårdsvej;6;;7500;Holstebro;8.619443;56.355175
+;True;T100;26897;Kvickly Viby;Ringvej Syd;100;;8260;Viby J;10.152137;56.114598
+;True;T100;26898;Kvickly Herning;Merkurvej;1;;7400;Herning;8.996485;56.134989
+;True;T100;26943;Netto Frederikshavn;Skøjtealleen;3;;9990;Frederikshavn;10.522159;57.417337
+;True;T100;26947;Min Købmand Hurup Thy;Bredgade;166;;7760;Hurup Thy;8.414099;56.750759
+;True;T100;26955;Vestre Skole;A.S. Ørstedsvej;22;;8800;Viborg;9.397215;56.451915
+;True;T100;26959;Fakta Vestbjerg;Blomsterbakken;2;;9380;Vestbjerg;9.96221;57.12842
+;True;T100;26964;Letkøb Fjaltring;Vestermøllevej;15;Fjaltring;7620;Lemvig;8.139476;56.473393
+;True;T100;26978;Vestre Skole SFO;A.S. Ørstedsvej;22;;8800;Viborg;9.397215;56.451915
+;True;T100;26990;BFI Hvid Landlyst Super;Sundvej;37;Sundstrup;8832;Skals;9.313267;56.604982
+;True;T100;26995;Rema 1000 Viborg V Butik 959;Marsk Stigs Vej;12;;8800;Viborg;9.392776;56.443881
+;True;T100;27005;Rema 1000 Århus C Butik 951;Nørre Allé;24-26;;8000;Århus C;10.206534;56.160194
+;True;T100;27007;Rema 1000 Randers Butik 962;Nørre Boulevard;22;;8900;Randers;10.040175;56.47079
+;True;T100;27012;Netto Vestergade Holstebro;Vestergade;7;;7500;Holstebro;8.616089;56.358113
+;True;T100;27013;Spar Ørsted;Storegade;1;;8960;Ørsted;10.133415;56.43989
+;True;T100;27015;Fakta Apholmenvej Frederikshavn;Apholmenvej;5;;9900;Frederikshavn;10.53135;57.46627
+;True;T100;2702;Dagli' Brugsen Sorring;Hovedgaden;16;;8641;Sorring;9.775531;56.177077
+;True;T100;27021;MENY Hjallerup Butikscenter;Hjallerup Butikscenter;7;;9320;Hjallerup;10.145805;57.167675
+;True;T100;27022;Netto Tilst;Tilst Parkvej;4B;;8381;Tilst;10.090205;56.18762
+;True;T100;27023;Skagenfood A/S;Hyttefadvej;8;;9970;Strandby;10.502214;57.495099
+;True;T100;27037;Fakta Dronninglund;Smedegade;5;;9330;Dronninglund;10.287775;57.159995
+;True;T100;27038;Jambo Super;Solvej;58;;9493;Saltum;9.661034;57.276727
+;True;T100;2704;Superbrugsen Spentrup;Stationsvej;2;;8981;Spentrup;10.042862;56.536223
+;True;T100;27042;Last Stop Shop;Dalsagervej;1;;9850;Hirtshals;9.985616;57.576321
+;True;T100;27045;MENY Aalborg SV;Otto Mønstedsvej;1;;9200;Aalborg;9.895816;57.01454
+;True;T100;27049;Hos Købmanden;Gl. Silkeborgvej;1;;8670;Låsby;9.80926;56.148695
+;True;T100;2705;Dagli' Brugsen Spørring;Gl. Landevej;46;;8380;Trige;10.147431;56.297986
+;True;T100;27052;Nordstrand Super Nærkøb;Apholmvej;40;;9900;Frederikshavn;10.528245;57.465321
+;True;T100;27058;SPAR VADUM;Ellerhammersvej;54;;9430;Vadum;9.86148;57.11874
+;True;T100;27061;Fakta Stavtrup;Ormslevvej;269;;8260;Viby J;10.119965;56.128495
+;True;T100;27067;Fakta Rindumgaardsalle;Rindumgaardsallè;90;;6950;Ringkøbing;8.255905;56.104065
+;True;T100;27068;Fakta Viborg;Gl. Århusvej;34 A;;8800;Viborg;9.36338;56.41023
+;True;T100;27079;Fakta Ringvej Syd 84;Ringvej Syd;84;;8260;Viby J;10.152137;56.114598
+;True;T100;27080;Struer Østre Skole;Gimsinghovedvej;8;;7600;Stuer;8.595805;56.485965
+;True;T100;27089;LUKKET Spar Gjellerup;Præstehaven;22;;7400;Herning;9.045778;56.146831
+;True;T100;27090;Superbrugsen Stilling - afdisp.;Hotelvej, Stilling;3;;8660;Skanderborg;9.943374;56.071834
+;True;T100;27097;Sjette Frederiks Kro;Salonvejen;1;;8240;Risskov;10.229353;56.17703
+;True;T100;27099;Arla Sønderhøj - Kamilla;Sønderhøj;46;;8260;Viby J;10.159351;56.120469
+;True;T100;27103;Skelhøje Købmandsgård Aps;Volden;2;;7470;Karup J;9.296615;56.360115
+;True;T100;27109;Fitness.dk Århus Busgaden;Frederiksgade;25;;8000;Århus C;10.205455;56.155462
+;True;T100;27112;Brændgårdskolen;Brorsonvej;4;;7400;Herning;8.966385;56.1432
+;True;T100;27116;MENY Hjørring;Frederikshavnsvej;42-48;;9800;Hjørring;10.00578;57.455625
+;True;T100;27118;Vestsalling skole Afd. Lem;Vejbyvej;5;Lem;7860;Spøttrup;8.784821;56.591997
+;True;T100;27122;Købmand Laur. Knudsen`s eftf.;Hans Broges Gade;20;;8000;Århus C;10.20389;56.14232
+;True;T100;27125;Starbucks, Bilka Skalborg;Hobrovej;450;;9200;Aalborg Sv;9.87946;57.00381
+;True;T100;27131;Starbucks, Føtex Århus Nord;Finlandsgade;17-19;;8200;Århus N;10.19015;56.17071
+;True;T100;27135;Kvickly Holstebro - afdisp;Brogårdsvej;6;;7500;Holstebro;8.619443;56.355175
+;True;T100;2714;Dagli' Brugsen Stevnstrup;Grenstenvej;1;STEVNSTRUP;8870;Langå;9.9453;56.433195
+;True;T100;27143;Gregers Krabbe Friskole;Haverslevvej;107;Årestrup;9520;Skørping;9.743125;56.817445
+;True;T100;27144;Vebbestrup Flødeis Dagligvarehandel;Søndertruevej;3;;9500;Hobro;9.822982;56.724037
+;True;T100;27147;Superbrugsen Lystrup - afdisp;Centervej;85;;8520;Lystrup;10.234475;56.23746
+;True;T100;27154;KIWI Bøsbrovej 210;Bøsbrovej;54;;8940;Randers Sv;10.038767;56.446234
+;True;T100;27156;Fakta Kolind;Stations Allé;1;;8560;Kolind;10.585315;56.362335
+;True;T100;27157;Molskroen;Hovedgaden;16;Femmøller Strand;8400;Ebeltoft;10.604462;56.229653
+;True;T100;2716;Superbrugsen Stilling;Hotelvej, Stilling;3;;8660;Skanderborg;9.943374;56.071834
+;True;T100;27160;Min Købmand Hem;Ballingvej;62 B;Hem;7800;Skive;8.95934;56.595875
+;True;T100;27164;Spar Snejbjerg APS;Toustrupvej;2;;7400;Herning;8.899415;56.132205
+;True;T100;27169;Superbrugsen Spentrup;Stationsvej;2;;8981;Spentrup;10.042862;56.536223
+;True;T100;27170;Superbrugsen Kjellerup - afdisp;Bryggertorvet;9;;8620;Kjellerup;9.432095;56.289055
+;True;T100;27172;L & F;Agro Food Park;13;;8200;Aarhus N;10.15704;56.20116
+;True;T100;27175;Rema 1000 Højberg Butik 965;Holme Byvej;15;;8270;Højbjerg;10.173095;56.11413
+;True;T100;27189;Fakta Veri Centret Risskov;Frijsenborgvej;5;;8240;Risskov;10.214125;56.189338
+;True;T100;27196;Netto Katrinevænget Viborg;Katrinevænget;2;;8800;Viborg;9.388836;56.473945
+;True;T100;27201;Letkøb Isenvad;Bygaden;6;;7430;Ikast;9.20506;56.095965
+;True;T100;27204;Reklameartikler;Sønderhøj;46;;8260;Viby J;10.159351;56.120469
+;True;T100;27206;Superbrugsen Kolt;Kolt Østervej;37-39;;8361;Hasselager;10.076874;56.10934
+;True;T100;27210;Netto Nordre Højmarksvej Silkeborg;Nordre Højmarksvej;3;;8600;Silkeborg;9.51021;56.18689
+;True;T100;27212;Netto Rådmands Boulevard Randers;Rådmands Boulevard;45;;8900;Randers;10.02146;56.4679
+;True;T100;27213;Tangkrogen;Marselisborg Havnevej;1;;8000;Aarhus;10.213845;56.13954
+;True;T100;27214;Royal Artic Logistic;Langerak (port 54);17;;9220;Aalborg;10.049433;57.0511
+;True;T100;27215;Skanderborg festivalklub;Birkevej;20;;8660;Skanderborg;9.916219;56.037216
+;True;T100;27216;Flådestationen Frederikshavn;Kong Hans Vej;1;;9900;Frederikshavn;10.474787;57.475923
+;True;T100;27217;Dansk Supermarked;Rosbjergvej;35;;8220;Brabrand;10.051463;56.161758
+;True;T100;27218;Det Ny Sletten;Bøgedalsvej;16;;8680;Ry;9.669108;56.112526
+;True;T100;27219;Relation Media;Krøyer Kielbergsvej;3;;8660;Skanderborg;9.92571;56.042595
+;True;T100;27220;Region Nord (Akafa);Svenstrup Skolevej;25;;8230;Svenstrup;9.845586;56.974637
+;True;T100;27221;727 Communications;Niels Bohrsvej;23;;8660;Stilling;9.987286;56.06891
+;True;T100;27222;Moment Fotograf;Jernaldervej;280;;8210;Århus V;10.128913;56.174862
+;True;T100;27223;Fotograf Torben Hjulmand;Vestergade;41;;8000;Århus C;10.20149;56.15751
+;True;T100;27224;Fotograf Ole Toldbod;Kathrinebjergvej;98;;8200;Århus N;10.189275;56.173645
+;True;T100;27225;Skovdal & Skovdal;Møllevangs alle;157;;8200;Århus N;10.185545;56.173645
+;True;T100;27226;Herning Kongrescenter;Østergade;37;;7400;Herning;8.98171;56.13543
+;True;T100;27227;Herning Messecenter;Vardevej;1;;7400;Herning;8.94964;56.122115
+;True;T100;27228;Gigantium Aalborg;Willy Brandtsvej;31;;9220;Aalborg Ø;9.964085;57.01897
+;True;T100;27229;Food College Aalborg;Rørdalsvej;10;;9000;Aalborg;9.963117;57.051255
+;True;T100;27230;Genbrugspladsen Aarhus;Ølstedvej;36;;8200;Aarhus N.;10.155565;56.231103
+;True;T100;27231;Genbrugspladsen Thisted;Flintborgvej;5;;7700;Thisted;8.712215;56.966837
+;True;T100;27232;Genbrugspladsen Hasselager;Birkegårdsvej;8;;8361;Hasselager;10.115385;56.102777
+;True;T100;27233;Genbrugspladsen Hinnerup;Fanøvej;7;;8382;Hinnerup;10.075145;56.249895
+;True;T100;27234;Genbrugspladsen Lystrup;Lystrupvej;190;;8240;Risskov;10.235078;56.215561
+;True;T100;27235;Genbrugspladsen (affald) Brabrand;Sintrupvej;57;;8220;Brabrand;10.09878;56.166909
+;True;T100;27236;Genbrugspladsen Eskelund;Eskelundvej;13;;8260;Viby;10.16471;56.140213
+;True;T100;27237;Genbrugspladsen (AVV) Hjørring;Mandøvej;4;;9800;Hjørring;10.02939;57.451665
+;True;T100;27238;Genbrugspladsen Hobro;Kløvermarksvej;10;;9500;Hobro;9.802946;56.65245
+;True;T100;27239;Genbrugspladsen -Nr.Sundby;Troensevej;2;;9200;Nørresundby;9.935261;57.057004
+;True;T100;27240;Genbrugspladsen -Ikast;Femhøje;3;;7680;Thyborøn;10.79992;55.305075
+;True;T100;27241;Havnen Thyborøn;Tankskibsvej;4;;7680;Thyborøn;8.21669;56.701065
+;True;T100;27242;Havnen Hvidesande;Fossanæsvej;22;;6960;Hvidesande;8.129988;56.00132
+;True;T100;27243;Havnen Skagen;Havnevagtvej;30;;9990;Skagen;10.595235;57.71701
+;True;T100;27244;Havnen Hirtshals;Norgeskajen;11;;9850;Hirtshals;9.964875;57.593766
+;True;T100;27245;Havnen Thisted;Havnen;14;;7700;Thisted;8.69353;56.95341
+;True;T100;27246;MAN truck - Tilst;Grydhøjparken;22;;8381;Tilst;10.093461;56.181769
+;True;T100;27247;EURO parts  -Aalborg;Mineralvej;31;;9220;Aalborg Ø;9.970715;57.05204
+;True;T100;27248;EURO parts  -Brabrand;Dalgårdsvej;4;;8220;Brabrand;10.10649;56.165795
+;True;T100;27249;Tobidan;Skjernvej;5;;9220;Aalborg Ø;9.974702;57.028902
+;True;T100;27250;Tobidan;Anelystparken;37;;8381;Tilst;10.097881;56.181553
+;True;T100;27251;Refako;Bouet Møllevej;14;;9400;Nørresundby;9.96201;57.086415
+;True;T100;27252;Besko;Logistik parken;24;;8220;Brabrand;10.073765;56.16129
+;True;T100;27253;Besko -Aalborg;Troensevej;6;;9220;Aalborg;10.012824;57.025314
+;True;T100;27254;Thorsen Køleservice;Pi;4;;8382;Hinnerup;10.106005;56.236215
+;True;T100;27255;Gård Kokkenborg;Hønborgvej;9;;9330;Dronninglund;10.344931;57.162434
+;True;T100;27256;Gård Balling;Nr. Ramsingvej;4;;7860;Spøttrup;8.736263;56.572842
+;True;T100;27257;Gård Brandenborg;Sinkbækvej;48;;7660;Bækmarksbro;8.260845;56.423435
+;True;T100;27258;Gård Kvols;Hedegårdsvej;2;;8831;Løgstrup;9.274279;56.516423
+;True;T100;27259;Gård Vrå;Ålborgvej;841;;9760;Vrå;9.978275;57.3362
+;True;T100;27260;Gård Holmsø;Holmsøvej;96;;9690;Fjerritslev;9.404027;57.041496
+;True;T100;27261;Gård Vesterhalne;Vester Halnevej;104;;9430;Vadum;9.836385;57.12006
+;True;T100;27262;Gård Elsø;Elsøvej;153;;7900;Nykøbing Mors;8.769971;56.804559
+;True;T100;27263;Gård Valsgård;Valsgårdvej;8;;9500;Hobro;9.83186;56.666985
+;True;T100;27265;Rema 1000 Brønderslev II Butik 969;Markedsvej;125;;9700;Brønderslev;9.966995;57.27148
+;True;T100;27305;Fakta Ikast;Strøget;4-6;;7430;Ikast;9.154841;56.140893
+;True;T100;27308;Fakta Hobrovej Ålborg Sv;Hobrovej;446;;9200;Ålborg Sv;9.88082;57.00489
+;True;T100;27309;Fakta Farsø;Th. Eriksensvej;20;;9640;Farsø;9.34118;56.772531
+;True;T100;27314;Kvickly Herning;Herningcentret,Merkurvej;1;;7400;Herning;8.99613;56.144265
+;True;T100;27316;Kvickly Herning Bageri;Merkurvej;1;;7400;Herning;8.996485;56.134989
+;True;T100;27321;Kvickly Nr.Sundby;Loftbrovej;17;;9400;Nørresundby;9.976625;57.089668
+;True;T100;27324;Fakta Vestergårdsvej Viby J;Vestergårdsvej;16;;8260;Viby J;10.159375;56.12953
+;True;T100;27328;Fakta Thisted;Kastet;39;;7700;Thisted;8.694595;56.956695
+;True;T100;27330;LUKKET Fakta Hals;Sønderskovvej;4;;9370;Hals;10.306019;56.996927
+;True;T100;27331;Fakta Kolt;Kolt Østervej;25;;8361;Hasselager;10.078804;56.109283
+;True;T100;27332;Fakta Padborgvej Silkeborg;Padborgvej;298;;8600;Silkeborg;9.495334;56.172084
+;True;T100;27333;Fakta Vinderup;Nylandsvej;11;;7830;Vinderup;8.780958;56.480841
+;True;T100;27335;Fakta Rønde;Hovedgaden;57;;8410;Rønde;10.473445;56.30123
+;True;T100;27336;Fakta Langenæs;Skanderborgvej;26;;8000;Aarhus C;10.185124;56.141765
+;True;T100;27337;LUKKET Fakta Beder;Nygårdsalle;3;;8330;Beder;10.204274;56.05805
+;True;T100;27343;Fakta Dalgas Torv Skive;Dalgas Torv;18;;7800;Skive;9.0148;56.55479
+;True;T100;27344;Fakta Nattegalvej Randers;Nattergalvej;35;;8930;Randers NØ;10.038965;56.470995
+;True;T100;27345;Fakta Bording;Bredgade;15;;7441;Bording;9.27924;56.14495
+;True;T100;27347;Fakta Holme Møllevej Viby;Holme Møllevej;49;;8260;Viby J;10.17196;56.12203
+;True;T100;27350;Fakta Hirtshals;Jørgen Fibigersgade;25;;9850;Hirtshals;9.960285;57.590622
+;True;T100;27351;Fakta Hjørring;Idræts Alle;4;;9800;Hjørring;9.99471;57.465475
+;True;T100;27352;Fakta Bjerringbro;Torvegade;15;;8850;Bjerringbro;9.657623;56.375927
+;True;T100;27355;Fakta Frederikshavn;Koktvedsvej;33;;9900;Frederikshavn;10.519715;57.434295
+;True;T100;27356;Fakta Hvide Sande;Parallelvej;74;;6960;Hvide Sande;8.12391;56.017345
+;True;T100;27358;Fakta Trøjborg Århus;Tordenskjoldsgade;75;;8200;Aarhus N;10.216849;56.17328
+;True;T100;27360;Fakta Vodskov;Vodskovvej;19 A;;9310;Vodskov;10.024375;57.10278
+;True;T100;27361;Fakta Kastetvej Ålborg;Kastetvej;37;;9000;Ålborg;9.90641;57.053135
+;True;T100;27364;Fakta Hobro;H. I. Bies Plads;2;;9500;Hobro;9.796949;56.638097
+;True;T100;27365;Fakta Hasle;Kappelvænget, Center V;8;;8210;Aarhus V;10.16612;56.179335
+;True;T100;27367;Fakta Kristrup Randers;Engboulevarden;5;;8960;Randers Sø;10.055586;56.448013
+;True;T100;27368;Fakta Asylgade Skive;Asylgade;3-5;;7800;Skive;9.026101;56.566118
+;True;T100;27370;Fakta Gravene Viborg;Gravene;30 E;;8800;Viborg;9.40818;56.452039
+;True;T100;27371;Fakta Skagen;Smøgen;11;;9990;Skagen;10.58989;57.72259
+;True;T100;27373;Fakta Hammel;Bane Alle;6;;8450;Hammel;9.864523;56.254236
+;True;T100;27374;Fakta Skørping;Sverigegårdsvej Centret;16;;9520;Skørping;9.990571;56.885943
+;True;T100;27375;Fakta Randers Hadsundvej;Hadsundvej;83;;8930;Randers Nø;10.040955;56.478296
+;True;T100;27378;Fakta Brønderslev;Mejlstedgade;9;;9700;Brønderslev;9.9469;57.268395
+;True;T100;27380;Fakta Kjellerup;Søndergade;14;;8620;Kjellerup;9.430968;56.287761
+;True;T100;27381;Fakta Ebeltoft;Strandvejen;25;;8400;Ebeltoft;10.673897;56.19653
+;True;T100;27385;Fakta Jegstrupvej Viborg;Jegstrupvej;21;;8800;Viborg;9.39172;56.45445
+;True;T100;27386;Fakta Hørning;Nørrealle;16;;8362;Hørning;10.037495;56.086583
+;True;T100;27388;Fakta Porsvænget Herning;Porsvænget;4;;7400;Herning;8.957176;56.14445
+;True;T100;27390;Fakta Frederikshavn;Hjørringvej;143 A;;9900;Frederikshavn;10.507423;57.446362
+;True;T100;27459;Brugsen Thorshavn;Dr. Jacobsens Gøta;4;;0100;TORSHAVN;10.070303;56.099472
+;True;T100;27460;Brugsen Fugla Fjørdur;Fuglafjørdur;2;;0530;Fuglafjørdur;10.070303;56.099472
+;True;T100;27461;BRUGSEN KLAKSVIK;Klaksvik;2;;0700;KLAKSVIK;10.070303;56.099472
+;True;T100;27463;Brugsen Højvik Salgskardex;Hoyvik;2;;0188;HOYVIK;10.070303;56.099472
+;True;T100;27464;Brugsen Tvørøyi;Box 32;2;;0000;Tvøroyri;10.070303;56.099472
+;True;T100;27465;BRUGSEN SKALAFJØRDUR;BOX 222;2;;0600;RUNAVIK;10.070303;56.099472
+;True;T100;27466;Brugsen Midvagur;Midvagur;2;;0370;Midvagur;10.070303;56.099472
+;True;T100;2747;Superbrugsen Them;Themcentret;8;;8653;Them;9.547453;56.093911
+;True;T100;27470;Kantinen Fvc Hasselager;Beringvej;2;;8361;Hasselager;10.070303;56.099472
+;True;T100;2748;Dagli' Brugsen Thorsager;Thorsgade;26;;8410;Rønde;10.461308;56.342666
+;True;T100;27510;Lantmännen Unibake Danmark A/S;Hjermvej;9;;7500;Holstebro;8.621125;56.38189
+;True;T100;27512;Tulip Food company;Østerbro;40;;9000;Aalborg;9.935855;57.04525
+;True;T100;27516;Ruths Hotel;Hans Ruthsvej;1;;9990;Skagen;10.521595;57.72714
+;True;T100;2752;LokalBrugsen Tilst;Havkærvej, Tilst;5;TILST;8381;Mundelstrup;10.108945;56.193295
+;True;T100;2754;Dagli' Brugsen Tirstrup;Århusvej;44;TIRSTRUP;8400;Ebeltoft;10.687387;56.301707
+;True;T100;27544;Letkøb, Fjellerad;Vaarstvej;334;Fjellerad;9260;Gistrup;10.019435;56.924415
+;True;T100;27549;Superbrugsen Hørning- afdisp;Nørre Alle;27;;8362;Hørning;10.037695;56.087045
+;True;T100;27552;Superbrugsen Roslev - afdisp;Sallingsundvej;2-4;;7870;Roslev;8.989884;56.701022
+;True;T100;27553;Spar Thorning;Blichersvej;13;Kjellerup;8320;Thorning;9.331345;56.286125
+;True;T100;27554;Min Købmand Rørbæk;Skovmosevej;1;Rørbæk;9500;Hobro;9.715246;56.705986
+;True;T100;27557;Købmand Nord;Paludan Müllersvej;92;;8200;Århus N;10.177613;56.177813
+;True;T100;27565;FriskFisken(Leveringssted);Fiskerikajerne;12;;8500;Grenå;10.923036;56.408211
+;True;T100;27568;Superbrugsen Sindal - afdisp;Nørregade;7;;9870;Sindal;10.202135;57.47182
+;True;T100;27570;Kvickly Struer - afdisp;Smedegade;21;;7600;Struer;8.59344;56.491315
+;True;T100;27571;Fakta Alexander Foss Gade Ålborg;Alexander Foss Gade;10;;9000;Ålborg;9.93528;57.036165
+;True;T100;27574;Min Købmand Voldum;Voldum Rudvej;17;;8370;Hadsten;10.168025;56.364957
+;True;T100;27576;Netto Viby J;Viby Ringvej;20;;8260;Viby J;10.158742;56.131037
+;True;T100;27582;BFI EXTRA Sørensen Super;Funch Thomsensgade;2;;8200;Århus N;10.203145;56.17436
+;True;T100;27584;Superbrugsen Hinnerup- afdisp;Storgade;7;;8382;Hinnerup;10.062725;56.264745
+;True;T100;27588;Sheelsminde Hotel;Sheelsmindevej;35;;9200;Aalborg;9.902883;57.020132
+;True;T100;27591;Superbrugsen Hadsund afdisp.;Himmerlandsgade;2;;9560;Hadsund;10.113075;56.716545
+;True;T100;27605;Kiosken Sjællandsgade;Sjællandsgade;;;8900;Randers;10.021515;56.46295
+;True;T100;2763;Kvickly Ry;Siimtoften;2;;8680;Ry;9.75524;56.093355
+;True;T100;27630;MENY Låsby;Hovedgaden;11-13;;8670;Låsby;9.809126;56.150646
+;True;T100;27636;Skiveren Letkøb;Niels Skiverens Vej;5-7;;9982;Ålbæk;10.279348;57.616209
+;True;T100;27639;Spar;Iversensvej;1;;7700;Thisted;8.7128;56.954665
+;True;T100;27641;Rema 1000 Holstebro III Butik 981;Beethovensvej;10;;7500;Holstebro;8.581185;56.37653
+;True;T100;27644;2070 Lemtorpskolen 0.-3. Klasse;Nissumvej;34;;7620;Lemvig;8.336305;56.5576
+;True;T100;27659;Superbrugsen Øster Bordingvej;Øster Bordingvej;1;;8600;Silkeborg;9.507025;56.186875
+;True;T100;27668;RelationMedia A/S;Krøyer Kielbergs Vej;3, St.;;8660;Skanderborg;9.92571;56.042595
+;True;T100;27671;Min Købmand Godthåb;Ridemandsmøllevej;14;Godthåb;9230;Svenstrup;9.813925;56.962705
+;True;T100;27675;Castenskjold;Åboulevarden;30-32;;8000;Aarhus;10.21013;56.155189
+;True;T100;27677;Castenskjold - fakt. adresse;Brammersgade 19, 1. sal;;;8000;Aarhus C;10.20678;56.14729
+;True;T100;27683;KIWI Saltumvej;Saltumvej;3;;9220;Aalborg Øst;10.008865;57.035135
+;True;T100;27687;Kasper og Co Aps;Bilstrupvej;13A;;7800;Skive;9.021586;56.551567
+;True;T100;27693;Superbrugsen Vester Hassing - afdis;Springvandspladsen;2;;9310;Vodskov;10.129793;57.066567
+;True;T100;27701;Nordre Skole;H.C Andersensvej;5;;8800;Viborg;9.408613;56.46237
+;True;T100;27702;Mammen friskole;Mammen byvej;64;;8850;Bjerringbro;9.612221;56.412114
+;True;T100;2771;Superbrugsen Samsø;Beringvej;2;;8361;Hasselager;10.070303;56.099472
+;True;T100;27710;Feldborg Børneunivers;Bredgade;76;;7540;Haderup;8.928945;56.328905
+;True;T100;27712;Rema 1000 Hadsten Butik 974;Gammel Sellingvej;1;;8370;Hadsten;10.043854;56.321683
+;True;T100;27722;Rema 1000 Nørresundby;Løvvangcentret - Løvbakken;4B;;9400;Nørresundby;9.94507;57.080765
+;True;T100;2773;Kvickly Tranbjerg;Kirketorvet;9;;8310;Tranbjerg J;10.136936;56.090686
+;True;T100;27731;Letkøb;Stokkebro;77;Gjerrild;8500;Grenå;10.821701;56.505517
+;True;T100;27734;Letkøb Hvilsom Byens Købmand;Hannerupvej;259;;9500;Hobro;9.610311;56.6593
+;True;T100;27766;Kvickly Ringkøbing - Afdisp;Skaadsmosevej.;11;;6950;Ringkøbing;8.272175;56.08636
+;True;T100;27773;Rema 1000 Vodskov;Vodskovvej;12;;9310;Vodskov;10.0217;57.10184
+;True;T100;27774;Letkøb Nr.Felding;Sognstrupvej;4;Nr.Felding;7500;Holstebro;8.60549;56.315515
+;True;T100;2778;Dagli' Brugsen Ulstrup;Hovedgaden;23;;8860;Ulstrup;9.793497;56.39075
+;True;T100;27794;Bæchs Conditori A/S;Langelandsvej;1;;9500;Hobro;9.81402;56.623764
+;True;T100;27796;Netto Ndr. Strandvej;Nordre Strandvej;127-129;;8240;Risskov;10.260213;56.201196
+;True;T100;27799;Netto Løgten;Grenåvej;752;;8541;Skødstrup;10.31568;56.27626
+;True;T100;2828;LUKKET Dansk Supermarked Højbjerg;Bjødstrupvej;18;;8270;Højbjerg;10.168065;56.109235
+;True;T100;2837;Dagli' Brugsen Virklund;Virklundvej;32;VIRKLUND;8600;Silkeborg;9.560995;56.127605
+;True;T100;2844;Føtex Skejby;Skelagervej;1-9;;8200;Århus N;10.19392;56.194234
+;True;T100;2845;Føtex Holme;Nygårdsvej;95;;8270;Højbjerg;10.175015;56.11271
+;True;T100;2849;Dagli' Brugsen Voldby;Dolmervej;2;VOLDBY;8500;Grenå;10.868063;56.459822
+;True;T100;2862;DagliBrugsen Vorregård Århus;Vorregårds Alle;96;;8200;Aarhus N;10.202781;56.184341
+;True;T100;2872;Dagli' Brugsen Ørum Djursland;Åbrovej;61;;8586;Ørum Djurs;10.676735;56.442524
+;True;T100;28758;MENY Rømøvej Fr. Havn;Rømøvej;2;;9900;Frederikshavn;10.517668;57.434234
+;True;T100;2891;Kvickly Vericent. Risskov;Vericentret Frijsenborgv;5;;8240;Risskov;10.209255;56.188325
+;True;T100;29030;SUPERGROS A/S VEST;GAMMELAGER 11-13;;;2605;BRØNDBY;12.382;55.64952
+;True;T100;29031;SuperGros A/S EDI;Kærup Industrivej;12;;4100;Ringsted;11.818795;55.45942
+;True;T100;2921;Kvickly Silkeborg;Søtorvet;1;;8600;Silkeborg;9.554862;56.172564
+;True;T100;2991;Kvickly Skanderborg;Adelgade;134-138;;8660;Skanderborg;9.93098;56.037815
+;True;T100;3101;Salling Aalborg;Nytorv;8;;9000;Aalborg;9.922679;57.048449
+;True;T100;32061;Mini Centret Skanderborg;Møllegade;99;;8660;Skanderborg;9.917635;56.03912
+;True;T100;3223;Netto Skagen;Sct. Laurentievej;105;;9990;Skagen;10.5818;57.719305
+;True;T100;3251;Netto Fr.Havn;Hjørringvej;144;;9900;Frederikshavn;10.506595;57.446715
+;True;T100;3266;Føtex Frederikshavn;Rådhus Alle;83;;9900;Frederikshavn;10.531589;57.439629
+;True;T100;3282;Føtex Aalborg Øst;Niels Bohrsvej;44;;9220;Aalborg Øst;9.993789;57.018629
+;True;T100;4064;Netto Nr. Sundby;Forbindelsesvej;147;;9400;Nørre Sundby;9.94528;57.069914
+;True;T100;4066;Netto Åbyhøj;Silkeborgvej;246;;8230;Åbyhøj;10.166285;56.15523
+;True;T100;4434;Netto Østergade;Østergade;9;;8600;Silkeborg;9.550754;56.170248
+;True;T100;4528;Netto Rundhøj;Rundhøj Torvet;2;;8270;Højbjerg;10.180835;56.119575
+;True;T100;4536;Netto Hørning;Vester Alle;2;;8362;Hørning;10.040405;56.0868
+;True;T100;4538;Netto Ebeltoft;Vibæk Strandvej;10;;8400;Ebeltoft;10.67581;56.214465
+;True;T100;4544;Netto Risskov;Korshøjen;1;;8240;Risskov;10.221928;56.201244
+;True;T100;4546;Netto Skanderborg;Søtoften;2A;;8660;Skanderborg;9.930285;56.03211
+;True;T100;4548;Netto Skt. Knuds Torv;Skt. Knuds Torv;2;;8000;Aarhus C;10.205235;56.151475
+;True;T100;4557;Netto Thorvaldsensgade;Thorvaldsensgade;22-24;;8000;Aarhus C;10.196362;56.156232
+;True;T100;4560;Netto Galten;Søndergade;4;;8464;Galten;9.903399;56.154035
+;True;T100;4566;Netto Veri Centret;Frisenborgvej;5;;8240;Risskov;10.214125;56.189338
+;True;T100;4568;Føtex Food Skæring;Skæring Parkvej;1;;8250;Egå;10.30061;56.23434
+;True;T100;4569;Føtex Skæring;Skæring Parkvej;1;;8250;Egå;10.30061;56.23434
+;True;T100;4618;Netto Lystrup;Lystrupvej;221;;8520;Lystrup;10.231775;56.226585
+;True;T100;5037;Dagli' Brugsen Balling;Søndergade;5;;7860;Spøttrup;8.87966;56.612965
+;True;T100;50403;Dagli' Brugsen Rye;Ryesgade, Gl. Rye;28;GL. RYE;8680;Ry;9.698428;56.075022
+;True;T100;50404;Dagli' Brugsen Sabro;Vistoftvej;38;;8471;Sabro;10.037115;56.212035
+;True;T100;50405;Dagli' Brugsen Sejs;Juelsøvej, Sejs;91;SEJS;8600;Silkeborg;9.607169;56.139702
+;True;T100;50408;DagliBrugsen Skjoldhøj Koll;Spobjergvej;5;;8220;Brabrand;10.116655;56.168755
+;True;T100;50409;Lokalbrugsen Stjær;Østerbro;9;STJÆR;8464;Galten;9.955302;56.117037
+;True;T100;50413;Superbrugsen Lystrup S.Omr.;Centervej;85;;8520;Lystrup;10.234475;56.23746
+;True;T100;50415;Superbrugsen Mårslet;Hørretvej;12;;8320;Mårslet;10.163926;56.06776
+;True;T100;50416;Dagli' Brugsen Mårup;Beringsvej;2;;8361;Hasselager;10.070303;56.099472
+;True;T100;50417;Superbrugsen Malling;Søndermarksvej;10;;8340;Malling;10.19501;56.03726
+;True;T100;50420;Dagli' Brugsen Tved;Tved Bygade;48;TVED;8420;Knebel;10.43414;56.196715
+;True;T100;50421;Dagli' Brugsen Trige;Smedebroen;15;;8380;Trige;10.145383;56.25325
+;True;T100;50427;Superbrugsen Vesterbrotorv;Vesterbro Torv;1;;8000;Aarhus C;10.199381;56.158125
+;True;T100;50429;Dagli' Brugsen Voel;Hjaltesvej;2;VOEL;8600;Silkeborg;9.6921;56.18973
+;True;T100;50431;Dagli' Brugsen Vrinners;Vrinners Bygade;37;;8420;Knebel;10.4927;56.242742
+;True;T100;50443;LUKKET DagliBrugsen Ejsing;Gl. Landevej;1;EJSING;7830;Vinderup;8.780985;56.479825
+;True;T100;50444;Dagli' Brugsen Frøslev;Elsøvej;208;FRØSLEV;7900;Nykøbing M;8.734393;56.802848
+;True;T100;50445;Dagli' Brugsen Hillerslev;Ballerumvej;113;HILLERSLEV;7700;Thisted;8.727788;57.011276
+;True;T100;50461;LokalBrugsen Thisted;Refsvej;28;;7700;Thisted;8.696005;56.96043
+;True;T100;50462;LokalBrugsen Øster Assels;Asselsvej;174;;7990;Øster-Assels;8.697152;56.701951
+;True;T100;50470;Fakta Holstebro;Enghaven;12;;7500;Holstebro;8.620033;56.359097
+;True;T100;50478;Dagli' Brugsen Arden;Vestergade;34;;9510;Arden;9.855176;56.769928
+;True;T100;50479;Dagli' Brugsen Astrup Arden;Torvegade;7;Astrup;9510;Arden;9.98122;56.76732
+;True;T100;50480;Dagli' Brugsen Agersted;Præstbovej;4;AGERSTED;9330;Dronninglund;10.381802;57.197541
+;True;T100;50481;Superbrugsen Ålestrup;Vestergade;32;;9620;Ålestrup;9.49008;56.69383
+;True;T100;50482;Dagli' Brugsen Bindslev;Vesterbro;9;;9881;Bindslev;10.195938;57.542296
+;True;T100;50483;Superbrugsen Brovst;Jernbanegade;2 - 4;;9460;Brovst;9.522406;57.09812
+;True;T100;50485;Superbrugsen Dronninglund;Slotsgade;25;;9330;Dronninglund;10.285955;57.159395
+;True;T100;50486;Dagli' Brugsen Dybvad;Markedsvej;14;;9352;Dybvad;10.356932;57.27536
+;True;T100;50488;Superbrugsen Farsø;Dronning Ingridsvej;2;;9640;Farsø;9.341738;56.771421
+;True;T100;50489;Superbrugsen Byrum;Byrum hovedgade;77;;9940;Læsø;10.538092;57.436418
+;True;T100;50490;DagliBrugsen Gærum;Østergade;5;GÆRUM;9900;Frederikshavn;10.435485;57.402385
+;True;T100;50491;Superbrugsen Gistrup;Nøvlingvej;25;;9260;Gistrup;9.996735;56.998
+;True;T100;50492;Dagli' Brugsen Hornum;Haubrovej;5;HORNUM;9600;Års;9.426365;56.84074
+;True;T100;50493;Dagli' Brugsen Hundelev;Løkkenvej;669;;9480;Løkken;9.843925;57.425445
+;True;T100;50494;LUKKET DagliBrugsen Vebbestrup;Hobrovej;12;Vebbestrup;9500;Hobro;9.799127;56.640354
+;True;T100;5056;Dagli' Brugsen Breum;Åkjærvej;1;BREUM;7870;Roslev;9.068563;56.687554
+;True;T100;5058;Dagli' Brugsen Bøvling;Tangsøgade;40;;7650;Bøvlingbjerg;8.20362;56.435555
+;True;T100;5069;Dagli' Brugsen Durup;Tønderingvej;3;DURUP;7870;Roslev;8.956825;56.743893
+;True;T100;50753;Coop Hasselager;Beringvej;2;;8361;Hasselager;10.070303;56.099472
+;True;T100;50983;Føtex Viby;Viby Ringvej;10;Viby Centret;8260;Viby J;10.161217;56.129851
+;True;T100;50986;Netto Borgergade;Borgergade;74 - 78;;8600;Silkeborg;9.548523;56.181418
+;True;T100;50988;Netto Rds.Vej Viborg;Randersvej;5;;8800;Viborg;9.433506;56.448725
+;True;T100;50992;X-Kiosken Århus;Vester Alle 9;;;8000;Aarhus C;10.199084;56.156863
+;True;T100;5118;Dagli' Brugsen Frederiks;Søndergade;3;FREDERIKS;7470;Karup J;9.25327;56.33953
+;True;T100;5122;Dagli'Brugsen Frem Arnborg;Greenvej;1;Arnborg;7400;Herning;8.993057;56.014326
+;True;T100;5124;DagliBrugsen Fremad;Bredgade;60;FELDBORG;7540;Haderup;8.930597;56.331034
+;True;T100;5128;Dagli' Brugsen Fuur;Sundevej;3A;Sunde;7884;Fur;9.020721;56.80856
+;True;T100;5130;Dagli' Brugsen Frøstrup;Søndergade;15;;7741;Frøstrup;8.99452;57.085604
+;True;T100;5135;Superbrugsen Hammerum;Hammerum Hovedgaden;72;Hammerum;7400;Herning;9.06163;56.13317
+;True;T100;5139;Superbrugsen Glyngøre;Bredgade;4;;7870;Roslev;8.867081;56.761863
+;True;T100;5143;DagliBrugsen Grønbjerg;Annebergvej;5;;6971;Spjald;8.53918;56.175881
+;True;T100;5160;Dagli' Brugsen Hammershøj;Randersvej;1;;8830;Tjele;9.750984;56.499441
+;True;T100;5162;Dagli' Brugsen Harboør;Lemvigvej;5;;7673;Harboør;8.175677;56.617044
+;True;T100;51807;KK Engros A/S;Industrivej;8-12;;7700;Thisted;8.709425;56.96308
+;True;T100;5185;Daglig Brugsen Kloster;Klostervej;70;KLOSTER;6950;Ringkøbing;8.177583;56.126581
+;True;T100;5192;Superbrugsen Karup;Bredgade;5;;7470;Karup J;9.164792;56.306818
+;True;T100;5202;Føtex Mariagervej Randers;Mariagervej;175;;8920;Randers Nv;10.026365;56.482515
+;True;T100;5203;Dagli' Brugsen Hundborg;Vorupørvej;178;HUNDBORG;7700;Thisted;8.504704;56.927241
+;True;T100;5206;Netto Vesterbro Ålborg;Vesterbro;99;;9000;Ålborg;9.916512;57.050539
+;True;T100;52063;Spar Klitmøller;Orhagevej;71;Klitmøller;7700;Thisted;8.496955;57.03996
+;True;T100;5208;Netto Hadsundvej Ålborg;Hadsundvej;75;;9000;Ålborg;9.95271;57.03803
+;True;T100;52081;Supergros  Kolonial;Fyrrevej 1 Port;41-44;;7400;Herning;8.951278;56.130083
+;True;T100;5209;Netto Hvedevej;Hvedevej;2;;8920;Randers Nv;10.024795;56.48039
+;True;T100;5211;Netto Vissevej;Vissevej;1;GUG;9210;Ålborg Sø;9.926613;57.006948
+;True;T100;52119;SPAR BEDSTED THY;Vestervigvej;63;;7755;Bedsted Thy;8.405595;56.80844
+;True;T100;5212;Netto Viborg;Vesterbrogade;16;;8800;Viborg;9.39858;56.449995
+;True;T100;52182;MENY Fabrikvej;Fabriksvej;2;;8800;Viborg;9.400135;56.46715
+;True;T100;52198;Min Købmand Sevel;Søgårdsvej, Sevel;4;;7830;Vinderup;8.871538;56.441801
+;True;T100;52201;MENY Holstebro;Beethovensvej;10;;7500;Holstebro;8.581185;56.37653
+;True;T100;52211;MENY, Nr.Vorupør;Vesterhavsgade;44;;7700;Thisted;8.374734;56.949756
+;True;T100;52233;BC Catering Herning;Hedelandsvej;18;;7400;Herning;8.934605;56.12542
+;True;T100;52328;ABC Herning;Orebygårdvej;1;;7400;Herning;8.932085;56.155621
+;True;T100;52330;ABC Ulfborg;Harboegade;17;;6990;Ulfborg;8.3189;56.27206
+;True;T100;52332;ABC Videbæk;Høgevej;2;;6920;Videbæk;8.616555;56.088015
+;True;T100;52439;HCH Gruppen A/S;Priorsvej;31;;8600;SILKEBORG;9.56827;56.204355
+;True;T100;52447;Nærkøb Holstebro;Struervej;18;;7500;Holstebro;8.61863;56.364825
+;True;T100;52454;Min Købmand Frøstrup;Søndergade;5;;7741;Frøstrup;8.99478;57.087001
+;True;T100;52470;S-Engros Herning;Nakskovvej;7;;7400;Herning;8.991879;56.153298
+;True;T100;52471;S-Engros Viborg;Mariendalsvej;9;;8800;Viborg;9.360748;56.455749
+;True;T100;52510;AB CATERING Holstebro A/S;NYBO HØJE 5, P.B.1163;;;7500;HOLSTEBRO;8.632805;56.34139
+;True;T100;52512;AB Catering Holstebro;Nybo Høje;5, P.B.116;;7500;Holstebro;8.632805;56.34139
+;True;T100;52530;Spar Ørnhøj;Hovedgaden;54;;6973;Ørnhøj;8.56548;56.19954
+;True;T100;52690;Min Købmand Vejby klit;Vejlbyklitvej;135;;7673;Harboøre;8.139709;56.57361
+;True;T100;52735;Spar Haderup;Herningvej;1;;7540;Haderup;8.99337;56.387983
+;True;T100;5279;Kvickly Lemvig;Konsul Andersens Gade;3;;7620;Lemvig;8.308125;56.548599
+;True;T100;52845;Min Købmand Skive;Rosenbakken;8;;7800;Skive;9.036255;56.581345
+;True;T100;5285;Dagli' Brugsen Lihme;Ålbækvej;1;;7860;Spøttrup;8.731475;56.600835
+;True;T100;52926;KØDGROSS VEST A/S;SØVEJEN 10 HERRUP;;;7830;VINDERUP;8.91027;56.40823
+;True;T100;5299;Dagli' Brugsen Løgstrup;Hovedgaden;41;;8831;Løgstrup;9.332995;56.508085
+;True;T100;5312;Dagli' Brugsen Mejrup;Viborgvej;111;MEJRUP;7500;Holstebro;8.69124;56.36438
+;True;T100;5322;DagliBrugsen Mønsted;Bredgade;20;;8800;Viborg;9.188899;56.445391
+;True;T100;5384;Superbrugsen Roslev;Sallingsundvej;2-4;;7870;Roslev;8.989884;56.701022
+;True;T100;5397;Dagli' Brugsen Selde;Skivevej;7;SELDE;7870;Roslev;9.046295;56.77892
+;True;T100;5403;Dagli' Brugsen Sjørup;Skivevej;169;SJØRUP;8800;Viborg;9.084369;56.427201
+;True;T100;5415;Dagli' Brugsen Alfa Højslev;Viborgvej;214;HØJSLEV;7840;Højslev;9.107661;56.551249
+;True;T100;5436;Netto Hadsund;Butikstorvet;22;;9560;Hadsund;10.113275;56.718225
+;True;T100;5439;Superbrugsen Spjald;Hovedgaden;72;;6971;Spjald;8.508922;56.127675
+;True;T100;5440;Netto Års;Markedsvej;1;;9600;Års;9.510274;56.801218
+;True;T100;5446;Netto Bjerringbro;Grønnegade;22;;8850;Bjerringbro;9.65614;56.376075
+;True;T100;54517;Min Købmand Hjerm;Vestre Hovedgade;1;;7560;Hjerm;8.639595;56.438475
+;True;T100;54521;Min Købmand Engesvang;Gl. Kongevej;62;;7442;Engesvang;9.345005;56.170035
+;True;T100;5458;Superbrugsen Sunds;Sunds hovedgade;77;;7451;Sunds;9.01575;56.204905
+;True;T100;5470;Dagli' Brugsen Sønder Nissum;Kirkebyvej;8;SDR. NISSUM;6990;Ulfborg;8.186385;56.306195
+;True;T100;54715;MENY Struer;Ølbyvej;30;;7600;Struer;8.57758;56.491055
+;True;T100;54932;KK Engros Thisted;Industrivej;8;;7700;Thisted;8.709425;56.96308
+;True;T100;5514;Dagli' Brugsen Tim;Hovedgaden;31;;6980;Tim;8.304985;56.196095
+;True;T100;5561;Dagli' Brugsen Vemb;Nørregade;23;;7570;Vemb;8.34334;56.343925
+;True;T100;5577;Dagli' Brugsen Vesløs;Ålborgvej;187;;7742;Vesløs;8.969395;57.035595
+;True;T100;5587;Netto Thisted;Asylgade;1;;7700;Thisted;8.689155;56.953385
+;True;T100;5593;Netto Nyk. Mors;Vestergade;23;;7900;Nykøbing Mors;8.854493;56.793867
+;True;T100;5601;Superbrugsen Videbæk;Nygade;2;;6920;Videbæk;8.63247;56.092665
+;True;T100;5607;Superbrugsen Vinderup;Søndergade;5;;7830;Vinderup;8.77903;56.481495
+;True;T100;5609;Dagli' Brugsen Sørvad;Langgade;30;;7550;Sørvad;8.65206;56.26218
+;True;T100;5630;Dagli' Brugsen Ølstrup;Byvejen;36 B;ØLSTRUP;6950;Ringkøbing;8.422795;56.11227
+;True;T100;5636;Dagli' Brugsen Ørum;Ørum torv;1;;8830;Tjele;9.62718;56.48226
+;True;T100;5646;Superbrugsen Øster Jølby;Præstbrovej;322;Øster Jølby;7950;Erslev;8.715245;56.836665
+;True;T100;5679;Netto Hirtshals;Skagerakvej;4;;9850;Hirtshals;9.96077;57.59082
+;True;T100;5682;Netto Hjørring;Skagensvej;201 A;;9800;Hjørring;9.991822;57.481919
+;True;T100;5689;Daglig Brugsen Resen;Frugtparken;1;;7800;Skive;9.027375;56.585125
+;True;T100;5705;KVICKLY SKIVE BAGERI;Søndercenter Ågade;2;;7800;SKIVE;9.026238;56.564425
+;True;T100;5713;Kvickly Skive;Søndercenter Ågade;2;;7800;Skive;9.026238;56.564425
+;True;T100;5731;Kvickly Struer;Smedegade;21;;7600;Struer;8.59344;56.491315
+;True;T100;590;Salling Aarhus;Søndergade;27;;8000;Aarhus C;10.206888;56.154733
+;True;T100;60023;Føtex Food Guldsmedgade;Guldsmedgade;3-9;;8000;Århus C;10.207305;56.15841
+;True;T100;60025;Føtex Food M.P. Bruunsgade;M. P. Bruunsgade;55;;8000;Århus C;10.203655;56.14688
+;True;T100;60031;Føtex Brabrand;Gudrunsvej;7;City Vest;8220;Brabrand;10.134555;56.155415
+;True;T100;60035;Bilka Tilst;Agerøvej;7;Tilst;8381;Tilst;10.103745;56.182545
+;True;T100;60066;Føtex Storcenter Nord;Finlandsgade;17-19;Storcenter Nord;8200;Århus N;10.19015;56.17071
+;True;T100;60089;Bilka Skalborg;Hobrovej;450;Skalborg;9200;Aalborg Sv;9.87946;57.00381
+;True;T100;60091;Føtex Aalborg;Slotsgade;8-14;;9000;Aalborg;9.924257;57.047328
+;True;T100;60105;Netto Hjallerup;Hjallerup Centret;2;;9320;Hjallerup;10.145805;57.167675
+;True;T100;60114;Netto Randersvej Aarhus;Randersvej;116-118;;8200;Aarhus N;10.200784;56.177398
+;True;T100;60132;Dansk Supermarked Ebeltoft;Østre Alle;;;8400;Ebeltoft;10.68079;56.19606
+;True;T100;60134;Netto Hadsten;Evald Tangs Alle;36;;8370;Hadsten;10.045157;56.326324
+;True;T100;60139;Netto Ry;Parallelvej;1;;8680;Ry;9.781454;56.090379
+;True;T100;60144;Føtex Hobro;Adelgade;39;;9500;Hobro;9.794977;56.63725
+;True;T100;60145;Føtex Dytmærsken Randers;Dytmærsken;14;;8900;Randers;10.03982;56.459565
+;True;T100;60146;Netto Danmarksgade Ålborg;Danmarksgade;41;;9000;Ålborg;9.923245;57.045145
+;True;T100;60147;Netto Randers;Viborgvej;102;;8920;Randers Nv;9.99575;56.466205
+;True;T100;60186;Netto Åbybro;Østergade;29-31;;9440;Åbybro;9.73222;57.159999
+;True;T100;60232;Købmand Højbjerg Skive;Holstebrovej;286;Hagebro;7800;Skive;9.002915;56.568845
+;True;T100;60880;MENY Grenå;Søndergade;7-9;;8500;Grenå;10.87557;56.41182
+;True;T100;60920;ATT.BOGHOLDERIET FØTEX EDI;BJØDSTRUPVEJ 18 POSTB.1830;;;8270;HØJBJERG;10.16776;56.10762
+;True;T100;60962;Cafax Risskov Århus;Sindalsvej;48 A;;8240;Risskov;10.214448;56.209166
+;True;T100;60965;Netto Beder;Beder Landevej;67;;8330;Beder;10.20224;56.05647
+;True;T100;60980;Coop Hasselager;Beringsvej;2;;8361;Hasselager;10.070303;56.099472
+;True;T100;70028;HEDEGAARD & CHRISTENSEN;AMALIENBORGVEJ 57-61;;;9400;NØRRESUNDBY;9.957015;57.084015
+;True;T100;701;Føtex Silkeborg Torvet;Torvet;4-6;;8600;Silkeborg;9.54993;56.16931
+;True;T100;7032;Dagli' Brugsen Bjergby;Skagen Landevej;93;BJERGBY;9800;Hjørring;10.024205;57.513325
+;True;T100;7065;Dagli' Brugsen Gjøl;Limfjordsgade;53;GJØL;9440;Åbybro;9.710489;57.067069
+;True;T100;7070;Dagli' Brugsen Gandrup;Ålborgvej;326;;9362;Gandrup;10.178966;57.053647
+;True;T100;7072;Dagli' Brugsen Gudumholm;Ågade;40;GUDUMHOLM;9280;Storvorde;10.102027;56.966569
+;True;T100;7090;Dagli' Brugsen Hvalpsund;Sundvej;5;HVALPSUND;9640;Farsø;9.207336;56.700871
+;True;T100;7091;Superbrugsen Hals;Midtergade;20;;9370;Hals;10.307435;56.99649
+;True;T100;7094;Dagli' Brugsen Hou;Brogade;23;HOV;9370;Hals;10.370965;57.056955
+;True;T100;7095;Superbrugsen Hadsund;Himmerlandsgade;2;;9560;Hadsund;10.113075;56.716545
+;True;T100;71068;Netto Struer;Industrivej;1 B;;7600;Struer;8.58221;56.486211
+;True;T100;71069;Netto Løgstør;Limfjordsvej;1;;9670;Løgstør;9.266389;56.967429
+;True;T100;7130;Dagli' Brugsen Mou;Dokkedalvej;2;;9280;Storvorde;10.221945;56.967542
+;True;T100;71380;VINDBLÆS OST I/S;STATIONSVEJ 21;;;9670;LØGSTØR;9.34999;56.926525
+;True;T100;7152;Dagli' Brugsen Overlade;Præstebakken;7;Overlade;9670;Løgstør;9.266198;56.85782
+;True;T100;71531;Jansen Food;Ingeborgvej;2;;9480;Løkken;9.679406;57.331725
+;True;T100;71647;SUPERBRUGSEN SINDAL;NØRREGADE 7;;;9870;SINDAL;10.201569;57.480404
+;True;T100;71732;Min Købmand Danevej Skagen;Danevej;27;;9990;Skagen;10.588523;57.728955
+;True;T100;71733;GLESBORG BRUGSFORENING;GLESBORG BYGADE 54;;;8585;GLESBORG;10.709415;56.48077
+;True;T100;7175;Superbrugsen Støvring;Hobrovej;53;;9530;Støvring;9.837002;56.893755
+;True;T100;7185;Dagli' Brugsen Skovsgård;Poststræde;7;;9460;Brovst;9.48682;57.089065
+;True;T100;7194;Dagli' Brugsen Salling;Brårupvej;3;SKARP SALLING;9670;Løgstør;9.36075;56.949995
+;True;T100;7198;Superbrugsen Kongerslev;Danmarksgade;21;;9293;Kongerslev;10.115348;56.885589
+;True;T100;71997;MENY, Als;Hadsundvej;1-3 Als;ALS;9560;Hadsund;10.289335;56.754795
+;True;T100;7200;Dagli' Brugsen Strandby;Havnevej;29;;9970;Strandby;10.500372;57.494241
+;True;T100;72075;MENY Klokkerholm;Bredkærsvej;7;Klokkerholm;9320;Hjallerup;10.151745;57.212059
+;True;T100;72207;Min Købmand Moseby;Bleggravsvej;34;;9490;Pandrup;9.638491;57.194092
+;True;T100;72209;Spar Hune;Stenmarksvej;3;;9492;Blokhus;9.62281;57.24761
+;True;T100;72300;BB. Kantineservice;Gørrilds Alle;72;;8920;Randers Nv;9.99676;56.478125
+;True;T100;7235;Dagli' Brugsen Veddum;Veddum Hovedgade;26;;9560;Hadsund;10.1748;56.77483
+;True;T100;72368;Min Købmand Bindslev;Sønderbro;12;;9881;Bindslev;10.1974;57.538585
+;True;T100;72384;Spar Haverslev;Strandvejen, Haverslev;2;Haverslev;9610;Nørager;9.681053;56.787274
+;True;T100;72387;SPAR HIRTSHALS;Margrethevej;12;;9850;Hirtshals;9.965482;57.586371
+;True;T100;72591;Jama Ost Risskov;Hørgårdsvej;46;;8240;Risskov;10.237351;56.198435
+;True;T100;72650;MENY Østervrå;Bredgade;4;;9750;Østervrå;10.237261;57.341
+;True;T100;72697;MENY Saltum;Tinghøjgade;11;;9493;Saltum;9.697729;57.273125
+;True;T100;72747;MENY H.C Ørstedsvej Fr.Havn;H. C. Ørstedsvej;5;;9900;Frederikshavn;10.49686;57.444558
+;True;T100;72765;BC Catering Skanderborg;N.Bohrsvej;20;Stilling;8660;Skanderborg;9.989247;56.06757
+;True;T100;72816;MENY Støvring;City Centret;12;;9530;Støvring;9.83634;56.890315
+;True;T100;72820;BC Catering Svenstrup;Jellingevej;24;;9230;Svenstrup J;9.85318;56.961605
+;True;T100;7287;Superbrugsen Svenstrup;Godthåbsvej;12;;9230;Svenstrup J;9.8518;56.972355
+;True;T100;72944;KVICKLY ÅRS;HIMMERLANDSGADE 61;;;9600;ÅRS;9.525775;56.802255
+;True;T100;72950;S-Engros Randers;Alfreds Nobels Vej;2;;8920;Randers Nv;9.972234;56.472413
+;True;T100;72954;S-Engros Ålborg;Halkjærsvej;4;;9200;Ålborg Sv;9.873242;57.007176
+;True;T100;72996;MENY Hobro;Sdr. Ringvej;12;;9500;Hobro;9.80436;56.627905
+;True;T100;73045;B.K.I. Kaffe A/S;Michael Drewsensvej;6;;8270;Højbjerg;10.15868;56.108284
+;True;T100;73086;Nærkøb Baunhøj Grenå;Baunhøjvej;6;;8500;Grenå;10.86762;56.417855
+;True;T100;73143;MENY Rønde;Hovedgaden;49;Torvet;8410;Rønde;10.47592;56.30073
+;True;T100;73163;LUKKET Min Købmand Elling;Grundtvigsvej;7;;9900;Frederikshavn;10.48331;57.475235
+;True;T100;7317;DAGLIGBRUGSEN LENDUM;SØNDERGADE 1, LENDUM;;;9870;SINDAL;10.301305;57.409035
+;True;T100;73200;Winther A/S;Hjørringgade;5;;9850;Hirtshals;9.955801;57.590802
+;True;T100;73214;P. TAABBEL & CO. A/S;Industribuen;3;;7730;Hanstholm;8.641485;57.1109
+;True;T100;73306;Spar Løkken;Toldbodvej;9;;9480;Løkken;9.71171;57.369875
+;True;T100;73316;LOKAL BRUGSEN;HOVEDGADEN 2, LIME;;;8544;MØRKE;10.245945;56.38601
+;True;T100;73317;DAGLI'BRUGSEN SEJS;JULSØVEJ 91, SEJS;;;8600;SILKEBORG;9.485139;56.111403
+;True;T100;73318;DAGLIGBRUGSEN KRAGELUNDE;ENGESVANG 9;;;8600;SILKEBORG;9.617762;56.133369
+;True;T100;73319;LOKAL BRUGSEN VOEL;HJALTESVEJ 2, VOEL;;;8600;SILKEBORG;9.6921;56.18973
+;True;T100;73320;DAGLI'BRUGSEN HAMMERSHØJ;RANDERSVEJ 1;;;8830;TJELE;9.76046;56.500375
+;True;T100;73321;DAGLI'BRUGSEN FREJLEV;NIBEVEJ 317;;;9200;ÅLBORG SV;9.88962;57.01509
+;True;T100;73322;DAGLI'BRUGSEN STOREVORDE;STATIONSVEJ 5;;;9280;STORVORDE;10.10032;57.00304
+;True;T100;73323;BRUGSEN MEJLBY;MEJLBYVEJ 93;;;9610;NØRAGER;9.669907;56.75473
+;True;T100;73324;LOKAL BRUGSEN JERSLEV;BOULEVARDEN 16;;;9740;JERSLEVJ;10.09243;57.287005
+;True;T100;7341;Dagli' Brugsen Mølleparken;L. P. Houmøllersvej;22;;9900;Frederikshavn;10.51187;57.42506
+;True;T100;73434;Rema 1000 Konsum;Marsalle;32;;8700;Horsens;9.798799;55.836925
+;True;T100;7346;Dagli' Brugsen Tranum;Tranhøj;4;;9460;Brovst;9.46325;57.131628
+;True;T100;73509;Min Købmand Egense;Hybenvej;2;;9280;Storvorde;10.284232;56.975503
+;True;T100;73598;LUKKET COLOR LINE;NIELS JUELSVEJ 6 BOX 119;;;9850;HIRTSHALS;9.981966;57.585706
+;True;T100;736;Føtex Egå;Brobjerg Parkvej;2-8;;8250;Egå;10.262345;56.205095
+;True;T100;7360;Superbrugsen Færøplads;Sjællandsgade;45;;9000;Ålborg;9.938798;57.041297
+;True;T100;73751;MENY Randers C;Bredstrupgade;3-5;;8900;Randers;10.03111;56.464505
+;True;T100;73752;MENY Hurup Thy;Jernbanegade;7;;7760;Hurup Thy;8.41793;56.752584
+;True;T100;73753;MENY Silkeborg;Chr. D. VIII'S Vej;8;;8600;Silkeborg;9.55166;56.166445
+;True;T100;73790;Min Købmand Egeparken;Egeparken;2;;8600;Silkeborg;9.568639;56.181242
+;True;T100;73793;Min Købmand Lyngbygade Silkeborg;Lyngbygade;108;;8600;Silkeborg;9.539006;56.159884
+;True;T100;73795;Netto Rønde;Birkevej;41;;8410;Rønde;10.474619;56.300464
+;True;T100;73820;Netto Hobro;Adelgade;73;;9500;Hobro;9.798265;56.636595
+;True;T100;73822;Min Købmand Herning;Gl. Landevej;153;;7400;Herning;8.86158;56.105305
+;True;T100;73825;Netto Ulfborg;Herredsgade;5-7;;6990;Ulfborg;8.320485;56.2715
+;True;T100;73832;SPAR KAAS;LANGGADE 8, KAAS;;;9490;PANDRUP;9.664127;57.19651
+;True;T100;73866;Netto Herning;Vølundsvej;1-3;;7400;Herning;8.944685;56.13938
+;True;T100;73868;Netto Fjerritslev;Søndergade;15;;9690;Fjerritslev;9.266064;57.086828
+;True;T100;73883;Cafax Struer;Gørtlervej;15;;7600;Struer;8.57883;56.477417
+;True;T100;73889;Spar Thyholm;Bredgade, Hvidbjerg;3;HVIDBJERG;7790;Thyholm;8.527715;56.649995
+;True;T100;73890;Netto Auning;Centervej;12;;8963;Auning;10.373595;56.432587
+;True;T100;73968;Spar Erslev;Præstbrovej;144;Erslelv;7950;Erslev;8.748762;56.830132
+;True;T100;73970;TULIP FOOD COMPANY;Tulipvej;1;;8940;Randers Sv;10.065593;56.411683
+;True;T100;74062;LAUNIS FISKEKONSERVES A/S;INDUSTRIVEJ 2-4;;;9982;ÅLBÆK;10.419809;57.60205
+;True;T100;74068;Min Købmand Feldballe;Ebeltoftvej, Feldballe;54;Feldballe;8410;Rønde;10.58506;56.284835
+;True;T100;74101;A-Z Hjørring;A.F.Heidemannsvej;20;;9800;Hjørring;10.004512;57.444218
+;True;T100;74103;Netto Randers;Jens Otto Krags Plads;5;;8900;Randers C;10.042561;56.461171
+;True;T100;74109;Tulip Svenstrup;Mosevangen;1;;9230;Svenstrup;9.85863;56.982075
+;True;T100;74116;Netto Støvring 426;Hobrovej;55;;9530;Støvring;9.836952;56.893099
+;True;T100;7415;KVICKLY HOBRO BAGERI;ADELGADE 14;;;9500;HOBRO;9.798265;56.636595
+;True;T100;74163;Netto Videbæk;Bredgade;40-42;;6920;Videbæk;8.629565;56.09122
+;True;T100;74230;Føtex Ebeltoft;Nordre Strandvej;12-14;;8400;Ebeltoft;10.678511;56.202456
+;True;T100;7430;Dagli' Brugsen Tylstrup;Klitgårdsvej;17;;9382;Tylstrup;9.951106;57.195201
+;True;T100;7440;Dagli' Brugsen Birkelse;Gl.Landevej;19;BIRKELSE;9440;Åbybro;9.698944;57.161241
+;True;T100;7470;Superbrugsen Mariager;Fruensgaard Plads;1;;9550;Mariager;9.982042;56.652141
+;True;T100;7487;Dagli' Brugsen Harridslev;Udbyhøjvej;330;;8930;Randers Nø;10.127609;56.500803
+;True;T100;7490;Dagli' Brugsen Vesterø Havn;Vesterø havnegade;6;;9940;Læsø;10.538092;57.436418
+;True;T100;7491;Superbrugsen Pandrup;Bredgade;9;;9490;Pandrup;9.676944;57.223825
+;True;T100;7494;Superbrugsen Sæby;Chr. Pedersensvej;4;;9300;Sæby;10.51625;57.333005
+;True;T100;7502;Føtex Skive;Søndergade;19-21;;7800;Skive;9.026447;56.562128
+;True;T100;7591;Kvickly Vestbyen Ålborg;Dannebrogsgade;64;;9000;Ålborg;9.905158;57.054061
+;True;T100;7732;Netto Brønderslev;Østergade;24;;9700;Brønderslev;9.947009;57.266036
+;True;T100;7764;A-Z Bistro Hjørring;A.F. Heidemannsvej;20;;9800;Hjørring;10.004512;57.444218
+;True;T100;78380;JACO RANDERS HD EMB.;MARIAGERVEJ;;;8900;RANDERS;10.03225;56.46498
+;True;T100;78842;LUKKET Letkøb  Ulsted;Jyllensgade;32;Ulsted;9370;Hals;10.25965;57.074248
+;True;T100;790;Aldi Kolding K.S.;Essen;30;;6000;Kolding;9.477887;55.462017
+;True;T100;791;Aldi Haverslev K.S.;Industrieparken;25;Haverslev;9610;Nørager;9.697168;56.786692
+;True;T100;79431;VAREPRØVER(JUIC.PROD.TYSKL);VESTERGADE 30;;;5750;RINGE;10.475505;55.23477
+;True;T100;80220;Ove Wrist;Stigsborgvej;60;;9400;Nørresundby;9.94708;57.05854
+;True;T100;80520;Åbybro Mejeri;Brogårdsvej;148;;9440;Åbybro;9.71678;57.16875
+;True;T100;80586;MENY Hals;Havnegade;15;;9370;Hals;10.3069;56.992795
+;True;T100;8119;Netto Grenå;Østerbrogade;2;;8500;Grenå;10.883684;56.413782
+;True;T100;82304;SALLING 103 ÅLBORG;NY TORV;;;9000;ÅLBORG;9.92653;57.047485
+;True;T100;82305;SALLING ÅLBORG;NY TORV;;;9000;ÅLBORG;9.92653;57.047485
+;True;T100;82502;FØTEX;SKÆRING PARKVEJ 1;;;8250;EGÅ;10.306106;56.236724
+;True;T100;83178;Superland Tårs;Bredgade;92;;9830;Tårs;10.11497;57.38542
+;True;T100;83189;Min Købmand  Sindal;Nørregade;51;;9870;Sindal;10.201815;57.47522
+;True;T100;83360;S-Engros Hjørring;John E Rasmussensvej;8;;9800;Hjørring;10.014122;57.441747
+;True;T100;83363;S-Engros Fr.Havn;Toftegårdsvej;12;;9900;Frederikshavn;10.50017;57.44512
+;True;T100;83513;SPAR BIERSTED;STATIONSV BIERSTED;;;9440;ÅBYBRO;9.816555;57.20235
+;True;T100;83743;Letkøb Hjermitslev;Assenbækvej;4;Hjerritslev;9700;Brønderslev;9.75827;57.28603
+;True;T100;88669;CHOKOLAND A/S;Kjeldsmarksvej;3;;7600;STRUER;8.592587;56.482395
+;True;T100;88846;Premier Is, Mejerigaarden A/S;Sennelsvej;1;;7700;Thisted;8.718143;56.960638
+;True;T100;89613;Dansk Supermarked;Bjødstrupvej;18;;8270;Højbjerg;10.168065;56.109235
+;True;T100;90283;Arla Unika og Ko;Klostergade;20;;8000;Aarhus C;10.208222;56.158944
+;True;T100;9105;FVT Hobro;Skivevej ;39-41;;9500;Hobro;9.7794;56.637935
+;True;T100;9277;KRIK KØBMANDSHANDEL;KRIKVEJ 32, KRIK;;;7770;VESTERVIG;8.232294;56.780343
+;;;1564;;;;;;;;

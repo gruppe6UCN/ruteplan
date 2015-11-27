@@ -11,6 +11,8 @@ ruteplan.iml
 customer.csv
 map.obj
 
+#Login Files
+/Database/Config
 
 #build
 [Oo]bj/
