@@ -14,6 +14,7 @@ using WCFService;
 using Server;
 using GUI.ServiceImport;
 using GUI.ServiceRoute;
+using Control;
 
 namespace GUI
 {
@@ -52,16 +53,21 @@ namespace GUI
         }
         public void ImportStart()
         {
-            WCFServer.Initialize();
-            WCFServer.StartServer();
+            //WCFServer.Initialize();
+            //WCFServer.StartServer();
             
-            importClient = new ServiceImportClient();
-            routeClient = new ServiceRouteClient();
+            //importClient = new ServiceImportClient();
+            //routeClient = new ServiceRouteClient();
 
-            importClient.Import();
+            //importClient.Import();
 
-            Route[] routes = routeClient.GetRoutes();
+            //Route[] routes = routeClient.GetRoutes();
 
+            WCFServer.Initialize();
+            ImportController.Instance.ImportRoutes();
+            List<Route> routes = RouteController.Instance.Routes.ToList();
+
+            
 
             foreach (Route route in routes)
             {
@@ -76,9 +82,9 @@ namespace GUI
                     );
             }
 
-            importClient.Close();
-            routeClient.Close();
-            WCFServer.StopServer();
+            //importClient.Close();
+            //routeClient.Close();
+            //WCFServer.StopServer();
 
 
         }
@@ -90,42 +96,42 @@ namespace GUI
             tabControl1.SelectedTab = tabPage2;
 
 
-            //Thread t = new Thread(new ThreadStart(OptimizeThreadStart));
-            //t.Start();
+            Thread t = new Thread(new ThreadStart(OptimizeThreadStart));
+            t.Start();
 
         }
 
-        ////Delegate til at sørge for at det hele bliver i en Thread
-        //public void OptimizeThreadStart()
-        //{
-        //    OptimizeThread optimize = new OptimizeThread(OptimizeStart);
-        //    this.BeginInvoke(optimize);
+        //Delegate til at sørge for at det hele bliver i en Thread
+        public void OptimizeThreadStart()
+        {
+            OptimizeThread optimize = new OptimizeThread(OptimizeStart);
+            this.BeginInvoke(optimize);
 
-        //}
+        }
 
-        //public void OptimizeStart()
-        //{
-        
-        //    OptimizeController.Instance.Optimize();
+        public void OptimizeStart()
+        {
 
-
-        //    foreach (Route route in RouteController.Instance.Routes)
-        //    {
-        //        //Tilføjer Rows 
-        //        this.dataGridView2.Rows.Add(
-        //            route.DefaultRoute.ID.ToString(),
-        //            route.Stops.Count.ToString(),
-        //            string.Format("{0}/{1}",
-        //                route.GetLoadForTrailer(),
-        //                route.DefaultRoute.TrailerType),
-        //            route.DateForDeparture.TimeOfDay.Hours.ToString(),
-        //            route.DefaultRoute.ExtraRoute.ToString()
-        //            );
-                
-        //    }
+            OptimizeController.Instance.Optimize();
 
 
-        //}
+            foreach (Route route in RouteController.Instance.Routes)
+            {
+                //Tilføjer Rows 
+                this.dataGridView2.Rows.Add(
+                    route.DefaultRoute.ID.ToString(),
+                    route.Stops.Count.ToString(),
+                    string.Format("{0}/{1}",
+                        route.GetLoadForTrailer(),
+                        route.DefaultRoute.TrailerType),
+                    route.DateForDeparture.TimeOfDay.Hours.ToString(),
+                    route.DefaultRoute.ExtraRoute.ToString()
+                    );
+
+            }
+
+
+        }
 
         public void button3_Click(object sender, EventArgs e)
         {
@@ -163,6 +169,16 @@ namespace GUI
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
