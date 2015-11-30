@@ -20,7 +20,7 @@ namespace GUI
 {
     public partial class Form1 : Form
     {
-        public delegate void ImportFest();
+        public delegate void ImportThread();
         public delegate void OptimizeThread();
         private ServiceImportClient importClient;
         private ServiceRouteClient routeClient;
@@ -28,9 +28,16 @@ namespace GUI
         public Form1()
         {
             InitializeComponent();
+            
+            //Starts the Server. Methods for testing.
+            //TODO: Implement seperate server from client.
+            WCFServer.Initialize();
+            WCFServer.StartServer();
+            importClient = new ServiceImportClient();
+            routeClient = new ServiceRouteClient();
         }
 
-        public void button1_Click(object sender, EventArgs e)
+        public async void button1_Click(object sender, EventArgs e)
         {
             //ProgressBar
             //Maximum er mængden af routes der bliver importet
@@ -38,36 +45,40 @@ namespace GUI
             //progressBar1.Maximum = 1000000;
             //progressBar1.Step = 1;
 
-            //Thread til at import
-            Thread t = new Thread(new ThreadStart(ImportThreadStart));
-            t.Start();                    
+
+
+            await Task.Run(() => Import());
+
+
+            ////Thread til at import
+            //Thread t = new Thread(new ThreadStart(ImportThreadStart));
+            //t.Start();                    
             
  
         }
+
+
+        public void Import()
+        {
+            importClient.Import();
+            List<Route> routes = routeClient.GetRoutes().ToList<Route>();
+            UpdateImportTable(routes);
+        }
+
+
         //Delegate til at sørge for at det hele bliver i en Thread
         public void ImportThreadStart()
         {
-            ImportFest fest = new ImportFest(ImportStart);
+            ImportThread fest = new ImportThread(ImportStart);
+            
+            
             this.BeginInvoke(fest);
-
         }
+
         public void ImportStart()
         {
-            //WCFServer.Initialize();
-            //WCFServer.StartServer();
-            
-            //importClient = new ServiceImportClient();
-            //routeClient = new ServiceRouteClient();
-
-            //importClient.Import();
-
-            //Route[] routes = routeClient.GetRoutes();
-
-            WCFServer.Initialize();
-            ImportController.Instance.ImportRoutes();
-            List<Route> routes = RouteController.Instance.Routes.ToList();
-
-            
+            importClient.Import();
+            Route[] routes = routeClient.GetRoutes();            
 
             foreach (Route route in routes)
             {
@@ -87,6 +98,23 @@ namespace GUI
             //WCFServer.StopServer();
 
 
+        }
+
+
+        public void UpdateImportTable(List<Route> routes)
+        {
+            foreach (Route route in routes)
+            {
+                //Tilføjer Rows 
+                this.dataGridView1.Rows.Add(
+                    route.DefaultRoute.ID.ToString(),
+                    route.Stops.Count.ToString(),
+                    string.Format("{0}/{1}",
+                        route.GetLoadForTrailer(),
+                        route.DefaultRoute.TrailerType
+                        )
+                    );
+            }
         }
 
 
