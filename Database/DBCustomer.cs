@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Model;
 using System.Data;
+using Model;
 
-namespace Server
+namespace Database
 {
     public class DBCustomer {
         public DBConnection dbConnection { set; get; }

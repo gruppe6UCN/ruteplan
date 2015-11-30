@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Model;
 using System.Data;
+using Model;
 
-namespace Server.Database
+namespace Database
 {
     public class DBTransportUnit
     {

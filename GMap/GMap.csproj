@@ -91,9 +91,13 @@
       <Project>{2B05A805-5993-476C-84FE-B0749199B8A5}</Project>
       <Name>Control</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Server\Server.csproj">
-      <Project>{B5425574-CF10-42E3-A74A-32EFCCD4777D}</Project>
-      <Name>Server</Name>
+    <ProjectReference Include="..\Database\Database.csproj">
+      <Project>{7E11D2BB-3939-4075-9764-002F88454ED0}</Project>
+      <Name>Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{D2387D10-FFD3-4DD4-8822-DC5F6ED1D93C}</Project>
+      <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

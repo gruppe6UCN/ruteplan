@@ -152,7 +152,7 @@ namespace TestServer
         public void Test_11_SendSQL()
         {
             List<DefaultRoute> r = instance.SendSQL<DefaultRoute>("SELECT * FROM DefaultRoute", DelegateMethod);
-            Assert.IsTrue(r[r.Count - 1].isExtraRoute());
+            Assert.IsTrue(r[r.Count - 1].ExtraRoute);
             Assert.AreEqual(r[r.Count - 1].ID, id);
         }
 

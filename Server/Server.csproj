@@ -32,7 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -59,10 +58,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{D2387D10-FFD3-4DD4-8822-DC5F6ED1D93C}</Project>
-      <Name>Model</Name>
-    </ProjectReference>
-  </ItemGroup>
 </Project>

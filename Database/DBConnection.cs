@@ -3,7 +3,7 @@ using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using System.Data;
 
-namespace Server
+namespace Database
 {
     public class DBConnection
     {
