@@ -14,6 +14,7 @@ namespace Model
         public long ID { get; set; }
         [DataMember()]
         public DefaultRoute DefaultRoute { get; set; }
+        [DataMember()]
         public List<DeliveryStop> Stops { get; private set; }
         [DataMember()]
         public TimeSpan TimeForDeparture { get; set; }
