@@ -26,6 +26,7 @@
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="c6dba87d-19c3-4764-943e-2fdf49b38dbf" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/Route/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="b742eb39-72bb-4bfe-9dbd-ed0a2c449dd6" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/Route/mex" />
     <MetadataFile FileName="Model.xsd" MetadataType="Schema" ID="609036c5-f043-4ac6-b974-eae5e29fb8f4" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/Route/mex" />
+    <MetadataFile FileName="System.Device.Location.xsd" MetadataType="Schema" ID="c8465da1-c9b4-49f7-be86-4dc17d52da8d" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/Route/mex" />
     <MetadataFile FileName="WCFService.xsd" MetadataType="Schema" ID="4962c5b6-6924-47cb-bd1b-9e8e4bad96cb" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/Route/mex" />
   </Metadata>
   <Extensions>

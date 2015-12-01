@@ -32,6 +32,9 @@ namespace TestWCFService.ServiceRoute {
         private long IDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private TestWCFService.ServiceRoute.DeliveryStop[] StopsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.TimeSpan TimeForDepartureField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -79,6 +82,19 @@ namespace TestWCFService.ServiceRoute {
                 if ((this.IDField.Equals(value) != true)) {
                     this.IDField = value;
                     this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public TestWCFService.ServiceRoute.DeliveryStop[] Stops {
+            get {
+                return this.StopsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StopsField, value) != true)) {
+                    this.StopsField = value;
+                    this.RaisePropertyChanged("Stops");
                 }
             }
         }
@@ -169,6 +185,612 @@ namespace TestWCFService.ServiceRoute {
                 if ((this.TrailerTypeField.Equals(value) != true)) {
                     this.TrailerTypeField = value;
                     this.RaisePropertyChanged("TrailerType");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DeliveryStop", Namespace="http://schemas.datacontract.org/2004/07/Model")]
+    [System.SerializableAttribute()]
+    public partial class DeliveryStop : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private TestWCFService.ServiceRoute.DefaultDeliveryStop DefaultStopField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private TestWCFService.ServiceRoute.TransportUnit[] TransportUnitsField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public TestWCFService.ServiceRoute.DefaultDeliveryStop DefaultStop {
+            get {
+                return this.DefaultStopField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DefaultStopField, value) != true)) {
+                    this.DefaultStopField = value;
+                    this.RaisePropertyChanged("DefaultStop");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public TestWCFService.ServiceRoute.TransportUnit[] TransportUnits {
+            get {
+                return this.TransportUnitsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TransportUnitsField, value) != true)) {
+                    this.TransportUnitsField = value;
+                    this.RaisePropertyChanged("TransportUnits");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DefaultDeliveryStop", Namespace="http://schemas.datacontract.org/2004/07/Model")]
+    [System.SerializableAttribute()]
+    public partial class DefaultDeliveryStop : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private TestWCFService.ServiceRoute.Customer[] CustomersField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private TestWCFService.ServiceRoute.GeoLoc GeoLocField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long GeoLocIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> SequenceNbrField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long _geoLocIDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public TestWCFService.ServiceRoute.Customer[] Customers {
+            get {
+                return this.CustomersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CustomersField, value) != true)) {
+                    this.CustomersField = value;
+                    this.RaisePropertyChanged("Customers");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public TestWCFService.ServiceRoute.GeoLoc GeoLoc {
+            get {
+                return this.GeoLocField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GeoLocField, value) != true)) {
+                    this.GeoLocField = value;
+                    this.RaisePropertyChanged("GeoLoc");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long GeoLocID {
+            get {
+                return this.GeoLocIDField;
+            }
+            set {
+                if ((this.GeoLocIDField.Equals(value) != true)) {
+                    this.GeoLocIDField = value;
+                    this.RaisePropertyChanged("GeoLocID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> SequenceNbr {
+            get {
+                return this.SequenceNbrField;
+            }
+            set {
+                if ((this.SequenceNbrField.Equals(value) != true)) {
+                    this.SequenceNbrField = value;
+                    this.RaisePropertyChanged("SequenceNbr");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long _geoLocID {
+            get {
+                return this._geoLocIDField;
+            }
+            set {
+                if ((this._geoLocIDField.Equals(value) != true)) {
+                    this._geoLocIDField = value;
+                    this.RaisePropertyChanged("_geoLocID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TransportUnit", Namespace="http://schemas.datacontract.org/2004/07/Model")]
+    [System.SerializableAttribute()]
+    public partial class TransportUnit : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long CustomerIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double UnitTypeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long CustomerID {
+            get {
+                return this.CustomerIDField;
+            }
+            set {
+                if ((this.CustomerIDField.Equals(value) != true)) {
+                    this.CustomerIDField = value;
+                    this.RaisePropertyChanged("CustomerID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double UnitType {
+            get {
+                return this.UnitTypeField;
+            }
+            set {
+                if ((this.UnitTypeField.Equals(value) != true)) {
+                    this.UnitTypeField = value;
+                    this.RaisePropertyChanged("UnitType");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GeoLoc", Namespace="http://schemas.datacontract.org/2004/07/Model")]
+    [System.SerializableAttribute()]
+    public partial class GeoLoc : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private TestWCFService.ServiceRoute.GeoCoordinate LocationField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public TestWCFService.ServiceRoute.GeoCoordinate Location {
+            get {
+                return this.LocationField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LocationField, value) != true)) {
+                    this.LocationField = value;
+                    this.RaisePropertyChanged("Location");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Customer", Namespace="http://schemas.datacontract.org/2004/07/Model")]
+    [System.SerializableAttribute()]
+    public partial class Customer : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CityField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StreetNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StreetNoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.TimeSpan TimeOfDeliveryField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ZipcodeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string City {
+            get {
+                return this.CityField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CityField, value) != true)) {
+                    this.CityField = value;
+                    this.RaisePropertyChanged("City");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string StreetName {
+            get {
+                return this.StreetNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StreetNameField, value) != true)) {
+                    this.StreetNameField = value;
+                    this.RaisePropertyChanged("StreetName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string StreetNo {
+            get {
+                return this.StreetNoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StreetNoField, value) != true)) {
+                    this.StreetNoField = value;
+                    this.RaisePropertyChanged("StreetNo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.TimeSpan TimeOfDelivery {
+            get {
+                return this.TimeOfDeliveryField;
+            }
+            set {
+                if ((this.TimeOfDeliveryField.Equals(value) != true)) {
+                    this.TimeOfDeliveryField = value;
+                    this.RaisePropertyChanged("TimeOfDelivery");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Zipcode {
+            get {
+                return this.ZipcodeField;
+            }
+            set {
+                if ((this.ZipcodeField.Equals(value) != true)) {
+                    this.ZipcodeField = value;
+                    this.RaisePropertyChanged("Zipcode");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GeoCoordinate", Namespace="http://schemas.datacontract.org/2004/07/System.Device.Location")]
+    [System.SerializableAttribute()]
+    public partial class GeoCoordinate : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double AltitudeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double CourseField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double HorizontalAccuracyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double LatitudeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double LongitudeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double SpeedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double VerticalAccuracyField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Altitude {
+            get {
+                return this.AltitudeField;
+            }
+            set {
+                if ((this.AltitudeField.Equals(value) != true)) {
+                    this.AltitudeField = value;
+                    this.RaisePropertyChanged("Altitude");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Course {
+            get {
+                return this.CourseField;
+            }
+            set {
+                if ((this.CourseField.Equals(value) != true)) {
+                    this.CourseField = value;
+                    this.RaisePropertyChanged("Course");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double HorizontalAccuracy {
+            get {
+                return this.HorizontalAccuracyField;
+            }
+            set {
+                if ((this.HorizontalAccuracyField.Equals(value) != true)) {
+                    this.HorizontalAccuracyField = value;
+                    this.RaisePropertyChanged("HorizontalAccuracy");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Latitude {
+            get {
+                return this.LatitudeField;
+            }
+            set {
+                if ((this.LatitudeField.Equals(value) != true)) {
+                    this.LatitudeField = value;
+                    this.RaisePropertyChanged("Latitude");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Longitude {
+            get {
+                return this.LongitudeField;
+            }
+            set {
+                if ((this.LongitudeField.Equals(value) != true)) {
+                    this.LongitudeField = value;
+                    this.RaisePropertyChanged("Longitude");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Speed {
+            get {
+                return this.SpeedField;
+            }
+            set {
+                if ((this.SpeedField.Equals(value) != true)) {
+                    this.SpeedField = value;
+                    this.RaisePropertyChanged("Speed");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double VerticalAccuracy {
+            get {
+                return this.VerticalAccuracyField;
+            }
+            set {
+                if ((this.VerticalAccuracyField.Equals(value) != true)) {
+                    this.VerticalAccuracyField = value;
+                    this.RaisePropertyChanged("VerticalAccuracy");
                 }
             }
         }

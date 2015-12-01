@@ -77,6 +77,9 @@
     <None Include="Service References\ServiceRoute\service1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\ServiceRoute\System.Device.Location.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServiceRoute\TestWCFService.ServiceRoute.Route.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
