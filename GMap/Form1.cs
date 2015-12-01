@@ -14,7 +14,7 @@ namespace GMap
     public partial class Form1 : Form
     {
         DBConnection dbConnection = DBConnection.Instance;
-        MapController mapController = MapController.Instance;
+        MapController mapCtr = MapController.Instance;
         GMapOverlay geoPosion = new GMapOverlay("GeoPosion");
         public Form1()
         {
@@ -46,10 +46,12 @@ namespace GMap
             ////label1.Text = test[route];
 
             //geoPosion.Clear();
-            ////mapController.GenerateMap(gmap.MapProvider, geoPosion);
+            ////mapCtr.GenerateMap(gmap.MapProvider, geoPosion);
             //gmap.Overlays.Add(geoPosion);
 
             ImportController.Instance.ImportRoutes();
+            OptimizeController.Instance.Optimize();
+
             listBox1.Items.Clear();
             foreach (Route route in RouteController.Instance.Routes.ToList())
             {
@@ -75,7 +77,7 @@ namespace GMap
 
             gmap.Overlays.Clear();
             geoPosion = new GMapOverlay("Route: " + id);
-            List<MapRoute> roud = MapController.CalcRoute(r);
+            List<MapRoute> roud = mapCtr.GetCalcRoad(r);
             for (int i = 0; i < roud.Count; i++)
             {
                 GMapRoute gMapRoute = new GMapRoute(roud[0].Points, (id + 1) + ". Stop");

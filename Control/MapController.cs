@@ -17,7 +17,7 @@ namespace Control
 
         private readonly ConcurrentDictionary<long, GeoLoc> geoLocs = new ConcurrentDictionary<long, GeoLoc>();
 
-        private static ConcurrentDictionary<long, List<MapRoute>> calcRoutes = new ConcurrentDictionary<long, List<MapRoute>>();
+        private ConcurrentDictionary<long, List<MapRoute>> calcRoutes = new ConcurrentDictionary<long, List<MapRoute>>();
 
         private GMap.NET.GMaps gMap;
         public static GMap.NET.MapProviders.OpenStreetMapProvider MapProvider { get { return GMap.NET.MapProviders.OpenStreetMapProvider.Instance; } }
@@ -35,17 +35,34 @@ namespace Control
             gMap = GMap.NET.GMaps.Instance;
         }
 
-        public static List<MapRoute> CalcRoute(Route route)
+        public List<MapRoute> GetCalcRoad(Route route)
         {
+            // Check for a pre-calculated road
             if (route.ID != 0 || calcRoutes.ContainsKey(route.ID))
-            {
                 return calcRoutes[route.ID];
-            }
             else if (calcRoutes.ContainsKey(route.DefaultRoute.ID))
-            {
                 return calcRoutes[route.DefaultRoute.ID];
-            }
 
+            // Because there was not calculated road, calculate one now.
+            PreCalcRoad(route);
+
+            // Now that we have calculated a road, do a recursive call
+            return GetCalcRoad(route);
+        }
+
+        public void PreCalcRoad(Route route)
+        {
+            List<MapRoute> map = CalcRoad(route);
+
+            // Store for later use
+            if (route.ID != 0)
+                calcRoutes[route.ID] = map;
+            else
+                calcRoutes[route.DefaultRoute.ID] = map;
+        }
+
+        private List<MapRoute> CalcRoad(Route route)
+        {
             PointLatLng arlaFoodHobro = new PointLatLng(56.6372393, 9.7797216);
             DeliveryStop[] sortedStops = new DeliveryStop[route.Stops.Count];
 
@@ -59,81 +76,46 @@ namespace Control
             sortedStops[0] = roads[shortestDistances].Item2;
             map.Add(roads[shortestDistances].Item1);
 
-            try
+            for (int i = 1; i < route.Stops.Count; i++)
             {
-                for (int i = 1; i < route.Stops.Count; i++)
-                {
-                    roads = CalcDistance(sortedStops[i - 1].DefaultStop.GeoLoc.Point, route.Stops);
+                roads = CalcDistance(sortedStops[i - 1].DefaultStop.GeoLoc.Point, route.Stops);
 
-                    shortestDistances = roads.Keys.Min();
-                    sortedStops[i] = roads[shortestDistances].Item2;
-                    map.Add(roads[shortestDistances].Item1);
-                }
-            }
-            catch (System.AggregateException e)
-            {
-
-                Console.WriteLine(e);
-            }
-
-
-            if (route.ID != 0)
-            {
-                calcRoutes[route.ID] = map;
-            }
-            else
-            {
-                calcRoutes[route.DefaultRoute.ID] = map;
+                shortestDistances = roads.Keys.Min();
+                sortedStops[i] = roads[shortestDistances].Item2;
+                map.Add(roads[shortestDistances].Item1);
             }
 
             return map;
         }
 
-        public static ConcurrentDictionary<double, Tuple<MapRoute, DeliveryStop>> CalcDistance(PointLatLng from, List<DeliveryStop> stops)
+        private static ConcurrentDictionary<double, Tuple<MapRoute, DeliveryStop>> CalcDistance(PointLatLng from,
+            List<DeliveryStop> stops)
         {
-            try
+            ConcurrentDictionary<double, Tuple<MapRoute, DeliveryStop>> roads =
+                new ConcurrentDictionary<double, Tuple<MapRoute, DeliveryStop>>();
+
+            //Parallel.ForEach(stops, to =>
+            stops.ForEach(to =>
             {
-                ConcurrentDictionary<double, Tuple<MapRoute, DeliveryStop>> roads = new ConcurrentDictionary<double, Tuple<MapRoute, DeliveryStop>>();
+                MapRoute mapRoute = MapProvider.GetRoute(from,
+                    to.DefaultStop.GeoLoc.Point, false, false, 15);
 
-                Parallel.ForEach(stops, to =>
-                {
-                    MapRoute mapRoute = MapProvider.GetRoute(from,
-                        to.DefaultStop.GeoLoc.Point, false, false, 15);
+                // TODO: What to do if there is 2 distance with the same value?
+                roads.AddOrUpdate(mapRoute.Distance, new Tuple<MapRoute, DeliveryStop>(mapRoute, to),
+                    (d, roudAndStop) => roudAndStop);
+            });
 
-                    // TODO: What to do if there is 2 distance with the same value?
-                    roads.AddOrUpdate(mapRoute.Distance, new Tuple<MapRoute, DeliveryStop>(mapRoute, to),
-                        (d, roudAndStop) => roudAndStop);
-                });
-
-                return roads;
-            }
-            catch (AggregateException e)
-            {
-
-                Console.WriteLine(e);
-            }
-
-            return null;
+            return roads;
         }
 
         public static MapRoute ShortestDistancesTo(DeliveryStop from, Route route)
         {
-            List<GeoLoc> geoLocs = new List<GeoLoc>();
-            route.Stops.ForEach(stop => {geoLocs.Add(stop.DefaultStop.GeoLoc);});
-            ConcurrentDictionary<double, MapRoute> roads = new ConcurrentDictionary<double, MapRoute>();
-
-            Parallel.ForEach(route.Stops, to =>
-            {
-                MapRoute mapRoute = MapProvider.GetRoute(from.DefaultStop.GeoLoc.Point,
-                    to.DefaultStop.GeoLoc.Point, false, false, 15);
-
-                    // TODO: What to do if there is 2 distance with the same value?
-                    roads.AddOrUpdate(mapRoute.Distance, mapRoute, (d, route1) => route1);
-            });
+            ConcurrentDictionary<double, Tuple<MapRoute, DeliveryStop>> roads =
+                CalcDistance(from.DefaultStop.GeoLoc.Point, route.Stops);
 
             double shortestDistances = roads.Keys.Min();
 
-            return roads[shortestDistances];
+            return roads[shortestDistances].Item1;
         }
 
         public void AddGeoLog(DefaultDeliveryStop stop)
