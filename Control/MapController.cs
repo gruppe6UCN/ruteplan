@@ -52,34 +52,9 @@ namespace Control
             List<MapRoute> map = new List<MapRoute>();
 
             double shortestDistances;
-            ConcurrentDictionary<double, Tuple<MapRoute, DeliveryStop>> roads = new ConcurrentDictionary<double, Tuple<MapRoute, DeliveryStop>>();
+            ConcurrentDictionary<double, Tuple<MapRoute, DeliveryStop>> roads;
 
-            try
-            {
-                Parallel.ForEach(route.Stops, to =>
-                {
-                    try
-                    {
-                        MapRoute mapRoute = MapProvider.GetRoute(arlaFoodHobro,
-                            to.DefaultStop.GeoLoc.Point, false, false, 15);
-
-                        // TODO: What to do if there is 2 distance with the same value?
-                        roads.AddOrUpdate(mapRoute.Distance, new Tuple<MapRoute, DeliveryStop>(mapRoute, to),
-                            (d, roudAndStop) => roudAndStop);
-
-                    }
-                    catch (System.AggregateException e)
-                    {
-
-                        Console.WriteLine(e);
-                    }
-                });
-            }
-            catch (System.AggregateException e)
-            {
-
-                Console.WriteLine(e);
-            }
+            roads = CalcDistance(arlaFoodHobro, route.Stops);
             shortestDistances = roads.Keys.Min();
             sortedStops[0] = roads[shortestDistances].Item2;
             map.Add(roads[shortestDistances].Item1);
@@ -88,19 +63,8 @@ namespace Control
             {
                 for (int i = 1; i < route.Stops.Count; i++)
                 {
-                    roads = new ConcurrentDictionary<double, Tuple<MapRoute, DeliveryStop>>();
-                    Parallel.ForEach(route.Stops, to =>
-                    {
-                        if (!sortedStops.Contains(to))
-                        {
-                            MapRoute mapRoute = MapProvider.GetRoute(sortedStops[i - 1].DefaultStop.GeoLoc.Point,
-                                to.DefaultStop.GeoLoc.Point, false, false, 15);
+                    roads = CalcDistance(sortedStops[i - 1].DefaultStop.GeoLoc.Point, route.Stops);
 
-                            // TODO: What to do if there is 2 distance with the same value?
-                            roads.AddOrUpdate(mapRoute.Distance, new Tuple<MapRoute, DeliveryStop>(mapRoute, to),
-                                (d, roudAndStop) => roudAndStop);
-                        }
-                    });
                     shortestDistances = roads.Keys.Min();
                     sortedStops[i] = roads[shortestDistances].Item2;
                     map.Add(roads[shortestDistances].Item1);
@@ -123,6 +87,33 @@ namespace Control
             }
 
             return map;
+        }
+
+        public static ConcurrentDictionary<double, Tuple<MapRoute, DeliveryStop>> CalcDistance(PointLatLng from, List<DeliveryStop> stops)
+        {
+            try
+            {
+                ConcurrentDictionary<double, Tuple<MapRoute, DeliveryStop>> roads = new ConcurrentDictionary<double, Tuple<MapRoute, DeliveryStop>>();
+
+                Parallel.ForEach(stops, to =>
+                {
+                    MapRoute mapRoute = MapProvider.GetRoute(from,
+                        to.DefaultStop.GeoLoc.Point, false, false, 15);
+
+                    // TODO: What to do if there is 2 distance with the same value?
+                    roads.AddOrUpdate(mapRoute.Distance, new Tuple<MapRoute, DeliveryStop>(mapRoute, to),
+                        (d, roudAndStop) => roudAndStop);
+                });
+
+                return roads;
+            }
+            catch (AggregateException e)
+            {
+
+                Console.WriteLine(e);
+            }
+
+            return null;
         }
 
         public static MapRoute ShortestDistancesTo(DeliveryStop from, Route route)
