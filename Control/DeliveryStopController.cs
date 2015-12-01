@@ -54,7 +54,6 @@ namespace Control
         public void AddDeliveryStops(Route route, List<DefaultDeliveryStop> defaultStops) 
         {
             //Creates delivery stop for each default stop.
-            //TODO: Use a thread safe list instead of List<T>
             defaultStops.ForEach(defaultStop =>
             {
                 DeliveryStop stop = new DeliveryStop(defaultStop);
