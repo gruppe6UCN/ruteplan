@@ -118,7 +118,7 @@ namespace Control
 
         /// <summary>
         /// Gets a list of all default delivery stops imported from a .csv file for the given route.
-        /// List must be created first by using the method GetDefaultDeliveryStopFromFile.
+        /// List must be created first by using the method ImportDefaultDeliveryStopFromFile.
         /// </summary>
         /// <param name="defaultRoute">DefaultRoute which DefaultDeliveryStops are to be returned.</param>
         /// <returns>List of DefaultDeliveryStops for route.</returns>
@@ -132,6 +132,7 @@ namespace Control
                 {
                     DefaultDeliveryStop defaultStop = new DefaultDeliveryStop(stop.ID, stop.GeoLocID, stop.SequenceNbr);
                     defaultStop.Customers = stop.Customers;
+                    stops.Add(defaultStop);
                 }
             }
 
