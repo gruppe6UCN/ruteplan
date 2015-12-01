@@ -8,31 +8,30 @@ using System.Threading.Tasks;
 namespace Model
 {
     [DataContract()]
-    [KnownType(typeof(Customer))]
+    //[KnownType(typeof(Customer))]
     public class DefaultDeliveryStop
     {
+        private long _geoLocID;
+
         [DataMember()]
         public long ID { get; private set; }
         [DataMember()]
         public List<Customer> Customers { get; set; }
         [DataMember()]
-        private long _geoLocID;
-        [DataMember()]
         public int? SequenceNbr { get; private set; }
-
+        [DataMember()]
+        public GeoLoc GeoLoc { get; set; }
         [DataMember()]
         public long GeoLocID
         {
             get { return GeoLoc == null ? _geoLocID : GeoLoc.ID; }
+            private set { _geoLocID = value; }
         }
-
-        [DataMember()]
-        public GeoLoc GeoLoc { get; set; }
 
         public DefaultDeliveryStop(long ID, long geoLocId)
         {
             this.ID = ID;
-            this._geoLocID = geoLocId;
+            GeoLocID = geoLocId;
         }
 
         public DefaultDeliveryStop(long ID, long geoLocId, int? SequenceNbr)

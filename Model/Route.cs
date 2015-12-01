@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Model
 {
     [DataContract()]
-    [KnownType(typeof(DeliveryStop))]
+    //[KnownType(typeof(DeliveryStop))]
     public class Route
     {
         [DataMember()]

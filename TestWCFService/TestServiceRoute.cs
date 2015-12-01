@@ -55,7 +55,7 @@ namespace TestWCFService
         public void TestGetRoutes_02()
         {
             importClient.Import();
-            List<Route> routes = routeClient.GetRoutes();
+            Route[] routes = routeClient.GetRoutes();
             Assert.NotNull(routes);
             Assert.IsNotEmpty(routes);
         }

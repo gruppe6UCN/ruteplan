@@ -32,7 +32,7 @@ namespace TestWCFService.ServiceRoute {
         private long IDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<TestWCFService.ServiceRoute.DeliveryStop> StopsField;
+        private TestWCFService.ServiceRoute.DeliveryStop[] StopsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.TimeSpan TimeForDepartureField;
@@ -87,7 +87,7 @@ namespace TestWCFService.ServiceRoute {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<TestWCFService.ServiceRoute.DeliveryStop> Stops {
+        public TestWCFService.ServiceRoute.DeliveryStop[] Stops {
             get {
                 return this.StopsField;
             }
@@ -215,7 +215,7 @@ namespace TestWCFService.ServiceRoute {
         private long IDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<TestWCFService.ServiceRoute.TransportUnit> TransportUnitsField;
+        private TestWCFService.ServiceRoute.TransportUnit[] TransportUnitsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -254,7 +254,7 @@ namespace TestWCFService.ServiceRoute {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<TestWCFService.ServiceRoute.TransportUnit> TransportUnits {
+        public TestWCFService.ServiceRoute.TransportUnit[] TransportUnits {
             get {
                 return this.TransportUnitsField;
             }
@@ -286,7 +286,7 @@ namespace TestWCFService.ServiceRoute {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<TestWCFService.ServiceRoute.Customer> CustomersField;
+        private TestWCFService.ServiceRoute.Customer[] CustomersField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private TestWCFService.ServiceRoute.GeoLoc GeoLocField;
@@ -300,9 +300,6 @@ namespace TestWCFService.ServiceRoute {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> SequenceNbrField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private long _geoLocIDField;
-        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -314,7 +311,7 @@ namespace TestWCFService.ServiceRoute {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<TestWCFService.ServiceRoute.Customer> Customers {
+        public TestWCFService.ServiceRoute.Customer[] Customers {
             get {
                 return this.CustomersField;
             }
@@ -374,19 +371,6 @@ namespace TestWCFService.ServiceRoute {
                 if ((this.SequenceNbrField.Equals(value) != true)) {
                     this.SequenceNbrField = value;
                     this.RaisePropertyChanged("SequenceNbr");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public long _geoLocID {
-            get {
-                return this._geoLocIDField;
-            }
-            set {
-                if ((this._geoLocIDField.Equals(value) != true)) {
-                    this._geoLocIDField = value;
-                    this.RaisePropertyChanged("_geoLocID");
                 }
             }
         }
@@ -491,7 +475,10 @@ namespace TestWCFService.ServiceRoute {
         private long IDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private TestWCFService.ServiceRoute.GeoCoordinate LocationField;
+        private double LatitudeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double LongitudeField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -517,14 +504,27 @@ namespace TestWCFService.ServiceRoute {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public TestWCFService.ServiceRoute.GeoCoordinate Location {
+        public double Latitude {
             get {
-                return this.LocationField;
+                return this.LatitudeField;
             }
             set {
-                if ((object.ReferenceEquals(this.LocationField, value) != true)) {
-                    this.LocationField = value;
-                    this.RaisePropertyChanged("Location");
+                if ((this.LatitudeField.Equals(value) != true)) {
+                    this.LatitudeField = value;
+                    this.RaisePropertyChanged("Latitude");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Longitude {
+            get {
+                return this.LongitudeField;
+            }
+            set {
+                if ((this.LongitudeField.Equals(value) != true)) {
+                    this.LongitudeField = value;
+                    this.RaisePropertyChanged("Longitude");
                 }
             }
         }
@@ -666,147 +666,6 @@ namespace TestWCFService.ServiceRoute {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="GeoCoordinate", Namespace="http://schemas.datacontract.org/2004/07/System.Device.Location")]
-    [System.SerializableAttribute()]
-    public partial class GeoCoordinate : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double AltitudeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double CourseField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double HorizontalAccuracyField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double LatitudeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double LongitudeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double SpeedField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double VerticalAccuracyField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public double Altitude {
-            get {
-                return this.AltitudeField;
-            }
-            set {
-                if ((this.AltitudeField.Equals(value) != true)) {
-                    this.AltitudeField = value;
-                    this.RaisePropertyChanged("Altitude");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public double Course {
-            get {
-                return this.CourseField;
-            }
-            set {
-                if ((this.CourseField.Equals(value) != true)) {
-                    this.CourseField = value;
-                    this.RaisePropertyChanged("Course");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public double HorizontalAccuracy {
-            get {
-                return this.HorizontalAccuracyField;
-            }
-            set {
-                if ((this.HorizontalAccuracyField.Equals(value) != true)) {
-                    this.HorizontalAccuracyField = value;
-                    this.RaisePropertyChanged("HorizontalAccuracy");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public double Latitude {
-            get {
-                return this.LatitudeField;
-            }
-            set {
-                if ((this.LatitudeField.Equals(value) != true)) {
-                    this.LatitudeField = value;
-                    this.RaisePropertyChanged("Latitude");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public double Longitude {
-            get {
-                return this.LongitudeField;
-            }
-            set {
-                if ((this.LongitudeField.Equals(value) != true)) {
-                    this.LongitudeField = value;
-                    this.RaisePropertyChanged("Longitude");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public double Speed {
-            get {
-                return this.SpeedField;
-            }
-            set {
-                if ((this.SpeedField.Equals(value) != true)) {
-                    this.SpeedField = value;
-                    this.RaisePropertyChanged("Speed");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public double VerticalAccuracy {
-            get {
-                return this.VerticalAccuracyField;
-            }
-            set {
-                if ((this.VerticalAccuracyField.Equals(value) != true)) {
-                    this.VerticalAccuracyField = value;
-                    this.RaisePropertyChanged("VerticalAccuracy");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ExceptionNoRoutes", Namespace="http://schemas.datacontract.org/2004/07/WCFService")]
     [System.SerializableAttribute()]
     public partial class ExceptionNoRoutes : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -856,10 +715,10 @@ namespace TestWCFService.ServiceRoute {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceRoute/GetRoutes", ReplyAction="http://tempuri.org/IServiceRoute/GetRoutesResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(TestWCFService.ServiceRoute.ExceptionNoRoutes), Action="http://tempuri.org/IServiceRoute/GetRoutesExceptionNoRoutesFault", Name="ExceptionNoRoutes", Namespace="http://schemas.datacontract.org/2004/07/WCFService")]
-        System.Collections.Generic.List<TestWCFService.ServiceRoute.Route> GetRoutes();
+        TestWCFService.ServiceRoute.Route[] GetRoutes();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceRoute/GetRoutes", ReplyAction="http://tempuri.org/IServiceRoute/GetRoutesResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<TestWCFService.ServiceRoute.Route>> GetRoutesAsync();
+        System.Threading.Tasks.Task<TestWCFService.ServiceRoute.Route[]> GetRoutesAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -889,11 +748,11 @@ namespace TestWCFService.ServiceRoute {
                 base(binding, remoteAddress) {
         }
         
-        public System.Collections.Generic.List<TestWCFService.ServiceRoute.Route> GetRoutes() {
+        public TestWCFService.ServiceRoute.Route[] GetRoutes() {
             return base.Channel.GetRoutes();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<TestWCFService.ServiceRoute.Route>> GetRoutesAsync() {
+        public System.Threading.Tasks.Task<TestWCFService.ServiceRoute.Route[]> GetRoutesAsync() {
             return base.Channel.GetRoutesAsync();
         }
     }

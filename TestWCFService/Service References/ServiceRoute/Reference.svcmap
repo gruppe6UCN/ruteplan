@@ -10,7 +10,7 @@
     <GenerateMessageContracts>false</GenerateMessageContracts>
     <NamespaceMappings />
     <CollectionMappings>
-      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+      <CollectionMapping TypeName="System.Collections.ArrayList" Category="List" />
     </CollectionMappings>
     <GenerateSerializableTypes>true</GenerateSerializableTypes>
     <Serializer>Auto</Serializer>
@@ -28,7 +28,6 @@
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="c6dba87d-19c3-4764-943e-2fdf49b38dbf" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/Route/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="b742eb39-72bb-4bfe-9dbd-ed0a2c449dd6" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/Route/mex" />
     <MetadataFile FileName="Model.xsd" MetadataType="Schema" ID="609036c5-f043-4ac6-b974-eae5e29fb8f4" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/Route/mex" />
-    <MetadataFile FileName="System.Device.Location.xsd" MetadataType="Schema" ID="9e92f70f-9c35-4fd7-bda8-c858b9c2af5f" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/Route/mex" />
     <MetadataFile FileName="WCFService.xsd" MetadataType="Schema" ID="4962c5b6-6924-47cb-bd1b-9e8e4bad96cb" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/Route/mex" />
   </Metadata>
   <Extensions>
