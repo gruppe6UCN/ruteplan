@@ -20,8 +20,8 @@ namespace GUI
 {
     public partial class Form1 : Form
     {
-        public delegate void ImportThread();
-        public delegate void OptimizeThread();
+        public delegate void UpdateDelegate(List<Route> routes);
+        public delegate void OptimizeThreadDelegate();
         private ServiceImportClient importClient;
         private ServiceRouteClient routeClient;
 
@@ -62,18 +62,21 @@ namespace GUI
         {
             importClient.Import();
             List<Route> routes = routeClient.GetRoutes().ToList<Route>();
-            UpdateImportTable(routes);
+            UpdateDelegate update = new UpdateDelegate(UpdateImportTable);
+            this.BeginInvoke(update, routes);
         }
 
 
         //Delegate til at sørge for at det hele bliver i en Thread
         public void ImportThreadStart()
         {
-            ImportThread fest = new ImportThread(ImportStart);
-            
-            
-            this.BeginInvoke(fest);
+            importClient.Import();
+            List<Route> routes = routeClient.GetRoutes().ToList<Route>();
+            var update = new UpdateDelegate(UpdateImportTable);
+            //this.BeginInvoke(UpdateImportTable);
         }
+
+
 
         public void ImportStart()
         {
@@ -132,7 +135,7 @@ namespace GUI
         //Delegate til at sørge for at det hele bliver i en Thread
         public void OptimizeThreadStart()
         {
-            OptimizeThread optimize = new OptimizeThread(OptimizeStart);
+            OptimizeThreadDelegate optimize = new OptimizeThreadDelegate(OptimizeStart);
             this.BeginInvoke(optimize);
 
         }
