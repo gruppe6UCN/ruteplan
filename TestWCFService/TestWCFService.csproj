@@ -77,6 +77,9 @@
     <None Include="Service References\ServiceOptimize\service.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\ServiceOptimize\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServiceRoute\Model.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -85,9 +88,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceRoute\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceRoute\System.Device.Location.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceRoute\TestWCFService.ServiceRoute.Route.datasource">

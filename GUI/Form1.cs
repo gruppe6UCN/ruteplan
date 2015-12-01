@@ -42,7 +42,7 @@ namespace GUI
             //ProgressBar
             //Maximum er mængden af routes der bliver importet
             //Step er hvor mange routes den skal gennemgå af gangen
-            //progressBar1.Maximum = 1000000;
+            //progressBar1.Maximum = 100;
             //progressBar1.Step = 1;
 
 

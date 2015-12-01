@@ -3,6 +3,7 @@
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IServiceOptimize_Optimize_InputMessage">
@@ -11,16 +12,35 @@
   <wsdl:message name="IServiceOptimize_Optimize_OutputMessage">
     <wsdl:part name="parameters" element="tns:OptimizeResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceOptimize_GetStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStatus" />
+  </wsdl:message>
+  <wsdl:message name="IServiceOptimize_GetStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStatusResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServiceOptimize">
     <wsdl:operation name="Optimize">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceOptimize/Optimize" message="tns:IServiceOptimize_Optimize_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceOptimize/OptimizeResponse" message="tns:IServiceOptimize_Optimize_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceOptimize/GetStatus" message="tns:IServiceOptimize_GetStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceOptimize/GetStatusResponse" message="tns:IServiceOptimize_GetStatus_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServiceOptimize" type="tns:IServiceOptimize">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="Optimize">
       <soap:operation soapAction="http://tempuri.org/IServiceOptimize/Optimize" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatus">
+      <soap:operation soapAction="http://tempuri.org/IServiceOptimize/GetStatus" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

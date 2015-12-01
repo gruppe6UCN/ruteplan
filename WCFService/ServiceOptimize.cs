@@ -14,5 +14,11 @@ namespace WCFService
         {
             OptimizeController.Instance.Optimize();
         }
+
+        public int GetStatus()
+        {
+            int status = OptimizeController.Instance.GetStatus();
+            return status;
+        }
     }
 }

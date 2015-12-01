@@ -20,6 +20,12 @@ namespace TestWCFService.ServiceOptimize {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOptimize/Optimize", ReplyAction="http://tempuri.org/IServiceOptimize/OptimizeResponse")]
         System.Threading.Tasks.Task OptimizeAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOptimize/GetStatus", ReplyAction="http://tempuri.org/IServiceOptimize/GetStatusResponse")]
+        int GetStatus();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOptimize/GetStatus", ReplyAction="http://tempuri.org/IServiceOptimize/GetStatusResponse")]
+        System.Threading.Tasks.Task<int> GetStatusAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -55,6 +61,14 @@ namespace TestWCFService.ServiceOptimize {
         
         public System.Threading.Tasks.Task OptimizeAsync() {
             return base.Channel.OptimizeAsync();
+        }
+        
+        public int GetStatus() {
+            return base.Channel.GetStatus();
+        }
+        
+        public System.Threading.Tasks.Task<int> GetStatusAsync() {
+            return base.Channel.GetStatusAsync();
         }
     }
 }

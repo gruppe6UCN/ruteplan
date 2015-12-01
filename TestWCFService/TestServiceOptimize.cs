@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using TestWCFService.ServiceOptimize;
+using System.Threading.Tasks;
 
 namespace TestWCFService
 {
@@ -8,6 +9,7 @@ namespace TestWCFService
     public class TestOptimizeService
     {
         private ServiceOptimizeClient client;
+        private ServiceOptimizeClient client2;
 
         [TestFixtureSetUp()]
         public void ClassSetUp()
@@ -15,6 +17,7 @@ namespace TestWCFService
             Server.WCFServer.Initialize();
             Server.WCFServer.StartServer();
             client = new ServiceOptimizeClient();
+            client2 = new ServiceOptimizeClient();
         }
 
         [SetUp()]
@@ -26,6 +29,7 @@ namespace TestWCFService
         public void ClassTeardown()
         {
             client.Close();
+            client2.Close();
             Server.WCFServer.StopServer();
             Server.WCFServer.Terminate();
         }
@@ -35,6 +39,37 @@ namespace TestWCFService
         {
             client.Optimize();
             Assert.Pass();
+        }
+
+        [Test()]
+        public async void TestDoubleOptimize()
+        {
+            var c1 = Task.Run(() => Optimize(client));
+            var c2 = Task.Run(() => Optimize(client2));
+
+            await c1;
+            await c2;
+
+            Assert.Pass();
+        }
+
+        [Test()]
+        public void TestGetStatus()
+        {
+            int status = client.GetStatus();
+            if (status >= 0 && status <= 100)
+            {
+                Assert.Pass();
+            }
+            else
+            {
+                Assert.Fail();
+            }
+        }
+
+        public void Optimize(ServiceOptimizeClient client)
+        {
+            client.Optimize();
         }
     }
 }
