@@ -80,5 +80,10 @@ namespace Server
             dbInstance.Pass = File.ReadAllText("Config/pass.txt");
             dbInstance.Connect();
         }
+
+        public static void Terminate()
+        {
+            dbInstance.Disconnect();
+        }
     }
 }
