@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace Model
 {
     [DataContract()]
+    [KnownType(typeof(Customer))]
     public class DefaultDeliveryStop
     {
         [DataMember()]

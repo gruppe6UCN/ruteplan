@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ServiceModel;
 using NUnit.Framework;
 using TestWCFService.ServiceImport;
@@ -19,6 +20,8 @@ namespace TestWCFService
             Server.WCFServer.StartServer();
             importClient = new ServiceImportClient();
             routeClient = new ServiceRouteClient();
+            importClient.Open();
+            routeClient.Open();
         }
 
         [SetUp()]
@@ -30,6 +33,7 @@ namespace TestWCFService
         public void ClassTeardown()
         {
             routeClient.Close();
+            importClient.Close();
             Server.WCFServer.StopServer();
         }
 
@@ -51,7 +55,7 @@ namespace TestWCFService
         public void TestGetRoutes_02()
         {
             importClient.Import();
-            Route[] routes = routeClient.GetRoutes();
+            List<Route> routes = routeClient.GetRoutes();
             Assert.NotNull(routes);
             Assert.IsNotEmpty(routes);
         }
