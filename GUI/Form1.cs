@@ -46,8 +46,9 @@ namespace GUI
             //progressBar1.Step = 1;
 
 
-
+            //Label = "Working...";
             await Task.Run(() => Import());
+            //label = "Done";
 
 
             ////Thread til at import

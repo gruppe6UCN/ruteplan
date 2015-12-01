@@ -20,6 +20,8 @@ namespace Server
                 typeof (IServiceImport), typeof (ServiceImport)),
             new Tuple<String, Type, Type>("http://localhost:8733/Design_Time_Addresses/WCFService/Route/",
                 typeof (IServiceRoute), typeof (ServiceRoute)),
+            new Tuple<String, Type, Type>("http://localhost:8733/Design_Time_Addresses/WCFService/ServiceOptimize/",
+                typeof (IServiceOptimize), typeof (ServiceOptimize)),
         };
 
         public static void StartServer()

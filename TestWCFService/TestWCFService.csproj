@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Service References\ServiceOptimize\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="TestServiceOptimize.cs" />
     <Compile Include="Service References\ServiceImport\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -65,6 +71,10 @@
     <None Include="packages.config" />
     <None Include="Service References\ServiceImport\service.wsdl" />
     <None Include="Service References\ServiceImport\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceOptimize\service.wsdl" />
+    <None Include="Service References\ServiceOptimize\service.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceRoute\Model.xsd">
@@ -92,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ServiceImport\" />
+    <WCFMetadataStorage Include="Service References\ServiceOptimize\" />
     <WCFMetadataStorage Include="Service References\ServiceRoute\" />
   </ItemGroup>
   <ItemGroup>
@@ -126,6 +137,18 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceOptimize\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceOptimize\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceOptimize\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

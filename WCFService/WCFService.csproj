@@ -60,10 +60,12 @@
   <ItemGroup>
     <Compile Include="IServiceDemo.cs" />
     <Compile Include="IServiceImport.cs" />
+    <Compile Include="IServiceOptimize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceImport.cs" />
     <Compile Include="ServiceDemo.cs" />
     <Compile Include="IServiceRoute.cs" />
+    <Compile Include="ServiceOptimize.cs" />
     <Compile Include="ServiceRoute.cs" />
   </ItemGroup>
   <ItemGroup>
