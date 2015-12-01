@@ -11,6 +11,7 @@ namespace WCFService
 {
     public class ServiceRoute : IServiceRoute
     {
+        //public List<Route> GetRoutes()
         public List<Route> GetRoutes()
         {
             List<Route> routes = RouteController.Instance.Routes.ToList();
