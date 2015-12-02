@@ -91,7 +91,7 @@ namespace Control
                 Route route = new Route(defaultRoute, date);
                 LogCtr.StatusLog("Creating new route, based on default route " + defaultRoute.ID);
 
-                DeliveryStopCtr.AddDeliveryStops(route, DefaultDeliveryStopCtr.GetDefaultDeliveryStopsFromFile(defaultRoute));
+                DeliveryStopCtr.AddDeliveryStopsFromFile(route, DefaultDeliveryStopCtr.GetDefaultDeliveryStopsFromFile(defaultRoute));
 
                 //Updates log and adds route.
                 LogCtr.StatusLog("Created new route from default route " + defaultRoute.ID);

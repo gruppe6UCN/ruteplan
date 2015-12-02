@@ -48,6 +48,7 @@ namespace Control
 
         /// <summary>
         /// Creates and adds all DeliveryStops to the given route, based on the given DefaultDeliveryStop.
+        /// Then adds transport units from the database to the stops.
         /// </summary>
         /// <param name="route">Route to contain DeliveryStops</param>
         /// <param name="defaultStops">List of DefaultStops.</param>
@@ -61,5 +62,24 @@ namespace Control
                 route.Stops.Add(stop);
             });
         }
+
+        
+        /// <summary>
+        /// Creates and adds all DeliveryStops to given route based on the given DefaultDeliveryStop.
+        /// Then adds transport units from the imported files in DefaultDeliveryStopController.
+        /// </summary>
+        /// <param name="route">Route to contain DeliveryStops</param>
+        /// <param name="defaultStops">List of DefaultStops.</param>
+        public void AddDeliveryStopsFromFile(Route route, List<DefaultDeliveryStop> defaultStops)
+        {
+            foreach (DefaultDeliveryStop dStop in defaultStops)
+            {
+                DeliveryStop stop = new DeliveryStop(dStop);
+                TransportUnitCtr.AddTransportUnitFromFile(stop, stop.DefaultStop.Customers);
+                route.Stops.Add(stop);
+            }
+        }
+
+
     }
 }

@@ -27,8 +27,11 @@ namespace Control
             public int? SequenceNbr { get; private set; }
             public string PromisedTime { get; private set; }
             public string TransportationDate { get; private set; }
+            public double RCE { get; private set; }
 
-            public TmpDefaultDeliveryStop(long ID, long GeoLocID, long RouteID, long CustomerID, int? SequenceNbr, string PromisedTime, string TransportationDate)
+            public TmpDefaultDeliveryStop(long ID, long GeoLocID, long RouteID, 
+                long CustomerID, int? SequenceNbr, string PromisedTime, 
+                string TransportationDate, double RCE)
             {
                 this.ID = ID;
                 this.GeoLocID = GeoLocID;
@@ -37,6 +40,7 @@ namespace Control
                 this.SequenceNbr = SequenceNbr;
                 this.PromisedTime = PromisedTime;
                 this.TransportationDate = TransportationDate;
+                this.RCE = RCE;
             }
         }
 
@@ -68,7 +72,7 @@ namespace Control
             public string TWTill;
             public string ETA;
             public string PromisedTime;
-            public string RCE;
+            public double RCE;
             public string Distance;
             public string UdfDeleteFromDB;
         }
@@ -196,7 +200,8 @@ namespace Control
                         DefaultRouteController.ParseID(record.SAPRoute),
                         record.CustomerNO, ParseToInt(record.UdfSequencenumber),
                         record.PromisedTime,
-                        record.TransportationDate);
+                        record.TransportationDate,
+                        record.RCE);
 
                     TmpDefaultStops.Add(defaultStop);
                     id++;

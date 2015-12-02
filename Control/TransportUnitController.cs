@@ -8,6 +8,7 @@ namespace Control
     {
         public DBTransportUnit DbTransportUnit { get; private set; }
         private static TransportUnitController instance;
+        public DefaultDeliveryStopController DefaultDeliveryStopCtr { get; private set; }
 
         /// <summary>
         /// Private singleton constructor.
@@ -15,6 +16,7 @@ namespace Control
         private TransportUnitController() 
         {
             DbTransportUnit = DBTransportUnit.Instance;
+            DefaultDeliveryStopCtr = DefaultDeliveryStopController.Instance;
         }
 
         /// <summary>
@@ -44,6 +46,20 @@ namespace Control
             }
 
             deliveryStop.TransportUnits = DbTransportUnit.GetTransportUnits(IDs);
+        }
+
+        /// <summary>
+        /// Loads from file imported on DefaultDeliveryStopController
+        /// and adds transport units to the given DeliveryStop.
+        /// </summary>
+        /// <param name="deliveryStop">DeliveryStop to contain TransportUnits.</param>
+        /// <param name="customers">List of customers for stop.</param>
+        public void AddTransportUnitFromFile(DeliveryStop deliveryStop, List<Customer> customers)
+        {
+
+
+
+
         }
     }
 }
