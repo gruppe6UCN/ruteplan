@@ -59,9 +59,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IServiceDemo.cs" />
+    <Compile Include="IServiceExport.cs" />
     <Compile Include="IServiceImport.cs" />
     <Compile Include="IServiceOptimize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceExport.cs" />
     <Compile Include="ServiceImport.cs" />
     <Compile Include="ServiceDemo.cs" />
     <Compile Include="IServiceRoute.cs" />

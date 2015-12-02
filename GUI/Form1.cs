@@ -17,6 +17,7 @@ using GUI.ServiceRoute;
 using Control;
 using GUI.ServiceOptimize;
 using System.ServiceModel;
+using GUI.ServiceExport;
 
 namespace GUI
 {
@@ -29,6 +30,7 @@ namespace GUI
         private ServiceImportClient importClient;
         private ServiceOptimizeClient optimizeClient;
         private ServiceRouteClient routeClient;
+        private ServiceExportClient exportClient;
         private bool working;
 
         public Form1()
@@ -42,6 +44,7 @@ namespace GUI
             importClient = new ServiceImportClient();
             routeClient = new ServiceRouteClient();
             optimizeClient = new ServiceOptimizeClient();
+            exportClient = new ServiceExportClient();
             
             //Updates Labels
             label1.Text = "";
@@ -134,6 +137,10 @@ namespace GUI
             {
                 label1.Text = "No routes have been imported.";   
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         public void UpdateOptimizeTable(List<Route> routes)
@@ -156,9 +163,18 @@ namespace GUI
             }
         }
 
-        public void button3_Click(object sender, EventArgs e)
+        public async void button3_Click(object sender, EventArgs e)
         {
-            
+            //EXPORT
+            label1.Text = "Exporting...";
+            await Task.Run(() => Export());
+            label1.Text = "Export Complete";
+
+        }
+
+        public void Export()
+        {
+            exportClient.Export();
         }
 
         public void tabPage1_Click(object sender, EventArgs e)

@@ -45,11 +45,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Service References\ServiceExport\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\ServiceOptimize\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="TestServiceExport.cs" />
     <Compile Include="TestServiceOptimize.cs" />
     <Compile Include="Service References\ServiceImport\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -69,6 +75,11 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Model.Route.datasource" />
+    <None Include="Service References\ServiceExport\service.wsdl" />
+    <None Include="Service References\ServiceExport\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServiceImport\service.wsdl" />
     <None Include="Service References\ServiceImport\service.xsd">
       <SubType>Designer</SubType>
@@ -93,9 +104,6 @@
     <None Include="Service References\ServiceRoute\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceRoute\TestWCFService.ServiceRoute.Route.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Service References\ServiceRoute\WCFService.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -104,6 +112,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServiceExport\" />
     <WCFMetadataStorage Include="Service References\ServiceImport\" />
     <WCFMetadataStorage Include="Service References\ServiceOptimize\" />
     <WCFMetadataStorage Include="Service References\ServiceRoute\" />
@@ -133,6 +142,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{d2387d10-ffd3-4dd4-8822-dc5f6ed1d93c}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Server\Server.csproj">
       <Project>{b5425574-cf10-42e3-a74a-32efccd4777d}</Project>
       <Name>Server</Name>
@@ -149,6 +162,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ServiceOptimize\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceExport\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceExport\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceExport\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
