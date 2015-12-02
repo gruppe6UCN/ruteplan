@@ -30,6 +30,9 @@ namespace Server
             {
                 serviceHosts = new List<ServiceHost>();
                 BasicHttpBinding binding = new BasicHttpBinding();
+                binding.MaxReceivedMessageSize = Int32.MaxValue;
+                binding.MaxBufferSize = Int32.MaxValue;
+                binding.MaxBufferPoolSize = Int32.MaxValue;
 
                 foreach (Tuple<string, Type, Type> tuple in services)
                 {
