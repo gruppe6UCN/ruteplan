@@ -14,6 +14,9 @@ map.obj
 #Login Files
 /Database/Config
 
+# Meld (merge/diff tool)
+*.orig
+
 #build
 [Oo]bj/
 [Bb]in/
