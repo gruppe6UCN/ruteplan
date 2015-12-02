@@ -20,6 +20,12 @@ namespace GUI.ServiceImport {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceImport/Import", ReplyAction="http://tempuri.org/IServiceImport/ImportResponse")]
         System.Threading.Tasks.Task ImportAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceImport/ImportFromArla", ReplyAction="http://tempuri.org/IServiceImport/ImportFromArlaResponse")]
+        void ImportFromArla();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceImport/ImportFromArla", ReplyAction="http://tempuri.org/IServiceImport/ImportFromArlaResponse")]
+        System.Threading.Tasks.Task ImportFromArlaAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -55,6 +61,14 @@ namespace GUI.ServiceImport {
         
         public System.Threading.Tasks.Task ImportAsync() {
             return base.Channel.ImportAsync();
+        }
+        
+        public void ImportFromArla() {
+            base.Channel.ImportFromArla();
+        }
+        
+        public System.Threading.Tasks.Task ImportFromArlaAsync() {
+            return base.Channel.ImportFromArlaAsync();
         }
     }
 }

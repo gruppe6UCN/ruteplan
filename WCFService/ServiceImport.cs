@@ -14,5 +14,13 @@ namespace WCFService
         {
             ImportController.Instance.ImportRoutes();
         }
+
+        public void ImportFromArla()
+        {
+            string pathRoutes = "Config/RuterCSVTest.csv";
+            string pathStops = "Config/stopsCSV.csv";
+            string pathCustomers = "Config/kunderCSV.csv";
+            ImportController.Instance.ImportFromFile(pathRoutes, pathStops, pathCustomers);
+        }
     }
 }

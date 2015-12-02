@@ -12,5 +12,7 @@ namespace WCFService
     {
         [OperationContract]
         void Import();
+        [OperationContract]
+        void ImportFromArla();
     }
 }

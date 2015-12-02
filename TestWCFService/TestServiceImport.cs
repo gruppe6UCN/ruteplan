@@ -36,5 +36,12 @@ namespace TestWCFService
             client.Import();
             Assert.Pass();
         }
+
+        [Test()]
+        public void TestImportFromArla()
+        {
+            client.ImportFromArla();
+            Assert.Pass();
+        }
     }
 }

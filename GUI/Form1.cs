@@ -70,7 +70,7 @@ namespace GUI
 
         public void Import()
         {
-            importClient.Import();
+            importClient.ImportFromArla();
             List<Route> routes = routeClient.GetRoutes().ToList<Route>();
             UpdateDelegate update = new UpdateDelegate(UpdateImportTable);
             this.BeginInvoke(update, routes);
