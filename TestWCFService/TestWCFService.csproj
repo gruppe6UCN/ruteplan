@@ -50,6 +50,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="TestServiceMap.cs" />
     <Compile Include="TestServiceOptimize.cs" />
     <Compile Include="Service References\ServiceImport\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -62,7 +63,6 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="TestServiceImport.cs" />
-    <Compile Include="TestServiceDemo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestServiceRoute.cs" />
   </ItemGroup>
