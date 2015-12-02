@@ -18,6 +18,7 @@ namespace Control
         private ConcurrentQueue<DeliveryStop> removedStops;
         private List<Route> overloadedRoutes;
         private List<Route> underloadedRoutes;
+        private int count;
 
         // /<summary>
         // /Private singleton constructor.
@@ -47,6 +48,9 @@ namespace Control
          * Optimizes all imported routes.
          */
         public void Optimize() {
+
+            count = 0;
+
             // Sync Queue
             removedStops = new ConcurrentQueue<DeliveryStop>();
 
@@ -118,6 +122,8 @@ namespace Control
                 }
 
                 RouteCtr.CalcTimeForDeparture();
+
+                count++;
             }
 
             Parallel.ForEach(RouteCtr.Routes, route => MapCtr.PreCalcRoad(route));
@@ -226,5 +232,23 @@ namespace Control
             // Returns the best load.
             return removedStops;
         }
+
+
+        /// <summary>
+        /// Gives a percentage of completion as an int of 0-100 for status of optmization.
+        /// </summary>
+        /// <returns>Int value from 0-100</returns>
+        public int GetStatus()
+        {
+            try
+            {
+                int max = overloadedRoutes.Count;
+                double steps = count / max;
+                double status = Math.Floor(steps * 100);
+                return Convert.ToInt32(status);
+            }
+            catch (NullReferenceException) { return 0; }
+        }
+
     }
 }

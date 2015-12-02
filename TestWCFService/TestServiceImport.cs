@@ -27,6 +27,7 @@ namespace TestWCFService
         {
             client.Close();
             Server.WCFServer.StopServer();
+            Server.WCFServer.Terminate();
         }
 
         [Test()]
