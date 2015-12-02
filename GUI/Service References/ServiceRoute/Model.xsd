@@ -12,6 +12,7 @@
       <xs:element minOccurs="0" name="DateForDeparture" type="xs:dateTime" />
       <xs:element minOccurs="0" name="DefaultRoute" nillable="true" type="tns:DefaultRoute" />
       <xs:element minOccurs="0" name="ID" type="xs:long" />
+      <xs:element minOccurs="0" name="Stops" nillable="true" type="tns:ArrayOfDeliveryStop" />
       <xs:element minOccurs="0" name="TimeForDeparture" type="ser:duration" />
     </xs:sequence>
   </xs:complexType>
@@ -24,4 +25,67 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="DefaultRoute" nillable="true" type="tns:DefaultRoute" />
+  <xs:complexType name="ArrayOfDeliveryStop">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DeliveryStop" nillable="true" type="tns:DeliveryStop" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDeliveryStop" nillable="true" type="tns:ArrayOfDeliveryStop" />
+  <xs:complexType name="DeliveryStop">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DefaultStop" nillable="true" type="tns:DefaultDeliveryStop" />
+      <xs:element minOccurs="0" name="ID" type="xs:long" />
+      <xs:element minOccurs="0" name="TransportUnits" nillable="true" type="tns:ArrayOfTransportUnit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DeliveryStop" nillable="true" type="tns:DeliveryStop" />
+  <xs:complexType name="DefaultDeliveryStop">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Customers" nillable="true" type="tns:ArrayOfCustomer" />
+      <xs:element minOccurs="0" name="GeoLoc" nillable="true" type="tns:GeoLoc" />
+      <xs:element minOccurs="0" name="GeoLocID" type="xs:long" />
+      <xs:element minOccurs="0" name="ID" type="xs:long" />
+      <xs:element minOccurs="0" name="SequenceNbr" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DefaultDeliveryStop" nillable="true" type="tns:DefaultDeliveryStop" />
+  <xs:complexType name="ArrayOfCustomer">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Customer" nillable="true" type="tns:Customer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCustomer" nillable="true" type="tns:ArrayOfCustomer" />
+  <xs:complexType name="Customer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:long" />
+      <xs:element minOccurs="0" name="StreetName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StreetNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TimeOfDelivery" type="ser:duration" />
+      <xs:element minOccurs="0" name="Zipcode" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Customer" nillable="true" type="tns:Customer" />
+  <xs:complexType name="GeoLoc">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:long" />
+      <xs:element minOccurs="0" name="Latitude" type="xs:double" />
+      <xs:element minOccurs="0" name="Longitude" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GeoLoc" nillable="true" type="tns:GeoLoc" />
+  <xs:complexType name="ArrayOfTransportUnit">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TransportUnit" nillable="true" type="tns:TransportUnit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTransportUnit" nillable="true" type="tns:ArrayOfTransportUnit" />
+  <xs:complexType name="TransportUnit">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerID" type="xs:long" />
+      <xs:element minOccurs="0" name="ID" type="xs:long" />
+      <xs:element minOccurs="0" name="UnitType" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TransportUnit" nillable="true" type="tns:TransportUnit" />
 </xs:schema>

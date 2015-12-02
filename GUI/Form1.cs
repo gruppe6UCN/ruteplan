@@ -15,6 +15,8 @@ using Server;
 using GUI.ServiceImport;
 using GUI.ServiceRoute;
 using Control;
+using GUI.ServiceOptimize;
+using System.ServiceModel;
 
 namespace GUI
 {
@@ -23,6 +25,7 @@ namespace GUI
         public delegate void UpdateDelegate(List<Route> routes);
         public delegate void OptimizeThreadDelegate();
         private ServiceImportClient importClient;
+        private ServiceOptimizeClient optimizeClient;
         private ServiceRouteClient routeClient;
 
         public Form1()
@@ -35,6 +38,8 @@ namespace GUI
             WCFServer.StartServer();
             importClient = new ServiceImportClient();
             routeClient = new ServiceRouteClient();
+            optimizeClient = new ServiceOptimizeClient();
+            label1.Text = "";
         }
 
         public async void button1_Click(object sender, EventArgs e)
@@ -45,9 +50,13 @@ namespace GUI
             //progressBar1.Maximum = 100;
             //progressBar1.Step = 1;
 
+            //Changes tab page.
+            tabControl1.SelectedTab = tabPage1;
 
             //Label = "Working...";
+            label1.Text = "Importing...";
             await Task.Run(() => Import());
+            label1.Text = "Import Complete";
             //label = "Done";
 
 
@@ -67,49 +76,14 @@ namespace GUI
             this.BeginInvoke(update, routes);
         }
 
-
-        //Delegate til at sørge for at det hele bliver i en Thread
-        public void ImportThreadStart()
-        {
-            importClient.Import();
-            List<Route> routes = routeClient.GetRoutes().ToList<Route>();
-            var update = new UpdateDelegate(UpdateImportTable);
-            //this.BeginInvoke(UpdateImportTable);
-        }
-
-
-
-        public void ImportStart()
-        {
-            importClient.Import();
-            Route[] routes = routeClient.GetRoutes();            
-
-            foreach (Route route in routes)
-            {
-                //Tilføjer Rows 
-                this.dataGridView1.Rows.Add(
-                    route.DefaultRoute.ID.ToString(),
-                    route.Stops.Count.ToString(),
-                    string.Format("{0}/{1}", 
-                        route.GetLoadForTrailer(),
-                        route.DefaultRoute.TrailerType
-                        )
-                    );
-            }
-
-            //importClient.Close();
-            //routeClient.Close();
-            //WCFServer.StopServer();
-
-
-        }
-
-
         public void UpdateImportTable(List<Route> routes)
         {
+            //Clears old data.
+            this.dataGridView1.Rows.Clear();
+            
+            //Adds new data.
             foreach (Route route in routes)
             {
-                //Tilføjer Rows 
                 this.dataGridView1.Rows.Add(
                     route.DefaultRoute.ID.ToString(),
                     route.Stops.Count.ToString(),
@@ -122,34 +96,44 @@ namespace GUI
         }
 
 
-        public void button2_Click(object sender, EventArgs e)
+        public async void button2_Click(object sender, EventArgs e)
         {
             //Skifter til Optmizetab når der trykkes på optimize knappen
             tabControl1.SelectedTab = tabPage2;
 
-
-            Thread t = new Thread(new ThreadStart(OptimizeThreadStart));
-            t.Start();
-
-        }
-
-        //Delegate til at sørge for at det hele bliver i en Thread
-        public void OptimizeThreadStart()
-        {
-            OptimizeThreadDelegate optimize = new OptimizeThreadDelegate(OptimizeStart);
-            this.BeginInvoke(optimize);
+            //Label = "Working...";
+            label1.Text = "Optimizing...";
+            await Task.Run(() => Optimize());
+            label1.Text = "Optimize Complete";
+            //label = "Done";
 
         }
 
-        public void OptimizeStart()
+        public void Optimize()
         {
-
-            OptimizeController.Instance.Optimize();
-
-
-            foreach (Route route in RouteController.Instance.Routes)
+            try
             {
-                //Tilføjer Rows 
+                optimizeClient.Optimize();
+                List<Route> routes = routeClient.GetRoutes().ToList<Route>();
+                UpdateDelegate update = new UpdateDelegate(UpdateOptimizeTable);
+                this.BeginInvoke(update, routes);
+            }
+            catch (FaultException<ExceptionNoRoutes>)
+            {
+
+                label1.Text = "No routes have been imported.";
+                
+            }
+        }
+
+        public void UpdateOptimizeTable(List<Route> routes)
+        {
+            //Clears old data.
+            this.dataGridView2.Rows.Clear();
+
+            //Adds new data.
+            foreach (Route route in routes)
+            {
                 this.dataGridView2.Rows.Add(
                     route.DefaultRoute.ID.ToString(),
                     route.Stops.Count.ToString(),
@@ -159,10 +143,7 @@ namespace GUI
                     route.DateForDeparture.TimeOfDay.Hours.ToString(),
                     route.DefaultRoute.ExtraRoute.ToString()
                     );
-
             }
-
-
         }
 
         public void button3_Click(object sender, EventArgs e)

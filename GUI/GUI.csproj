@@ -59,6 +59,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\ServiceOptimize\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\ServiceRoute\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -88,6 +93,13 @@
     </Compile>
     <None Include="Service References\ServiceImport\service.wsdl" />
     <None Include="Service References\ServiceImport\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceOptimize\service.wsdl" />
+    <None Include="Service References\ServiceOptimize\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceOptimize\service1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceRoute\Model.xsd">
@@ -130,6 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ServiceImport\" />
+    <WCFMetadataStorage Include="Service References\ServiceOptimize\" />
     <WCFMetadataStorage Include="Service References\ServiceRoute\" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +165,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ServiceRoute\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceOptimize\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceOptimize\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceOptimize\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

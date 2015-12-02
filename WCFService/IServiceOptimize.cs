@@ -15,4 +15,17 @@ namespace WCFService
         [OperationContract]
         int GetStatus();
     }
+
+    [DataContract()]
+    public class ExceptionOptimizeInProgress
+    {
+        private String _message;
+        public ExceptionOptimizeInProgress(String reason)
+        {
+            this.Message = reason;
+        }
+
+        [DataMember]
+        public string Message { get { return _message; } set { _message = value; } }
+    }
 }
