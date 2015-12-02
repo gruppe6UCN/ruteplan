@@ -25,9 +25,15 @@ namespace WCFService
             }
         }
 
-        public int GetStatus()
+        public int GetProgress()
         {
             int status = OptimizeController.Instance.GetStatus();
+            return status;
+        }
+
+        public string GetStatus()
+        {
+            string status = LogController.Instance.GetLatest();
             return status;
         }
     }

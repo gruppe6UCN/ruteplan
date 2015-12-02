@@ -21,11 +21,17 @@ namespace TestWCFService.ServiceOptimize {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOptimize/Optimize", ReplyAction="http://tempuri.org/IServiceOptimize/OptimizeResponse")]
         System.Threading.Tasks.Task OptimizeAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOptimize/GetStatus", ReplyAction="http://tempuri.org/IServiceOptimize/GetStatusResponse")]
-        int GetStatus();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOptimize/GetProgress", ReplyAction="http://tempuri.org/IServiceOptimize/GetProgressResponse")]
+        int GetProgress();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOptimize/GetProgress", ReplyAction="http://tempuri.org/IServiceOptimize/GetProgressResponse")]
+        System.Threading.Tasks.Task<int> GetProgressAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOptimize/GetStatus", ReplyAction="http://tempuri.org/IServiceOptimize/GetStatusResponse")]
-        System.Threading.Tasks.Task<int> GetStatusAsync();
+        string GetStatus();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOptimize/GetStatus", ReplyAction="http://tempuri.org/IServiceOptimize/GetStatusResponse")]
+        System.Threading.Tasks.Task<string> GetStatusAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -63,11 +69,19 @@ namespace TestWCFService.ServiceOptimize {
             return base.Channel.OptimizeAsync();
         }
         
-        public int GetStatus() {
+        public int GetProgress() {
+            return base.Channel.GetProgress();
+        }
+        
+        public System.Threading.Tasks.Task<int> GetProgressAsync() {
+            return base.Channel.GetProgressAsync();
+        }
+        
+        public string GetStatus() {
             return base.Channel.GetStatus();
         }
         
-        public System.Threading.Tasks.Task<int> GetStatusAsync() {
+        public System.Threading.Tasks.Task<string> GetStatusAsync() {
             return base.Channel.GetStatusAsync();
         }
     }

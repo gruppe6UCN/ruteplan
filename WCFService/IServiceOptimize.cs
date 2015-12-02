@@ -13,7 +13,9 @@ namespace WCFService
         [OperationContract]
         void Optimize();
         [OperationContract]
-        int GetStatus();
+        int GetProgress();
+        [OperationContract]
+        string GetStatus();
     }
 
     [DataContract()]

@@ -54,9 +54,9 @@ namespace TestWCFService
         }
 
         [Test()]
-        public void TestGetStatus()
+        public void TestGetProgress()
         {
-            int status = client.GetStatus();
+            int status = client.GetProgress();
             if (status >= 0 && status <= 100)
             {
                 Assert.Pass();
@@ -65,6 +65,13 @@ namespace TestWCFService
             {
                 Assert.Fail();
             }
+        }
+
+        [Test()]
+        public void TestGetStatus()
+        {
+            string status = client.GetStatus();
+            Assert.AreEqual("", status);
         }
 
         public void Optimize(ServiceOptimizeClient client)

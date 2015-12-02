@@ -56,8 +56,12 @@ namespace Control
 
         public string GetLatest()
         {
-            string latest = logReceiver[logReceiver.Count - 1];
-            return latest;
+            try
+            {
+                string latest = logReceiver[logReceiver.Count - 1];
+                return latest;
+            }
+            catch (NullReferenceException) { return ""; }
         }
     }
 }
