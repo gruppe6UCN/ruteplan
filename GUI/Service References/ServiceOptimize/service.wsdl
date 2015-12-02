@@ -3,6 +3,7 @@
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/WCFService" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
     </xsd:schema>
   </wsdl:types>
@@ -11,6 +12,15 @@
   </wsdl:message>
   <wsdl:message name="IServiceOptimize_Optimize_OutputMessage">
     <wsdl:part name="parameters" element="tns:OptimizeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceOptimize_Optimize_ExceptionOptimizeInProgressFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/WCFService" name="detail" element="q1:ExceptionOptimizeInProgress" />
+  </wsdl:message>
+  <wsdl:message name="IServiceOptimize_GetProgress_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProgress" />
+  </wsdl:message>
+  <wsdl:message name="IServiceOptimize_GetProgress_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProgressResponse" />
   </wsdl:message>
   <wsdl:message name="IServiceOptimize_GetStatus_InputMessage">
     <wsdl:part name="parameters" element="tns:GetStatus" />
@@ -22,6 +32,11 @@
     <wsdl:operation name="Optimize">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceOptimize/Optimize" message="tns:IServiceOptimize_Optimize_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceOptimize/OptimizeResponse" message="tns:IServiceOptimize_Optimize_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IServiceOptimize/OptimizeExceptionOptimizeInProgressFault" name="ExceptionOptimizeInProgressFault" message="tns:IServiceOptimize_Optimize_ExceptionOptimizeInProgressFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProgress">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceOptimize/GetProgress" message="tns:IServiceOptimize_GetProgress_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceOptimize/GetProgressResponse" message="tns:IServiceOptimize_GetProgress_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetStatus">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceOptimize/GetStatus" message="tns:IServiceOptimize_GetStatus_InputMessage" />
@@ -32,6 +47,18 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="Optimize">
       <soap:operation soapAction="http://tempuri.org/IServiceOptimize/Optimize" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ExceptionOptimizeInProgressFault">
+        <soap:fault use="literal" name="ExceptionOptimizeInProgressFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetProgress">
+      <soap:operation soapAction="http://tempuri.org/IServiceOptimize/GetProgress" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -22,11 +22,14 @@ namespace GUI
 {
     public partial class Form1 : Form
     {
-        public delegate void UpdateDelegate(List<Route> routes);
+        public delegate void UpdateDelegate(List<Route> routes);    
         public delegate void OptimizeThreadDelegate();
+        public delegate int GetProgressDelegate();
+        public delegate string GetStatusDelegate();
         private ServiceImportClient importClient;
         private ServiceOptimizeClient optimizeClient;
         private ServiceRouteClient routeClient;
+        private bool working;
 
         public Form1()
         {
@@ -39,7 +42,17 @@ namespace GUI
             importClient = new ServiceImportClient();
             routeClient = new ServiceRouteClient();
             optimizeClient = new ServiceOptimizeClient();
+            
+            //Updates Labels
             label1.Text = "";
+
+            //Starts Timer
+            working = false;
+            timer1.Interval = 100; //Miliseconds
+            timer1.Start();
+
+            //Progress Bar
+            progressBar1.Maximum = 100;
         }
 
         public async void button1_Click(object sender, EventArgs e)
@@ -101,12 +114,11 @@ namespace GUI
             //Skifter til Optmizetab når der trykkes på optimize knappen
             tabControl1.SelectedTab = tabPage2;
 
-            //Label = "Working...";
+            working = true;
             label1.Text = "Optimizing...";
             await Task.Run(() => Optimize());
             label1.Text = "Optimize Complete";
-            //label = "Done";
-
+            working = false;
         }
 
         public void Optimize()
@@ -192,6 +204,34 @@ namespace GUI
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private async void timer1_Tick(object sender, EventArgs e)
+        {
+            if (working)
+            {
+                //Starts Tasks
+                var t1 = Task.Run(() => GetProgress());
+                var t2 = Task.Run(() => GetStatus());
+
+                //Waits for them to finish.
+                await t1;
+                await t2;
+
+                //Updates GUI
+                progressBar1.Value = t1.Result;
+                label1.Text = t2.Result;
+            }
+        }
+
+        public int GetProgress()
+        {
+            return optimizeClient.GetProgress();
+        }
+
+        public string GetStatus()
+        {
+            return optimizeClient.GetStatus();
         }
 
     }

@@ -80,6 +80,9 @@
     <None Include="Service References\ServiceOptimize\service1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\ServiceOptimize\WCFService.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServiceRoute\Model.xsd">
       <SubType>Designer</SubType>
     </None>

@@ -259,6 +259,7 @@ namespace Control
                 return Convert.ToInt32(total);
             }
             catch (NullReferenceException) { return 0; }
+            catch (DivideByZeroException) { return 0; }
         }
 
     }
