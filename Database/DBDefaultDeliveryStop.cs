@@ -42,10 +42,11 @@ namespace Database
 
         }
 
-        /**
-     * @param defaultRouteID
-     * @return list of all DefaultDeliveryStop for the given defaultRouteID
-     */
+        /// <summary>
+        /// Gets a list of all default delivery stops from the database, for the given default route.
+        /// </summary>
+        /// <param name="defaultRouteID">Id of route to get stops from.</param>
+        /// <returns>List of default stops.</returns>
         public List<DefaultDeliveryStop> GetDefaultDeliveryStops(long defaultRouteID)
         {
            List<DefaultDeliveryStop> list;
@@ -54,11 +55,11 @@ namespace Database
             return list;
         }
 
-
-        /**
-         * @param rs takes the ResultSet from database
-         * @return list of DefaultDeliveryStop
-         */
+        /// <summary>
+        /// Converts data from the database to model classes.
+        /// </summary>
+        /// <param name="dataSet">Dataset to read from.</param>
+        /// <returns>List of default Stops.</returns>
         private List<DefaultDeliveryStop> ConvertTotDefaultDeliveryStop(IDataReader dataSet)
         {
            List<DefaultDeliveryStop> tableList = new List<DefaultDeliveryStop>();
@@ -66,11 +67,33 @@ namespace Database
                 {
                     tableList.Add(new DefaultDeliveryStop(
                                     dataSet.GetInt64(0),
-                                    dataSet.GetInt64(1)
+                                    dataSet.GetInt64(2)
                             ));
                 }
 
             return tableList;
+        }
+
+
+        /// <summary>
+        /// Stores all DefaultDeliveryStops to the database... Funtime!
+        /// WARNING, USES HAX! DANGER DANGER!?! Only to be used in import from file.
+        /// </summary>
+        /// <param name="stops">List of all geolocs to be stored.</param>
+        public void StoreDefaultDeliveryStopHAX(List<Tuple<GeoLoc, long>> stops) ///TODO DEFAULTROUTE!?!
+        {
+            
+            foreach (DefaultDeliveryStop stop in stops)
+            {
+                String sql = String.Format("INSERT into GeoLoc values({0}, {1}, {2});",
+                    
+                    
+                    stop.ID,
+                    stop.Longitude,
+                    stop.Latitude);
+
+                DbConnection.SendInsertSQL(sql);
+            }
         }
 
     }

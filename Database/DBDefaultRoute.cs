@@ -69,8 +69,8 @@ namespace Database
         /// <summary>
         /// Stores all defaultRoutes in the database.
         /// </summary>
-        /// <param name="defaultRoute"></param>
-        public void store(DefaultRoute defaultRoute)
+        /// <param name="defaultRoute">DefaultRoute to be stored.</param>
+        public void Store(DefaultRoute defaultRoute)
         {
             String sql = String.Format("INSERT into DefaultRoute values('{0}', {1});",
                     defaultRoute.TrailerType,
@@ -78,6 +78,30 @@ namespace Database
                     defaultRoute.ExtraRoute ? 1 : 0);
             long defaultRouteID = DbConnection.SendInsertSQL(sql);
             defaultRoute.ID = defaultRouteID;
+        }
+
+        /// <summary>
+        /// Stores all defaultRoutes in the database. HAX! DO NOT USE! IS 4 SIMULATIONS!
+        /// </summary>
+        /// <param name="defaultRoute">Default</param>
+        public void StoreHAX(List<DefaultRoute> defaultRoutes)
+        {
+
+
+            DbConnection.SendUpdateSQL("SET FOREIGN_KEY_CHECKS = 0; TRUNCATE TABLE DefaultRoute; ALTER TABLE DefaultRoute CHANGE `id` `id` BIGINT NOT NULL;");
+
+            foreach (DefaultRoute defaultRoute in defaultRoutes)
+            {
+                String sql = String.Format("INSERT into DefaultRoute values({0},'{1}', {2});",
+                        defaultRoute.ID,
+                        defaultRoute.TrailerType,
+                    // inline if statement: if true return 1 else return 0
+                        defaultRoute.ExtraRoute ? 1 : 0);
+                DbConnection.SendInsertSQL(sql);
+            }
+            
+            
+            DbConnection.SendUpdateSQL("ALTER TABLE DefaultRoute CHANGE `id` `id` BIGINT NOT NULL AUTO_INCREMENT; SET FOREIGN_KEY_CHECKS = 1;");
         }
     }
 }

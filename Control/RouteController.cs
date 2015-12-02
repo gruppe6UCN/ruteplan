@@ -112,7 +112,7 @@ namespace Control
                 if (route.DefaultRoute.ExtraRoute)
                 {
                     //Saves extra route.
-                    DefaultRouteCtr.store(route.DefaultRoute);
+                    DefaultRouteCtr.Store(route.DefaultRoute);
                 }
 
                 //Stores routes and stops to database.

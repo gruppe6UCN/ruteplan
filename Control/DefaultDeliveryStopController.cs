@@ -10,6 +10,7 @@ namespace Control
     public class DefaultDeliveryStopController
     {
         public DBDefaultDeliveryStop DbDefaultDeliveryStop { get; private set; }
+        public DBGeoLoc DbGeoLoc { get; private set; }
         public CustomerController CustomerCtr { get; private set; }
         public MapController mapCtr { get; private set; }
         public List<TmpDefaultDeliveryStop> TmpDefaultStops { get; private set; }
@@ -84,6 +85,7 @@ namespace Control
         {
             DbDefaultDeliveryStop = DBDefaultDeliveryStop.Instance;
             CustomerCtr = CustomerController.Instance;
+            DbGeoLoc = DBGeoLoc.Instance;
             mapCtr = MapController.Instance;
         }
 
@@ -140,6 +142,8 @@ namespace Control
                 }
             }
 
+
+
             return stops;
         }
 
@@ -157,6 +161,7 @@ namespace Control
 
             //Creates various lists for use in code.
             TmpDefaultStops = new List<TmpDefaultDeliveryStop>();
+            List<Tuple<GeoLoc, long>> listGeoLong = new List<Tuple<GeoLoc, long>>();
             Dictionary<double, GeoLoc> geoLocDic = new Dictionary<double, GeoLoc>();
             long geoId = 1;
             long id = 1;
@@ -188,6 +193,7 @@ namespace Control
                     if (idCustomerStop == idCustomer)
                     {
                         geoLoc = geoLocDic[customer.Y];
+                        listGeoLong.Add(new Tuple<GeoLoc,long>(geoLoc, DefaultRouteController.ParseID(record.SAPRoute));
                         break;
                     }
                 }
@@ -213,6 +219,10 @@ namespace Control
             {
                 CustomerCtr.AddCustomersFromFile(stop);
             }
+
+
+            //Stores all the BEEP to database.
+            DbGeoLoc.StoreGeoLoc(listGeoLong);
         }
 
         /// <summary>
