@@ -120,9 +120,7 @@ namespace GUI
             }
             catch (FaultException<ExceptionNoRoutes>)
             {
-
-                label1.Text = "No routes have been imported.";
-                
+                label1.Text = "No routes have been imported.";   
             }
         }
 
