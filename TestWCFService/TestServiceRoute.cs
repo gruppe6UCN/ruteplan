@@ -1,8 +1,10 @@
 ﻿using System;
 using System.ServiceModel;
+using Model;
 using NUnit.Framework;
 using TestWCFService.ServiceImport;
 using TestWCFService.ServiceRoute;
+using WCFService;
 
 namespace TestWCFService
 {

@@ -22,6 +22,8 @@ namespace Server
                 typeof (IServiceRoute), typeof (ServiceRoute)),
             new Tuple<String, Type, Type>("http://localhost:8733/Design_Time_Addresses/WCFService/ServiceOptimize/",
                 typeof (IServiceOptimize), typeof (ServiceOptimize)),
+            new Tuple<String, Type, Type>("http://localhost:8733/Design_Time_Addresses/WCFService/ServiceMap/",
+                typeof (IServiceMap), typeof (ServiceMap)),
         };
 
         public static void StartServer()
@@ -43,6 +45,19 @@ namespace Server
                     //Add Endpoint to Host
                     serviceHost.AddServiceEndpoint(iType, binding, url);
 
+                    var debug = serviceHost.Description.Behaviors.Find<ServiceDebugBehavior>();
+                    if (debug == null)
+                    {
+                        serviceHost.Description.Behaviors.Add(new ServiceDebugBehavior()
+                        {
+                            IncludeExceptionDetailInFaults = true
+                        });
+                    }
+                    else
+                    {
+                        debug.IncludeExceptionDetailInFaults = true;
+                    }
+
                     //Metadata Exchange
                     ServiceMetadataBehavior serviceBehavior = new ServiceMetadataBehavior();
                     serviceHost.Description.Behaviors.Add(serviceBehavior);
@@ -53,8 +68,8 @@ namespace Server
 
                     //Open
                     serviceHost.Open();
+                    }
                 }
-            }
         }
 
         public static void StopServer()

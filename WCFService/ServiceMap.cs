@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.IO;
+using System.Runtime.Serialization;
 using Control;
 using GMap.NET;
 using Model;
@@ -9,9 +10,11 @@ namespace WCFService
     public class ServiceMap : IServiceMap
     {
         //public List<MapRoute> GetRoadMap(Route route)
-        public MapRoute GetRoadMap(Route route)
+        public MapRouteWrapper GetRoadMap(Route route)
         {
-            return MapController.Instance.GetCalcRoad(route)[0];
+            var mapRoute = MapController.Instance.GetCalcRoad(route);
+
+            return new MapRouteWrapper(mapRoute);
         }
     }
 }
