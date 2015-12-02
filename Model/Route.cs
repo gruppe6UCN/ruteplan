@@ -8,13 +8,12 @@ using System.Threading.Tasks;
 namespace Model
 {
     [DataContract()]
-    //[KnownType(typeof(DeliveryStop))]
     public class Route
     {
         [DataMember()]
         public long ID { get; set; }
         [DataMember()]
-        public DefaultRoute DefaultRoute { get; set; }
+        public DefaultRoute DefaultRoute { get; private set; }
         [DataMember()]
         public List<DeliveryStop> Stops { get; private set; }
         [DataMember()]

@@ -8,8 +8,8 @@ using System.Data;
 
 namespace Database
 {
+    /// <summary>
     /// all database functionality for default delivery stops will be handled by this class
-    /// 
     /// </summary>
     public class DBDefaultDeliveryStop
     {
@@ -42,37 +42,37 @@ namespace Database
 
         }
 
-        /**
-     * @param defaultRouteID
-     * @return list of all DefaultDeliveryStop for the given defaultRouteID
-     */
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="defaultRouteID">defaultRouteID</param>
+        /// <returns>list of all DefaultDeliveryStop for the given defaultRouteID</returns>
         public List<DefaultDeliveryStop> GetDefaultDeliveryStops(long defaultRouteID)
         {
-           List<DefaultDeliveryStop> list;
+            List<DefaultDeliveryStop> list;
             String sql = String.Format("select * from DefaultDeliveryStop where default_route_id = '{0}';", defaultRouteID);
             list = DbConnection.SendSQL<DefaultDeliveryStop>(sql, ConvertTotDefaultDeliveryStop);
             return list;
         }
 
-
-        /**
-         * @param rs takes the ResultSet from database
-         * @return list of DefaultDeliveryStop
-         */
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dataSet">rs takes the ResultSet from database</param>
+        /// <returns>list of DefaultDeliveryStop</returns>
         private List<DefaultDeliveryStop> ConvertTotDefaultDeliveryStop(IDataReader dataSet)
         {
-           List<DefaultDeliveryStop> tableList = new List<DefaultDeliveryStop>();
-                while (dataSet.Read())
-                {
-                    tableList.Add(new DefaultDeliveryStop(
-                                    dataSet.GetInt64(0),
-                                    dataSet.GetInt64(1)
-                            ));
-                }
+            List<DefaultDeliveryStop> tableList = new List<DefaultDeliveryStop>();
+            while (dataSet.Read())
+            {
+                tableList.Add(new DefaultDeliveryStop(
+                    dataSet.GetInt64(0),
+                    dataSet.GetInt64(1)
+                    ));
+            }
 
             return tableList;
         }
-
     }
 }
 

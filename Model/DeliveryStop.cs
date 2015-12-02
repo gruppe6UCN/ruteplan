@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 namespace Model
 {
     [DataContract()]
-    //[KnownType(typeof(TransportUnit))]
     public class DeliveryStop
     {
         [DataMember()]
