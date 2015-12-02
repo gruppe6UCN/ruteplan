@@ -8,7 +8,7 @@ namespace Model
     {
 
         [DataMember()]
-        public long ID { get; private set; }
+        public long ID { get; set; }
         [DataMember()]
         public long CustomerID { get; private set; }
         [DataMember()]
@@ -18,6 +18,12 @@ namespace Model
             this.ID = id;
             this.UnitType = unitType;
             this.CustomerID = customerID;
+        }
+
+        public TransportUnit(long customerID, double unitTyoe)
+        {
+            this.CustomerID = customerID;
+            this.UnitType = unitTyoe;
         }
     }
 }
