@@ -92,7 +92,7 @@ namespace Database
 
             foreach (DefaultRoute defaultRoute in defaultRoutes)
             {
-                String sql = String.Format("INSERT into DefaultRoute values({0},'{1}', {2});",
+                String sql = String.Format("INSERT IGNORE into DefaultRoute values({0},'{1}', {2});",
                         defaultRoute.ID,
                         defaultRoute.TrailerType,
                     // inline if statement: if true return 1 else return 0

@@ -91,7 +91,7 @@ namespace Database
                 foreach (DefaultDeliveryStop stop in stops)
                 {
                     //Normal Stuff
-                    String sql = String.Format("INSERT into DefaultDeliveryStop (id, default_route_id, geo_loc_id) values({0}, {1}, {2});",
+                    String sql = String.Format("INSERT IGNORE into DefaultDeliveryStop (id, default_route_id, geo_loc_id) values({0}, {1}, {2});",
                         stop.ID,
                         defaultRouteID,
                         stop.GeoLoc.ID);

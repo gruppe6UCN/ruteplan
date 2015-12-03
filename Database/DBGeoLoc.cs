@@ -89,7 +89,7 @@ namespace Database
         {
             foreach (GeoLoc geoLoc in geoLocs)
             {
-                String sql = String.Format("INSERT into GeoLoc values({0}, {1}, {2});",
+                String sql = String.Format("INSERT IGNORE into GeoLoc values({0}, {1}, {2});",
                     geoLoc.ID,
                     geoLoc.Longitude,
                     geoLoc.Latitude);
