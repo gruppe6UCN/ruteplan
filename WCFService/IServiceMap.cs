@@ -34,13 +34,13 @@ namespace WCFService
             });
         }
 
-        public List<MapRoute> GetMapRoute()
+        public List<MapRoute> UnWrab()
         {
             List<MapRoute> mapRoutes = new List<MapRoute>();
 
             MapRoutes.ForEach(mapRoute =>
             {
-                IEnumerable<PointLatLng> points = mapRoute.Item1.GetPointLatLng();
+                IEnumerable<PointLatLng> points = mapRoute.Item1.UnWrab();
                 String name = mapRoute.Item2;
                 mapRoutes.Add(new MapRoute(points,name));
             });
@@ -64,7 +64,7 @@ namespace WCFService
             }
         }
 
-        public IEnumerable<PointLatLng> GetPointLatLng()
+        public IEnumerable<PointLatLng> UnWrab()
         {
             List<PointLatLng> points = new List<PointLatLng>();
             Points.ForEach(point =>

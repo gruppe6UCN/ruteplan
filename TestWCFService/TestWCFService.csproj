@@ -80,7 +80,9 @@
     <Compile Include="TestServiceRoute.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\GMap.NET.MapRoute.datasource" />
     <None Include="Properties\DataSources\Model.Route.datasource" />
@@ -161,6 +163,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Control\Control.csproj">
+      <Project>{2B05A805-5993-476C-84FE-B0749199B8A5}</Project>
+      <Name>Control</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{d2387d10-ffd3-4dd4-8822-dc5f6ed1d93c}</Project>
       <Name>Model</Name>

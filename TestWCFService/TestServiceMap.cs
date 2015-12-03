@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Control;
 using GMap.NET;
 using Model;
 using NUnit.Framework;
@@ -52,8 +53,31 @@ namespace TestWCFService
         {
             Route route = serviceRoute.GetRoutes()[0];
             MapRouteWrapper roadMap = serviceMap.GetRoadMap(route);
-            List<MapRoute> mapRoutes = roadMap.GetMapRoute();
-            Assert.Pass();
+            List<MapRoute> mapRoutes = roadMap.UnWrab();
+            Assert.IsNotEmpty(mapRoutes);
+        }
+
+        [Test()]
+        public void TestGetRoadMap_OrderOfRoutesAndPoints()
+        {
+            Route[] routes = serviceRoute.GetRoutes();
+
+            foreach (Route route in routes)
+            {
+                // Calls the MapController direct to get original List<MapRoute> for comparacy
+                List<MapRoute> originalMapRoute = MapController.Instance.GetCalcRoad(route);
+                // Wrap and unwrap the original originalMapRoute for comparacy
+                List<MapRoute> wrapperMapRoute = new MapRouteWrapper(originalMapRoute).UnWrab();
+
+                for (int i = 0; i < originalMapRoute.Count; i++)
+                {
+                    for (int ii = 0; ii < originalMapRoute[i].Points.Count; ii++)
+                    {
+                        Assert.AreEqual(originalMapRoute[i].Points[ii].Lat, wrapperMapRoute[i].Points[ii].Lat);
+                        Assert.AreEqual(originalMapRoute[i].Points[ii].Lng, wrapperMapRoute[i].Points[ii].Lng);
+                    }
+                }
+            }
         }
     }
 }
