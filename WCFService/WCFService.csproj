@@ -89,6 +89,10 @@
       <Project>{D2387D10-FFD3-4DD4-8822-DC5F6ED1D93C}</Project>
       <Name>Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WCFWrapper\WCFWrapper.csproj">
+      <Project>{9D3796BF-51DB-49EA-AFA9-160A3D3A87DD}</Project>
+      <Name>WCFWrapper</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

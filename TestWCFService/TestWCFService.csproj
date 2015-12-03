@@ -84,10 +84,8 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\GMap.NET.MapRoute.datasource" />
     <None Include="Properties\DataSources\Model.Route.datasource" />
-    <None Include="Properties\DataSources\Model.Route1.datasource" />
-    <None Include="Properties\DataSources\WCFService.MapRouteWrapper.datasource" />
+    <None Include="Properties\DataSources\WCFWrapper.MapRouteWrapper.datasource" />
     <None Include="Service References\ServiceImport\service.wsdl" />
     <None Include="Service References\ServiceImport\service.xsd">
       <SubType>Designer</SubType>
@@ -105,7 +103,7 @@
     <None Include="Service References\ServiceMap\System.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceMap\WCFService.xsd">
+    <None Include="Service References\ServiceMap\WCFWrapper.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceOptimize\service.wsdl" />
@@ -175,9 +173,9 @@
       <Project>{b5425574-cf10-42e3-a74a-32efccd4777d}</Project>
       <Name>Server</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WCFService\WCFService.csproj">
-      <Project>{1800d1d5-307d-49b4-bad6-45bab48eeccc}</Project>
-      <Name>WCFService</Name>
+    <ProjectReference Include="..\WCFWrapper\WCFWrapper.csproj">
+      <Project>{9d3796bf-51db-49ea-afa9-160a3d3a87dd}</Project>
+      <Name>WCFWrapper</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

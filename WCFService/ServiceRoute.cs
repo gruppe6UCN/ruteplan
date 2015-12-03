@@ -14,7 +14,7 @@ namespace WCFService
             List<Route> routes = RouteController.Instance.Routes.ToList();
             if (routes.Count == 0)
             {
-                throw new FaultException<ExceptionNoRoutes>(new ExceptionNoRoutes("No routes is imported."));
+                throw new FaultException<ExceptionNoRoutes>(new ExceptionNoRoutes("No routes are imported."));
             }
             return routes;
         }

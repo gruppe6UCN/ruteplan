@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="11ed19bd-5804-455e-91f0-b90f0c44d2d4" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b2469f3d-bb28-43d8-99b4-d9a8425ae576" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,12 +22,12 @@
     <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/WCFService/ServiceMap/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="dab8dc07-987d-4cf1-8b68-922e7ef9b1c3" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/ServiceMap/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="61706aad-df87-4ca6-aad0-3e7d64f2df3f" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/ServiceMap/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="f539c950-fc7c-45ef-80d2-c864d4b4e170" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/ServiceMap/mex" />
-    <MetadataFile FileName="Model.xsd" MetadataType="Schema" ID="eea3627e-1eb4-4495-9d9c-f73b9bbfaaa8" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/ServiceMap/mex" />
-    <MetadataFile FileName="WCFService.xsd" MetadataType="Schema" ID="2115e690-dacd-4195-bb90-904087a70b95" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/ServiceMap/mex" />
-    <MetadataFile FileName="System.xsd" MetadataType="Schema" ID="3c4b17ff-efcc-4452-be13-e6b83ca43b00" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/ServiceMap/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="bd94b22c-12bf-42bc-9141-9a812c5debe1" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/ServiceMap/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="12ec37d1-63ec-43d5-95c6-f2d2b27ba68c" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/ServiceMap/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="b61c2001-c023-45a7-978b-9385abcd06b4" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/ServiceMap/mex" />
+    <MetadataFile FileName="Model.xsd" MetadataType="Schema" ID="3fa00819-c187-4051-9586-a356a6a37054" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/ServiceMap/mex" />
+    <MetadataFile FileName="WCFWrapper.xsd" MetadataType="Schema" ID="814ee16c-02d4-4ae3-9963-9845d63396d3" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/ServiceMap/mex" />
+    <MetadataFile FileName="System.xsd" MetadataType="Schema" ID="0c5fbfb4-9050-4f27-ad3d-13be002d5f63" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/ServiceMap/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

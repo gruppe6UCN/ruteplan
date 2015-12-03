@@ -1,27 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/System" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/System" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="http://schemas.datacontract.org/2004/07/WCFService" />
-  <xs:complexType name="ArrayOfTupleOfPointLatLngWrapperstringorW8h_PpT">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/WCFWrapper" />
+  <xs:complexType name="ArrayOfTupleOfPointLatLngWrapperstringStL35vVB">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="TupleOfPointLatLngWrapperstringorW8h_PpT" nillable="true" type="tns:TupleOfPointLatLngWrapperstringorW8h_PpT" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TupleOfPointLatLngWrapperstringStL35vVB" nillable="true" type="tns:TupleOfPointLatLngWrapperstringStL35vVB" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfTupleOfPointLatLngWrapperstringorW8h_PpT" nillable="true" type="tns:ArrayOfTupleOfPointLatLngWrapperstringorW8h_PpT" />
-  <xs:complexType name="TupleOfPointLatLngWrapperstringorW8h_PpT">
+  <xs:element name="ArrayOfTupleOfPointLatLngWrapperstringStL35vVB" nillable="true" type="tns:ArrayOfTupleOfPointLatLngWrapperstringStL35vVB" />
+  <xs:complexType name="TupleOfPointLatLngWrapperstringStL35vVB">
     <xs:annotation>
       <xs:appinfo>
         <GenericType Name="TupleOf{0}{1}{#}" Namespace="http://schemas.datacontract.org/2004/07/System" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
-          <GenericParameter Name="PointLatLngWrapper" Namespace="http://schemas.datacontract.org/2004/07/WCFService" />
+          <GenericParameter Name="PointLatLngWrapper" Namespace="http://schemas.datacontract.org/2004/07/WCFWrapper" />
           <GenericParameter Name="string" Namespace="http://www.w3.org/2001/XMLSchema" />
         </GenericType>
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/WCFService" name="m_Item1" nillable="true" type="q1:PointLatLngWrapper" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/WCFWrapper" name="m_Item1" nillable="true" type="q1:PointLatLngWrapper" />
       <xs:element name="m_Item2" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="TupleOfPointLatLngWrapperstringorW8h_PpT" nillable="true" type="tns:TupleOfPointLatLngWrapperstringorW8h_PpT" />
+  <xs:element name="TupleOfPointLatLngWrapperstringStL35vVB" nillable="true" type="tns:TupleOfPointLatLngWrapperstringStL35vVB" />
   <xs:complexType name="ArrayOfTupleOfdoubledouble">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="TupleOfdoubledouble" nillable="true" type="tns:TupleOfdoubledouble" />

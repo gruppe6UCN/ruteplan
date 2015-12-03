@@ -16,10 +16,10 @@ namespace TestWCFService.ServiceMap {
     public interface IServiceMap {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceMap/GetRoadMap", ReplyAction="http://tempuri.org/IServiceMap/GetRoadMapResponse")]
-        WCFService.MapRouteWrapper GetRoadMap(Model.Route route);
+        WCFWrapper.MapRouteWrapper GetRoadMap(Model.Route route);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceMap/GetRoadMap", ReplyAction="http://tempuri.org/IServiceMap/GetRoadMapResponse")]
-        System.Threading.Tasks.Task<WCFService.MapRouteWrapper> GetRoadMapAsync(Model.Route route);
+        System.Threading.Tasks.Task<WCFWrapper.MapRouteWrapper> GetRoadMapAsync(Model.Route route);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -49,11 +49,11 @@ namespace TestWCFService.ServiceMap {
                 base(binding, remoteAddress) {
         }
         
-        public WCFService.MapRouteWrapper GetRoadMap(Model.Route route) {
+        public WCFWrapper.MapRouteWrapper GetRoadMap(Model.Route route) {
             return base.Channel.GetRoadMap(route);
         }
         
-        public System.Threading.Tasks.Task<WCFService.MapRouteWrapper> GetRoadMapAsync(Model.Route route) {
+        public System.Threading.Tasks.Task<WCFWrapper.MapRouteWrapper> GetRoadMapAsync(Model.Route route) {
             return base.Channel.GetRoadMapAsync(route);
         }
     }

@@ -7,7 +7,7 @@ using TestWCFService.ServiceImport;
 using TestWCFService.ServiceMap;
 using TestWCFService.ServiceOptimize;
 using TestWCFService.ServiceRoute;
-using WCFService;
+using WCFWrapper;
 
 namespace TestWCFService
 {

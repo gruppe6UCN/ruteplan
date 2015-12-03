@@ -1,8 +1,6 @@
-﻿using System.IO;
-using System.Runtime.Serialization;
-using Control;
-using GMap.NET;
+﻿using Control;
 using Model;
+using WCFWrapper;
 
 namespace WCFService
 {
