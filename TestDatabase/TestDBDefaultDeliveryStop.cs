@@ -47,8 +47,8 @@ namespace TestServer
             Assert.IsNotEmpty(stops);
             Assert.AreEqual(stops[0].ID, 651);
             Assert.AreEqual(stops[1].ID, 1192);
-            Assert.AreEqual(stops[0].GeoLocID, 84);
-            Assert.AreEqual(stops[1].GeoLocID, 84);
+            Assert.AreEqual(stops[0].GeoLocID, 628);
+            Assert.AreEqual(stops[1].GeoLocID, 652);
         }
 
         [Test()]

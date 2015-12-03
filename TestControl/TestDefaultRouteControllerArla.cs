@@ -7,7 +7,7 @@ using Model;
 namespace ControlTest
 {
     [TestFixture()]
-    class TestDefaultRouteController
+    class TestDefaultRouteControllerArla
     {
         DefaultRouteController drc;
 
@@ -20,7 +20,7 @@ namespace ControlTest
         [TestFixtureSetUp()]
         public void ClassSetUp()
         {
-            Server.WCFServer.Initialize();
+            Server.WCFServer.InitializeEmpty();
         }
 
         [TestFixtureTearDown()]
@@ -30,9 +30,10 @@ namespace ControlTest
         }
 
         [Test()]
-        public void TestGetDefaultRoutes()
+        public void TestGetDefaultRoutesFromFile()
         {
-            List<DefaultRoute> list = drc.GetDefaultRoutes();
+            string pathRoutes = "Config/RuterCSVTest.csv";
+            List<DefaultRoute> list = drc.GetDefaultRoutes(pathRoutes);
             Assert.IsNotEmpty(list);
         }
     }

@@ -38,28 +38,5 @@ namespace ControlTest
             List<DefaultDeliveryStop> stops = ddsc.GetDefaultDeliveryStops(route);
             Assert.IsNotEmpty(stops);
         }
-
-        [Test()]
-        public void TestGetDefaultDeliveryStopsFromFile()
-        {
-            string pathStops = "Config/stopsCSV.csv";
-            string pathCustomers = "Config/kunderCSV.csv";
-            ddsc.ImportDefaultDeliveryStopsFromFile(pathStops, pathCustomers);
-            
-            DefaultRoute route = new DefaultRoute(TrailerType.STOR, false);
-            route.ID = 350;
-            List<DefaultDeliveryStop> stops = ddsc.GetDefaultDeliveryStopsFromFile(route);
-            Assert.IsNotEmpty(stops);
-        }
-
-        [Test()]
-        public void TestImportDefaultDeliveryStopsFromFile()
-        {
-            string pathStops = "Config/stopsCSV.csv";
-            string pathCustomers = "Config/kunderCSV.csv";
-            ddsc.ImportDefaultDeliveryStopsFromFile(pathStops, pathCustomers);
-            Assert.IsNotEmpty(ddsc.TmpDefaultStops);
-        }
-
     }
 }

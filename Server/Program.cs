@@ -14,8 +14,7 @@ namespace Server
         static void Main(string[] args)
         {
             //Starts Database
-            WCFServer.Initialize();
-            DBConnection.Instance.DB = "TestArlaEmpty";
+            WCFServer.InitializeEmpty();
 
             //Imports Data from Database
             string pathRoutes = "Config/RuterCSVTest.csv";
