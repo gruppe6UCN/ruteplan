@@ -8,7 +8,7 @@ using Database;
 namespace ControlTest
 {
     [TestFixture()]
-    public class TestImportController
+    public class TestImportControllerArla
     {
         ImportController ic;
         RouteController rc;
@@ -29,7 +29,7 @@ namespace ControlTest
             catch { }
 
             DBConnection.Instance.Host = "localhost";
-            DBConnection.Instance.DB = "TestArla";
+            DBConnection.Instance.DB = "TestArlaEmpty";
             DBConnection.Instance.User = user;
             DBConnection.Instance.Pass = pass;
             DBConnection.Instance.Connect();
@@ -42,9 +42,12 @@ namespace ControlTest
         }
 
         [Test()]
-        public void TestImportRoutes()
+        public void TestImportRoutesFromFile()
         {
-            ic.ImportRoutes();
+            string pathRoutes = "Config/RuterCSVTest.csv";
+            string pathStops = "Config/stopsCSV.csv";
+            string pathCustomers = "Config/kunderCSV.csv";
+            ic.ImportFromFile(pathRoutes, pathStops, pathCustomers);
             Assert.IsNotEmpty(rc.Routes);
         }
     }

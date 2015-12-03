@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace ControlTest
 {
     [TestFixture()]
-    class TestExportController
+    class TestExportControllerArla
     {
         ExportController ec;
         ImportController ic;
@@ -20,7 +20,7 @@ namespace ControlTest
         [TestFixtureSetUp()]
         public void ClassSetUp()
         {
-            Server.WCFServer.Initialize();
+            Server.WCFServer.InitializeEmpty();
         }
 
         [TestFixtureTearDown()]
@@ -30,9 +30,12 @@ namespace ControlTest
         }
 
         [Test()]
-        public void TestExport()
+        public void TestExportFromFile()
         {
-            ic.ImportRoutes();
+            string pathRoutes = "Config/RuterCSVTest.csv";
+            string pathStops = "Config/stopsCSV.csv";
+            string pathCustomers = "Config/kunderCSV.csv";
+            ic.ImportFromFile(pathRoutes, pathStops, pathCustomers);
             ec.ExportData();
             Assert.Pass();
         }

@@ -60,7 +60,9 @@
     <Compile Include="TestDefaultRouteController.cs" />
     <Compile Include="TestDeliveryStopController.cs" />
     <Compile Include="TestExportController.cs" />
+    <Compile Include="TestExportControllerArla.cs" />
     <Compile Include="TestImportController.cs" />
+    <Compile Include="TestImportControllerArla.cs" />
     <Compile Include="TestLogController.cs" />
     <Compile Include="TestMapController.cs" />
     <Compile Include="TestOptimizeController.cs" />

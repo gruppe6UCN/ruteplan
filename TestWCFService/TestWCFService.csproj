@@ -56,6 +56,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="TestServiceExport.cs" />
+    <Compile Include="TestServiceImportArla.cs" />
     <Compile Include="TestServiceOptimize.cs" />
     <Compile Include="Service References\ServiceImport\Reference.cs">
       <AutoGen>True</AutoGen>

@@ -6,14 +6,14 @@ using Database;
 namespace TestWCFService
 {
     [TestFixture()]
-    public class TestServiceImport
+    public class TestServiceImportArla
     {
         private ServiceImportClient client;
 
         [TestFixtureSetUp()]
         public void ClassSetUp()
         {
-            Server.WCFServer.Initialize();
+            Server.WCFServer.InitializeEmpty();
             Server.WCFServer.StartServer();
             client = new ServiceImportClient();
         }
@@ -32,9 +32,9 @@ namespace TestWCFService
         }
 
         [Test()]
-        public void TestImport()
+        public void TestImportFromArla()
         {
-            client.Import();
+            client.ImportFromArla();
             Assert.Pass();
         }
     }
