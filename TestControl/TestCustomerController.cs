@@ -40,7 +40,7 @@ namespace ControlTest
         {
             string pathCustomers = "Config/kunderCSV.csv";
             cc.GetCustomersFromFile(pathCustomers);
-            var stop = new DefaultDeliveryStopController.TmpDefaultDeliveryStop(10, 20, 30, 40, 50, "10", "10", 20.1);
+            var stop = new DefaultDeliveryStopController.TmpDefaultDeliveryStop(10, 20, 30, 40, 50, "10", "10", 20.1, new GeoLoc(1, 2, 3));
             cc.AddCustomersFromFile(stop);
             Assert.IsNotEmpty(stop.Customers);           
         }

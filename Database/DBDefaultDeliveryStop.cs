@@ -79,20 +79,27 @@ namespace Database
         /// Stores all DefaultDeliveryStops to the database... Funtime!
         /// WARNING, USES HAX! DANGER DANGER!?! Only to be used in import from file.
         /// </summary>
-        /// <param name="stops">List of all geolocs to be stored.</param>
-        public void StoreDefaultDeliveryStopHAX(List<Tuple<GeoLoc, long>> stops) ///TODO DEFAULTROUTE!?!
+        /// <param name="stops">List of all stops to be stored.</param>
+        /// <param name="defaultRouteID">ID for foreign key to use as value for default route.</param>
+        public void StoreDefaultDeliveryStopHAX(List<DefaultDeliveryStop> stops, long defaultRouteID)
         {
-            
-            foreach (DefaultDeliveryStop stop in stops)
+            lock (DbConnection)
             {
-                String sql = String.Format("INSERT into GeoLoc values({0}, {1}, {2});",
-                    
-                    
-                    stop.ID,
-                    stop.Longitude,
-                    stop.Latitude);
+                //HAX!
+                DbConnection.SendUpdateSQL("SET FOREIGN_KEY_CHECKS = 0; ALTER TABLE DefaultDeliveryStop CHANGE `id` `id` BIGINT NOT NULL;");
 
-                DbConnection.SendInsertSQL(sql);
+                foreach (DefaultDeliveryStop stop in stops)
+                {
+                    //Normal Stuff
+                    String sql = String.Format("INSERT into DefaultDeliveryStop (id, default_route_id, geo_loc_id) values({0}, {1}, {2});",
+                        stop.ID,
+                        defaultRouteID,
+                        stop.GeoLoc.ID);
+                    DbConnection.SendInsertSQL(sql);
+                }
+
+                //Unhax...
+                DbConnection.SendUpdateSQL("ALTER TABLE DefaultDeliveryStop CHANGE `id` `id` BIGINT NOT NULL AUTO_INCREMENT; SET FOREIGN_KEY_CHECKS = 1;");
             }
         }
 

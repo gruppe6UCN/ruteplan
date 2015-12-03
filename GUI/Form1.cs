@@ -27,11 +27,13 @@ namespace GUI
         public delegate void OptimizeThreadDelegate();
         public delegate int GetProgressDelegate();
         public delegate string GetStatusDelegate();
+        public delegate void UpdateLabelDelegate(string text);
         private ServiceImportClient importClient;
         private ServiceOptimizeClient optimizeClient;
         private ServiceRouteClient routeClient;
         private ServiceExportClient exportClient;
         private bool working;
+        private bool error;
 
         public Form1()
         {
@@ -39,14 +41,15 @@ namespace GUI
             
             //Starts the Server. Methods for testing.
             //TODO: Implement seperate server from client.
-            WCFServer.Initialize();
-            WCFServer.StartServer();
+            //WCFServer.Initialize();
+            //WCFServer.StartServer();
             importClient = new ServiceImportClient();
             routeClient = new ServiceRouteClient();
             optimizeClient = new ServiceOptimizeClient();
             exportClient = new ServiceExportClient();
             
             //Updates Labels
+            error = false;
             label1.Text = "";
 
             //Starts Timer
@@ -60,36 +63,32 @@ namespace GUI
 
         public async void button1_Click(object sender, EventArgs e)
         {
-            //ProgressBar
-            //Maximum er mængden af routes der bliver importet
-            //Step er hvor mange routes den skal gennemgå af gangen
-            //progressBar1.Maximum = 100;
-            //progressBar1.Step = 1;
-
             //Changes tab page.
             tabControl1.SelectedTab = tabPage1;
 
-            //Label = "Working...";
+            error = false;
             label1.Text = "Importing...";
             await Task.Run(() => Import());
-            label1.Text = "Import Complete";
-            //label = "Done";
-
-
-            ////Thread til at import
-            //Thread t = new Thread(new ThreadStart(ImportThreadStart));
-            //t.Start();                    
-            
- 
+            if (error)
+            {
+                label1.Text = "Import Complete";
+            }
         }
-
 
         public void Import()
         {
-            importClient.ImportFromArla();
-            List<Route> routes = routeClient.GetRoutes().ToList<Route>();
-            UpdateDelegate update = new UpdateDelegate(UpdateImportTable);
-            this.BeginInvoke(update, routes);
+            try
+            {
+                List<Route> routes = routeClient.GetRoutes().ToList<Route>();
+                UpdateDelegate update = new UpdateDelegate(UpdateImportTable);
+                this.BeginInvoke(update, routes);
+            }
+            catch (EndpointNotFoundException)
+            {
+                error = true;
+                UpdateLabelDelegate updateLabel = new UpdateLabelDelegate(UpdateLabel);
+                this.BeginInvoke(updateLabel, "Server is not Running.");
+            }
         }
 
         public void UpdateImportTable(List<Route> routes)
@@ -118,9 +117,13 @@ namespace GUI
             tabControl1.SelectedTab = tabPage2;
 
             working = true;
+            error = false;
             label1.Text = "Optimizing...";
             await Task.Run(() => Optimize());
-            label1.Text = "Optimize Complete";
+            if (error)
+            {
+                label1.Text = "Optimize Complete";
+            }
             working = false;
         }
 
@@ -135,12 +138,21 @@ namespace GUI
             }
             catch (FaultException<ExceptionNoRoutes>)
             {
-                label1.Text = "No routes have been imported.";   
+                error = true;
+                UpdateLabelDelegate updateLabel = new UpdateLabelDelegate(UpdateLabel);
+                this.BeginInvoke(updateLabel, "No routes have been imported.");
             }
-            catch (Exception e)
+            catch (EndpointNotFoundException)
             {
-                Console.WriteLine(e);
+                error = true;
+                UpdateLabelDelegate updateLabel = new UpdateLabelDelegate(UpdateLabel);
+                this.BeginInvoke(updateLabel, "Server is not Running.");
             }
+        }
+
+        public void UpdateLabel(string text)
+        {
+            label1.Text = text;
         }
 
         public void UpdateOptimizeTable(List<Route> routes)
@@ -165,16 +177,28 @@ namespace GUI
 
         public async void button3_Click(object sender, EventArgs e)
         {
-            //EXPORT
+            error = false;
             label1.Text = "Exporting...";
             await Task.Run(() => Export());
-            label1.Text = "Export Complete";
+            if (error)
+            {
+                label1.Text = "Export Complete";
+            }
 
         }
 
         public void Export()
         {
-            exportClient.Export();
+            try
+            {
+                exportClient.Export();
+            }
+            catch (EndpointNotFoundException)
+            {
+                error = true;
+                UpdateLabelDelegate updateLabel = new UpdateLabelDelegate(UpdateLabel);
+                this.BeginInvoke(updateLabel, "Server is not Running.");
+            }
         }
 
         public void tabPage1_Click(object sender, EventArgs e)
@@ -242,12 +266,36 @@ namespace GUI
 
         public int GetProgress()
         {
-            return optimizeClient.GetProgress();
+            int progress = 0;
+
+            try
+            {
+                progress = optimizeClient.GetProgress();
+            }
+            catch (EndpointNotFoundException)
+            {
+                UpdateLabelDelegate updateLabel = new UpdateLabelDelegate(UpdateLabel);
+                this.BeginInvoke(updateLabel, "Server is not Running.");
+            }
+
+            return progress;
         }
 
         public string GetStatus()
         {
-            return optimizeClient.GetStatus();
+            string status = "";
+            
+            try
+            {
+                status = optimizeClient.GetStatus();
+            }
+            catch (EndpointNotFoundException)
+            {
+                UpdateLabelDelegate updateLabel = new UpdateLabelDelegate(UpdateLabel);
+                this.BeginInvoke(updateLabel, "Server is not Running.");
+            }
+
+            return status;
         }
 
     }

@@ -62,6 +62,10 @@
   </Target>
   -->
   <ItemGroup>
+    <ProjectReference Include="..\Control\Control.csproj">
+      <Project>{2b05a805-5993-476c-84fe-b0749199b8a5}</Project>
+      <Name>Control</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Database\Database.csproj">
       <Project>{7E11D2BB-3939-4075-9764-002F88454ED0}</Project>
       <Name>Database</Name>

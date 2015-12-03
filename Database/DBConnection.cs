@@ -98,8 +98,11 @@ namespace Database
             cmd.Transaction = transaction;
             int r = 0;
 
-            cmd.CommandText = sql;
-            r = cmd.ExecuteNonQuery();
+            lock (connection)
+            {
+                cmd.CommandText = sql;
+                r = cmd.ExecuteNonQuery();
+            }
 
             return r; // Returns a number equal to the amount of rows that changed
         }

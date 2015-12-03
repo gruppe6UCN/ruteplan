@@ -29,10 +29,11 @@ namespace Control
             public string PromisedTime { get; private set; }
             public string TransportationDate { get; private set; }
             public double RCE { get; private set; }
+            public GeoLoc GeoLocation { get; private set; }
 
             public TmpDefaultDeliveryStop(long ID, long GeoLocID, long RouteID, 
                 long CustomerID, int? SequenceNbr, string PromisedTime, 
-                string TransportationDate, double RCE)
+                string TransportationDate, double RCE, GeoLoc GeoLocation)
             {
                 this.ID = ID;
                 this.GeoLocID = GeoLocID;
@@ -42,6 +43,7 @@ namespace Control
                 this.PromisedTime = PromisedTime;
                 this.TransportationDate = TransportationDate;
                 this.RCE = RCE;
+                this.GeoLocation = GeoLocation;
             }
         }
 
@@ -138,11 +140,12 @@ namespace Control
                 {
                     DefaultDeliveryStop defaultStop = new DefaultDeliveryStop(stop.ID, stop.GeoLocID, stop.SequenceNbr);
                     defaultStop.Customers = stop.Customers;
+                    defaultStop.GeoLoc = stop.GeoLocation;
                     stops.Add(defaultStop);
                 }
             }
 
-
+            DbDefaultDeliveryStop.StoreDefaultDeliveryStopHAX(stops, defaultRoute.ID);
 
             return stops;
         }
@@ -161,7 +164,6 @@ namespace Control
 
             //Creates various lists for use in code.
             TmpDefaultStops = new List<TmpDefaultDeliveryStop>();
-            List<Tuple<GeoLoc, long>> listGeoLong = new List<Tuple<GeoLoc, long>>();
             Dictionary<double, GeoLoc> geoLocDic = new Dictionary<double, GeoLoc>();
             long geoId = 1;
             long id = 1;
@@ -181,6 +183,14 @@ namespace Control
                 geoId++;
             }
 
+            //Stores geoLocs to database.
+            List<GeoLoc> geoLocList = new List<GeoLoc>();
+            foreach(var value in geoLocDic.Values)
+            {
+                geoLocList.Add(value);
+            }
+            DbGeoLoc.StoreGeoLoc(geoLocList);
+
             //Converts mapping class to stops.
             foreach (MappingDefaultDeliveryStop record in records)
             {               
@@ -193,7 +203,6 @@ namespace Control
                     if (idCustomerStop == idCustomer)
                     {
                         geoLoc = geoLocDic[customer.Y];
-                        listGeoLong.Add(new Tuple<GeoLoc,long>(geoLoc, DefaultRouteController.ParseID(record.SAPRoute));
                         break;
                     }
                 }
@@ -207,7 +216,8 @@ namespace Control
                         record.CustomerNO, ParseToInt(record.UdfSequencenumber),
                         record.PromisedTime,
                         record.TransportationDate,
-                        record.RCE);
+                        record.RCE,
+                        geoLoc);
 
                     TmpDefaultStops.Add(defaultStop);
                     id++;
@@ -219,10 +229,6 @@ namespace Control
             {
                 CustomerCtr.AddCustomersFromFile(stop);
             }
-
-
-            //Stores all the BEEP to database.
-            DbGeoLoc.StoreGeoLoc(listGeoLong);
         }
 
         /// <summary>

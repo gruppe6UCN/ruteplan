@@ -16,6 +16,7 @@ namespace WCFService
         {
             if (threadOptimize.IsAlive == false)
             {
+
                 threadOptimize = new Thread(OptimizeController.Instance.Optimize);
                 threadOptimize.Start();
             }

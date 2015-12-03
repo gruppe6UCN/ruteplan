@@ -59,6 +59,9 @@ namespace Server
                     //Open
                     serviceHost.Open();
                 }
+
+                //InfoFUntime!
+                Console.WriteLine("Server Started");
             }
         }
 
