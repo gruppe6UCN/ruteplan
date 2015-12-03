@@ -222,7 +222,7 @@ namespace Control
                     TmpDefaultStops.Add(defaultStop);
                     id++;
                 }
-                catch (FormatException e) { Console.WriteLine("Invalid SAPRoute ID {0}", e); }
+                catch (FormatException e) { /* Console.WriteLine("Invalid SAPRoute ID {0}", e); */ }
             }
 
             foreach (TmpDefaultDeliveryStop stop in TmpDefaultStops)

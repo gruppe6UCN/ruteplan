@@ -5,6 +5,7 @@ using System.ServiceModel;
 using System.ServiceModel.Description;
 using WCFService;
 using Control;
+using Database;
 
 namespace Server
 {
@@ -14,6 +15,7 @@ namespace Server
         {
             //Starts Database
             WCFServer.Initialize();
+            DBConnection.Instance.DB = "TestArlaEmpty";
 
             //Imports Data from Database
             string pathRoutes = "Config/RuterCSVTest.csv";

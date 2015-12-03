@@ -32,10 +32,11 @@ namespace ControlTest
         [Test()]
         public void TestExportFromFile()
         {
-            //string pathRoutes = "Config/RuterCSVTest.csv";
-            //string pathStops = "Config/stopsCSV.csv";
-            //string pathCustomers = "Config/kunderCSV.csv";
-            //ic.ImportFromFile(pathRoutes, pathStops, pathCustomers);
+            DBConnection.Instance.DB = "TestArlaEmpty";
+            string pathRoutes = "Config/RuterCSVTest.csv";
+            string pathStops = "Config/stopsCSV.csv";
+            string pathCustomers = "Config/kunderCSV.csv";
+            ic.ImportFromFile(pathRoutes, pathStops, pathCustomers);
             ec.ExportData();
             Assert.Pass();
         }

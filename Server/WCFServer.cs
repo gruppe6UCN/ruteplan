@@ -79,11 +79,27 @@ namespace Server
             }
         }
 
+        /// <summary>
+        /// Initialize the TestArla database for the the DBConnection.
+        /// </summary>
         public static void Initialize()
         {
             dbInstance = DBConnection.Instance;
             dbInstance.Host = "localhost";
             dbInstance.DB = "TestArla";
+            dbInstance.User = File.ReadAllText("Config/user.txt");
+            dbInstance.Pass = File.ReadAllText("Config/pass.txt");
+            dbInstance.Connect();
+        }
+
+        /// <summary>
+        /// Initialize the TestArlaEmpty database for the the DBConnection.
+        /// </summary>
+        public static void InitializeEmpty()
+        {
+            dbInstance = DBConnection.Instance;
+            dbInstance.Host = "localhost";
+            dbInstance.DB = "TestArlaEmpty";
             dbInstance.User = File.ReadAllText("Config/user.txt");
             dbInstance.Pass = File.ReadAllText("Config/pass.txt");
             dbInstance.Connect();

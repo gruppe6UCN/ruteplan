@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using TestWCFService.ServiceImport;
+using Database;
 
 namespace TestWCFService
 {
@@ -40,6 +41,7 @@ namespace TestWCFService
         [Test()]
         public void TestImportFromArla()
         {
+            DBConnection.Instance.DB = "TestArlaEmpty";
             client.ImportFromArla();
             Assert.Pass();
         }

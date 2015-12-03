@@ -51,6 +51,7 @@ namespace ControlTest
         [Test()]
         public void TestImportRoutesFromFile()
         {
+            DBConnection.Instance.DB = "TestArlaEmpty";
             string pathRoutes = "Config/RuterCSVTest.csv";
             string pathStops = "Config/stopsCSV.csv";
             string pathCustomers = "Config/kunderCSV.csv";
