@@ -95,6 +95,7 @@ namespace Control
 
                 //Updates log and adds route.
                 LogCtr.StatusLog("Created new route from default route " + defaultRoute.ID);
+                Console.WriteLine("Created new route from default route " + defaultRoute.ID);
                 Routes.Add(route);
             });
         }

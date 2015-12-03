@@ -69,7 +69,7 @@ namespace GUI
             error = false;
             label1.Text = "Importing...";
             await Task.Run(() => Import());
-            if (error)
+            if (!error)
             {
                 label1.Text = "Import Complete";
             }
@@ -120,7 +120,7 @@ namespace GUI
             error = false;
             label1.Text = "Optimizing...";
             await Task.Run(() => Optimize());
-            if (error)
+            if (!error)
             {
                 label1.Text = "Optimize Complete";
             }
@@ -180,7 +180,7 @@ namespace GUI
             error = false;
             label1.Text = "Exporting...";
             await Task.Run(() => Export());
-            if (error)
+            if (!error)
             {
                 label1.Text = "Export Complete";
             }
@@ -293,6 +293,7 @@ namespace GUI
             {
                 UpdateLabelDelegate updateLabel = new UpdateLabelDelegate(UpdateLabel);
                 this.BeginInvoke(updateLabel, "Server is not Running.");
+                status = "Server is not Running.";
             }
 
             return status;

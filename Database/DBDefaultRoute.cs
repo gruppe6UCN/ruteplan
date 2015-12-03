@@ -86,8 +86,6 @@ namespace Database
         /// <param name="defaultRoute">Default</param>
         public void StoreHAX(List<DefaultRoute> defaultRoutes)
         {
-
-
             DbConnection.SendUpdateSQL("SET FOREIGN_KEY_CHECKS = 0; TRUNCATE TABLE DefaultRoute; ALTER TABLE DefaultRoute CHANGE `id` `id` BIGINT NOT NULL;");
 
             foreach (DefaultRoute defaultRoute in defaultRoutes)
