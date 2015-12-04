@@ -60,6 +60,13 @@ namespace Database
             }
             return tableList;
         }
+
+
+        public void StoreCustomer(List)
+        {
+
+
+        }
     }
 }
 

@@ -94,6 +94,9 @@ namespace Control
 
             //Adds customers to stop.
             defaultStop.Customers = customers;
+
+            //Stores customers to database.
+            DbCustomer.StoreCustomer(customers, defaultStop);
         }
 
         /// <summary>

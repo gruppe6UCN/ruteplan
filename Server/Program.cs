@@ -24,8 +24,8 @@ namespace Server
             string pathStops = "Config/stopsCSV.csv";
             string pathCustomers = "Config/kunderCSV.csv";
             //TODO: Import from file and not Database.
-            //ImportController.Instance.ImportFromFile(pathRoutes, pathStops, pathCustomers);
-            ImportController.Instance.ImportRoutes();
+            ImportController.Instance.ImportFromFile(pathRoutes, pathStops, pathCustomers);
+            //ImportController.Instance.ImportRoutes();
 
             //Starts Server
             WCFServer.StartServer();
