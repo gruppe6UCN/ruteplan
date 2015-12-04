@@ -8,6 +8,7 @@ namespace Control
     {
         public DBTransportUnit DbTransportUnit { get; private set; }
         private static TransportUnitController instance;
+        public DefaultDeliveryStopController DefaultDeliveryStopCtr { get; private set; }
 
         /// <summary>
         /// Private singleton constructor.
@@ -15,6 +16,7 @@ namespace Control
         private TransportUnitController() 
         {
             DbTransportUnit = DBTransportUnit.Instance;
+            DefaultDeliveryStopCtr = DefaultDeliveryStopController.Instance;
         }
 
         /// <summary>
@@ -45,5 +47,54 @@ namespace Control
 
             deliveryStop.TransportUnits = DbTransportUnit.GetTransportUnits(IDs);
         }
+
+        /// <summary>
+        /// Loads from file imported on DefaultDeliveryStopController
+        /// and adds transport units to the given DeliveryStop.
+        /// </summary>
+        /// <param name="deliveryStop">DeliveryStop to contain TransportUnits.</param>
+        /// <param name="customers">List of customers for stop.</param>
+        public void AddTransportUnitFromFile(DeliveryStop deliveryStop, List<Customer> customers)
+        {
+             
+            foreach (var tmpStop in DefaultDeliveryStopCtr.TmpDefaultStops)
+            {
+                if (tmpStop.ID == deliveryStop.DefaultStop.ID)
+                {
+                    deliveryStop.TransportUnits = CreateTransportUnits(tmpStop.RCE, tmpStop.CustomerID);
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Calculactes and creates a list of transport units from the given total.
+        /// Each transport unit have 1 size, and last transport unit gets the remaining.
+        /// </summary>
+        /// <param name="total">Total load for stop.</param>
+        /// <returns>List of transport units.</returns>
+        public List<TransportUnit> CreateTransportUnits(double total, long cID)
+        {
+            List<TransportUnit> units = new List<TransportUnit>();
+
+            for (long i = 0; i <= total; i++)
+            {
+                //Checks if over total.
+                if (total - i < 1)
+                {
+                    double delta = total - i;
+                    TransportUnit tu = new TransportUnit(i, cID, delta);
+                    units.Add(tu);
+                }
+                else
+                {
+                    TransportUnit tu = new TransportUnit(i, cID, 1);
+                    units.Add(tu);
+                }
+            }
+
+            return units;
+        }
+
     }
 }

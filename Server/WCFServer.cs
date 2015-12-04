@@ -16,14 +16,14 @@ namespace Server
 
         private static List<Tuple<String, Type, Type>> services = new List<Tuple<String, Type, Type>>()
         {
-            new Tuple<String, Type, Type>("http://localhost:8733/Design_Time_Addresses/WCFService/Import/",
-                typeof (IServiceImport), typeof (ServiceImport)),
             new Tuple<String, Type, Type>("http://localhost:8733/Design_Time_Addresses/WCFService/Route/",
                 typeof (IServiceRoute), typeof (ServiceRoute)),
             new Tuple<String, Type, Type>("http://localhost:8733/Design_Time_Addresses/WCFService/ServiceOptimize/",
                 typeof (IServiceOptimize), typeof (ServiceOptimize)),
             new Tuple<String, Type, Type>("http://localhost:8733/Design_Time_Addresses/WCFService/ServiceMap/",
                 typeof (IServiceMap), typeof (ServiceMap)),
+            new Tuple<String, Type, Type>("http://localhost:8733/Design_Time_Addresses/WCFService/ServiceExport/",
+                typeof (IServiceExport), typeof (ServiceExport)),
         };
 
         public static void StartServer()
@@ -45,19 +45,6 @@ namespace Server
                     //Add Endpoint to Host
                     serviceHost.AddServiceEndpoint(iType, binding, url);
 
-                    var debug = serviceHost.Description.Behaviors.Find<ServiceDebugBehavior>();
-                    if (debug == null)
-                    {
-                        serviceHost.Description.Behaviors.Add(new ServiceDebugBehavior()
-                        {
-                            IncludeExceptionDetailInFaults = true
-                        });
-                    }
-                    else
-                    {
-                        debug.IncludeExceptionDetailInFaults = true;
-                    }
-
                     //Metadata Exchange
                     ServiceMetadataBehavior serviceBehavior = new ServiceMetadataBehavior();
                     serviceHost.Description.Behaviors.Add(serviceBehavior);
@@ -68,8 +55,10 @@ namespace Server
 
                     //Open
                     serviceHost.Open();
-                    }
                 }
+
+                Console.WriteLine("Server Started");
+            }
         }
 
         public static void StopServer()
@@ -86,11 +75,27 @@ namespace Server
             }
         }
 
+        /// <summary>
+        /// Initialize the TestArla database for the the DBConnection.
+        /// </summary>
         public static void Initialize()
         {
             dbInstance = DBConnection.Instance;
             dbInstance.Host = "localhost";
             dbInstance.DB = "TestArla";
+            dbInstance.User = File.ReadAllText("Config/user.txt");
+            dbInstance.Pass = File.ReadAllText("Config/pass.txt");
+            dbInstance.Connect();
+        }
+
+        /// <summary>
+        /// Initialize the TestArlaEmpty database for the the DBConnection.
+        /// </summary>
+        public static void InitializeEmpty()
+        {
+            dbInstance = DBConnection.Instance;
+            dbInstance.Host = "localhost";
+            dbInstance.DB = "TestArlaEmpty";
             dbInstance.User = File.ReadAllText("Config/user.txt");
             dbInstance.Pass = File.ReadAllText("Config/pass.txt");
             dbInstance.Connect();

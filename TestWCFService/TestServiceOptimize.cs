@@ -2,7 +2,8 @@
 using NUnit.Framework;
 using TestWCFService.ServiceOptimize;
 using System.Threading.Tasks;
-
+using TestExtension;
+using System.Threading;
 namespace TestWCFService
 {
     [TestFixture()]
@@ -45,6 +46,7 @@ namespace TestWCFService
         public async void TestDoubleOptimize()
         {
             var c1 = Task.Run(() => Optimize(client));
+
             var c2 = Task.Run(() => Optimize(client2));
 
             await c1;
@@ -54,9 +56,9 @@ namespace TestWCFService
         }
 
         [Test()]
-        public void TestGetStatus()
+        public void TestGetProgress()
         {
-            int status = client.GetStatus();
+            int status = client.GetProgress();
             if (status >= 0 && status <= 100)
             {
                 Assert.Pass();
@@ -67,9 +69,28 @@ namespace TestWCFService
             }
         }
 
+        [Test()]
+        public void TestGetStatus()
+        {
+            string status = client.GetStatus();
+            Assert.AreEqual("", status);
+        }
+
         public void Optimize(ServiceOptimizeClient client)
         {
-            client.Optimize();
+            
+            client.OptimizeWithDelay(1000);
+        }
+    }
+}
+namespace TestExtension
+{
+    public static class TestExtensionMethods
+    {
+        public static void OptimizeWithDelay(this ServiceOptimizeClient cl, int delay)
+        {
+            Thread.Sleep(delay);
+            cl.Optimize();
         }
     }
 }

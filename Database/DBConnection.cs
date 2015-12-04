@@ -73,13 +73,16 @@ namespace Database
             cmd.Transaction = transaction;
             long r = 0;
 
-            cmd.CommandText = sql;
-            cmd.ExecuteNonQuery();
-            cmd.CommandText = "SELECT LAST_INSERT_ID() FROM DefaultRoute";
-            Object obj = cmd.ExecuteScalar();
+            lock (connection)
+            {
+                cmd.CommandText = sql;
+                cmd.ExecuteNonQuery();
+                cmd.CommandText = "SELECT LAST_INSERT_ID() FROM DefaultRoute";
+                Object obj = cmd.ExecuteScalar();
 
-            if (obj is ulong)
-                r = Convert.ToInt64(obj);
+                if (obj is ulong)
+                    r = Convert.ToInt64(obj);
+            }
 
             return r; // Returns the ID for the new Row
         }
@@ -95,8 +98,11 @@ namespace Database
             cmd.Transaction = transaction;
             int r = 0;
 
-            cmd.CommandText = sql;
-            r = cmd.ExecuteNonQuery();
+            lock (connection)
+            {
+                cmd.CommandText = sql;
+                r = cmd.ExecuteNonQuery();
+            }
 
             return r; // Returns a number equal to the amount of rows that changed
         }

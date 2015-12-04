@@ -18,7 +18,8 @@ namespace Control
         private ConcurrentQueue<DeliveryStop> removedStops;
         private List<Route> overloadedRoutes;
         private List<Route> underloadedRoutes;
-        private int count;
+        private int count1;
+        private int count2;
 
         // /<summary>
         // /Private singleton constructor.
@@ -49,7 +50,8 @@ namespace Control
          */
         public void Optimize() {
 
-            count = 0;
+            count1 = 0;
+            count2 = 0;
 
             // Sync Queue
             removedStops = new ConcurrentQueue<DeliveryStop>();
@@ -72,6 +74,8 @@ namespace Control
                     {
                         removedStops.Enqueue(stop);
                     }
+
+                    count1++;
                 });
                 LogCtr.StatusLog(String.Format("There is %d delivery stop there need to be moved to another routes", overloadedRoutes.Count));
 
@@ -119,14 +123,18 @@ namespace Control
 
                         LogCtr.StatusLog("Created a new route for delivery stop");
                     }
+
+                    count2++;
                 }
 
                 RouteCtr.CalcTimeForDeparture();
-
-                count++;
             }
 
-            Parallel.ForEach(RouteCtr.Routes, route => MapCtr.PreCalcRoad(route));
+            //Parallel.ForEach(RouteCtr.Routes, route => MapCtr.PreCalcRoad(route));
+            foreach (Route route in RouteCtr.Routes)
+            {
+                MapCtr.PreCalcRoad(route);
+            }
         }
 
 
@@ -242,12 +250,22 @@ namespace Control
         {
             try
             {
-                int max = overloadedRoutes.Count;
-                double steps = count / max;
-                double status = Math.Floor(steps * 100);
-                return Convert.ToInt32(status);
+                //Calculates count1
+                int max1 = overloadedRoutes.Count;
+                double steps1 = count1 / max1;
+                double status1 = Math.Floor(steps1 * 100) / 2;
+
+                //Calculates count2
+                int max2 = removedStops.Count;
+                double steps2 = count2 / max2;
+                double status2 = Math.Floor(steps2 * 100) / 2;
+
+                //Calculates total.
+                double total = status1 + status2;
+                return Convert.ToInt32(total);
             }
             catch (NullReferenceException) { return 0; }
+            catch (DivideByZeroException) { return 0; }
         }
 
     }

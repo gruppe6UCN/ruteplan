@@ -91,10 +91,11 @@ namespace Control
                 Route route = new Route(defaultRoute, date);
                 LogCtr.StatusLog("Creating new route, based on default route " + defaultRoute.ID);
 
-                DeliveryStopCtr.AddDeliveryStops(route, DefaultDeliveryStopCtr.GetDefaultDeliveryStopsFromFile(defaultRoute));
+                DeliveryStopCtr.AddDeliveryStopsFromFile(route, DefaultDeliveryStopCtr.GetDefaultDeliveryStopsFromFile(defaultRoute));
 
                 //Updates log and adds route.
                 LogCtr.StatusLog("Created new route from default route " + defaultRoute.ID);
+                Console.WriteLine("Created new route from default route " + defaultRoute.ID);
                 Routes.Add(route);
             });
         }
@@ -112,7 +113,7 @@ namespace Control
                 if (route.DefaultRoute.ExtraRoute)
                 {
                     //Saves extra route.
-                    DefaultRouteCtr.store(route.DefaultRoute);
+                    DefaultRouteCtr.Store(route.DefaultRoute);
                 }
 
                 //Stores routes and stops to database.

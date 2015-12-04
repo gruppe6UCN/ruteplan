@@ -11,9 +11,12 @@ namespace WCFService
     public interface IServiceOptimize
     {
         [OperationContract]
+        [FaultContract(typeof(ExceptionOptimizeInProgress))]
         void Optimize();
         [OperationContract]
-        int GetStatus();
+        int GetProgress();
+        [OperationContract]
+        string GetStatus();
     }
 
     [DataContract()]

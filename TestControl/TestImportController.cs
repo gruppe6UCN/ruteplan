@@ -47,15 +47,5 @@ namespace ControlTest
             ic.ImportRoutes();
             Assert.IsNotEmpty(rc.Routes);
         }
-
-        [Test()]
-        public void TestImportRoutesFromFile()
-        {
-            string pathRoutes = "Config/RuterCSVTest.csv";
-            string pathStops = "Config/stopsCSV.csv";
-            string pathCustomers = "Config/kunderCSV.csv";
-            ic.ImportFromFile(pathRoutes, pathStops, pathCustomers);
-            Assert.IsNotEmpty(rc.Routes);
-        }
     }
 }

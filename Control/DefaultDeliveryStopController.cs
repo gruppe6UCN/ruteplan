@@ -10,6 +10,7 @@ namespace Control
     public class DefaultDeliveryStopController
     {
         public DBDefaultDeliveryStop DbDefaultDeliveryStop { get; private set; }
+        public DBGeoLoc DbGeoLoc { get; private set; }
         public CustomerController CustomerCtr { get; private set; }
         public MapController mapCtr { get; private set; }
         public List<TmpDefaultDeliveryStop> TmpDefaultStops { get; private set; }
@@ -27,8 +28,12 @@ namespace Control
             public int? SequenceNbr { get; private set; }
             public string PromisedTime { get; private set; }
             public string TransportationDate { get; private set; }
+            public double RCE { get; private set; }
+            public GeoLoc GeoLocation { get; private set; }
 
-            public TmpDefaultDeliveryStop(long ID, long GeoLocID, long RouteID, long CustomerID, int? SequenceNbr, string PromisedTime, string TransportationDate)
+            public TmpDefaultDeliveryStop(long ID, long GeoLocID, long RouteID, 
+                long CustomerID, int? SequenceNbr, string PromisedTime, 
+                string TransportationDate, double RCE, GeoLoc GeoLocation)
             {
                 this.ID = ID;
                 this.GeoLocID = GeoLocID;
@@ -37,6 +42,8 @@ namespace Control
                 this.SequenceNbr = SequenceNbr;
                 this.PromisedTime = PromisedTime;
                 this.TransportationDate = TransportationDate;
+                this.RCE = RCE;
+                this.GeoLocation = GeoLocation;
             }
         }
 
@@ -68,7 +75,7 @@ namespace Control
             public string TWTill;
             public string ETA;
             public string PromisedTime;
-            public string RCE;
+            public double RCE;
             public string Distance;
             public string UdfDeleteFromDB;
         }
@@ -80,6 +87,7 @@ namespace Control
         {
             DbDefaultDeliveryStop = DBDefaultDeliveryStop.Instance;
             CustomerCtr = CustomerController.Instance;
+            DbGeoLoc = DBGeoLoc.Instance;
             mapCtr = MapController.Instance;
         }
 
@@ -118,7 +126,7 @@ namespace Control
 
         /// <summary>
         /// Gets a list of all default delivery stops imported from a .csv file for the given route.
-        /// List must be created first by using the method GetDefaultDeliveryStopFromFile.
+        /// List must be created first by using the method ImportDefaultDeliveryStopFromFile.
         /// </summary>
         /// <param name="defaultRoute">DefaultRoute which DefaultDeliveryStops are to be returned.</param>
         /// <returns>List of DefaultDeliveryStops for route.</returns>
@@ -132,8 +140,12 @@ namespace Control
                 {
                     DefaultDeliveryStop defaultStop = new DefaultDeliveryStop(stop.ID, stop.GeoLocID, stop.SequenceNbr);
                     defaultStop.Customers = stop.Customers;
+                    defaultStop.GeoLoc = stop.GeoLocation;
+                    stops.Add(defaultStop);
                 }
             }
+
+            DbDefaultDeliveryStop.StoreDefaultDeliveryStopHAX(stops, defaultRoute.ID);
 
             return stops;
         }
@@ -171,6 +183,14 @@ namespace Control
                 geoId++;
             }
 
+            //Stores geoLocs to database.
+            List<GeoLoc> geoLocList = new List<GeoLoc>();
+            foreach(var value in geoLocDic.Values)
+            {
+                geoLocList.Add(value);
+            }
+            DbGeoLoc.StoreGeoLoc(geoLocList);
+
             //Converts mapping class to stops.
             foreach (MappingDefaultDeliveryStop record in records)
             {               
@@ -195,12 +215,14 @@ namespace Control
                         DefaultRouteController.ParseID(record.SAPRoute),
                         record.CustomerNO, ParseToInt(record.UdfSequencenumber),
                         record.PromisedTime,
-                        record.TransportationDate);
+                        record.TransportationDate,
+                        record.RCE,
+                        geoLoc);
 
                     TmpDefaultStops.Add(defaultStop);
                     id++;
                 }
-                catch (FormatException e) { Console.WriteLine("Invalid SAPRoute ID {0}", e); }
+                catch (FormatException e) { /* Console.WriteLine("Invalid SAPRoute ID {0}", e); */ }
             }
 
             foreach (TmpDefaultDeliveryStop stop in TmpDefaultStops)

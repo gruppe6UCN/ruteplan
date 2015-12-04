@@ -53,5 +53,15 @@ namespace Control
                 logReceiver.Remove(logReceiver.Last());
             }
         }
+
+        public string GetLatest()
+        {
+            try
+            {
+                string latest = logReceiver[logReceiver.Count - 1];
+                return latest;
+            }
+            catch (NullReferenceException) { return ""; }
+        }
     }
 }

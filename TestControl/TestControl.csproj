@@ -57,10 +57,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestCustomerController.cs" />
     <Compile Include="TestDefaultDeliveryStopController.cs" />
+    <Compile Include="TestDefaultDeliveryStopControllerArla.cs" />
     <Compile Include="TestDefaultRouteController.cs" />
+    <Compile Include="TestDefaultRouteControllerArla.cs" />
     <Compile Include="TestDeliveryStopController.cs" />
     <Compile Include="TestExportController.cs" />
+    <Compile Include="TestExportControllerArla.cs" />
     <Compile Include="TestImportController.cs" />
+    <Compile Include="TestImportControllerArla.cs" />
     <Compile Include="TestLogController.cs" />
     <Compile Include="TestMapController.cs" />
     <Compile Include="TestOptimizeController.cs" />

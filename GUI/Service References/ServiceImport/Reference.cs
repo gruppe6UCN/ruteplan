@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestWCFService.ServiceImport {
+namespace GUI.ServiceImport {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -20,15 +20,21 @@ namespace TestWCFService.ServiceImport {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceImport/Import", ReplyAction="http://tempuri.org/IServiceImport/ImportResponse")]
         System.Threading.Tasks.Task ImportAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceImport/ImportFromArla", ReplyAction="http://tempuri.org/IServiceImport/ImportFromArlaResponse")]
+        void ImportFromArla();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceImport/ImportFromArla", ReplyAction="http://tempuri.org/IServiceImport/ImportFromArlaResponse")]
+        System.Threading.Tasks.Task ImportFromArlaAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IServiceImportChannel : TestWCFService.ServiceImport.IServiceImport, System.ServiceModel.IClientChannel {
+    public interface IServiceImportChannel : GUI.ServiceImport.IServiceImport, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ServiceImportClient : System.ServiceModel.ClientBase<TestWCFService.ServiceImport.IServiceImport>, TestWCFService.ServiceImport.IServiceImport {
+    public partial class ServiceImportClient : System.ServiceModel.ClientBase<GUI.ServiceImport.IServiceImport>, GUI.ServiceImport.IServiceImport {
         
         public ServiceImportClient() {
         }
@@ -55,6 +61,14 @@ namespace TestWCFService.ServiceImport {
         
         public System.Threading.Tasks.Task ImportAsync() {
             return base.Channel.ImportAsync();
+        }
+        
+        public void ImportFromArla() {
+            base.Channel.ImportFromArla();
+        }
+        
+        public System.Threading.Tasks.Task ImportFromArlaAsync() {
+            return base.Channel.ImportFromArlaAsync();
         }
     }
 }

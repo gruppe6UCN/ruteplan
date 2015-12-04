@@ -4,13 +4,15 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using Control;
 
 namespace WCFService
 {
-    [ServiceContract]
-    public interface IServiceImport
+    public class ServiceExport : IServiceExport
     {
-        [OperationContract]
-        void Import();
+        public void Export()
+        {
+            ExportController.Instance.ExportData();
+        }
     }
 }

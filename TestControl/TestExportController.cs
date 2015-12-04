@@ -1,22 +1,40 @@
-﻿using NUnit.Framework;
+﻿using Control;
+using Database;
+using NUnit.Framework;
 
 namespace ControlTest
 {
     [TestFixture()]
     class TestExportController
     {
-        //ExportController ec;
+        ExportController ec;
+        ImportController ic;
 
         [SetUp()]
         public void SetUp()
         {
-            //this.ec = ExportController.Instance;
+            this.ec = ExportController.Instance;
+            this.ic = ImportController.Instance;
+        }
+
+        [TestFixtureSetUp()]
+        public void ClassSetUp()
+        {
+            Server.WCFServer.Initialize();
+        }
+
+        [TestFixtureTearDown()]
+        public void ClassTearDown()
+        {
+            DBConnection.Instance.Disconnect();
         }
 
         [Test()]
-        public void TestXXXX()
+        public void TestExport()
         {
-
+            ic.ImportRoutes();
+            ec.ExportData();
+            Assert.Pass();
         }
     }
 }

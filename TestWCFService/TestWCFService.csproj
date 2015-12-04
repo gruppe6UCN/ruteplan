@@ -53,6 +53,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Service References\ServiceExport\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\ServiceMap\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -63,31 +68,24 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="TestServiceMap.cs" />
-    <Compile Include="TestServiceOptimize.cs" />
-    <Compile Include="Service References\ServiceImport\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Service References\ServiceRoute\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="TestServiceImport.cs" />
+    <Compile Include="TestServiceExport.cs" />
+    <Compile Include="TestServiceMap.cs" />
+    <Compile Include="TestServiceOptimize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestServiceRoute.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Model.Route.datasource" />
     <None Include="Properties\DataSources\WCFWrapper.MapRouteWrapper.datasource" />
-    <None Include="Service References\ServiceImport\service.wsdl" />
-    <None Include="Service References\ServiceImport\service.xsd">
+    <None Include="Service References\ServiceExport\service.wsdl" />
+    <None Include="Service References\ServiceExport\service.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceMap\Model.xsd">
@@ -113,6 +111,9 @@
     <None Include="Service References\ServiceOptimize\service1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\ServiceOptimize\WCFService.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServiceRoute\Model.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -125,39 +126,6 @@
     </None>
     <None Include="Service References\ServiceRoute\WCFService.xsd">
       <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\ServiceImport\" />
-    <WCFMetadataStorage Include="Service References\ServiceMap\" />
-    <WCFMetadataStorage Include="Service References\ServiceOptimize\" />
-    <WCFMetadataStorage Include="Service References\ServiceRoute\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ServiceImport\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ServiceImport\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ServiceImport\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ServiceRoute\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ServiceRoute\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ServiceRoute\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +150,39 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServiceExport\" />
+    <WCFMetadataStorage Include="Service References\ServiceMap\" />
+    <WCFMetadataStorage Include="Service References\ServiceOptimize\" />
+    <WCFMetadataStorage Include="Service References\ServiceRoute\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceMap\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceMap\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceMap\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceRoute\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceRoute\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceRoute\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Service References\ServiceOptimize\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -194,13 +195,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceMap\configuration91.svcinfo" />
+    <None Include="Service References\ServiceExport\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceMap\configuration.svcinfo" />
+    <None Include="Service References\ServiceExport\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceMap\Reference.svcmap">
+    <None Include="Service References\ServiceExport\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

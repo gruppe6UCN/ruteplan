@@ -32,6 +32,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GMap.NET.Core, Version=1.7.0.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <HintPath>..\packages\GMap.NET.WindowsForms.1.7.1\lib\net40\GMap.NET.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GMap.NET.WindowsForms, Version=1.7.0.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <HintPath>..\packages\GMap.NET.WindowsForms.1.7.1\lib\net40\GMap.NET.WindowsForms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
@@ -62,6 +70,10 @@
   </Target>
   -->
   <ItemGroup>
+    <ProjectReference Include="..\Control\Control.csproj">
+      <Project>{2b05a805-5993-476c-84fe-b0749199b8a5}</Project>
+      <Name>Control</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Database\Database.csproj">
       <Project>{7E11D2BB-3939-4075-9764-002F88454ED0}</Project>
       <Name>Database</Name>

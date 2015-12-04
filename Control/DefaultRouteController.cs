@@ -109,6 +109,9 @@ namespace Control
                 defaultRoutes.Add(defaultRoute);
             }
 
+            //Stores to database.
+            DbDefaultRoute.StoreHAX(defaultRoutes);
+
             //Returns DefaultRoutes.
             return defaultRoutes;
         }
@@ -117,9 +120,9 @@ namespace Control
         /// Stores given default route to the database.
         /// </summary>
         /// <param name="defaultRoute">DefaultRoute to be stored.</param>
-        public void store(DefaultRoute defaultRoute)
+        public void Store(DefaultRoute defaultRoute)
         {
-            DbDefaultRoute.store(defaultRoute);
+            DbDefaultRoute.Store(defaultRoute);
         }
 
         /// <summary>

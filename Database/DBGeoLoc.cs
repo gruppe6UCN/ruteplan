@@ -80,5 +80,22 @@ namespace Database
 
             return tableList;
         }
+
+        /// <summary>
+        /// Stores all GeoLocs to the database... Funtime!
+        /// </summary>
+        /// <param name="geoLocs">List of all geolocs to be stored.</param>
+        public void StoreGeoLoc(List<GeoLoc> geoLocs)
+        {
+            foreach (GeoLoc geoLoc in geoLocs)
+            {
+                String sql = String.Format("INSERT IGNORE into GeoLoc values({0}, {1}, {2});",
+                    geoLoc.ID,
+                    geoLoc.Longitude,
+                    geoLoc.Latitude);
+
+                DbConnection.SendInsertSQL(sql);
+            }
+        }
     }
 }
