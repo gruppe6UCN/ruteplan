@@ -12,12 +12,14 @@ using Model;
 using System.IO;
 using WCFService;
 using Server;
-using GUI.ServiceImport;
 using GUI.ServiceRoute;
 using Control;
 using GUI.ServiceOptimize;
 using System.ServiceModel;
 using GUI.ServiceExport;
+using GUI.ServiceMap;
+using GMap.NET.WindowsForms;
+using GMap.NET;
 
 namespace GUI
 {
@@ -28,10 +30,12 @@ namespace GUI
         public delegate int GetProgressDelegate();
         public delegate string GetStatusDelegate();
         public delegate void UpdateLabelDelegate(string text);
-        private ServiceImportClient importClient;
+        private ServiceMapClient mapClient;
         private ServiceOptimizeClient optimizeClient;
         private ServiceRouteClient routeClient;
         private ServiceExportClient exportClient;
+        private GMapOverlay geoPosion;
+        private List<Route> routes;
         private bool working;
         private bool error;
 
@@ -39,11 +43,16 @@ namespace GUI
         {
             InitializeComponent();
             
-            //Starts the Server. Methods for testing.
-            //TODO: Implement seperate server from client.
-            //WCFServer.Initialize();
-            //WCFServer.StartServer();
-            importClient = new ServiceImportClient();
+            //Map
+            geoPosion = new GMapOverlay("GeoPosion");
+            gMapControl1.MapProvider = GMap.NET.MapProviders.OpenStreetMapProvider.Instance;
+            GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerAndCache;
+            
+            //TODO: Look at more precise then denmark.
+            gMapControl1.SetPositionByKeywords("Denmark"); 
+
+            //Clients
+            mapClient = new ServiceMapClient();
             routeClient = new ServiceRouteClient();
             optimizeClient = new ServiceOptimizeClient();
             exportClient = new ServiceExportClient();
@@ -79,7 +88,7 @@ namespace GUI
         {
             try
             {
-                List<Route> routes = routeClient.GetRoutes().ToList<Route>();
+                routes = routeClient.GetRoutes().ToList<Route>();
                 UpdateDelegate update = new UpdateDelegate(UpdateImportTable);
                 this.BeginInvoke(update, routes);
             }
@@ -108,6 +117,14 @@ namespace GUI
                         )
                     );
             }
+
+            //Updates Map List
+            listBox1.Items.Clear();
+            foreach (Route route in routes)
+            {
+                long id = route.ID == null ? route.ID : route.DefaultRoute.ID;
+                listBox1.Items.Add(id);
+            }
         }
 
 
@@ -132,7 +149,7 @@ namespace GUI
             try
             {
                 optimizeClient.Optimize();
-                List<Route> routes = routeClient.GetRoutes().ToList<Route>();
+                routes = routeClient.GetRoutes().ToList<Route>();
                 UpdateDelegate update = new UpdateDelegate(UpdateOptimizeTable);
                 this.BeginInvoke(update, routes);
             }
@@ -233,7 +250,29 @@ namespace GUI
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            long id = (long)listBox1.SelectedItem;
+            Route r = routes.First(route =>
+            {
+                if (route.ID == id || route.DefaultRoute.ID == id)
+                {
+                    return true;
+                }
+                return false;
+            });
 
+            gMapControl1.Overlays.Clear();
+            geoPosion = new GMapOverlay("Route: " + id);
+
+            List<MapRoute> road = mapClient.GetRoadMap(r).UnWrab();
+
+            for (int i = 0; i < road.Count; i++)
+            {
+                GMapRoute gMapRoute = new GMapRoute(road[0].Points, (id + 1) + ". Stop");
+                geoPosion.Routes.Add(gMapRoute);
+                gMapControl1.UpdateRouteLocalPosition(gMapRoute);
+            }
+            gMapControl1.Overlays.Add(geoPosion);
+            gMapControl1.Update();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -297,6 +336,11 @@ namespace GUI
             }
 
             return status;
+        }
+
+        private void gMapControl1_Load(object sender, EventArgs e)
+        {
+
         }
 
     }

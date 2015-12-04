@@ -32,6 +32,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GMap.NET.Core, Version=1.7.0.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <HintPath>..\packages\GMap.NET.WindowsForms.1.7.1\lib\net40\GMap.NET.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GMap.NET.WindowsForms, Version=1.7.0.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <HintPath>..\packages\GMap.NET.WindowsForms.1.7.1\lib\net40\GMap.NET.WindowsForms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -59,7 +67,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\ServiceImport\Reference.cs">
+    <Compile Include="Service References\ServiceMap\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -86,7 +94,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\DataSources\Model.Route.datasource" />
+    <None Include="Properties\DataSources\WCFWrapper.MapRouteWrapper.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -100,8 +110,20 @@
     <None Include="Service References\ServiceExport\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceImport\service.wsdl" />
-    <None Include="Service References\ServiceImport\service.xsd">
+    <None Include="Service References\ServiceMap\Model.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceMap\service.wsdl" />
+    <None Include="Service References\ServiceMap\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceMap\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceMap\System.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceMap\WCFWrapper.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceOptimize\service.wsdl" />
@@ -148,27 +170,19 @@
       <Project>{1800d1d5-307d-49b4-bad6-45bab48eeccc}</Project>
       <Name>WCFService</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WCFWrapper\WCFWrapper.csproj">
+      <Project>{9d3796bf-51db-49ea-afa9-160a3d3a87dd}</Project>
+      <Name>WCFWrapper</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ServiceExport\" />
-    <WCFMetadataStorage Include="Service References\ServiceImport\" />
+    <WCFMetadataStorage Include="Service References\ServiceMap\" />
     <WCFMetadataStorage Include="Service References\ServiceOptimize\" />
     <WCFMetadataStorage Include="Service References\ServiceRoute\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ServiceImport\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ServiceImport\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ServiceImport\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ServiceRoute\configuration91.svcinfo" />
@@ -202,6 +216,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ServiceExport\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceMap\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceMap\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceMap\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

@@ -7,10 +7,8 @@ using System.ServiceModel;
 using System.ServiceModel.Description;
 using System.Threading.Tasks;
 using WCFService;
-using Control;
-using Database;
 using GMap.NET;
-using Model;
+using Control;
 
 namespace Server
 {
@@ -19,13 +17,15 @@ namespace Server
         static void Main(string[] args)
         {
             //Starts Database
-            WCFServer.Initialize();
+            WCFServer.InitializeEmpty();
 
             //Imports Data from Database
             string pathRoutes = "Config/RuterCSVTest.csv";
             string pathStops = "Config/stopsCSV.csv";
             string pathCustomers = "Config/kunderCSV.csv";
-            ImportController.Instance.ImportFromFile(pathRoutes, pathStops, pathCustomers);
+            //TODO: Import from file and not Database.
+            //ImportController.Instance.ImportFromFile(pathRoutes, pathStops, pathCustomers);
+            ImportController.Instance.ImportRoutes();
 
             //Starts Server
             WCFServer.StartServer();

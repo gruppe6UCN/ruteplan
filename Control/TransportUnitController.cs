@@ -56,7 +56,7 @@ namespace Control
         /// <param name="customers">List of customers for stop.</param>
         public void AddTransportUnitFromFile(DeliveryStop deliveryStop, List<Customer> customers)
         {
-             
+            
             foreach (var tmpStop in DefaultDeliveryStopCtr.TmpDefaultStops)
             {
                 if (tmpStop.ID == deliveryStop.DefaultStop.ID)
@@ -65,7 +65,6 @@ namespace Control
                 }
             }
         }
-
 
         /// <summary>
         /// Calculactes and creates a list of transport units from the given total.
@@ -84,11 +83,13 @@ namespace Control
                 {
                     double delta = total - i;
                     TransportUnit tu = new TransportUnit(i, cID, delta);
+                    DbTransportUnit.StoreTransportUnit(tu, cID);
                     units.Add(tu);
                 }
                 else
                 {
                     TransportUnit tu = new TransportUnit(i, cID, 1);
+                    DbTransportUnit.StoreTransportUnit(tu, cID);
                     units.Add(tu);
                 }
             }
