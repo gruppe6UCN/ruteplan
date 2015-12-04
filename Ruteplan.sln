@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{B5425574-CF10-42E3-A74A-32EFCCD4777D}"
 EndProject
@@ -27,6 +27,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFService", "WCFService\WCFService.csproj", "{1800D1D5-307D-49B4-BAD6-45BAB48EECCC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFWrapper", "WCFWrapper\WCFWrapper.csproj", "{9D3796BF-51DB-49EA-AFA9-160A3D3A87DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI", "GUI\GUI.csproj", "{7841AF79-F5AD-459A-8FE6-85CA0FF595BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -78,6 +80,10 @@ Global
 		{9D3796BF-51DB-49EA-AFA9-160A3D3A87DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D3796BF-51DB-49EA-AFA9-160A3D3A87DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D3796BF-51DB-49EA-AFA9-160A3D3A87DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7841AF79-F5AD-459A-8FE6-85CA0FF595BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7841AF79-F5AD-459A-8FE6-85CA0FF595BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7841AF79-F5AD-459A-8FE6-85CA0FF595BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7841AF79-F5AD-459A-8FE6-85CA0FF595BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
