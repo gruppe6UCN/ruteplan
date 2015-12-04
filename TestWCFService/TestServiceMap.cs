@@ -3,7 +3,6 @@ using Control;
 using GMap.NET;
 using Model;
 using NUnit.Framework;
-using TestWCFService.ServiceImport;
 using TestWCFService.ServiceMap;
 using TestWCFService.ServiceOptimize;
 using TestWCFService.ServiceRoute;
@@ -14,7 +13,7 @@ namespace TestWCFService
     [TestFixture()]
     internal class TestServiceMap
     {
-        private ServiceImportClient serviceImport;
+        private ImportController impCtr;
         private ServiceOptimizeClient serviceOptimize;
         private ServiceRouteClient serviceRoute;
         private ServiceMapClient serviceMap;
@@ -24,11 +23,11 @@ namespace TestWCFService
         {
             Server.WCFServer.Initialize();
             Server.WCFServer.StartServer();
-            serviceImport = new ServiceImportClient();
+            impCtr = ImportController.Instance;
             serviceOptimize = new ServiceOptimizeClient();
             serviceRoute = new ServiceRouteClient();
             serviceMap = new ServiceMapClient();
-            serviceImport.Import();
+            impCtr.ImportRoutes();
             serviceOptimize.Optimize();
         }
 
@@ -42,7 +41,6 @@ namespace TestWCFService
         {
             Server.WCFServer.StopServer();
             Server.WCFServer.Terminate();
-            serviceImport.Close();
             serviceOptimize.Close();
             serviceRoute.Close();
             serviceMap.Close();

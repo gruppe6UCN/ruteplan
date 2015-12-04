@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Control;
 using NUnit.Framework;
 using TestWCFService.ServiceExport;
-using TestWCFService.ServiceImport;
 
 namespace TestWCFService
 {
@@ -9,7 +8,7 @@ namespace TestWCFService
     public class TestServiceExport
     {
         private ServiceExportClient clientExport;
-        private ServiceImportClient clientImport;
+        private ImportController impCtr;
 
         [TestFixtureSetUp()]
         public void ClassSetUp()
@@ -17,7 +16,7 @@ namespace TestWCFService
             Server.WCFServer.Initialize();
             Server.WCFServer.StartServer();
             clientExport = new ServiceExportClient();
-            clientImport = new ServiceImportClient();
+            impCtr = ImportController.Instance;
         }
 
         [SetUp()]
@@ -29,7 +28,6 @@ namespace TestWCFService
         public void ClassTeardown()
         {
             clientExport.Close();
-            clientImport.Close();
             Server.WCFServer.StopServer();
             Server.WCFServer.Terminate();
         }
@@ -44,7 +42,7 @@ namespace TestWCFService
         [Test()]
         public void TestExportData()
         {
-            clientImport.Import();
+            impCtr.ImportRoutes();
             clientExport.Export();
             Assert.Pass();
         }

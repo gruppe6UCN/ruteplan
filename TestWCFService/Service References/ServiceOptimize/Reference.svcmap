@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="12b57f2d-9236-41b7-8c3f-02229104f293" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="ee6e4405-4732-4676-bbcf-b606ecd7b227" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,10 +22,10 @@
     <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/WCFService/ServiceOptimize/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="e92e5240-ec8b-44fe-a5bf-58f49afd4bee" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/ServiceOptimize/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="28ea7c4d-e60f-4f98-99fb-5a718d9b09e3" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/ServiceOptimize/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="daa43229-03f5-454a-a554-95b66976d011" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/ServiceOptimize/mex" />
-    <MetadataFile FileName="WCFService.xsd" MetadataType="Schema" ID="53c5edd7-2b08-411c-ad82-74524ba7f239" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/ServiceOptimize/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="4428e777-1e7c-403f-bbd0-04bb3e9f5220" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/ServiceOptimize/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="151d14e6-b78b-46d4-9063-4f97c75b1ee5" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/ServiceOptimize/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="14145624-c78b-46f9-94b2-51767da3db86" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/ServiceOptimize/mex" />
+    <MetadataFile FileName="WCFService.xsd" MetadataType="Schema" ID="83da467c-4325-4746-a224-ca4b271278c7" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/ServiceOptimize/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

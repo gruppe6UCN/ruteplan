@@ -16,17 +16,15 @@ namespace Server
 
         private static List<Tuple<String, Type, Type>> services = new List<Tuple<String, Type, Type>>()
         {
-            new Tuple<String, Type, Type>("http://localhost:8733/Design_Time_Addresses/WCFService/Import/",
-                typeof (IServiceImport), typeof (ServiceImport)),
             new Tuple<String, Type, Type>("http://localhost:8733/Design_Time_Addresses/WCFService/Route/",
                 typeof (IServiceRoute), typeof (ServiceRoute)),
             new Tuple<String, Type, Type>("http://localhost:8733/Design_Time_Addresses/WCFService/ServiceOptimize/",
                 typeof (IServiceOptimize), typeof (ServiceOptimize)),
+            new Tuple<String, Type, Type>("http://localhost:8733/Design_Time_Addresses/WCFService/ServiceMap/",
+                typeof (IServiceMap), typeof (ServiceMap)),
             new Tuple<String, Type, Type>("http://localhost:8733/Design_Time_Addresses/WCFService/ServiceExport/",
                 typeof (IServiceExport), typeof (ServiceExport)),
-       	    new Tuple<String, Type, Type>("http://localhost:8733/Design_Time_Addresses/WCFService/ServiceMap/",
-                typeof (IServiceMap), typeof (ServiceMap)),
-};
+        };
 
         public static void StartServer()
         {
@@ -34,9 +32,6 @@ namespace Server
             {
                 serviceHosts = new List<ServiceHost>();
                 BasicHttpBinding binding = new BasicHttpBinding();
-                binding.MaxReceivedMessageSize = 2147483647;
-                binding.MaxBufferSize = 2147483647;
-                binding.MaxBufferPoolSize = 2147483647;
 
                 foreach (Tuple<string, Type, Type> tuple in services)
                 {
@@ -50,19 +45,6 @@ namespace Server
                     //Add Endpoint to Host
                     serviceHost.AddServiceEndpoint(iType, binding, url);
 
-                    var debug = serviceHost.Description.Behaviors.Find<ServiceDebugBehavior>();
-                    if (debug == null)
-                    {
-                        serviceHost.Description.Behaviors.Add(new ServiceDebugBehavior()
-                        {
-                            IncludeExceptionDetailInFaults = true
-                        });
-                    }
-                    else
-                    {
-                        debug.IncludeExceptionDetailInFaults = true;
-                    }
-
                     //Metadata Exchange
                     ServiceMetadataBehavior serviceBehavior = new ServiceMetadataBehavior();
                     serviceHost.Description.Behaviors.Add(serviceBehavior);
@@ -73,10 +55,8 @@ namespace Server
 
                     //Open
                     serviceHost.Open();
-                    }
                 }
 
-                //InfoFUntime!
                 Console.WriteLine("Server Started");
             }
         }

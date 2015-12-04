@@ -52,7 +52,6 @@ namespace Control
         public void PreCalcRoad(Route route)
         {
             List<MapRoute> map = CalcRoad(route);
-
             // Store for later use
             if (route.ID != 0)
                 calcRoutes[route.ID] = map;
@@ -62,6 +61,7 @@ namespace Control
 
         private List<MapRoute> CalcRoad(Route route)
         {
+            // TODO: Dani lave en god kommentar
             PointLatLng arlaFoodHobro = new PointLatLng(56.6372393, 9.7797216);
             DeliveryStop[] sortedStops = new DeliveryStop[route.Stops.Count];
 
@@ -93,15 +93,25 @@ namespace Control
             ConcurrentDictionary<double, Tuple<MapRoute, DeliveryStop>> roads =
                 new ConcurrentDictionary<double, Tuple<MapRoute, DeliveryStop>>();
 
+            MapRoute mapRoute = null;
             //Parallel.ForEach(stops, to =>
             stops.ForEach(to =>
             {
-                MapRoute mapRoute = MapProvider.GetRoute(from,
-                    to.DefaultStop.GeoLoc.Point, false, false, 15);
+                try
+                {
+                    lock (MapProvider)
+                    {
+                        mapRoute = MapProvider.GetRoute(from, to.DefaultStop.GeoLoc.Point, false, false, 15);
+                    }
 
-                // TODO: What to do if there is 2 distance with the same value?
-                roads.AddOrUpdate(mapRoute.Distance, new Tuple<MapRoute, DeliveryStop>(mapRoute, to),
-                    (d, roudAndStop) => roudAndStop);
+                    // TODO: What to do if there is 2 distance with the same value?
+                    roads.AddOrUpdate(mapRoute.Distance, new Tuple<MapRoute, DeliveryStop>(mapRoute, to),
+                        (d, roudAndStop) => roudAndStop);
+                }
+                catch (NullReferenceException e)
+                {
+                    Console.WriteLine(e);
+                }
             });
 
             return roads;
