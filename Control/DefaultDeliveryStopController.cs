@@ -149,7 +149,7 @@ namespace Control
             foreach (DefaultDeliveryStop stop in stops)
             {
                 //Stores custoemrs to database...
-                DBCustomer.Instance.StoreCustomer(stop.Customers, stop.ID);
+                DBCustomer.Instance.StoreCustomers(stop.Customers, stop.ID);
             }
 
             return stops;

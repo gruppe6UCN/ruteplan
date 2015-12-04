@@ -250,6 +250,9 @@ namespace GUI
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //TODO: Remove following line, for test purposes.
+            gMapControl1.SetPositionByKeywords("Denmark"); 
+            
             long id = (long)listBox1.SelectedItem;
             Route r = routes.First(route =>
             {

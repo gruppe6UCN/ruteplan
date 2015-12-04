@@ -87,7 +87,7 @@ namespace Database
         /// <param name="ID">Foreign key of customer.</param>
         public void StoreTransportUnit(TransportUnit unit, long ID)
         {
-            String sql = String.Format("INSERT into TransportUnit values({0}, {1}, {2});",
+            String sql = String.Format("INSERT IGNORE into TransportUnit values({0}, {1}, {2});",
                     unit.ID,
                     ID,
                     unit.UnitType);
