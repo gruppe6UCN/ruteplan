@@ -30,6 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GMap.NET.Core, Version=1.7.0.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <HintPath>..\packages\GMap.NET.WindowsForms.1.7.1\lib\net40\GMap.NET.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GMap.NET.WindowsForms, Version=1.7.0.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <HintPath>..\packages\GMap.NET.WindowsForms.1.7.1\lib\net40\GMap.NET.WindowsForms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
       <Private>True</Private>
@@ -46,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Service References\ServiceExport\Reference.cs">
+    <Compile Include="Service References\ServiceMap\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -57,6 +66,7 @@
     </Compile>
     <Compile Include="TestServiceExport.cs" />
     <Compile Include="TestServiceImportArla.cs" />
+    <Compile Include="TestServiceMap.cs" />    
     <Compile Include="TestServiceOptimize.cs" />
     <Compile Include="Service References\ServiceImport\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -74,15 +84,34 @@
     <Compile Include="TestServiceRoute.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Model.Route.datasource" />
+    <None Include="Properties\DataSources\WCFWrapper.MapRouteWrapper.datasource" />
     <None Include="Service References\ServiceExport\service.wsdl" />
     <None Include="Service References\ServiceExport\service.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceImport\service.wsdl" />
     <None Include="Service References\ServiceImport\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceMap\Model.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceMap\service.wsdl" />
+    <None Include="Service References\ServiceMap\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceMap\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceMap\System.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceMap\WCFWrapper.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceOptimize\service.wsdl" />
@@ -115,6 +144,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ServiceExport\" />
     <WCFMetadataStorage Include="Service References\ServiceImport\" />
+    <WCFMetadataStorage Include="Service References\ServiceMap\" />
     <WCFMetadataStorage Include="Service References\ServiceOptimize\" />
     <WCFMetadataStorage Include="Service References\ServiceRoute\" />
   </ItemGroup>
@@ -146,6 +176,9 @@
     <ProjectReference Include="..\Database\Database.csproj">
       <Project>{7e11d2bb-3939-4075-9764-002f88454ed0}</Project>
       <Name>Database</Name>
+    <ProjectReference Include="..\Control\Control.csproj">
+      <Project>{2B05A805-5993-476C-84FE-B0749199B8A5}</Project>
+      <Name>Control</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{d2387d10-ffd3-4dd4-8822-dc5f6ed1d93c}</Project>
@@ -154,6 +187,10 @@
     <ProjectReference Include="..\Server\Server.csproj">
       <Project>{b5425574-cf10-42e3-a74a-32efccd4777d}</Project>
       <Name>Server</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WCFWrapper\WCFWrapper.csproj">
+      <Project>{9d3796bf-51db-49ea-afa9-160a3d3a87dd}</Project>
+      <Name>WCFWrapper</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +216,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ServiceExport\Reference.svcmap">
+  <ItemGroup>
+    <None Include="Service References\ServiceMap\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceMap\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceMap\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

@@ -46,6 +46,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GMap.NET.Core, Version=1.7.0.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <HintPath>..\packages\GMap.NET.WindowsForms.1.7.1\lib\net40\GMap.NET.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GMap.NET.WindowsForms, Version=1.7.0.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <HintPath>..\packages\GMap.NET.WindowsForms.1.7.1\lib\net40\GMap.NET.WindowsForms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -61,17 +69,20 @@
     <Compile Include="IServiceDemo.cs" />
     <Compile Include="IServiceExport.cs" />
     <Compile Include="IServiceImport.cs" />
+    <Compile Include="IServiceImport.cs" />
+    <Compile Include="IServiceMap.cs" />
     <Compile Include="IServiceOptimize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceExport.cs" />
     <Compile Include="ServiceImport.cs" />
-    <Compile Include="ServiceDemo.cs" />
     <Compile Include="IServiceRoute.cs" />
+    <Compile Include="ServiceMap.cs" />
     <Compile Include="ServiceOptimize.cs" />
     <Compile Include="ServiceRoute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Control\Control.csproj">
@@ -81,6 +92,10 @@
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{D2387D10-FFD3-4DD4-8822-DC5F6ED1D93C}</Project>
       <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WCFWrapper\WCFWrapper.csproj">
+      <Project>{9D3796BF-51DB-49EA-AFA9-160A3D3A87DD}</Project>
+      <Name>WCFWrapper</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

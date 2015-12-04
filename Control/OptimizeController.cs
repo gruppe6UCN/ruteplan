@@ -128,7 +128,10 @@ namespace Control
                 }
 
                 RouteCtr.CalcTimeForDeparture();
+
             }
+
+            Parallel.ForEach(RouteCtr.Routes, route => MapCtr.PreCalcRoad(route));
         }
 
 
