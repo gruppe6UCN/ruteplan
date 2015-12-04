@@ -15,7 +15,7 @@ namespace TestWCFService
         [TestFixtureSetUp()]
         public void ClassSetUp()
         {
-            Server.WCFServer.Initialize();
+            Server.DBClient.Initialize();
             Server.WCFServer.StartServer();
             client = new ServiceOptimizeClient();
             client2 = new ServiceOptimizeClient();
@@ -32,7 +32,7 @@ namespace TestWCFService
             client.Close();
             client2.Close();
             Server.WCFServer.StopServer();
-            Server.WCFServer.Terminate();
+            Server.DBClient.Terminate();
         }
 
         [Test()]

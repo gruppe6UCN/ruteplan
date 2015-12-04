@@ -16,7 +16,7 @@ namespace TestWCFService
         [TestFixtureSetUp()]
         public void ClassSetUp()
         {
-            Server.WCFServer.Initialize();
+            Server.DBClient.Initialize();
             Server.WCFServer.StartServer();
             impCtr = ImportController.Instance;
             routeClient = new ServiceRouteClient();
@@ -32,7 +32,7 @@ namespace TestWCFService
         {
             routeClient.Close();
             Server.WCFServer.StopServer();
-            Server.WCFServer.Terminate();
+            Server.DBClient.Terminate();
         }
 
         [Test()]

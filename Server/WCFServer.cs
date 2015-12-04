@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.ServiceModel;
 using System.ServiceModel.Description;
 using Database;
@@ -10,10 +9,9 @@ namespace Server
 {
     public class WCFServer
     {
-        private static DBConnection dbInstance;
-
         private static List<ServiceHost> serviceHosts;
 
+        // List containing all needed info for start our WCF services
         private static List<Tuple<String, Type, Type>> services = new List<Tuple<String, Type, Type>>()
         {
             new Tuple<String, Type, Type>("http://localhost:8733/Design_Time_Addresses/WCFService/Route/",
@@ -28,6 +26,7 @@ namespace Server
 
         public static void StartServer()
         {
+            // if true then the server is not running
             if (serviceHosts == null)
             {
                 serviceHosts = new List<ServiceHost>();
@@ -36,14 +35,14 @@ namespace Server
                 foreach (Tuple<string, Type, Type> tuple in services)
                 {
                     String url = tuple.Item1;
-                    Type iType = tuple.Item2;
-                    Type type = tuple.Item3;
+                    Type serviceInterface = tuple.Item2;
+                    Type serviceClass = tuple.Item3;
 
                     //Instantiate ServiceHost
-                    ServiceHost serviceHost = new ServiceHost(type);
+                    ServiceHost serviceHost = new ServiceHost(serviceClass);
 
                     //Add Endpoint to Host
-                    serviceHost.AddServiceEndpoint(iType, binding, url);
+                    serviceHost.AddServiceEndpoint(serviceInterface, binding, url);
 
                     //Metadata Exchange
                     ServiceMetadataBehavior serviceBehavior = new ServiceMetadataBehavior();
@@ -56,13 +55,12 @@ namespace Server
                     //Open
                     serviceHost.Open();
                 }
-
-                Console.WriteLine("Server Started");
             }
         }
 
         public static void StopServer()
         {
+            // true then the server is running
             if (serviceHosts != null)
             {
                 foreach (ServiceHost serviceHost in serviceHosts)
@@ -73,37 +71,6 @@ namespace Server
 
                 serviceHosts = null;
             }
-        }
-
-        /// <summary>
-        /// Initialize the TestArla database for the the DBConnection.
-        /// </summary>
-        public static void Initialize()
-        {
-            dbInstance = DBConnection.Instance;
-            dbInstance.Host = "localhost";
-            dbInstance.DB = "TestArla";
-            dbInstance.User = File.ReadAllText("Config/user.txt");
-            dbInstance.Pass = File.ReadAllText("Config/pass.txt");
-            dbInstance.Connect();
-        }
-
-        /// <summary>
-        /// Initialize the TestArlaEmpty database for the the DBConnection.
-        /// </summary>
-        public static void InitializeEmpty()
-        {
-            dbInstance = DBConnection.Instance;
-            dbInstance.Host = "localhost";
-            dbInstance.DB = "TestArlaEmpty";
-            dbInstance.User = File.ReadAllText("Config/user.txt");
-            dbInstance.Pass = File.ReadAllText("Config/pass.txt");
-            dbInstance.Connect();
-        }
-
-        public static void Terminate()
-        {
-            dbInstance.Disconnect();
         }
     }
 }

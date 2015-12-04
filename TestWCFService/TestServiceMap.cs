@@ -21,7 +21,7 @@ namespace TestWCFService
         [TestFixtureSetUp()]
         public void ClassSetUp()
         {
-            Server.WCFServer.Initialize();
+            Server.DBClient.Initialize();
             Server.WCFServer.StartServer();
             impCtr = ImportController.Instance;
             serviceOptimize = new ServiceOptimizeClient();
@@ -40,7 +40,7 @@ namespace TestWCFService
         public void ClassTeardown()
         {
             Server.WCFServer.StopServer();
-            Server.WCFServer.Terminate();
+            Server.DBClient.Terminate();
             serviceOptimize.Close();
             serviceRoute.Close();
             serviceMap.Close();

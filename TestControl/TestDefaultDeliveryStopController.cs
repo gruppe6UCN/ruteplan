@@ -21,7 +21,7 @@ namespace ControlTest
         [TestFixtureSetUp()]
         public void ClassSetUp()
         {
-            Server.WCFServer.Initialize();
+            Server.DBClient.Initialize();
         }
 
         [TestFixtureTearDown()]
