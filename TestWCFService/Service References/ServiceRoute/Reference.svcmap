@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="e2cfb09d-7d7b-4af6-9233-6aca3c39c86a" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ArrayList" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/WCFService/Route/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="bb3c09bb-b9d6-4bdb-b2a5-55463c5954cb" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/Route/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="c6dba87d-19c3-4764-943e-2fdf49b38dbf" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/Route/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="b742eb39-72bb-4bfe-9dbd-ed0a2c449dd6" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/Route/mex" />
+    <MetadataFile FileName="Model.xsd" MetadataType="Schema" ID="609036c5-f043-4ac6-b974-eae5e29fb8f4" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/Route/mex" />
+    <MetadataFile FileName="WCFService.xsd" MetadataType="Schema" ID="4962c5b6-6924-47cb-bd1b-9e8e4bad96cb" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFService/Route/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

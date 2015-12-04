@@ -1,15 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Model
 {
+    [DataContract()]
     public class DeliveryStop
     {
+        [DataMember()]
         public long ID { get; set; }
+        [DataMember()]
         public DefaultDeliveryStop DefaultStop { get; private set; }
+        [DataMember()]
         public List<TransportUnit> TransportUnits { get; set; }
 
         public DeliveryStop(DefaultDeliveryStop defaultStop)

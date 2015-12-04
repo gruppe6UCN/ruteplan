@@ -5,18 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Control")]
+[assembly: AssemblyTitle("WCFWrapper")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-<<<<<<< HEAD
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("Control")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2015")]
-=======
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Control")]
+[assembly: AssemblyProduct("WCFWrapper")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
->>>>>>> 151de459a69ff4d67a3dd0e24090453b21afcce8
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -26,11 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-<<<<<<< HEAD
-[assembly: Guid("aff378e5-54f6-4e28-b661-e8d6456261b6")]
-=======
-[assembly: Guid("cf550a3a-71be-4e1d-b1c7-83b89b9a224b")]
->>>>>>> 151de459a69ff4d67a3dd0e24090453b21afcce8
+[assembly: Guid("fcd44b36-2c71-41f9-b2d4-a8818b6e5bd2")]
 
 // Version information for an assembly consists of the following four values:
 //

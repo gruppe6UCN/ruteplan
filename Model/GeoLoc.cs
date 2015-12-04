@@ -9,15 +9,25 @@ using GMap.NET;
 
 namespace Model
 {
+    [DataContract()]
     public class GeoLoc
     {
+        [DataMember()]
         public long ID { get; private set; }
-        public GeoCoordinate Location { get; private set; }
+        [DataMember()]
+        public double Latitude { get; private set; }
+        [DataMember()]
+        public double Longitude { get; private set; }
+
+        public GeoCoordinate Location {
+            get { return new GeoCoordinate(Latitude, Longitude); }
+        }
 
         public GeoLoc(long id, double latitude, double longitude)
         {
             this.ID = id;
-            this.Location = new GeoCoordinate(latitude, longitude);
+            this.Latitude = latitude;
+            this.Longitude = longitude;
         }
 
         public double FliedDistance(GeoLoc geoLoc)

@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Model;
 using System.Data;
+using Model;
 
 
-namespace Server.Database
+namespace Database
 {
     public class DBGeoLoc
     {
@@ -60,7 +57,6 @@ namespace Server.Database
         /// <returns>GeoPoints</returns>
         public List<GeoLoc> GetGeoLocs()
         {
-            List<GeoLoc> list;
             String sql = String.Format("select * from GeoLoc");
             return DbConnection.SendSQL<GeoLoc>(sql, ConvertToGeoLoc);
         }
