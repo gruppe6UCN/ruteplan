@@ -22,7 +22,7 @@ namespace WCFWrapper
             }
         }
 
-        public IEnumerable<PointLatLng> UnWrab()
+        public IEnumerable<PointLatLng> Unwrap()
         {
             List<PointLatLng> points = new List<PointLatLng>();
             Points.ForEach(point =>

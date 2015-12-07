@@ -95,5 +95,18 @@ namespace ControlTest
 
             Assert.Greater(firstTime.ElapsedTicks, secondTime.ElapsedTicks);
         }
+
+        [Test()]
+        public void TestGetCalcRoad_ReturnNull()
+        {
+            Route route = routeCtr.Routes.First(r => r.DefaultRoute.ID == 91);
+            Route route2 = new Route(route.DefaultRoute, DateTime.Now);
+            route2.ID = 666;
+
+            Assert.Null(mapCtr.GetCalcRoad(route2));
+
+            route.ID = 666;
+            Assert.NotNull(mapCtr.GetCalcRoad(route));
+        }
     }
 }

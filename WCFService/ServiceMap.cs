@@ -1,4 +1,6 @@
-﻿using Control;
+﻿using System.Collections.Generic;
+using Control;
+using GMap.NET;
 using Model;
 using WCFWrapper;
 
@@ -10,8 +12,11 @@ namespace WCFService
         //public List<MapRoute> GetRoadMap(Route route)
         public MapRouteWrapper GetRoadMap(Route route)
         {
-            var mapRoute = MapController.Instance.GetCalcRoad(route);
-
+            List<MapRoute> mapRoute = MapController.Instance.GetCalcRoad(route);
+            if (mapRoute == null)
+            {
+                return null;
+            }
             return new MapRouteWrapper(mapRoute);
         }
     }
