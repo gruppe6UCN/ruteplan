@@ -22,13 +22,13 @@ namespace WCFWrapper
             });
         }
 
-        public List<MapRoute> UnWrab()
+        public List<MapRoute> Unwrap()
         {
             List<MapRoute> mapRoutes = new List<MapRoute>();
 
             MapRoutes.ForEach(mapRoute =>
             {
-                IEnumerable<PointLatLng> points = mapRoute.Item1.UnWrab();
+                IEnumerable<PointLatLng> points = mapRoute.Item1.Unwrap();
                 String name = mapRoute.Item2;
                 mapRoutes.Add(new MapRoute(points, name));
             });
