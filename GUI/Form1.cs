@@ -20,6 +20,7 @@ using GUI.ServiceExport;
 using GUI.ServiceMap;
 using GMap.NET.WindowsForms;
 using GMap.NET;
+using WCFWrapper;
 
 namespace GUI
 {
@@ -44,12 +45,13 @@ namespace GUI
             InitializeComponent();
             
             //Map
-            geoPosion = new GMapOverlay("GeoPosion");
             gMapControl1.MapProvider = GMap.NET.MapProviders.OpenStreetMapProvider.Instance;
-            GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerAndCache;
+            GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerOnly;
             
             //TODO: Look at more precise then denmark.
-            gMapControl1.SetPositionByKeywords("Denmark"); 
+            gMapControl1.SetPositionByKeywords("Denmark");
+
+            geoPosion = new GMapOverlay("GeoPosion");
 
             //Clients
             mapClient = new ServiceMapClient();
@@ -122,7 +124,7 @@ namespace GUI
             listBox1.Items.Clear();
             foreach (Route route in routes)
             {
-                long id = route.ID == null ? route.ID : route.DefaultRoute.ID;
+                long id = route.ID != 0 ? route.ID : route.DefaultRoute.ID;
                 listBox1.Items.Add(id);
             }
         }
@@ -218,36 +220,6 @@ namespace GUI
             }
         }
 
-        public void tabPage1_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        public void tabPage2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        public void tabPage3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        public void tabPage4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
-
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             //TODO: Remove following line, for test purposes.
@@ -264,28 +236,23 @@ namespace GUI
             });
 
             gMapControl1.Overlays.Clear();
-            geoPosion = new GMapOverlay("Route: " + id);
 
-            List<MapRoute> road = mapClient.GetRoadMap(r).UnWrab();
+            MapRouteWrapper wrapper = mapClient.GetRoadMap(r);
 
-            for (int i = 0; i < road.Count; i++)
+            if (wrapper != null)
             {
-                GMapRoute gMapRoute = new GMapRoute(road[0].Points, (id + 1) + ". Stop");
-                geoPosion.Routes.Add(gMapRoute);
-                gMapControl1.UpdateRouteLocalPosition(gMapRoute);
+                List<MapRoute> road = wrapper.Unwrap();
+
+                geoPosion = new GMapOverlay("Route: " + id);
+
+                for (int i = 0; i < road.Count; i++)
+                {
+                    GMapRoute gMapRoute = new GMapRoute(road[0].Points, (id + 1) + ". Stop");
+                    geoPosion.Routes.Add(gMapRoute);
+                    gMapControl1.UpdateRouteLocalPosition(gMapRoute);
+                }
+                gMapControl1.Overlays.Add(geoPosion);
             }
-            gMapControl1.Overlays.Add(geoPosion);
-            gMapControl1.Update();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private async void timer1_Tick(object sender, EventArgs e)
@@ -339,11 +306,6 @@ namespace GUI
             }
 
             return status;
-        }
-
-        private void gMapControl1_Load(object sender, EventArgs e)
-        {
-
         }
 
     }
