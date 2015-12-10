@@ -51,7 +51,7 @@ namespace TestWCFService
         {
             Route route = serviceRoute.GetRoutes()[0];
             MapRouteWrapper roadMap = serviceMap.GetRoadMap(route);
-            List<MapRoute> mapRoutes = roadMap.UnWrab();
+            List<MapRoute> mapRoutes = roadMap.Unwrap();
             Assert.IsNotEmpty(mapRoutes);
         }
 
@@ -65,7 +65,7 @@ namespace TestWCFService
                 // Calls the MapController direct to get original List<MapRoute> for comparacy
                 List<MapRoute> originalMapRoute = MapController.Instance.GetCalcRoad(route);
                 // Wrap and unwrap the original originalMapRoute for comparacy
-                List<MapRoute> wrapperMapRoute = new MapRouteWrapper(originalMapRoute).UnWrab();
+                List<MapRoute> wrapperMapRoute = new MapRouteWrapper(originalMapRoute).Unwrap();
 
                 for (int i = 0; i < originalMapRoute.Count; i++)
                 {
