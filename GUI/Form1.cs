@@ -12,12 +12,15 @@ using Model;
 using System.IO;
 using WCFService;
 using Server;
-using GUI.ServiceImport;
 using GUI.ServiceRoute;
 using Control;
 using GUI.ServiceOptimize;
 using System.ServiceModel;
 using GUI.ServiceExport;
+using GUI.ServiceMap;
+using GMap.NET.WindowsForms;
+using GMap.NET;
+using WCFWrapper;
 
 namespace GUI
 {
@@ -28,10 +31,12 @@ namespace GUI
         public delegate int GetProgressDelegate();
         public delegate string GetStatusDelegate();
         public delegate void UpdateLabelDelegate(string text);
-        private ServiceImportClient importClient;
+        private ServiceMapClient mapClient;
         private ServiceOptimizeClient optimizeClient;
         private ServiceRouteClient routeClient;
         private ServiceExportClient exportClient;
+        private GMapOverlay geoPosion;
+        private List<Route> routes;
         private bool working;
         private bool error;
 
@@ -39,11 +44,17 @@ namespace GUI
         {
             InitializeComponent();
             
-            //Starts the Server. Methods for testing.
-            //TODO: Implement seperate server from client.
-            //WCFServer.Initialize();
-            //WCFServer.StartServer();
-            importClient = new ServiceImportClient();
+            //Map
+            gMapControl1.MapProvider = GMap.NET.MapProviders.OpenStreetMapProvider.Instance;
+            GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerOnly;
+            
+            //TODO: Look at more precise then denmark.
+            gMapControl1.SetPositionByKeywords("Denmark");
+
+            geoPosion = new GMapOverlay("GeoPosion");
+
+            //Clients
+            mapClient = new ServiceMapClient();
             routeClient = new ServiceRouteClient();
             optimizeClient = new ServiceOptimizeClient();
             exportClient = new ServiceExportClient();
@@ -79,7 +90,7 @@ namespace GUI
         {
             try
             {
-                List<Route> routes = routeClient.GetRoutes().ToList<Route>();
+                routes = routeClient.GetRoutes().ToList<Route>();
                 UpdateDelegate update = new UpdateDelegate(UpdateImportTable);
                 this.BeginInvoke(update, routes);
             }
@@ -108,6 +119,14 @@ namespace GUI
                         )
                     );
             }
+
+            //Updates Map List
+            listBox1.Items.Clear();
+            foreach (Route route in routes)
+            {
+                long id = route.ID != 0 ? route.ID : route.DefaultRoute.ID;
+                listBox1.Items.Add(id);
+            }
         }
 
 
@@ -132,7 +151,7 @@ namespace GUI
             try
             {
                 optimizeClient.Optimize();
-                List<Route> routes = routeClient.GetRoutes().ToList<Route>();
+                routes = routeClient.GetRoutes().ToList<Route>();
                 UpdateDelegate update = new UpdateDelegate(UpdateOptimizeTable);
                 this.BeginInvoke(update, routes);
             }
@@ -201,49 +220,39 @@ namespace GUI
             }
         }
 
-        public void tabPage1_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        public void tabPage2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        public void tabPage3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        public void tabPage4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
-
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //TODO: Remove following line, for test purposes.
+            gMapControl1.SetPositionByKeywords("Denmark"); 
+            
+            long id = (long)listBox1.SelectedItem;
+            Route r = routes.First(route =>
+            {
+                if (route.ID == id || route.DefaultRoute.ID == id)
+                {
+                    return true;
+                }
+                return false;
+            });
 
-        }
+            gMapControl1.Overlays.Clear();
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
+            MapRouteWrapper wrapper = mapClient.GetRoadMap(r);
 
-        }
+            if (wrapper != null)
+            {
+                List<MapRoute> road = wrapper.Unwrap();
 
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
+                geoPosion = new GMapOverlay("Route: " + id);
 
+                for (int i = 0; i < road.Count; i++)
+                {
+                    GMapRoute gMapRoute = new GMapRoute(road[0].Points, (id + 1) + ". Stop");
+                    geoPosion.Routes.Add(gMapRoute);
+                    gMapControl1.UpdateRouteLocalPosition(gMapRoute);
+                }
+                gMapControl1.Overlays.Add(geoPosion);
+            }
         }
 
         private async void timer1_Tick(object sender, EventArgs e)

@@ -56,6 +56,14 @@ namespace TestWCFService
         }
 
         [Test()]
+        public void TestGetRoadMap_ReturnNull()
+        {
+            Route route = serviceRoute.GetRoutes()[0];
+            route.Stops.Clear();
+            Assert.Null(serviceMap.GetRoadMap(route));
+        }
+
+        [Test()]
         public void TestGetRoadMap_OrderOfRoutesAndPoints()
         {
             Route[] routes = serviceRoute.GetRoutes();

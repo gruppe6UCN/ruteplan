@@ -60,6 +60,29 @@ namespace Database
             }
             return tableList;
         }
+
+        /// <summary>
+        /// Stores the given list of customers in the database with associated foreign key for defaultStop.
+        /// </summary>
+        /// <param name="customers">List of customrs for stop to save.</param>
+        /// <param name="ID">ID of foreignkey DefaultStop.</param>
+        public void StoreCustomers(List<Customer> customers, long ID)
+        {
+            foreach (Customer customer in customers)
+            {
+                String sql = String.Format("INSERT IGNORE into Customer values({0}, {1}, \"{2}\", \"{3}\", {4}, \"{5}\", \"{6}\");",
+                    customer.ID,
+                    ID,
+                    customer.StreetName,
+                    customer.StreetNo,
+                    customer.Zipcode,
+                    customer.City,
+                    customer.TimeOfDelivery);
+
+                dbConnection.SendInsertSQL(sql);
+            }
+
+        }
     }
 }
 

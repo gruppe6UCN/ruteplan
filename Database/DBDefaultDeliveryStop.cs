@@ -49,7 +49,7 @@ namespace Database
         /// <returns>List of default stops.</returns>
         public List<DefaultDeliveryStop> GetDefaultDeliveryStops(long defaultRouteID)
         {
-           List<DefaultDeliveryStop> list;
+            List<DefaultDeliveryStop> list;
             String sql = String.Format("select * from DefaultDeliveryStop where default_route_id = '{0}';", defaultRouteID);
             list = DbConnection.SendSQL<DefaultDeliveryStop>(sql, ConvertTotDefaultDeliveryStop);
             return list;

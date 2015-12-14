@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Concurrent;
+using WCFService;
+using GMap.NET;
 using Control;
 
 namespace Server
@@ -14,6 +17,7 @@ namespace Server
             string pathRoutes = "Config/RuterCSVTest.csv";
             string pathStops = "Config/stopsCSV.csv";
             string pathCustomers = "Config/kunderCSV.csv";
+            //TODO: Import from file and not Database.
             ImportController.Instance.ImportFromFile(pathRoutes, pathStops, pathCustomers);
 
             Console.WriteLine("Server Started");

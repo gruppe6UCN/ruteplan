@@ -36,8 +36,13 @@ namespace Control
 
         public List<MapRoute> GetCalcRoad(Route route)
         {
+            if (route.Stops.Count == 0)
+            {
+                return null;
+            }
+
             // Check for a pre-calculated road
-            if (route.ID != 0 || calcRoutes.ContainsKey(route.ID))
+            if (route.ID != 0 && calcRoutes.ContainsKey(route.ID))
                 return calcRoutes[route.ID];
             else if (calcRoutes.ContainsKey(route.DefaultRoute.ID))
                 return calcRoutes[route.DefaultRoute.ID];
@@ -71,7 +76,12 @@ namespace Control
             ConcurrentDictionary<double, Tuple<MapRoute, DeliveryStop>> roads;
 
             roads = CalcDistance(arlaFoodHobro, route.Stops);
+            if (roads.Count == 0)
+            {
+                return null;
+            }
             shortestDistances = roads.Keys.Min();
+
             sortedStops[0] = roads[shortestDistances].Item2;
             map.Add(roads[shortestDistances].Item1);
 
@@ -110,7 +120,7 @@ namespace Control
                 }
                 catch (NullReferenceException e)
                 {
-                    Console.WriteLine(e);
+                    //Console.WriteLine(e); //TODO: Find out why it is happens
                 }
             });
 

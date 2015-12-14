@@ -79,5 +79,19 @@ namespace Database
             
             return tableList;
         }
+
+        /// <summary>
+        /// Stores the given transport unit to the database with foreign key for given customer.
+        /// </summary>
+        /// <param name="unit">TransportUnit to be stored.</param>
+        /// <param name="ID">Foreign key of customer.</param>
+        public void StoreTransportUnit(TransportUnit unit, long ID)
+        {
+            String sql = String.Format("INSERT IGNORE into TransportUnit values({0}, {1}, {2});",
+                    unit.ID,
+                    ID,
+                    unit.UnitType);
+            DbConnection.SendInsertSQL(sql);
+        }
     }
 }

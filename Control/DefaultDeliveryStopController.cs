@@ -146,6 +146,11 @@ namespace Control
             }
 
             DbDefaultDeliveryStop.StoreDefaultDeliveryStopHAX(stops, defaultRoute.ID);
+            foreach (DefaultDeliveryStop stop in stops)
+            {
+                //Stores custoemrs to database...
+                DBCustomer.Instance.StoreCustomers(stop.Customers, stop.ID);
+            }
 
             return stops;
         }
