@@ -86,7 +86,7 @@ namespace WebApp
             {
                 if (id != 0)
                 {
-                    return String.Format("This RouteDetil is {0}", id);
+                    return String.Format("This RouteDetail is {0}", id);
                 }
                 return String.Format("this route '{0}' does not exist", _id);
             }
