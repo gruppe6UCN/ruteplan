@@ -138,7 +138,7 @@ namespace Control
             List<Route> overloadedRoutes = new List<Route>();
 
             //Checks if each route is overloaded.
-            Parallel.ForEach(overloadedRoutes, route => 
+            Parallel.ForEach(Routes, route => 
             {
                 //Gets variables.
                 double load = route.GetLoadForTrailer();
